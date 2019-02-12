@@ -1,0 +1,40 @@
+Package: circus
+Type: Package
+Title: The Circus of Monsters
+Version: 0.1.0
+Authors@R: c(person("Dominique", "Makowski", role = c("ctb"), email = "dom.makowski@gmail.com", comment = c(ORCID = "0000-0001-5375-9967")),
+             person("Daniel", "Lüdecke", role = c("aut", "cre"), email = "d.luedecke@uke.de", comment = c(ORCID = "0000-0002-8895-3206")))
+Maintainer: The package maintainer <yourself@somewhere.net>
+Description: Contains a variety of fitted models to help the systematic testing of other packages.
+Suggests:
+	knitr,
+	rmarkdown,
+	testthat,
+	usethis,
+	covr,
+	rstanarm,
+	betareg,
+	brms,
+	coxme,
+	gam,
+	gee,
+	GLMMadaptive,
+	glmmTMB,
+	gmnl,
+	MASS,
+	mlogit,
+	lme4,
+	mgcv,
+	nnet,
+	nlme,
+	ordinal,
+	pscl,
+	splines,
+	survey,
+	survival,
+	truncreg
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
+VignetteBuilder: knitr
