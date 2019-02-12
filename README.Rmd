@@ -56,7 +56,7 @@ library("circus")
 ## Models Creation
 
 ### Base
-```{r, warning=FALSE, message=FALSE}
+```{r, warning=FALSE, message=FALSE, results="hide"}
 htest_1 <- cor.test(iris$Sepal.Width, iris$Sepal.Length, method = "spearman")
 htest_2 <- cor.test(iris$Sepal.Width, iris$Sepal.Length, method = "pearson")
 htest_3 <- cor.test(iris$Sepal.Width, iris$Sepal.Length, method = "kendall")
@@ -76,9 +76,40 @@ glm_1 <- glm(vs ~ wt + cyl, data = mtcars, family="binomial")
 glm_2 <- glm(vs ~ wt + cyl, data = mtcars, family=binomial(link="probit"))
 ```
 
+### lme4
+
+```{r, warning=FALSE, message=FALSE, results="hide"}
+library(lme4)
+
+lmerMod_1 <- lme4::lmer(wt ~ cyl + (1|gear), data = mtcars)
+
+merMod_1 <- lme4::glmer(vs ~ cyl + (1|gear), data = mtcars, family="binomial")
+merMod_2 <- lme4::glmer(vs ~ cyl + (1|gear), data = mtcars, family=binomial(link="probit"))
+```
+
+### Rstanarm
+
+```{r, warning=FALSE, message=FALSE, results="hide"}
+library(rstanarm)
+
+stanreg_lm_1 <- rstanarm::stan_glm(mpg ~ wt + cyl, data = mtcars, chains=2)
+stanreg_lm_2 <- rstanarm::stan_glm(mpg ~ wt + cyl, data = mtcars, algorithm="meanfield")
+stanreg_lm_3 <- rstanarm::stan_glm(mpg ~ wt + cyl, data = mtcars, algorithm="fullrank")
+
+stanreg_glm_1 <- rstanarm::stan_glm(vs ~ wt + cyl, data = mtcars, family="binomial", chains=2)
+stanreg_glm_2 <- rstanarm::stan_glm(vs ~ wt + cyl, data = mtcars, family=binomial(link="probit"), chains=2)
+
+stanreg_lmerMod_1 <- rstanarm::stan_lmer(wt ~ cyl + (1|gear), data = mtcars, chains=2)
+stanreg_merMod_1 <- rstanarm::stan_glmer(vs ~ cyl + (1|gear), data = mtcars, family="binomial", chains=2)
+stanreg_merMod_2 <- rstanarm::stan_glmer(vs ~ cyl + (1|gear), data = mtcars, family=binomial(link="probit"), chains=2)
+
+
+```
+
+
 
 ## Save
-```{r, warning=FALSE, message=FALSE}
+```{r, warning=FALSE, message=FALSE, eval=FALSE}
 usethis::use_data(htest_1,
                   htest_2,
                   htest_3,
@@ -96,6 +127,19 @@ usethis::use_data(htest_1,
                   
                   glm_1,
                   glm_2,
+                  
+                  lmerMod_1,
+                  merMod_1,
+                  merMod_2,
+                  
+                  stanreg_lm_1,
+                  stanreg_lm_2,
+                  stanreg_lm_3,
+                  stanreg_glm_1,
+                  stanreg_glm_2,
+                  stanreg_lmerMod_1,
+                  stanreg_merMod_1,
+                  stanreg_merMod_2,
                   
                   overwrite=TRUE)
 ```

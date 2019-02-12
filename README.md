@@ -43,6 +43,34 @@ glm_1 <- glm(vs ~ wt + cyl, data = mtcars, family="binomial")
 glm_2 <- glm(vs ~ wt + cyl, data = mtcars, family=binomial(link="probit"))
 ```
 
+### lme4
+
+``` r
+library(lme4)
+
+lmerMod_1 <- lme4::lmer(wt ~ cyl + (1|gear), data = mtcars)
+
+merMod_1 <- lme4::glmer(vs ~ cyl + (1|gear), data = mtcars, family="binomial")
+merMod_2 <- lme4::glmer(vs ~ cyl + (1|gear), data = mtcars, family=binomial(link="probit"))
+```
+
+### Rstanarm
+
+``` r
+library(rstanarm)
+
+stanreg_lm_1 <- rstanarm::stan_glm(mpg ~ wt + cyl, data = mtcars, chains=2)
+stanreg_lm_2 <- rstanarm::stan_glm(mpg ~ wt + cyl, data = mtcars, algorithm="meanfield")
+stanreg_lm_3 <- rstanarm::stan_glm(mpg ~ wt + cyl, data = mtcars, algorithm="fullrank")
+
+stanreg_glm_1 <- rstanarm::stan_glm(vs ~ wt + cyl, data = mtcars, family="binomial", chains=2)
+stanreg_glm_2 <- rstanarm::stan_glm(vs ~ wt + cyl, data = mtcars, family=binomial(link="probit"), chains=2)
+
+stanreg_lmerMod_1 <- rstanarm::stan_lmer(wt ~ cyl + (1|gear), data = mtcars, chains=2)
+stanreg_merMod_1 <- rstanarm::stan_glmer(vs ~ cyl + (1|gear), data = mtcars, family="binomial", chains=2)
+stanreg_merMod_2 <- rstanarm::stan_glmer(vs ~ cyl + (1|gear), data = mtcars, family=binomial(link="probit"), chains=2)
+```
+
 ## Save
 
 ``` r
@@ -64,7 +92,18 @@ usethis::use_data(htest_1,
                   glm_1,
                   glm_2,
                   
+                  lmerMod_1,
+                  merMod_1,
+                  merMod_2,
+                  
+                  stanreg_lm_1,
+                  stanreg_lm_2,
+                  stanreg_lm_3,
+                  stanreg_glm_1,
+                  stanreg_glm_2,
+                  stanreg_lmerMod_1,
+                  stanreg_merMod_1,
+                  stanreg_merMod_2,
+                  
                   overwrite=TRUE)
-## <U+2714> Setting active project to 'C:/Users/Dom/Dropbox/RECHERCHE/N/easystats/circus'
-## <U+2714> Saving 'htest_1', 'htest_2', 'htest_3', 'htest_4', 'htest_5', 'htest_6', 'htest_7', 'htest_8', 'anova_1', 'aov_1', 'aovlist_1', 'lm_1', 'glm_1', 'glm_2' to 'data/htest_1.rda', 'data/htest_2.rda', 'data/htest_3.rda', 'data/htest_4.rda', 'data/htest_5.rda', 'data/htest_6.rda', 'data/htest_7.rda', 'data/htest_8.rda', 'data/anova_1.rda', 'data/aov_1.rda', 'data/aovlist_1.rda', 'data/lm_1.rda', 'data/glm_1.rda', 'data/glm_2.rda'
 ```
