@@ -40,6 +40,8 @@ aovlist_1 <- aov(wt ~ cyl + Error(gear), data=mtcars)
 lm_1 <- lm(mpg ~ wt + cyl, data = mtcars)
 lm_2 <- lm(mpg ~ wt + poly(cyl, 2), data = mtcars)
 lm_3 <- lm(mpg ~ wt + poly(cyl, 2, raw=TRUE), data = mtcars)
+lm_4 <- lm(mpg ~ wt * as.factor(gear), data = mtcars)
+lm_5 <- lm(mpg ~ as.factor(gear) / wt, data = mtcars)
 
 glm_1 <- glm(vs ~ wt + cyl, data = mtcars, family="binomial")
 glm_2 <- glm(vs ~ wt + cyl, data = mtcars, family=binomial(link="probit"))
@@ -94,6 +96,8 @@ usethis::use_data(htest_1,
                   lm_1,
                   lm_2,
                   lm_3,
+                  lm_4,
+                  lm_5,
                   
                   glm_1,
                   glm_2,

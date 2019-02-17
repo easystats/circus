@@ -81,6 +81,19 @@
 "lm_3"
 
 
+#' lm_4
+#'
+#' Model of class lm
+"lm_4"
+
+
+#' lm_5
+#'
+#' Model of class lm
+"lm_5"
+
+
+
 #' glm_1
 #'
 #' Model of class glm
