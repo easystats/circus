@@ -38,6 +38,8 @@ aov_1 <- aov(Sepal.Width ~ Species, data=iris)
 aovlist_1 <- aov(wt ~ cyl + Error(gear), data=mtcars)
 
 lm_1 <- lm(mpg ~ wt + cyl, data = mtcars)
+lm_2 <- lm(mpg ~ wt + poly(cyl, 2), data = mtcars)
+lm_3 <- lm(mpg ~ wt + poly(cyl, 2, raw=TRUE), data = mtcars)
 
 glm_1 <- glm(vs ~ wt + cyl, data = mtcars, family="binomial")
 glm_2 <- glm(vs ~ wt + cyl, data = mtcars, family=binomial(link="probit"))
@@ -69,6 +71,8 @@ stanreg_glm_2 <- rstanarm::stan_glm(vs ~ wt + cyl, data = mtcars, family=binomia
 stanreg_lmerMod_1 <- rstanarm::stan_lmer(wt ~ cyl + (1|gear), data = mtcars, chains=2)
 stanreg_merMod_1 <- rstanarm::stan_glmer(vs ~ cyl + (1|gear), data = mtcars, family="binomial", chains=2)
 stanreg_merMod_2 <- rstanarm::stan_glmer(vs ~ cyl + (1|gear), data = mtcars, family=binomial(link="probit"), chains=2)
+
+stanreg_gam_1 <- rstanarm::stan_gamm4(mpg ~ s(wt) + cyl, data = mtcars, chains=2)
 ```
 
 ## Save
@@ -88,6 +92,8 @@ usethis::use_data(htest_1,
                   aovlist_1,
                   
                   lm_1,
+                  lm_2,
+                  lm_3,
                   
                   glm_1,
                   glm_2,
@@ -104,6 +110,7 @@ usethis::use_data(htest_1,
                   stanreg_lmerMod_1,
                   stanreg_merMod_1,
                   stanreg_merMod_2,
+                  stanreg_gam_1,
                   
                   overwrite=TRUE)
 ```
