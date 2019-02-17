@@ -6,6 +6,8 @@ Authors@R: c(person("Dominique", "Makowski", role = c("ctb"), email = "dom.makow
              person("Daniel", "Lüdecke", role = c("aut", "cre"), email = "d.luedecke@uke.de", comment = c(ORCID = "0000-0002-8895-3206")))
 Maintainer: The package maintainer <yourself@somewhere.net>
 Description: Contains a variety of fitted models to help the systematic testing of other packages.
+Imports:
+	httr
 Suggests:
 	knitr,
 	rmarkdown,
