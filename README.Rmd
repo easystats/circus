@@ -56,7 +56,7 @@ library("circus")
 ## Models Creation
 
 ### Base
-```{r, warning=FALSE, message=FALSE, results="hide"}
+```{r, eval=FALSE, warning=FALSE, message=FALSE, results="hide"}
 htest_1 <- cor.test(iris$Sepal.Width, iris$Sepal.Length, method = "spearman")
 htest_2 <- cor.test(iris$Sepal.Width, iris$Sepal.Length, method = "pearson")
 htest_3 <- cor.test(iris$Sepal.Width, iris$Sepal.Length, method = "kendall")
@@ -82,7 +82,7 @@ glm_2 <- glm(vs ~ wt + cyl, data = mtcars, family=binomial(link="probit"))
 
 ### lme4
 
-```{r, warning=FALSE, message=FALSE, results="hide"}
+```{r, eval=FALSE, warning=FALSE, message=FALSE, results="hide"}
 library(lme4)
 
 lmerMod_1 <- lme4::lmer(wt ~ cyl + (1|gear), data = mtcars)
@@ -93,7 +93,7 @@ merMod_2 <- lme4::glmer(vs ~ cyl + (1|gear), data = mtcars, family=binomial(link
 
 ### Rstanarm
 
-```{r, warning=FALSE, message=FALSE, results="hide"}
+```{r, eval=FALSE, warning=FALSE, message=FALSE, results="hide"}
 library(rstanarm)
 
 stanreg_lm_1 <- rstanarm::stan_glm(mpg ~ wt + cyl, data = mtcars, chains=2)
@@ -113,7 +113,7 @@ stanreg_gam_1 <- rstanarm::stan_gamm4(mpg ~ s(wt) + cyl, data = mtcars, chains=2
 
 
 ## Save
-```{r, warning=FALSE, message=FALSE, results="hide"}
+```{r, eval=FALSE, warning=FALSE, message=FALSE, results="hide"}
 usethis::use_data(htest_1,
                   htest_2,
                   htest_3,
