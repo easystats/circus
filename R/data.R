@@ -151,6 +151,28 @@
 #' Model of class stanreg
 "stanreg_lm_3"
 
+#' stanreg_lm_4
+#'
+#' Model of class stanreg
+"stanreg_lm_4"
+
+#' stanreg_lm_5
+#'
+#' Model of class stanreg
+"stanreg_lm_5"
+
+#' stanreg_lm_6
+#'
+#' Model of class stanreg
+"stanreg_lm_6"
+
+#' stanreg_lm_7
+#'
+#' Model of class stanreg
+"stanreg_lm_7"
+
+
+
 #' stanreg_glm_1
 #'
 #' Model of class stanreg

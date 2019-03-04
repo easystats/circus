@@ -61,11 +61,18 @@ merMod_2 <- lme4::glmer(vs ~ cyl + (1|gear), data = mtcars, family=binomial(link
 ### Rstanarm
 
 ``` r
+set.seed(333)
+
 library(rstanarm)
 
 stanreg_lm_1 <- rstanarm::stan_glm(mpg ~ wt + cyl, data = mtcars, chains=2)
 stanreg_lm_2 <- rstanarm::stan_glm(mpg ~ wt + cyl, data = mtcars, algorithm="meanfield")
 stanreg_lm_3 <- rstanarm::stan_glm(mpg ~ wt + cyl, data = mtcars, algorithm="fullrank")
+
+stanreg_lm_4 <- rstanarm::stan_glm(Sepal.Length ~ Species, data = iris, chains=2)
+stanreg_lm_5 <- rstanarm::stan_glm(Sepal.Length ~ Species + Petal.Length, data = iris, chains=2)
+stanreg_lm_6 <- rstanarm::stan_glm(Sepal.Length ~ Species * Petal.Length, data = iris, chains=2)
+stanreg_lm_7 <- rstanarm::stan_glm(Sepal.Length ~ Species / Petal.Length, data = iris, chains=2)
 
 stanreg_glm_1 <- rstanarm::stan_glm(vs ~ wt + cyl, data = mtcars, family="binomial", chains=2)
 stanreg_glm_2 <- rstanarm::stan_glm(vs ~ wt + cyl, data = mtcars, family=binomial(link="probit"), chains=2)
@@ -109,6 +116,10 @@ usethis::use_data(htest_1,
                   stanreg_lm_1,
                   stanreg_lm_2,
                   stanreg_lm_3,
+                  stanreg_lm_4,
+                  stanreg_lm_5,
+                  stanreg_lm_6,
+                  stanreg_lm_7,
                   stanreg_glm_1,
                   stanreg_glm_2,
                   stanreg_lmerMod_1,

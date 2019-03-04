@@ -14,7 +14,7 @@ editor_options:
 
 # circus
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, results='hide', message=FALSE, warning=FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   tidy.opts=list(width.cutoff=60),
@@ -24,6 +24,11 @@ knitr::opts_chunk$set(
 options(knitr.kable.NA = '',
         digits = 4,
         width=60)
+
+library(rstanarm)
+rstan::rstan_options(auto_write = TRUE)
+options(mc.cores = parallel::detectCores(),
+        digits=2)
 ```
 
 
@@ -56,7 +61,7 @@ library("circus")
 ## Models Creation
 
 ### Base
-```{r, eval=FALSE, warning=FALSE, message=FALSE, results="hide"}
+```{r, eval=TRUE, warning=FALSE, message=FALSE, results="hide"}
 htest_1 <- cor.test(iris$Sepal.Width, iris$Sepal.Length, method = "spearman")
 htest_2 <- cor.test(iris$Sepal.Width, iris$Sepal.Length, method = "pearson")
 htest_3 <- cor.test(iris$Sepal.Width, iris$Sepal.Length, method = "kendall")
@@ -82,7 +87,7 @@ glm_2 <- glm(vs ~ wt + cyl, data = mtcars, family=binomial(link="probit"))
 
 ### lme4
 
-```{r, eval=FALSE, warning=FALSE, message=FALSE, results="hide"}
+```{r, eval=TRUE, warning=FALSE, message=FALSE, results="hide"}
 library(lme4)
 
 lmerMod_1 <- lme4::lmer(wt ~ cyl + (1|gear), data = mtcars)
@@ -93,12 +98,19 @@ merMod_2 <- lme4::glmer(vs ~ cyl + (1|gear), data = mtcars, family=binomial(link
 
 ### Rstanarm
 
-```{r, eval=FALSE, warning=FALSE, message=FALSE, results="hide"}
+```{r, eval=TRUE, warning=FALSE, message=FALSE, results="hide"}
+set.seed(333)
+
 library(rstanarm)
 
 stanreg_lm_1 <- rstanarm::stan_glm(mpg ~ wt + cyl, data = mtcars, chains=2)
 stanreg_lm_2 <- rstanarm::stan_glm(mpg ~ wt + cyl, data = mtcars, algorithm="meanfield")
 stanreg_lm_3 <- rstanarm::stan_glm(mpg ~ wt + cyl, data = mtcars, algorithm="fullrank")
+
+stanreg_lm_4 <- rstanarm::stan_glm(Sepal.Length ~ Species, data = iris, chains=2)
+stanreg_lm_5 <- rstanarm::stan_glm(Sepal.Length ~ Species + Petal.Length, data = iris, chains=2)
+stanreg_lm_6 <- rstanarm::stan_glm(Sepal.Length ~ Species * Petal.Length, data = iris, chains=2)
+stanreg_lm_7 <- rstanarm::stan_glm(Sepal.Length ~ Species / Petal.Length, data = iris, chains=2)
 
 stanreg_glm_1 <- rstanarm::stan_glm(vs ~ wt + cyl, data = mtcars, family="binomial", chains=2)
 stanreg_glm_2 <- rstanarm::stan_glm(vs ~ wt + cyl, data = mtcars, family=binomial(link="probit"), chains=2)
@@ -113,7 +125,7 @@ stanreg_gam_1 <- rstanarm::stan_gamm4(mpg ~ s(wt) + cyl, data = mtcars, chains=2
 
 
 ## Save
-```{r, eval=FALSE, warning=FALSE, message=FALSE, results="hide"}
+```{r, eval=TRUE, warning=FALSE, message=FALSE, results="hide"}
 usethis::use_data(htest_1,
                   htest_2,
                   htest_3,
@@ -143,6 +155,10 @@ usethis::use_data(htest_1,
                   stanreg_lm_1,
                   stanreg_lm_2,
                   stanreg_lm_3,
+                  stanreg_lm_4,
+                  stanreg_lm_5,
+                  stanreg_lm_6,
+                  stanreg_lm_7,
                   stanreg_glm_1,
                   stanreg_glm_2,
                   stanreg_lmerMod_1,
