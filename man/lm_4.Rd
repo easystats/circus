@@ -4,7 +4,7 @@
 \name{lm_4}
 \alias{lm_4}
 \title{lm_4}
-\format{An object of class \code{lm} of length 13.}
+\format{An object of class \code{lm} of length 12.}
 \usage{
 lm_4
 }

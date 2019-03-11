@@ -59,8 +59,57 @@
 "aovlist_1"
 
 
+#' anova_2
+#'
+#' Model of class anova
+"anova_2"
 
 
+#' aov_2
+#'
+#' Model of class aov
+"aov_2"
+
+
+#' aovlist_2
+#'
+#' Model of class aovlist
+"aovlist_2"
+
+
+#' anova_3
+#'
+#' Model of class anova
+"anova_3"
+
+
+#' aov_3
+#'
+#' Model of class aov
+"aov_3"
+
+
+#' aovlist_3
+#'
+#' Model of class aovlist
+"aovlist_3"
+
+
+#' anova_4
+#'
+#' Model of class anova
+"anova_4"
+
+
+
+
+
+
+
+#' lm_0
+#'
+#' Model of class lm
+"lm_0"
 
 
 #' lm_1
@@ -93,6 +142,26 @@
 "lm_5"
 
 
+#' lm_6
+#'
+#' Model of class lm
+"lm_6"
+
+
+#' lm_7
+#'
+#' Model of class lm
+"lm_7"
+
+
+
+
+
+#' glm_0
+#'
+#' Model of class glm
+"glm_0"
+
 
 #' glm_1
 #'
@@ -106,7 +175,36 @@
 "glm_2"
 
 
+#' glm_3
+#'
+#' Model of class glm
+"glm_3"
 
+
+#' glm_4
+#'
+#' Model of class glm
+"glm_4"
+
+
+#' glm_5
+#'
+#' Model of class glm
+"glm_5"
+
+
+
+
+
+
+
+
+
+
+#' lmerMod_0
+#'
+#' Model of class lmerMod
+"lmerMod_0"
 
 
 #' lmerMod_1
@@ -114,6 +212,37 @@
 #' Model of class lmerMod
 "lmerMod_1"
 
+
+#' lmerMod_2
+#'
+#' Model of class lmerMod
+"lmerMod_2"
+
+
+#' lmerMod_3
+#'
+#' Model of class lmerMod
+"lmerMod_3"
+
+
+#' lmerMod_4
+#'
+#' Model of class lmerMod
+"lmerMod_4"
+
+
+#' lmerMod_5
+#'
+#' Model of class lmerMod
+"lmerMod_5"
+
+
+
+
+#' merMod_0
+#'
+#' Model of class merMod
+"merMod_0"
 
 #' merMod_1
 #'
@@ -127,12 +256,70 @@
 "merMod_2"
 
 
+#' merMod_3
+#'
+#' Model of class merMod
+"merMod_3"
+
+
+#' merMod_4
+#'
+#' Model of class merMod
+"merMod_4"
+
+
+
+#' anova_lmerMod_0
+#'
+#' Model of class anova of merMod
+"anova_lmerMod_0"
+
+
+#' anova_lmerMod_1
+#'
+#' Model of class anova of merMod
+"anova_lmerMod_1"
+
+#' anova_lmerMod_2
+#'
+#' Model of class anova of merMod
+"anova_lmerMod_2"
+
+#' anova_lmerMod_3
+#'
+#' Model of class anova of merMod
+"anova_lmerMod_3"
+
+#' anova_lmerMod_4
+#'
+#' Model of class anova of merMod
+"anova_lmerMod_4"
+
+#' anova_lmerMod_5
+#'
+#' Model of class anova of merMod
+"anova_lmerMod_5"
+
+
+#' anova_lmerMod_6
+#'
+#' Model of class anova of merMod
+"anova_lmerMod_6"
 
 
 
 
 
 
+
+
+
+
+
+#' stanreg_lm_0
+#'
+#' Model of class stanreg
+"stanreg_lm_0"
 
 
 #' stanreg_lm_1
@@ -173,6 +360,11 @@
 
 
 
+#' stanreg_glm_0
+#'
+#' Model of class stanreg
+"stanreg_glm_0"
+
 #' stanreg_glm_1
 #'
 #' Model of class stanreg
@@ -183,10 +375,64 @@
 #' Model of class stanreg
 "stanreg_glm_2"
 
+#' stanreg_glm_3
+#'
+#' Model of class stanreg
+"stanreg_glm_3"
+
+#' stanreg_glm_4
+#'
+#' Model of class stanreg
+"stanreg_glm_4"
+
+#' stanreg_glm_5
+#'
+#' Model of class stanreg
+"stanreg_glm_5"
+
+
+
+
+
+
+#' stanreg_lmerMod_0
+#'
+#' Model of class stanreg
+"stanreg_lmerMod_0"
+
 #' stanreg_lmerMod_1
 #'
 #' Model of class stanreg
 "stanreg_lmerMod_1"
+
+#' stanreg_lmerMod_2
+#'
+#' Model of class stanreg
+"stanreg_lmerMod_2"
+
+#' stanreg_lmerMod_3
+#'
+#' Model of class stanreg
+"stanreg_lmerMod_3"
+
+#' stanreg_lmerMod_4
+#'
+#' Model of class stanreg
+"stanreg_lmerMod_4"
+
+#' stanreg_lmerMod_5
+#'
+#' Model of class stanreg
+"stanreg_lmerMod_5"
+
+
+
+
+#' stanreg_merMod_0
+#'
+#' Model of class stanreg
+"stanreg_merMod_0"
+
 
 #' stanreg_merMod_1
 #'
@@ -198,8 +444,40 @@
 #' Model of class stanreg
 "stanreg_merMod_2"
 
-
-#' stanreg_gam_1
+#' stanreg_merMod_3
 #'
 #' Model of class stanreg
-"stanreg_gam_1"
+"stanreg_merMod_3"
+
+#' stanreg_merMod_4
+#'
+#' Model of class stanreg
+"stanreg_merMod_4"
+
+
+
+#' stanreg_meanfield_lm_1
+#'
+#' Model of class stanreg
+"stanreg_meanfield_lm_1"
+
+#' stanreg_fullrank_lm_1
+#'
+#' Model of class stanreg
+"stanreg_fullrank_lm_1"
+
+
+#' stanreg_gamm4_1
+#'
+#' Model of class stanreg
+"stanreg_gamm4_1"
+
+#' stanreg_gamm4_2
+#'
+#' Model of class stanreg
+"stanreg_gamm4_2"
+
+#' stanreg_gamm4_3
+#'
+#' Model of class stanreg
+"stanreg_gamm4_3"
