@@ -21,9 +21,9 @@ library("circus")
 
 ## How to use it
 
-You can use it in your `testthat` block by directly calling the models
-However, for it to work on **travis**, it is easier to directly
-downloading them from github:
+You can use the package in your `testthat` block by directly calling the
+models. However, for it to work on **travis**, it is easier to directly
+download them from github:
 
 ``` r
 test_that("my_function_works", {
