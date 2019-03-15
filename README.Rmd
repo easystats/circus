@@ -200,7 +200,35 @@ stanreg_gamm4_2 <- stan_gamm4(Sepal.Width ~ Species + s(Petal.Length), data=iris
 stanreg_gamm4_3 <- stan_gamm4(Sepal.Width ~ Species + s(Petal.Length), random = ~ (1 | Cat1), data=data)
 ```
 
+### BRMS
 
+```{r, eval=TRUE, warning=FALSE, message=FALSE, results="hide"}
+library(lme4)
+library(brms)
+library(dplyr)
+
+data(sleepstudy)
+data(mtcars)
+zinb <- read.csv("http://stats.idre.ucla.edu/stat/data/fish.csv")
+
+set.seed(123)
+sleepstudy$grp <- sample(1:5, size = 180, replace = TRUE)
+sleepstudy <- sleepstudy %>%
+  group_by(grp) %>%
+  mutate(subgrp = sample(1:15, size = n(), replace = TRUE))
+
+brms_mixed_1 <- brm(mpg ~ wt + (1 | cyl) + (1 + wt | gear), data = mtcars)
+brms_mixed_2 <- brm(Reaction ~ Days + (1 + Days | Subject), data = sleepstudy)
+brms_mixed_3 <- brm(Reaction ~ Days + (1 | grp / subgrp) + (1 | Subject), data = sleepstudy)
+
+brms_mv_1 <- brm(cbind(cyl, gear, carb) ~ wt + hp, data = mtcars)
+f1 <- bf(mpg ~ wt + disp + cyl + hp + (1 |CAR| gear))
+f2 <- bf(wt ~ disp + cyl + hp + (1 |CAR| gear))
+brms_mv_2 <- brm(f1 + f2 + set_rescor(FALSE), data = mtcars)
+
+brms_zi_1 <- brm(bf(count ~ persons + child + camper, zi ~ child + camper), data = zinb, family = zero_inflated_poisson())
+brms_zi_2 <- brm(bf(count ~ persons + child + camper + (1 | persons), zi ~ child + camper + (1 | persons)), data = zinb, family = zero_inflated_poisson())
+```
 
 ## Save
 ```{r, eval=TRUE, warning=FALSE, message=FALSE, results="hide"}
@@ -290,6 +318,17 @@ usethis::use_data(htest_1,
                   stanreg_gamm4_1,
                   stanreg_gamm4_2,
                   stanreg_gamm4_3,
+                  
+                  brms_mixed_1,
+                  brms_mixed_2,
+                  brms_mixed_3,
+                  
+                  brms_mv_1,
+                  brms_mv_2,
+                  
+                  brms_zi_1,
+                  brms_zi_2,
+                  
                   
                   overwrite=TRUE)
 ```

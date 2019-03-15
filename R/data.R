@@ -481,3 +481,57 @@
 #'
 #' Model of class stanreg
 "stanreg_gamm4_3"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#' brms_mixed_1
+#'
+#' Model of class brms
+"brms_mixed_1"
+
+#' brms_mixed_2
+#'
+#' Model of class brms
+"brms_mixed_2"
+
+#' brms_mixed_3
+#'
+#' Model of class brms
+"brms_mixed_3"
+
+
+
+
+#' brms_mv_1
+#'
+#' Model of class brms
+"brms_mv_1"
+
+#' brms_mv_2
+#'
+#' Model of class brms
+"brms_mv_2"
+
+
+
+
+#' brms_zi_1
+#'
+#' Model of class brms
+"brms_zi_1"
+
+#' brms_zi_2
+#'
+#' Model of class brms
+"brms_zi_2"
