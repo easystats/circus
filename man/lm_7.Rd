@@ -3,7 +3,7 @@
 \docType{data}
 \name{lm_7}
 \alias{lm_7}
-\title{lm_7}
+\title{lm_7 \code{lm(formula = mpg ~ as.factor(gear)/wt, data = mtcars)}}
 \format{An object of class \code{lm} of length 13.}
 \usage{
 lm_7

@@ -11,4 +11,7 @@ lm_0
 \description{
 Model of class lm
 }
+\details{
+\code{lm(formula = mpg ~ 1, data = mtcars)}
+}
 \keyword{datasets}

@@ -11,4 +11,13 @@ glmmTMB_zi_1
 \description{
 Model of class glmmTMB
 }
+\details{
+\code{# data prepararion: see "glmmTMB_1"
+glmmTMB(
+  count ~ child + camper + (1 | persons),
+  ziformula = ~ child + camper + (1 | persons),
+  data = fish,
+  family = truncated_poisson()
+)}
+}
 \keyword{datasets}

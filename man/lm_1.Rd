@@ -11,4 +11,7 @@ lm_1
 \description{
 Model of class lm
 }
+\details{
+\code{lm_1 <- lm(mpg ~ wt, data = mtcars)}
+}
 \keyword{datasets}

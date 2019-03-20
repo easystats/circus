@@ -35,6 +35,17 @@ test_that("my_function_works", {
 })
 ```
 
+The above approach probably requires adding the **circus** packages as `Remotes` to the _Description_ file. However, since **circus** is not on CRAN, the above approach does not work for packages you want to submit to CRAN. In this case, you can use `insight::download_model()`.
+
+``` r
+test_that("my_function_works", {
+    library(insight) # on CRAN!
+    
+    model <- insight::download_model("lmerMod_1")
+    testthat::expect_equal(myFunction(model), 0.333)
+})
+```
+
 ## Contribute
 
 Feel free to add any model you find missing\! Any scary creature for the
@@ -98,12 +109,15 @@ lm_5 <- lm(mpg ~ wt + poly(cyl, 2, raw = TRUE), data = mtcars)
 lm_6 <- lm(mpg ~ wt * as.factor(gear), data = mtcars)
 lm_7 <- lm(mpg ~ as.factor(gear)/wt, data = mtcars)
 
+set.seed(123)
+mtcars$count <- rpois(nrow(mtcars), 2)
+
 glm_0 <- glm(vs ~ 1, data = mtcars, family = "binomial")
 glm_1 <- glm(vs ~ wt, data = mtcars, family = "binomial")
 glm_2 <- glm(vs ~ wt + cyl, data = mtcars, family = "binomial")
 glm_3 <- glm(vs ~ wt * cyl, data = mtcars, family = "binomial")
 glm_4 <- glm(vs ~ wt + cyl, data = mtcars, family = binomial(link = "probit"))
-glm_5 <- glm(vs ~ wt + cyl, data = mtcars, family = "poisson")
+glm(formula = count ~ wt + cyl, family = "poisson", data = mtcars)
 
 anova_4 <- anova(lm_0, lm_1, lm_2)
 ```
@@ -189,7 +203,7 @@ anova_lmerMod_6 <- anova(lmerMod_0, lmerMod_1, lmerMod_2)
 
 <!--   data = fish, -->
 
-<!--   family = truncated_poisson() -->
+<!--   family = poisson() -->
 
 <!-- ) -->
 

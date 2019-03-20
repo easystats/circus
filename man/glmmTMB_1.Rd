@@ -11,4 +11,12 @@ glmmTMB_1
 \description{
 Model of class glmmTMB
 }
+\details{
+\code{# data prepararion: see "glmmTMB_1"
+glmmTMB(
+  count ~ child + camper + (1 | persons),
+  data = fish,
+  family = poisson()
+)}
+}
 \keyword{datasets}

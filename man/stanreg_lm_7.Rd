@@ -11,4 +11,7 @@ stanreg_lm_7
 \description{
 Model of class stanreg
 }
+\details{
+\code{rstanarm::stan_glm(mpg ~ as.factor(gear)/wt, data = mtcars)}
+}
 \keyword{datasets}

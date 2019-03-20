@@ -11,4 +11,11 @@ glm_4
 \description{
 Model of class glm
 }
+\details{
+\code{glm(
+  formula = vs ~ wt + cyl,
+  family = binomial(link = "probit"),
+  data = mtcars
+)}
+}
 \keyword{datasets}

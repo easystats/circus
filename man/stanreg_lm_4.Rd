@@ -11,4 +11,7 @@ stanreg_lm_4
 \description{
 Model of class stanreg
 }
+\details{
+\code{rstanarm::stan_glm(mpg ~ wt + poly(cyl, 2), data = mtcars)}
+}
 \keyword{datasets}
