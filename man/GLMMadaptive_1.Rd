@@ -11,13 +11,14 @@ GLMMadaptive_1
 \description{
 Model of class GLMMadaptive
 }
-\details{
-\code{data(cbpp, package = "lme4")
+\examples{
+data(cbpp, package = "lme4")
+
 GLMMadaptive::mixed_model(
   cbind(incidence, size - incidence) ~ period,
   random = ~ 1 | herd,
   data = cbpp,
   family = binomial
-)}
+)
 }
 \keyword{datasets}

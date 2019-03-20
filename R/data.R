@@ -109,56 +109,64 @@
 #' lm_0
 #'
 #' Model of class lm
-#' @details \code{lm(formula = mpg ~ 1, data = mtcars)}
+#' @examples
+#' lm(formula = mpg ~ 1, data = mtcars)
 "lm_0"
 
 
 #' lm_1
 #'
 #' Model of class lm
-#' @details \code{lm_1 <- lm(mpg ~ wt, data = mtcars)}
+#' @examples
+#' lm_1 <- lm(mpg ~ wt, data = mtcars)
 "lm_1"
 
 
 #' lm_2
 #'
 #' Model of class lm
-#' @details \code{lm_1 <- lm(mpg ~ wt + cyl, data = mtcars)}
+#' @examples
+#' lm_1 <- lm(mpg ~ wt + cyl, data = mtcars)
 "lm_2"
 
 
 #' lm_3
 #'
 #' Model of class lm
-#' @details \code{lm(formula = mpg ~ wt * cyl, data = mtcars)}
+#' @examples
+#' lm(formula = mpg ~ wt * cyl, data = mtcars)
 "lm_3"
 
 
 #' lm_4
 #'
 #' Model of class lm
-#' @details \code{lm(formula = mpg ~ wt + poly(cyl, 2), data = mtcars)}
+#' @examples
+#' lm(formula = mpg ~ wt + poly(cyl, 2), data = mtcars)
 "lm_4"
 
 
 #' lm_5
 #'
 #' Model of class lm
-#' @details \code{lm(formula = mpg ~ wt + poly(cyl, 2, raw = TRUE), data = mtcars)}
+#' @examples
+#' lm(formula = mpg ~ wt + poly(cyl, 2, raw = TRUE), data = mtcars)
 "lm_5"
 
 
 #' lm_6
 #'
 #' Model of class lm
-#' @details \code{lm(formula = mpg ~ wt * as.factor(gear), data = mtcars)}
+#' @examples
+#' lm(formula = mpg ~ wt * as.factor(gear), data = mtcars)
 "lm_6"
 
 
 #' lm_7
 #'
 #' Model of class lm
-#' @details \code{lm(formula = mpg ~ as.factor(gear)/wt, data = mtcars)}
+#' @examples
+#' lm(formula = mpg ~ as.factor(gear)/wt, data = mtcars)
 "lm_7"
 
 
@@ -168,48 +176,50 @@
 #' glm_0
 #'
 #' Model of class glm
-#' @details \code{glm(formula = vs ~ 1, family = "binomial", data = mtcars)}
+#' @examples
+#' glm(formula = vs ~ 1, family = "binomial", data = mtcars)
 "glm_0"
 
 
 #' glm_1
 #'
 #' Model of class glm
-#' @details \code{glm(formula = vs ~ wt, family = "binomial", data = mtcars)}
+#' @examples
+#' glm(formula = vs ~ wt, family = "binomial", data = mtcars)
 "glm_1"
 
 
 #' glm_2
 #'
 #' Model of class glm
-#' @details \code{glm(formula = vs ~ wt + cyl, family = "binomial", data = mtcars)}
+#' @examples
+#' glm(formula = vs ~ wt + cyl, family = "binomial", data = mtcars)
 "glm_2"
 
 
 #' glm_3
 #'
 #' Model of class glm
-#' @details \code{glm(formula = vs ~ wt * cyl, family = "binomial", data = mtcars)}
+#' @examples
+#' glm(formula = vs ~ wt * cyl, family = "binomial", data = mtcars)
 "glm_3"
 
 
 #' glm_4
 #'
 #' Model of class glm
-#' @details \code{glm(
-#'   formula = vs ~ wt + cyl,
-#'   family = binomial(link = "probit"),
-#'   data = mtcars
-#' )}
+#' @examples
+#' glm(  formula = vs ~ wt + cyl,  family = binomial(link = "probit"),  data = mtcars)
 "glm_4"
 
 
 #' glm_5
 #'
 #' Model of class glm
-#' @details \code{set.seed(123)
-#'   mtcars$count <- rpois(nrow(mtcars), 2)
-#'   glm(formula = count ~ wt + cyl, family = "poisson", data = mtcars)}
+#' @examples
+#' set.seed(123)
+#' mtcars$count <- rpois(nrow(mtcars), 2)
+#' glm(formula = count ~ wt + cyl, family = "poisson", data = mtcars)
 "glm_5"
 
 
@@ -340,52 +350,65 @@
 #' glmmTMB_1
 #'
 #' Model of class glmmTMB
-#' @details \code{# data prepararion: see "glmmTMB_1"
+#' @examples
+#' set.seed(123)
+#' fish <- read.csv("https://stats.idre.ucla.edu/stat/data/fish.csv")
+#' fish$nofish <- as.factor(fish$nofish)
+#' fish$livebait <- as.factor(fish$livebait)
+#' fish$camper <- as.factor(fish$camper)
+#' fish$ID <- sample(1:4, nrow(fish), replace = TRUE)
+#'
 #' glmmTMB(
 #'   count ~ child + camper + (1 | persons),
 #'   data = fish,
 #'   family = poisson()
-#' )}
+#' )
 "glmmTMB_1"
 
 
 #' glmmTMB_zi_1
 #'
 #' Model of class glmmTMB
-#' @details \code{# data prepararion: see "glmmTMB_1"
+#' @examples
+#' # data prepararion: see "glmmTMB_1"
+#'
 #' glmmTMB(
 #'   count ~ child + camper + (1 | persons),
 #'   ziformula = ~ child + camper + (1 | persons),
 #'   data = fish,
 #'   family = truncated_poisson()
-#' )}
+#' )
 "glmmTMB_zi_1"
 
 
 #' glmmTMB_zi_2
 #'
 #' Model of class glmmTMB
-#' @details \code{# data prepararion: see "glmmTMB_1"
+#' @examples
+#' # data prepararion: see "glmmTMB_1"
+#'
 #' glmmTMB(
 #'   count ~ child + camper + (1 | persons),
 #'   ziformula = ~ child + livebait + (1 | persons),
 #'   data = fish,
 #'   family = poisson()
-#' )}
+#' )
 "glmmTMB_zi_2"
 
 
 #' glmmTMB_zi_3
 #'
 #' Model of class glmmTMB
-#' @details \code{# data prepararion: see "glmmTMB_1"
+#' @examples
+#' # data prepararion: see "glmmTMB_1"
+#'
 #' glmmTMB(
 #'   count ~ child + camper + (1 | persons),
 #'   ziformula = ~ child + livebait + (1 | persons),
 #'   dispformula = ~xb,
 #'   data = fish,
 #'   family = truncated_poisson()
-#' )}
+#' )
 "glmmTMB_zi_3"
 
 
@@ -401,34 +424,40 @@
 #' GLMMadaptive_1
 #'
 #' Model of class GLMMadaptive
-#' @details \code{data(cbpp, package = "lme4")
+#' @examples
+#' data(cbpp, package = "lme4")
+#'
 #' GLMMadaptive::mixed_model(
 #'   cbind(incidence, size - incidence) ~ period,
 #'   random = ~ 1 | herd,
 #'   data = cbpp,
 #'   family = binomial
-#' )}
+#' )
 "GLMMadaptive_1"
 
 
 #' GLMMadaptive_zi_1
 #'
 #' Model of class GLMMadaptive
-#' @details \code{# data prepararion: see "glmmTMB_1"
+#' @examples
+#' # data prepararion: see "glmmTMB_1"
+#'
 #' GLMMadaptive::mixed_model(
 #'   count ~ child + camper,
 #'   random = ~ 1 | persons,
 #'   zi_fixed = ~ child + livebait,
 #'   data = fish,
 #'   family = GLMMadaptive::zi.poisson()
-#' )}
+#' )
 "GLMMadaptive_zi_1"
 
 
 #' GLMMadaptive_zi_2
 #'
 #' Model of class GLMMadaptive
-#' @details \code{# data prepararion: see "glmmTMB_1"
+#' @examples
+#' # data prepararion: see "glmmTMB_1"
+#'
 #' GLMMadaptive::mixed_model(
 #'   count ~ child + camper,
 #'   random = ~ 1 | persons,
@@ -436,7 +465,7 @@
 #'   zi_random = ~ 1 | persons,
 #'   data = fish,
 #'   family = GLMMadaptive::zi.poisson()
-#' )}
+#' )
 "GLMMadaptive_zi_2"
 
 
@@ -456,51 +485,59 @@
 #' stanreg_lm_0
 #'
 #' Model of class stanreg
-#' @details \code{stanarm::stan_glm(mpg ~ 1, data = mtcars)}
+#' @examples
+#' stanarm::stan_glm(mpg ~ 1, data = mtcars)
 "stanreg_lm_0"
 
 
 #' stanreg_lm_1
 #'
 #' Model of class stanreg
-#' @details \code{rstanarm::stan_glm(mpg ~ wt, data = mtcars)}
+#' @examples
+#' rstanarm::stan_glm(mpg ~ wt, data = mtcars)
 "stanreg_lm_1"
 
 
 #' stanreg_lm_2
 #'
 #' Model of class stanreg
-#' @details \code{rstanarm::stan_glm(mpg ~ wt + cyl, data = mtcars)}
+#' @examples
+#' rstanarm::stan_glm(mpg ~ wt + cyl, data = mtcars)
 "stanreg_lm_2"
 
 #' stanreg_lm_3
 #'
 #' Model of class stanreg
-#' @details \code{rstanarm::stan_glm(mpg ~ wt * cyl, data = mtcars)}
+#' @examples
+#' rstanarm::stan_glm(mpg ~ wt * cyl, data = mtcars)
 "stanreg_lm_3"
 
 #' stanreg_lm_4
 #'
 #' Model of class stanreg
-#' @details \code{rstanarm::stan_glm(mpg ~ wt + poly(cyl, 2), data = mtcars)}
+#' @examples
+#' rstanarm::stan_glm(mpg ~ wt + poly(cyl, 2), data = mtcars)
 "stanreg_lm_4"
 
 #' stanreg_lm_5
 #'
 #' Model of class stanreg
-#' @details \code{rstanarm::stan_glm(mpg ~ wt + poly(cyl, 2, raw = TRUE), data = mtcars)}
+#' @examples
+#' rstanarm::stan_glm(mpg ~ wt + poly(cyl, 2, raw = TRUE), data = mtcars)
 "stanreg_lm_5"
 
 #' stanreg_lm_6
 #'
 #' Model of class stanreg
-#' @details \code{rstanarm::stan_glm(mpg ~ wt * as.factor(gear), data = mtcars)}
+#' @examples
+#' rstanarm::stan_glm(mpg ~ wt * as.factor(gear), data = mtcars)
 "stanreg_lm_6"
 
 #' stanreg_lm_7
 #'
 #' Model of class stanreg
-#' @details \code{rstanarm::stan_glm(mpg ~ as.factor(gear)/wt, data = mtcars)}
+#' @examples
+#' rstanarm::stan_glm(mpg ~ as.factor(gear)/wt, data = mtcars)
 "stanreg_lm_7"
 
 

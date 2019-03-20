@@ -11,7 +11,7 @@ stanreg_lm_0
 \description{
 Model of class stanreg
 }
-\details{
-\code{stanarm::stan_glm(mpg ~ 1, data = mtcars)}
+\examples{
+stanarm::stan_glm(mpg ~ 1, data = mtcars)
 }
 \keyword{datasets}

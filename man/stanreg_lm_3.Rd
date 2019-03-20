@@ -11,7 +11,7 @@ stanreg_lm_3
 \description{
 Model of class stanreg
 }
-\details{
-\code{rstanarm::stan_glm(mpg ~ wt * cyl, data = mtcars)}
+\examples{
+rstanarm::stan_glm(mpg ~ wt * cyl, data = mtcars)
 }
 \keyword{datasets}
