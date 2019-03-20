@@ -73,11 +73,19 @@ test_that("my_function_works", {
 
 Feel free to add any model you find missing! Any scary creature for the depth of your mind has its place here!
 
+In order to add models, do the following:
+
+1. Add model creation code in the `README.Rmd`
+2. Place the model in the `usethis::use_data()` function (last chunk)
+3. Run all the chunks manually: this will create the models, and then the `use_data()` function will save them inside the package's `data` folder
+4. Add documentation for your model in the [`R/data.R/`](https://github.com/easystats/circus/blob/master/R/data.R) file
+5. Knit the `README.Rmd` file, check and build documentation for the package
+6. Upload to github
 
 ## List of Models
 
 ### Base
-```{r, eval=TRUE, warning=FALSE, message=FALSE, results="hide"}
+```{r, eval=FALSE, warning=FALSE, message=FALSE, results="hide"}
 # h-tests
 htest_1 <- cor.test(iris$Sepal.Width, iris$Sepal.Length, method = "spearman")
 htest_2 <- cor.test(iris$Sepal.Width, iris$Sepal.Length, method = "pearson")
@@ -128,7 +136,7 @@ anova_4 <- anova(lm_0, lm_1, lm_2)
 
 ### lme4
 
-```{r, eval=TRUE, warning=FALSE, message=FALSE, results="hide"}
+```{r, eval=FALSE, warning=FALSE, message=FALSE, results="hide"}
 library(lme4)
 
 lmerMod_0 <- lme4::lmer(wt ~ 1 + (1|gear), data = mtcars)
@@ -154,9 +162,93 @@ anova_lmerMod_5 <- anova(lmerMod_5)
 anova_lmerMod_6 <- anova(lmerMod_0, lmerMod_1, lmerMod_2)
 ```
 
+
+
+<!-- ### glmmTMB -->
+
+<!-- ```{r, eval=FALSE, warning=FALSE, message=FALSE, results="hide"} -->
+<!-- library(glmmTMB) -->
+
+<!-- set.seed(123) -->
+<!-- fish <- read.csv("https://stats.idre.ucla.edu/stat/data/fish.csv") -->
+<!-- fish$nofish <- as.factor(fish$nofish) -->
+<!-- fish$livebait <- as.factor(fish$livebait) -->
+<!-- fish$camper <- as.factor(fish$camper) -->
+<!-- fish$ID <- sample(1:4, nrow(fish), replace = TRUE) -->
+
+<!-- glmmTMB_1 <- glmmTMB( -->
+<!--   count ~ child + camper + (1 | persons), -->
+<!--   data = fish, -->
+<!--   family = poisson() -->
+<!-- ) -->
+
+<!-- glmmTMB_zi_1 <- glmmTMB( -->
+<!--   count ~ child + camper + (1 | persons), -->
+<!--   ziformula = ~ child + camper + (1 | persons), -->
+<!--   data = fish, -->
+<!--   family = truncated_poisson() -->
+<!-- ) -->
+
+<!-- glmmTMB_zi_2 <- glmmTMB( -->
+<!--   count ~ child + camper + (1 | persons), -->
+<!--   ziformula = ~ child + livebait + (1 | persons), -->
+<!--   data = fish, -->
+<!--   family = truncated_poisson() -->
+<!-- ) -->
+
+<!-- glmmTMB_zi_3 <- glmmTMB( -->
+<!--   count ~ child + camper + (1 | persons), -->
+<!--   ziformula = ~ child + livebait + (1 | ID), -->
+<!--   dispformula = ~xb, -->
+<!--   data = fish, -->
+<!--   family = truncated_poisson() -->
+<!-- ) -->
+<!-- ``` -->
+
+
+
+<!-- ### GLMMadaptive -->
+
+<!-- ```{r, eval=FALSE, warning=FALSE, message=FALSE, results="hide"} -->
+<!-- library("GLMMadaptive") -->
+<!-- library("lme4") -->
+
+<!-- data(cbpp) -->
+
+<!-- fish <- read.csv("https://stats.idre.ucla.edu/stat/data/fish.csv") -->
+<!-- fish$nofish <- as.factor(fish$nofish) -->
+<!-- fish$livebait <- as.factor(fish$livebait) -->
+<!-- fish$camper <- as.factor(fish$camper) -->
+
+<!-- GLMMadaptive_zi_1 <- GLMMadaptive::mixed_model( -->
+<!--   count ~ child + camper, -->
+<!--   random = ~ 1 | persons, -->
+<!--   zi_fixed = ~ child + livebait, -->
+<!--   data = fish, -->
+<!--   family = GLMMadaptive::zi.poisson() -->
+<!-- ) -->
+
+<!-- GLMMadaptive_zi_2 <- GLMMadaptive::mixed_model( -->
+<!--   count ~ child + camper, -->
+<!--   random = ~ 1 | persons, -->
+<!--   zi_fixed = ~ child + livebait, -->
+<!--   zi_random = ~ 1 | persons, -->
+<!--   data = fish, -->
+<!--   family = GLMMadaptive::zi.poisson() -->
+<!-- ) -->
+
+<!-- GLMMadaptive_1 <- GLMMadaptive::mixed_model( -->
+<!--   cbind(incidence, size - incidence) ~ period, -->
+<!--   random = ~ 1 | herd, -->
+<!--   data = cbpp, -->
+<!--   family = binomial -->
+<!-- ) -->
+<!-- ``` -->
+
+
 ### Rstanarm
 
-```{r, eval=TRUE, warning=FALSE, message=FALSE, results="hide"}
+```{r, eval=FALSE, warning=FALSE, message=FALSE, results="hide"}
 set.seed(333)
 
 library(rstanarm)
@@ -202,7 +294,7 @@ stanreg_gamm4_3 <- stan_gamm4(Sepal.Width ~ Species + s(Petal.Length), random = 
 
 ### BRMS
 
-```{r, eval=TRUE, warning=FALSE, message=FALSE, results="hide"}
+```{r, eval=FALSE, warning=FALSE, message=FALSE, results="hide"}
 library(lme4)
 library(brms)
 library(dplyr)
@@ -231,7 +323,7 @@ brms_zi_2 <- brm(bf(count ~ persons + child + camper + (1 | persons), zi ~ child
 ```
 
 ## Save
-```{r, eval=TRUE, warning=FALSE, message=FALSE, results="hide"}
+```{r, eval=FALSE, warning=FALSE, message=FALSE, results="hide"}
 usethis::use_data(htest_1,
                   htest_2,
                   htest_3,
@@ -286,6 +378,15 @@ usethis::use_data(htest_1,
                   anova_lmerMod_4,
                   anova_lmerMod_5,
                   anova_lmerMod_6,
+                  
+                  glmmTMB_1,
+                  glmmTMB_zi_1,
+                  glmmTMB_zi_2,
+                  glmmTMB_zi_3,
+                  
+                  GLMMadaptive_1,
+                  GLMMadaptive_zi_1,
+                  GLMMadaptive_zi_2,
                   
                   stanreg_lm_0,
                   stanreg_lm_1,

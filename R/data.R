@@ -316,6 +316,71 @@
 
 
 
+
+#' glmmTMB_1
+#'
+#' Model of class glmmTMB
+"glmmTMB_1"
+
+
+#' glmmTMB_zi_1
+#'
+#' Model of class glmmTMB
+"glmmTMB_zi_1"
+
+
+#' glmmTMB_zi_2
+#'
+#' Model of class glmmTMB
+"glmmTMB_zi_2"
+
+
+#' glmmTMB_zi_3
+#'
+#' Model of class glmmTMB
+"glmmTMB_zi_3"
+
+
+
+
+
+
+
+
+
+
+
+#' GLMMadaptive_1
+#'
+#' Model of class GLMMadaptive
+"GLMMadaptive_1"
+
+
+#' GLMMadaptive_zi_1
+#'
+#' Model of class GLMMadaptive
+"GLMMadaptive_zi_1"
+
+
+#' GLMMadaptive_zi_2
+#'
+#' Model of class GLMMadaptive
+"GLMMadaptive_zi_2"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #' stanreg_lm_0
 #'
 #' Model of class stanreg
