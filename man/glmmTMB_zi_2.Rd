@@ -12,6 +12,7 @@ glmmTMB_zi_2
 Model of class glmmTMB
 }
 \examples{
+\dontrun{
 # data prepararion: see "glmmTMB_1"
 
 glmmTMB(
@@ -20,5 +21,6 @@ glmmTMB(
   data = fish,
   family = poisson()
 )
+}
 }
 \keyword{datasets}

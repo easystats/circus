@@ -1,41 +1,57 @@
 #' htest_1
 #'
 #' Model of class htest
+#' @examples
+#' cor.test(iris$Sepal.Width, iris$Sepal.Length, method = "spearman")
 "htest_1"
 
 #' htest_2
 #'
 #' Model of class htest
+#' @examples
+#' cor.test(iris$Sepal.Width, iris$Sepal.Length, method = "pearson")
 "htest_2"
 
 #' htest_3
 #'
 #' Model of class htest
+#' @examples
+#' cor.test(iris$Sepal.Width, iris$Sepal.Length, method = "kendall")
 "htest_3"
 
 #' htest_4
 #'
 #' Model of class htest
+#' @examples
+#' t.test(iris$Sepal.Width, iris$Sepal.Length)
 "htest_4"
 
 #' htest_5
 #'
 #' Model of class htest
+#' @examples
+#' t.test(iris$Sepal.Width, iris$Sepal.Length, var.equal = TRUE)
 "htest_5"
 
 #' htest_6
 #'
 #' Model of class htest
+#' @examples
+#' t.test(iris$Sepal.Width, iris$Sepal.Length)
 "htest_6"
 
 #' htest_7
 #'
 #' Model of class htest
+#' @examples
+#' t.test(mtcars$mpg ~ mtcars$vs)
 "htest_7"
 
 #' htest_8
 #'
 #' Model of class htest
+#' @examples
+#' t.test(iris$Sepal.Width, mu = 1)
 "htest_8"
 
 
@@ -351,6 +367,7 @@
 #'
 #' Model of class glmmTMB
 #' @examples
+#' \dontrun{
 #' set.seed(123)
 #' fish <- read.csv("https://stats.idre.ucla.edu/stat/data/fish.csv")
 #' fish$nofish <- as.factor(fish$nofish)
@@ -363,6 +380,7 @@
 #'   data = fish,
 #'   family = poisson()
 #' )
+#' }
 "glmmTMB_1"
 
 
@@ -370,6 +388,7 @@
 #'
 #' Model of class glmmTMB
 #' @examples
+#' \dontrun{
 #' # data prepararion: see "glmmTMB_1"
 #'
 #' glmmTMB(
@@ -378,6 +397,7 @@
 #'   data = fish,
 #'   family = truncated_poisson()
 #' )
+#' }
 "glmmTMB_zi_1"
 
 
@@ -385,6 +405,7 @@
 #'
 #' Model of class glmmTMB
 #' @examples
+#' \dontrun{
 #' # data prepararion: see "glmmTMB_1"
 #'
 #' glmmTMB(
@@ -393,6 +414,7 @@
 #'   data = fish,
 #'   family = poisson()
 #' )
+#' }
 "glmmTMB_zi_2"
 
 
@@ -400,6 +422,7 @@
 #'
 #' Model of class glmmTMB
 #' @examples
+#' \dontrun{
 #' # data prepararion: see "glmmTMB_1"
 #'
 #' glmmTMB(
@@ -409,6 +432,7 @@
 #'   data = fish,
 #'   family = truncated_poisson()
 #' )
+#' }
 "glmmTMB_zi_3"
 
 
@@ -425,6 +449,7 @@
 #'
 #' Model of class GLMMadaptive
 #' @examples
+#' \dontrun{
 #' data(cbpp, package = "lme4")
 #'
 #' GLMMadaptive::mixed_model(
@@ -433,6 +458,7 @@
 #'   data = cbpp,
 #'   family = binomial
 #' )
+#' }
 "GLMMadaptive_1"
 
 
@@ -440,6 +466,7 @@
 #'
 #' Model of class GLMMadaptive
 #' @examples
+#' \dontrun{
 #' # data prepararion: see "glmmTMB_1"
 #'
 #' GLMMadaptive::mixed_model(
@@ -449,6 +476,7 @@
 #'   data = fish,
 #'   family = GLMMadaptive::zi.poisson()
 #' )
+#' }
 "GLMMadaptive_zi_1"
 
 
@@ -456,6 +484,7 @@
 #'
 #' Model of class GLMMadaptive
 #' @examples
+#' \dontrun{
 #' # data prepararion: see "glmmTMB_1"
 #'
 #' GLMMadaptive::mixed_model(
@@ -466,6 +495,7 @@
 #'   data = fish,
 #'   family = GLMMadaptive::zi.poisson()
 #' )
+#' }
 "GLMMadaptive_zi_2"
 
 
@@ -486,7 +516,9 @@
 #'
 #' Model of class stanreg
 #' @examples
-#' stanarm::stan_glm(mpg ~ 1, data = mtcars)
+#' \dontrun{
+#' rstanarm::stan_glm(mpg ~ 1, data = mtcars)
+#' }
 "stanreg_lm_0"
 
 
@@ -494,7 +526,9 @@
 #'
 #' Model of class stanreg
 #' @examples
+#' \dontrun{
 #' rstanarm::stan_glm(mpg ~ wt, data = mtcars)
+#' }
 "stanreg_lm_1"
 
 
@@ -502,42 +536,54 @@
 #'
 #' Model of class stanreg
 #' @examples
+#' \dontrun{
 #' rstanarm::stan_glm(mpg ~ wt + cyl, data = mtcars)
+#' }
 "stanreg_lm_2"
 
 #' stanreg_lm_3
 #'
 #' Model of class stanreg
 #' @examples
+#' \dontrun{
 #' rstanarm::stan_glm(mpg ~ wt * cyl, data = mtcars)
+#' }
 "stanreg_lm_3"
 
 #' stanreg_lm_4
 #'
 #' Model of class stanreg
 #' @examples
+#' \dontrun{
 #' rstanarm::stan_glm(mpg ~ wt + poly(cyl, 2), data = mtcars)
+#' }
 "stanreg_lm_4"
 
 #' stanreg_lm_5
 #'
 #' Model of class stanreg
 #' @examples
+#' \dontrun{
 #' rstanarm::stan_glm(mpg ~ wt + poly(cyl, 2, raw = TRUE), data = mtcars)
+#' }
 "stanreg_lm_5"
 
 #' stanreg_lm_6
 #'
 #' Model of class stanreg
 #' @examples
+#' \dontrun{
 #' rstanarm::stan_glm(mpg ~ wt * as.factor(gear), data = mtcars)
+#' }
 "stanreg_lm_6"
 
 #' stanreg_lm_7
 #'
 #' Model of class stanreg
 #' @examples
+#' \dontrun{
 #' rstanarm::stan_glm(mpg ~ as.factor(gear)/wt, data = mtcars)
+#' }
 "stanreg_lm_7"
 
 

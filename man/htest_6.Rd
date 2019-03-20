@@ -11,4 +11,7 @@ htest_6
 \description{
 Model of class htest
 }
+\examples{
+t.test(iris$Sepal.Width, iris$Sepal.Length)
+}
 \keyword{datasets}

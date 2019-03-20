@@ -12,6 +12,7 @@ glmmTMB_1
 Model of class glmmTMB
 }
 \examples{
+\dontrun{
 set.seed(123)
 fish <- read.csv("https://stats.idre.ucla.edu/stat/data/fish.csv")
 fish$nofish <- as.factor(fish$nofish)
@@ -24,5 +25,6 @@ glmmTMB(
   data = fish,
   family = poisson()
 )
+}
 }
 \keyword{datasets}

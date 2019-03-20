@@ -12,6 +12,8 @@ stanreg_lm_4
 Model of class stanreg
 }
 \examples{
+\dontrun{
 rstanarm::stan_glm(mpg ~ wt + poly(cyl, 2), data = mtcars)
+}
 }
 \keyword{datasets}

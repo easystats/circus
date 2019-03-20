@@ -12,6 +12,8 @@ stanreg_lm_0
 Model of class stanreg
 }
 \examples{
-stanarm::stan_glm(mpg ~ 1, data = mtcars)
+\dontrun{
+rstanarm::stan_glm(mpg ~ 1, data = mtcars)
+}
 }
 \keyword{datasets}

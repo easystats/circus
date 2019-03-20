@@ -12,6 +12,7 @@ GLMMadaptive_zi_2
 Model of class GLMMadaptive
 }
 \examples{
+\dontrun{
 # data prepararion: see "glmmTMB_1"
 
 GLMMadaptive::mixed_model(
@@ -22,5 +23,6 @@ GLMMadaptive::mixed_model(
   data = fish,
   family = GLMMadaptive::zi.poisson()
 )
+}
 }
 \keyword{datasets}

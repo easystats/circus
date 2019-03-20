@@ -12,6 +12,7 @@ GLMMadaptive_1
 Model of class GLMMadaptive
 }
 \examples{
+\dontrun{
 data(cbpp, package = "lme4")
 
 GLMMadaptive::mixed_model(
@@ -20,5 +21,6 @@ GLMMadaptive::mixed_model(
   data = cbpp,
   family = binomial
 )
+}
 }
 \keyword{datasets}

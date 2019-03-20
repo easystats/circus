@@ -12,6 +12,8 @@ stanreg_lm_6
 Model of class stanreg
 }
 \examples{
+\dontrun{
 rstanarm::stan_glm(mpg ~ wt * as.factor(gear), data = mtcars)
+}
 }
 \keyword{datasets}

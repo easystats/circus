@@ -11,4 +11,7 @@ htest_3
 \description{
 Model of class htest
 }
+\examples{
+cor.test(iris$Sepal.Width, iris$Sepal.Length, method = "kendall")
+}
 \keyword{datasets}

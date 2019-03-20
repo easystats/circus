@@ -12,6 +12,7 @@ glmmTMB_zi_3
 Model of class glmmTMB
 }
 \examples{
+\dontrun{
 # data prepararion: see "glmmTMB_1"
 
 glmmTMB(
@@ -21,5 +22,6 @@ glmmTMB(
   data = fish,
   family = truncated_poisson()
 )
+}
 }
 \keyword{datasets}

@@ -11,4 +11,7 @@ htest_8
 \description{
 Model of class htest
 }
+\examples{
+t.test(iris$Sepal.Width, mu = 1)
+}
 \keyword{datasets}
