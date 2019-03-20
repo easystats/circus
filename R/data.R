@@ -155,10 +155,10 @@
 "lm_6"
 
 
-#' lm_7 \code{lm(formula = mpg ~ as.factor(gear)/wt, data = mtcars)}
+#' lm_7
 #'
 #' Model of class lm
-#' @details
+#' @details \code{lm(formula = mpg ~ as.factor(gear)/wt, data = mtcars)}
 "lm_7"
 
 

@@ -124,12 +124,15 @@ lm_5 <- lm(mpg ~ wt + poly(cyl, 2, raw=TRUE), data = mtcars)
 lm_6 <- lm(mpg ~ wt * as.factor(gear), data = mtcars)
 lm_7 <- lm(mpg ~ as.factor(gear) / wt, data = mtcars)
 
+set.seed(123)
+mtcars$count <- rpois(nrow(mtcars), 2)
+
 glm_0 <- glm(vs ~ 1, data = mtcars, family="binomial")
 glm_1 <- glm(vs ~ wt, data = mtcars, family="binomial")
 glm_2 <- glm(vs ~ wt + cyl, data = mtcars, family="binomial")
 glm_3 <- glm(vs ~ wt * cyl, data = mtcars, family="binomial")
 glm_4 <- glm(vs ~ wt + cyl, data = mtcars, family=binomial(link="probit"))
-glm_5 <- glm(vs ~ wt + cyl, data = mtcars, family="poisson")
+glm_5 <- glm(formula = count ~ wt + cyl, family = "poisson", data = mtcars)
 
 anova_4 <- anova(lm_0, lm_1, lm_2)
 ```
@@ -193,7 +196,7 @@ glmmTMB_zi_2 <- glmmTMB(
   count ~ child + camper + (1 | persons),
   ziformula = ~ child + livebait + (1 | persons),
   data = fish,
-  family = truncated_poisson()
+  family = poisson()
 )
 
 glmmTMB_zi_3 <- glmmTMB(

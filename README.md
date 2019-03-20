@@ -117,7 +117,7 @@ glm_1 <- glm(vs ~ wt, data = mtcars, family = "binomial")
 glm_2 <- glm(vs ~ wt + cyl, data = mtcars, family = "binomial")
 glm_3 <- glm(vs ~ wt * cyl, data = mtcars, family = "binomial")
 glm_4 <- glm(vs ~ wt + cyl, data = mtcars, family = binomial(link = "probit"))
-glm(formula = count ~ wt + cyl, family = "poisson", data = mtcars)
+glm_5 <- glm(formula = count ~ wt + cyl, family = "poisson", data = mtcars)
 
 anova_4 <- anova(lm_0, lm_1, lm_2)
 ```
