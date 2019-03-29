@@ -11,4 +11,7 @@ merMod_2
 \description{
 Model of class merMod
 }
+\examples{
+lme4::glmer(vs ~ drat + cyl + (1 | gear), data = mtcars, family = "binomial")
+}
 \keyword{datasets}

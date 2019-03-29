@@ -11,4 +11,10 @@ brms_mixed_2
 \description{
 Model of class brms
 }
+\examples{
+\dontrun{
+set.seed(123)
+brms::brm(Reaction ~ Days + (1 + Days | Subject), data = sleepstudy)
+}
+}
 \keyword{datasets}
