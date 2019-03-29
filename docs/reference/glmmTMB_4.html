@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>merMod_4 — merMod_4 • circus</title>
+<title>glmmTMB_4 — glmmTMB_4 • circus</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="merMod_4 — merMod_4" />
+<meta property="og:title" content="glmmTMB_4 — glmmTMB_4" />
 
-<meta property="og:description" content="Model of class merMod" />
+<meta property="og:description" content="Model of class glmmTMB" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -109,39 +109,33 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>merMod_4</h1>
+    <h1>glmmTMB_4</h1>
     
-    <div class="hidden name"><code>merMod_4.Rd</code></div>
+    <div class="hidden name"><code>glmmTMB_4.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Model of class merMod</p>
+    <p>Model of class glmmTMB</p>
     
     </div>
 
-    <pre class="usage"><span class='no'>merMod_4</span></pre>
+    <pre class="usage"><span class='no'>glmmTMB_4</span></pre>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>An object of class <code>glmerMod</code> of length 1.</p>
+    <p>An object of class <code>glmmTMB</code> of length 7.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw pkg'>lme4</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/lme4/topics/glmer'>glmer</a></span>(<span class='no'>vs</span> ~ <span class='no'>cyl</span> + (<span class='fl'>1</span> <span class='kw'>|</span> <span class='no'>gear</span>), <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>, <span class='kw'>family</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/family'>binomial</a></span>(<span class='kw'>link</span> <span class='kw'>=</span> <span class='st'>"probit"</span>))</div><div class='output co'>#&gt; Generalized linear mixed model fit by maximum likelihood (Laplace
-#&gt;   Approximation) [glmerMod]
-#&gt;  Family: binomial  ( probit )
-#&gt; Formula: vs ~ cyl + (1 | gear)
-#&gt;    Data: mtcars
-#&gt;      AIC      BIC   logLik deviance df.resid 
-#&gt;  23.2683  27.6655  -8.6342  17.2683       29 
-#&gt; Random effects:
-#&gt;  Groups Name        Std.Dev.
-#&gt;  gear   (Intercept) 0.984   
-#&gt; Number of obs: 32, groups:  gear, 3
-#&gt; Fixed Effects:
-#&gt; (Intercept)          cyl  
-#&gt;       7.011       -1.249  </div></pre>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='fu'>glmmTMB</span>(
+  <span class='no'>count</span> ~ <span class='no'>spp</span> + <span class='no'>mined</span> + (<span class='fl'>1</span> <span class='kw'>|</span> <span class='no'>site</span>),
+  <span class='kw'>ziformula</span> <span class='kw'>=</span>  ~ <span class='no'>spp</span> + <span class='no'>mined</span>,
+  <span class='kw'>family</span> <span class='kw'>=</span> <span class='no'>truncated_poisson</span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>Salamanders</span>
+)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

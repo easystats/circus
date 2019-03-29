@@ -127,13 +127,32 @@
     <p>An object of class <code>lmerMod</code> of length 1.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='no'>iris</span>
+<span class='no'>data</span>$<span class='no'>Cat1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"X"</span>, <span class='st'>"X"</span>, <span class='st'>"Y"</span>), <span class='kw'>length.out</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>data</span>))
+<span class='no'>data</span>$<span class='no'>Cat2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"A"</span>, <span class='st'>"B"</span>), <span class='kw'>length.out</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>data</span>))
+<span class='kw pkg'>lme4</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/lme4/topics/lmer'>lmer</a></span>(<span class='no'>Petal.Width</span> ~ <span class='no'>Cat1</span> + (<span class='fl'>1</span> + <span class='no'>Cat1</span> <span class='kw'>|</span> <span class='no'>Species</span>), <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>data</span>)</div><div class='output co'>#&gt; Linear mixed model fit by REML ['lmerMod']
+#&gt; Formula: Petal.Width ~ Cat1 + (1 + Cat1 | Species)
+#&gt;    Data: data
+#&gt; REML criterion at convergence: -30.9245
+#&gt; Random effects:
+#&gt;  Groups   Name        Std.Dev. Corr 
+#&gt;  Species  (Intercept) 0.92375       
+#&gt;           Cat1Y       0.08759  -0.95
+#&gt;  Residual             0.20186       
+#&gt; Number of obs: 150, groups:  Species, 3
+#&gt; Fixed Effects:
+#&gt; (Intercept)        Cat1Y  
+#&gt;     1.21079     -0.03273  </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       
       <li><a href="#format">Format</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>
