@@ -710,31 +710,58 @@
 #' stanreg_lmerMod_0
 #'
 #' Model of class stanreg
+#' @examples
+#' \dontrun{
+#' rstanarm::stan_lmer(wt ~ 1 + (1 | gear), data = mtcars)
+#' }
 "stanreg_lmerMod_0"
 
 #' stanreg_lmerMod_1
 #'
 #' Model of class stanreg
+#' @examples
+#' \dontrun{
+#' rstanarm::stan_lmer(wt ~ cyl + (1 | gear), data = mtcars)
+#' }
 "stanreg_lmerMod_1"
 
 #' stanreg_lmerMod_2
 #'
 #' Model of class stanreg
+#' @examples
+#' \dontrun{
+#' rstanarm::stan_lmer(wt ~ drat + cyl + (1 | gear), data = mtcars)
+#' }
 "stanreg_lmerMod_2"
 
 #' stanreg_lmerMod_3
 #'
 #' Model of class stanreg
+#' @examples
+#' \dontrun{
+#' rstanarm::stan_lmer(wt ~ drat * cyl + (1 | gear), data = mtcars)
+#' }
 "stanreg_lmerMod_3"
 
 #' stanreg_lmerMod_4
 #'
 #' Model of class stanreg
+#' @examples
+#' \dontrun{
+#' rstanarm::stan_lmer(wt ~ drat / cyl + (1 | gear), data = mtcars)
+#' }
 "stanreg_lmerMod_4"
 
 #' stanreg_lmerMod_5
 #'
 #' Model of class stanreg
+#' @examples
+#' \dontrun{
+#' dat <- iris
+#' dat$Cat1 <- rep(c("X", "X", "Y"), length.out = nrow(dat))
+#' dat$Cat2 <- rep(c("A", "B"), length.out = nrow(dat))
+#' rstanarm::stan_lmer(Petal.Width ~ Cat1 + (1 + Cat1 | Species), data = dat)
+#' }
 "stanreg_lmerMod_5"
 
 
@@ -803,6 +830,15 @@
 
 
 
+#' brms_1
+#'
+#' Model of class brms
+#' @examples
+#' \dontrun{
+#' set.seed(333)
+#' brms::brm(mpg ~ wt + cyl, data = mtcars)
+#' }
+"brms_1"
 
 
 
@@ -842,6 +878,15 @@
 #' }
 "brms_mixed_3"
 
+#' brms_mixed_4
+#'
+#' Model of class brms
+#' @examples
+#' \dontrun{
+#' set.seed(333)
+#' brms::brm(Petal.Length ~ Petal.Width + (1 | Species), data = iris)
+#' }
+"brms_mixed_4"
 
 
 

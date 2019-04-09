@@ -11,4 +11,9 @@ stanreg_lmerMod_2
 \description{
 Model of class stanreg
 }
+\examples{
+\dontrun{
+rstanarm::stan_lmer(wt ~ drat + cyl + (1 | gear), data = mtcars)
+}
+}
 \keyword{datasets}
