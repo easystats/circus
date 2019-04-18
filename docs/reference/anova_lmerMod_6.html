@@ -127,13 +127,27 @@
     <p>An object of class <code>anova</code> (inherits from <code>data.frame</code>) with 3 rows and 8 columns.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/anova'>anova</a></span>(<span class='no'>lmerMod_0</span>, <span class='no'>lmerMod_1</span>, <span class='no'>lmerMod_2</span>)</div><div class='output co'>#&gt; <span class='message'>refitting model(s) with ML (instead of REML)</span></div><div class='output co'>#&gt; Data: mtcars
+#&gt; Models:
+#&gt; lmerMod_0: wt ~ 1 + (1 | gear)
+#&gt; lmerMod_1: wt ~ cyl + (1 | gear)
+#&gt; lmerMod_2: wt ~ drat + cyl + (1 | gear)
+#&gt;           Df    AIC    BIC  logLik deviance   Chisq Chi Df Pr(&gt;Chisq)    
+#&gt; lmerMod_0  3 84.811 89.208 -39.405   78.811                              
+#&gt; lmerMod_1  4 66.082 71.945 -29.041   58.082 20.7293      1   5.29e-06 ***
+#&gt; lmerMod_2  5 63.358 70.687 -26.679   53.358  4.7237      1    0.02975 *  
+#&gt; ---
+#&gt; Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       
       <li><a href="#format">Format</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

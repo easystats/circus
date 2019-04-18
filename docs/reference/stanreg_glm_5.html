@@ -32,7 +32,9 @@
 
 <meta property="og:title" content="stanreg_glm_5 — stanreg_glm_5" />
 
-<meta property="og:description" content="Model of class stanreg" />
+<meta property="og:description" content="Model of class stanreg
+set.seed(123)
+mtcars$count " />
 <meta name="twitter:card" content="summary" />
 
 
@@ -116,7 +118,10 @@
 
     <div class="ref-description">
     
-    <p>Model of class stanreg</p>
+    <p>Model of class stanreg
+set.seed(123)
+mtcars$count <- rpois(nrow(mtcars), 2)
+rstanarm::stan_glm(count ~ wt + cyl, data = mtcars, family = "poisson")</p>
     
     </div>
 
