@@ -127,13 +127,30 @@
     <p>An object of class <code>glmerMod</code> of length 1.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw pkg'>lme4</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/lme4/topics/glmer'>glmer</a></span>(<span class='no'>vs</span> ~ <span class='no'>cyl</span> + (<span class='fl'>1</span> <span class='kw'>|</span> <span class='no'>gear</span>), <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>, <span class='kw'>family</span> <span class='kw'>=</span> <span class='st'>"binomial"</span>)</div><div class='output co'>#&gt; Generalized linear mixed model fit by maximum likelihood (Laplace
+#&gt;   Approximation) [glmerMod]
+#&gt;  Family: binomial  ( logit )
+#&gt; Formula: vs ~ cyl + (1 | gear)
+#&gt;    Data: mtcars
+#&gt;      AIC      BIC   logLik deviance df.resid 
+#&gt;  23.5859  27.9831  -8.7930  17.5859       29 
+#&gt; Random effects:
+#&gt;  Groups Name        Std.Dev.
+#&gt;  gear   (Intercept) 1.654   
+#&gt; Number of obs: 32, groups:  gear, 3
+#&gt; Fixed Effects:
+#&gt; (Intercept)          cyl  
+#&gt;      12.075       -2.133  </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       
       <li><a href="#format">Format</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

@@ -11,4 +11,10 @@ brms_mv_1
 \description{
 Model of class brms
 }
+\examples{
+\dontrun{
+set.seed(123)
+brms::brms_mv_1 <- brm(cbind(cyl, gear, carb) ~ wt + hp, data = mtcars)
+}
+}
 \keyword{datasets}

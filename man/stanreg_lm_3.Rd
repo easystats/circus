@@ -11,4 +11,9 @@ stanreg_lm_3
 \description{
 Model of class stanreg
 }
+\examples{
+\dontrun{
+rstanarm::stan_glm(mpg ~ wt * cyl, data = mtcars)
+}
+}
 \keyword{datasets}

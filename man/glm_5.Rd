@@ -11,4 +11,9 @@ glm_5
 \description{
 Model of class glm
 }
+\examples{
+set.seed(123)
+mtcars$count <- rpois(nrow(mtcars), 2)
+glm(formula = count ~ wt + cyl, family = "poisson", data = mtcars)
+}
 \keyword{datasets}

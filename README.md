@@ -35,6 +35,17 @@ test_that("my_function_works", {
 })
 ```
 
+The above approach probably requires adding the **circus** packages as `Remotes` to the _Description_ file. However, since **circus** is not on CRAN, the above approach does not work for packages you want to submit to CRAN. In this case, you can use `insight::download_model()`.
+
+``` r
+test_that("my_function_works", {
+    library(insight) # on CRAN!
+    
+    model <- insight::download_model("lmerMod_1")
+    testthat::expect_equal(myFunction(model), 0.333)
+})
+```
+
 ## Contribute
 
 Feel free to add any model you find missing\! Any scary creature for the
@@ -98,12 +109,15 @@ lm_5 <- lm(mpg ~ wt + poly(cyl, 2, raw = TRUE), data = mtcars)
 lm_6 <- lm(mpg ~ wt * as.factor(gear), data = mtcars)
 lm_7 <- lm(mpg ~ as.factor(gear)/wt, data = mtcars)
 
+set.seed(123)
+mtcars$count <- rpois(nrow(mtcars), 2)
+
 glm_0 <- glm(vs ~ 1, data = mtcars, family = "binomial")
 glm_1 <- glm(vs ~ wt, data = mtcars, family = "binomial")
 glm_2 <- glm(vs ~ wt + cyl, data = mtcars, family = "binomial")
 glm_3 <- glm(vs ~ wt * cyl, data = mtcars, family = "binomial")
 glm_4 <- glm(vs ~ wt + cyl, data = mtcars, family = binomial(link = "probit"))
-glm_5 <- glm(vs ~ wt + cyl, data = mtcars, family = "poisson")
+glm_5 <- glm(formula = count ~ wt + cyl, family = "poisson", data = mtcars)
 
 anova_4 <- anova(lm_0, lm_1, lm_2)
 ```
@@ -143,8 +157,122 @@ anova_lmerMod_6 <- anova(lmerMod_0, lmerMod_1, lmerMod_2)
 
 ### glmmTMB
 
+
 ``` r
 library(glmmTMB)
+
+<!-- ```{r, eval=FALSE, warning=FALSE, message=FALSE, results="hide"} -->
+
+<!-- library(glmmTMB) -->
+
+<!-- set.seed(123) -->
+
+<!-- fish <- read.csv("https://stats.idre.ucla.edu/stat/data/fish.csv") -->
+
+<!-- fish$nofish <- as.factor(fish$nofish) -->
+
+<!-- fish$livebait <- as.factor(fish$livebait) -->
+
+<!-- fish$camper <- as.factor(fish$camper) -->
+
+<!-- fish$ID <- sample(1:4, nrow(fish), replace = TRUE) -->
+
+<!-- glmmTMB_1 <- glmmTMB( -->
+
+<!--   count ~ child + camper + (1 | persons), -->
+
+<!--   data = fish, -->
+
+<!--   family = poisson() -->
+
+<!-- ) -->
+
+<!-- glmmTMB_zi_1 <- glmmTMB( -->
+
+<!--   count ~ child + camper + (1 | persons), -->
+
+<!--   ziformula = ~ child + camper + (1 | persons), -->
+
+<!--   data = fish, -->
+
+<!--   family = truncated_poisson() -->
+
+<!-- ) -->
+
+<!-- glmmTMB_zi_2 <- glmmTMB( -->
+
+<!--   count ~ child + camper + (1 | persons), -->
+
+<!--   ziformula = ~ child + livebait + (1 | persons), -->
+
+<!--   data = fish, -->
+
+<!--   family = poisson() -->
+
+<!-- ) -->
+
+<!-- glmmTMB_zi_3 <- glmmTMB( -->
+
+<!--   count ~ child + camper + (1 | persons), -->
+
+<!--   ziformula = ~ child + livebait + (1 | ID), -->
+
+<!--   dispformula = ~xb, -->
+
+<!--   data = fish, -->
+
+<!--   family = truncated_poisson() -->
+
+<!-- ) -->
+
+<!-- ``` -->
+
+<!-- ### GLMMadaptive -->
+
+<!-- ```{r, eval=FALSE, warning=FALSE, message=FALSE, results="hide"} -->
+
+<!-- library("GLMMadaptive") -->
+
+<!-- library("lme4") -->
+
+<!-- data(cbpp) -->
+
+<!-- fish <- read.csv("https://stats.idre.ucla.edu/stat/data/fish.csv") -->
+
+<!-- fish$nofish <- as.factor(fish$nofish) -->
+
+<!-- fish$livebait <- as.factor(fish$livebait) -->
+
+<!-- fish$camper <- as.factor(fish$camper) -->
+
+<!-- GLMMadaptive_zi_1 <- GLMMadaptive::mixed_model( -->
+
+<!--   count ~ child + camper, -->
+
+<!--   random = ~ 1 | persons, -->
+
+<!--   zi_fixed = ~ child + livebait, -->
+
+<!--   data = fish, -->
+
+<!--   family = GLMMadaptive::zi.poisson() -->
+
+<!-- ) -->
+
+<!-- GLMMadaptive_zi_2 <- GLMMadaptive::mixed_model( -->
+
+<!--   count ~ child + camper, -->
+
+<!--   random = ~ 1 | persons, -->
+
+<!--   zi_fixed = ~ child + livebait, -->
+
+<!--   zi_random = ~ 1 | persons, -->
+
+<!--   data = fish, -->
+
+<!--   family = GLMMadaptive::zi.poisson() -->
+
 
 set.seed(123)
 fish <- read.csv("https://stats.idre.ucla.edu/stat/data/fish.csv")

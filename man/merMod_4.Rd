@@ -11,4 +11,7 @@ merMod_4
 \description{
 Model of class merMod
 }
+\examples{
+lme4::glmer(vs ~ cyl + (1 | gear), data = mtcars, family = binomial(link = "probit"))
+}
 \keyword{datasets}

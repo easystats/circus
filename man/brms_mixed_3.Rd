@@ -11,4 +11,15 @@ brms_mixed_3
 \description{
 Model of class brms
 }
+\examples{
+\dontrun{
+set.seed(123)
+sleepstudy$grp <- sample(1:5, size = 180, replace = TRUE)
+sleepstudy <- sleepstudy \%>\%
+  group_by(grp) \%>\%
+  mutate(subgrp = sample(1:15, size = n(), replace = TRUE))
+
+brms::brm(Reaction ~ Days + (1 | grp / subgrp) + (1 | Subject), data = sleepstudy)
+}
+}
 \keyword{datasets}

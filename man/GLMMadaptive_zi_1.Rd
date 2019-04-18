@@ -11,4 +11,17 @@ GLMMadaptive_zi_1
 \description{
 Model of class GLMMadaptive
 }
+\examples{
+\dontrun{
+# data prepararion: see "glmmTMB_1"
+
+GLMMadaptive::mixed_model(
+  count ~ child + camper,
+  random = ~ 1 | persons,
+  zi_fixed = ~ child + livebait,
+  data = fish,
+  family = GLMMadaptive::zi.poisson()
+)
+}
+}
 \keyword{datasets}

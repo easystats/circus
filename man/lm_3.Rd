@@ -11,4 +11,7 @@ lm_3
 \description{
 Model of class lm
 }
+\examples{
+lm(formula = mpg ~ wt * cyl, data = mtcars)
+}
 \keyword{datasets}

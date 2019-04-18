@@ -11,4 +11,7 @@ lmerMod_1
 \description{
 Model of class lmerMod
 }
+\examples{
+lme4::lmer(wt ~ cyl + (1 | gear), data = mtcars)
+}
 \keyword{datasets}

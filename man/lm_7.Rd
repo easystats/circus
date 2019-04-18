@@ -11,4 +11,7 @@ lm_7
 \description{
 Model of class lm
 }
+\examples{
+lm(formula = mpg ~ as.factor(gear)/wt, data = mtcars)
+}
 \keyword{datasets}

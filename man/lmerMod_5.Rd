@@ -11,4 +11,10 @@ lmerMod_5
 \description{
 Model of class lmerMod
 }
+\examples{
+data <- iris
+data$Cat1 <- rep(c("X", "X", "Y"), length.out = nrow(data))
+data$Cat2 <- rep(c("A", "B"), length.out = nrow(data))
+lme4::lmer(Petal.Width ~ Cat1 + (1 + Cat1 | Species), data = data)
+}
 \keyword{datasets}

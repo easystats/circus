@@ -11,4 +11,12 @@ stanreg_lmerMod_5
 \description{
 Model of class stanreg
 }
+\examples{
+\dontrun{
+dat <- iris
+dat$Cat1 <- rep(c("X", "X", "Y"), length.out = nrow(dat))
+dat$Cat2 <- rep(c("A", "B"), length.out = nrow(dat))
+rstanarm::stan_lmer(Petal.Width ~ Cat1 + (1 + Cat1 | Species), data = dat)
+}
+}
 \keyword{datasets}

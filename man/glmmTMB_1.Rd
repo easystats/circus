@@ -11,4 +11,20 @@ glmmTMB_1
 \description{
 Model of class glmmTMB
 }
+\examples{
+\dontrun{
+set.seed(123)
+fish <- read.csv("https://stats.idre.ucla.edu/stat/data/fish.csv")
+fish$nofish <- as.factor(fish$nofish)
+fish$livebait <- as.factor(fish$livebait)
+fish$camper <- as.factor(fish$camper)
+fish$ID <- sample(1:4, nrow(fish), replace = TRUE)
+
+glmmTMB(
+  count ~ child + camper + (1 | persons),
+  data = fish,
+  family = poisson()
+)
+}
+}
 \keyword{datasets}

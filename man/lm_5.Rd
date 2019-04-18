@@ -11,4 +11,7 @@ lm_5
 \description{
 Model of class lm
 }
+\examples{
+lm(formula = mpg ~ wt + poly(cyl, 2, raw = TRUE), data = mtcars)
+}
 \keyword{datasets}

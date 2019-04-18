@@ -11,4 +11,10 @@ brms_mixed_1
 \description{
 Model of class brms
 }
+\examples{
+\dontrun{
+set.seed(123)
+brms::brm(mpg ~ wt + (1 | cyl) + (1 + wt | gear), data = mtcars)
+}
+}
 \keyword{datasets}

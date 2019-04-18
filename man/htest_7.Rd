@@ -11,4 +11,7 @@ htest_7
 \description{
 Model of class htest
 }
+\examples{
+t.test(mtcars$mpg ~ mtcars$vs)
+}
 \keyword{datasets}

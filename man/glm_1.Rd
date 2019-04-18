@@ -11,4 +11,7 @@ glm_1
 \description{
 Model of class glm
 }
+\examples{
+glm(formula = vs ~ wt, family = "binomial", data = mtcars)
+}
 \keyword{datasets}
