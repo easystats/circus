@@ -1,5 +1,5 @@
 ---
-title: "Bayesian indices data"
+title: "Systematic Simulation of Bayesian Models"
 output: 
   github_document:
     toc: true
@@ -16,80 +16,554 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Generate Data of Bayesian Indices
+# Method
+
+This code was used by the articles presented in [bayestestR](https://easystats.github.io/bayestestR/) to simulate statistical models.
+
+The simulation aimed at modulating the following characteristics:
+
+- **Model type**: linear or logistic.
+- **"True" effect** (original regression coefficient from which data is drawn): Can be 1 or 0 (no effect).
+- **Sample size**: From 20 to 100 by steps of 10.
+- **Error**: Gaussian noise applied to the predictor with SD from 0.33 to 6.66 (with 1000 different values).
+
+We generated a dataset for each combination of these characteristics, resulting in a total of `2 * 2 * 9 * 1000 = 36000` Bayesian and frequentist models.
+<!-- For every combinations of these characteristics, we generated 1000 datasets, resulting in a total of `2 * 2* 3 * 4 * 3 * 1000` or 360000 Bayesian and frequentist models. -->
+
+
+# Generate Data
+
+
+
+## Convenience Functions
+```{r eval=TRUE, message=FALSE, warning=FALSE, results='hide'}
+library(tidyverse)
+library(bayestestR)
+library(parameters)
+library(see)
+library(rstanarm)
+
+
+
+
+
+# Convenience functions --------------------------------------------------------
+# Generate data
+generate_data <- function(true_effect=0, outcome_type="linear", sample_size=50, error=0){
+  # Generate data
+  data <- data.frame(x = sort(rnorm(sample_size, 0, 1)))
+  if(outcome_type == "linear"){
+     if(true_effect == 1){
+      data$y <- data$x
+    } else{
+      data$y <- parameters::standardize(cos(data$x*5))
+    }
+  } else{
+    if(true_effect == 1){
+      data$y <- ifelse(data$x > 0, 1, 0)
+    } else{
+      data$y <- ifelse(cos(data$x*5) > 0, 1, 0)
+    }
+  }
+  # Add error
+  data$x <- parameters::standardize(data$x + rnorm(sample_size, 0, error))
+
+  return(data)
+
+}
+
+
+
+# Compute model
+compute_model <- function(data, outcome_type="linear", type=c("frequentist", "bayesian")){
+
+  if("frequentist" %in% c(type)){
+    if(outcome_type == "linear"){
+      model_freq <- lm(y ~ x, data=data)
+    } else{
+      model_freq <- glm(y ~ x, data=data, family="binomial")
+    }
+    params <- parameters::model_parameters(model_freq)[2, ] %>%
+        select(beta, SE, CI_low, CI_high, p)
+  } else{
+    params <- data.frame()
+  }
+
+  if("bayesian" %in% c(type)){
+    if(outcome_type == "linear"){
+      temp <- capture.output(
+        model_bayes <- stan_glm(y ~ x, data=data, prior=normal(0, 1)))
+    } else{
+      temp <- capture.output(
+        model_bayes <- stan_glm(y ~ x, data=data, family="binomial", prior=normal(0, 1)))
+    }
+    posterior <- as.data.frame(model_bayes)$x
+    
+    params$Median <- median(posterior)
+    params$Mean <- mean(posterior)
+    map <- map_estimate(posterior)
+    params$MAP <- map
+    
+    params$MAP_density <- attributes(map)$MAP_density
+    params$p_direction <- p_direction(posterior)
+    params$p_MAP <- p_map(posterior)
+    
+    range <- rope_range(model_bayes)
+    params$ROPE_90 <- rope(posterior, range = range, CI=90)$ROPE_Percentage
+    params$ROPE_95 <- rope(posterior, range = range, CI=95)$ROPE_Percentage
+    params$ROPE_full <- rope(posterior, range = range, CI=100)$ROPE_Percentage
+    params$p_ROPE <- p_rope(posterior, range = range)
+    
+  }
+  
+  params
+}
+
+
+
+# Combine
+generate_and_process <- function(true_effect, outcome_type, sample_size, error){
+  
+  data <- generate_data(true_effect=true_effect, outcome_type=outcome_type, sample_size=sample_size, error=error)
+  params <- compute_model(data, outcome_type = outcome_type)
+  
+  rownames(params) <- NULL
+  params
+}
+```
+
+## Run Algorithm
+
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
-library(bayestestR)
-library(rstanarm)
-library(broom)
-
 # options(mc.cores = parallel::detectCores())
 set.seed(333)
 
-generate_data <- function(sample_size, noise, correlation=1){
-  data <- data.frame(x = scale(rnorm(sample_size, 0, 1)))
-  if(correlation==1){
-    data$y <- scale(data$x)
-    data$y <- data$y + rnorm(sample_size, mean = 0, sd = noise)
-  } else{
-    data$y <- scale(rnorm(sample_size, 0, 1))
-  }
-  return(data)
-}
+# Parameters -------------------------------------------------------------------
+effects <- c(0, 1)
+sample_sizes <- seq(20, 100, length.out = 9)
+outcome_types <- c("binary", "linear")
+errors <- seq(0.33, 6.66, length.out = 1000)
 
-df <- data.frame() # Uncomment this if you want to reset the data
+# Run --------------------------------------------------------------------------
+# Initialize data
+all_data <- data.frame()
 
-for(noise in c(0.1, seq(2.5, 5, by=2.5))){
-  for(sample_size in c(20, 40, 60)){
-    print(paste0(noise, "-", sample_size))
-    for(effect in c(0, 1)){
-      for(prior in c(0, 1)){
-        for(i in 1:1000){
+# Start loop
+for(outcome_type in outcome_types){
+  print(outcome_type)
+  for(true_effect in effects){
+    for(error in errors){
+      for(sample_size in sample_sizes){
+        for(iteration in 1:1){
           cat(".")
-          data <- generate_data(sample_size, noise, effect)
-
-          freq_model <- lm(y ~ x, data=data)
-          summary(freq_model)
-          beta <- broom::tidy(freq_model)[2, ]$estimate
-          p_frequentist <- broom::tidy(freq_model)[2, ]$p.value
-
-          out <- capture.output(bayes_model <- rstanarm::stan_glm(y ~ x,
-                                                                  data=data,
-                                                                  chains=2,
-                                                                  prior=normal(location=prior)))
-          posterior <- as.data.frame(bayes_model)$x
-
-          median <- median(posterior)
-          mean <- mean(posterior)
-          map <- map_estimate(posterior)[1]
-
-          p_direction <- p_direction(posterior)
-          rope <- rope(posterior, bounds = c(-0.1, 0.1), CI=90)
-          rope_full <- rope(posterior, bounds = c(-0.1, 0.1), CI=100)
-          p_rope <- p_rope(posterior, bounds = c(-0.1, 0.1))
-          p_map <- p_map(posterior)
-
-          df <- rbind(df,
-                       data.frame(effect=effect,
-                                  noise=noise,
-                                  sample_size=sample_size,
-                                  prior=prior,
-                                  prior_correct=abs(1-abs(effect-prior)),
-                                  iteration=i,
-                                  beta = beta,
-                                  median = median,
-                                  mean = mean,
-                                  map = map,
-                                  p_frequentist = p_frequentist,
-                                  p_direction = p_direction,
-                                  rope = rope,
-                                  rope_full = rope_full,
-                                  p_rope=p_rope,
-                                  p_map = p_map))
+          
+          fail <- TRUE
+          while(fail==TRUE){
+            tryCatch({
+              params <- generate_and_process(true_effect=true_effect, outcome_type=outcome_type, sample_size=sample_size, error=error)
+              fail <- FALSE
+            },error=function(e){
+            },warning=function(w){
+              cat("*")
+            },finally={params})
+          }
+   
+          # Save data
+          params <- mutate(params,
+                             true_effect=true_effect,
+                             sample_size=sample_size,
+                             outcome_type = outcome_type,
+                             error = error,
+                             iteration=iteration)
+          all_data <- rbind(all_data, params)
         }
       }
     }
   }
-  write.csv(df, "../data/bayes_indices.csv", row.names = FALSE)
+  write.csv(all_data, "bayes_indices.csv", row.names = FALSE)
 }
 ```
+
+```{r message=FALSE, warning=FALSE, include=FALSE, results='hide'}
+all_data <- read.csv("https://raw.github.com/easystats/circus/master/data/bayes_indices.csv")
+```
+
+# Visualise data
+
+## Example data
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.height=16}
+effects <- c(0, 1)
+sample_sizes <- c(240)
+outcome_types <- c("binary", "linear")
+errors <- seq(0.33, 6.66, length.out = 3)
+
+example_data <- data.frame()
+for(outcome_type in outcome_types){
+  for(true_effect in effects){
+    for(error in errors){
+      for(sample_size in sample_sizes){
+        data <- generate_data(true_effect, outcome_type, sample_size, error)
+        example_data <- rbind(
+          example_data,
+          mutate(data,
+                 true_effect=true_effect,
+                 outcome_type=outcome_type,
+                 sample_size=sample_size,
+                 error=error))
+      }
+    }
+  }
+}
+
+linear_noeffect <- example_data %>% 
+  filter(outcome_type == "linear",
+         true_effect==0) %>% 
+  mutate(sample_size = as.factor(sample_size),
+         error = as.factor(error)) %>% 
+  ggplot(aes(x=x, y=y, color=error)) +
+  geom_point2(width=0.02, alpha=0.2, size=3) +
+  geom_smooth()+
+  theme_modern() +
+  scale_color_material_d() +
+  facet_wrap(~error, scale="free", nrow=3)
+linear_effect <- example_data %>% 
+  filter(outcome_type == "linear",
+         true_effect==1) %>% 
+  mutate(sample_size = as.factor(sample_size),
+         error = as.factor(error)) %>% 
+  ggplot(aes(x=x, y=y, color=error)) +
+  geom_point2(width=0.02, alpha=0.2, size=3) +
+  geom_smooth()+
+  theme_modern() +
+  scale_color_material_d() +
+  facet_wrap(~error, scale="free", nrow=3)
+binary_noeffect <- example_data %>% 
+  filter(outcome_type == "binary",
+         true_effect==0) %>% 
+  mutate(true_effect = as.factor(true_effect),
+         sample_size = as.factor(sample_size),
+         error = as.factor(error)) %>% 
+  ggplot(aes(x=x, y=y, color=error)) +
+  geom_point2(width=0.02, alpha=0.2, size=3) +
+  geom_smooth()+
+  theme_modern() +
+  scale_color_material_d() +
+  facet_wrap(~true_effect*error, scale="free", nrow=3)
+binary_effect <- example_data %>% 
+  filter(outcome_type == "binary",
+         true_effect==1) %>% 
+  mutate(true_effect = as.factor(true_effect),
+         sample_size = as.factor(sample_size),
+         error = as.factor(error)) %>% 
+  ggplot(aes(x=x, y=y, color=error)) +
+  geom_point2(width=0.02, alpha=0.2, size=3) +
+  geom_smooth()+
+  theme_modern() +
+  scale_color_material_d() +
+  facet_wrap(~true_effect*error, scale="free", nrow=3)
+
+plots(linear_effect, linear_noeffect, 
+      binary_effect, binary_noeffect, 
+      nrow = 2,
+      tags=TRUE, tags_labels=c("Linear - Effect", "Linear - No effect",
+                               "Binary - Effect", "Binary - No effect"))
+```
+
+## Observed Coefficients
+
+```{r eval=TRUE, message=FALSE, warning=FALSE}
+all_data %>%
+  mutate(sample_size = as.factor(sample_size),
+         beta = as.numeric(beta),
+         true_effect = as.factor(true_effect)) %>% 
+  ggplot(aes(x=true_effect, y=beta, fill=sample_size)) +
+  geom_boxplot() +
+  theme_modern() +
+  scale_fill_material_d("rainbow") +
+  xlab("Specified Coef") +
+  ylab("Actual Coef") +
+  facet_wrap(~outcome_type, scale="free_y")
+
+all_data %>% 
+  mutate(sample_size = as.factor(sample_size),
+         beta = as.numeric(beta),
+         error = as.numeric(error),
+         true_effect = as.factor(true_effect)) %>% 
+  ggplot(aes(x=error, y=beta, color=sample_size)) +
+  geom_point2(alpha=0.2, size=3) +
+  geom_smooth(se=FALSE)+
+  theme_modern() +
+  scale_color_material_d("rainbow") +
+  xlab("Error") +
+  ylab("Actual") +
+  facet_wrap(~outcome_type*true_effect, scale="free")
+
+all_data %>% 
+  mutate(sample_size = as.factor(sample_size),
+         true_effect = as.factor(true_effect),
+         beta = as.numeric(beta)) %>% 
+  ggplot(aes(x=beta, fill=sample_size)) +
+  geom_density(alpha=0.3) +
+  theme_modern() +
+  scale_fill_material_d() +
+  xlab("Actual Coef") +
+  facet_wrap(~true_effect*outcome_type, scale="free")
+```
+
+
+<!-- - **Prior**: Can be correct (*i.e.*, with the same location as the effect), null (*i.e.*, location of 0; note that the null prior is "correct" for models with absence of true effect) and inverse (*i.e.*, `-1 * true effect`...??) -->
+
+
+
+<!-- - **Prior**: Can be correct (*i.e.*, with the same location as the effect), null (*i.e.*, location of 0; note that the null prior is "correct" for models with absence of true effect) and inverse (*i.e.*, `-1 * true effect`...??) -->
+<!-- ```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'} -->
+<!-- library(tidyverse) -->
+<!-- library(bayestestR) -->
+<!-- library(parameters) -->
+<!-- library(see) -->
+<!-- library(rstanarm) -->
+<!-- library(simglm) -->
+
+<!-- # Generate data -->
+<!-- generate_data <- function(coef=1, outcome_type="linear", sample_size=50, error=0.01){ -->
+
+<!--   if (outcome_type == "linear"){ -->
+<!--     outcome_type = NULL -->
+<!--     reg_coefs = c(0, coef) -->
+<!--   } else{ -->
+<!--     outcome_type = "binary" -->
+<!--     # reg_coefs = c(0.5, sqrt(3)/pi*coef)  # Based on Cohen's (1988) log-odds -> standardized d transformation -->
+<!--     reg_coefs = c(0.5, coef) -->
+<!--   } -->
+
+
+<!--   # Sim arguments -->
+<!--   sim_arguments <- list( -->
+<!--     formula = y ~ x, -->
+<!--     fixed = list(x = list(var_type = 'continuous', mean = 0, sd = 1)), -->
+<!--     error = list(variance=error), -->
+<!--     sample_size = sample_size, -->
+<!--     reg_weights = reg_coefs, -->
+<!--     outcome_type = outcome_type, -->
+<!--     replications = 100 -->
+<!--   ) -->
+
+<!--   # Generate data -->
+<!--   data <- simglm::simulate_fixed(data = NULL, sim_arguments) %>%  -->
+<!--     simglm::simulate_error(sim_arguments) %>% -->
+<!--     simglm::generate_response(sim_arguments)  -->
+
+<!--   # Standardize data -->
+<!--   if (is.null(outcome_type)){ -->
+<!--     data <- parameters::standardize(data, select = c("x", "y")) -->
+<!--   } else{ -->
+<!--     data <- parameters::standardize(data, select = c("x")) -->
+<!--   } -->
+
+<!--   return(data) -->
+<!-- } -->
+
+
+<!-- # options(mc.cores = parallel::detectCores()) -->
+<!-- set.seed(333) -->
+
+
+
+<!-- # Convenience functions -------------------------------------------------------- -->
+
+<!-- convert_beta <- function(beta = NULL, effect_size = NULL, error_y, error_x) { -->
+
+<!--   if(is.null(beta)) { -->
+<!--     effect <- effect_size * (error_y / error_x) -->
+<!--   } -->
+
+<!--   if(is.null(effect_size)) { -->
+<!--     effect <- beta * (error_x / error_y) -->
+<!--   } -->
+<!--   effect -->
+<!-- } -->
+
+
+
+
+<!-- # Generate data -->
+<!-- generate_data <- function(effect_size=0, outcome_type="linear", error=0.01){ -->
+
+
+
+<!--   if (outcome_type == "linear"){ -->
+<!--     beta <- convert_beta(effect_size = effect_size, error_y = sqrt(error), error_x = 1) -->
+<!--     outcome_type = NULL -->
+<!--     reg_weights = c(0, beta) -->
+<!--     } else{ -->
+<!--       outcome_type = "binary" -->
+<!--       reg_weights = c(0.5, sqrt(3)/pi*effect_size)  # Based on Cohen's (1988) log-odds -> standardized d transformation -->
+<!--     } -->
+
+
+<!--   # Sim arguments -->
+<!--   sim_arguments <- list( -->
+<!--     formula = y ~ x, -->
+<!--     fixed = list(x = list(var_type = 'continuous', mean = 0, sd = 1)), -->
+<!--     error = list(variance=1), -->
+<!--     sample_size = 500, -->
+<!--     reg_weights = reg_weights, -->
+<!--     outcome_type = outcome_type, -->
+<!--     replications = 100 -->
+<!--   ) -->
+
+<!--   # Generate data -->
+<!--   data <- simglm::simulate_fixed(data = NULL, sim_arguments) %>%  -->
+<!--     simglm::simulate_error(sim_arguments) %>% -->
+<!--     simglm::generate_response(sim_arguments)  -->
+
+<!--   # Standardize data -->
+<!--   data$x <- scale(data$x) -->
+<!--   data$y <- scale(data$y) -->
+
+<!--   return(data) -->
+<!-- } -->
+
+
+<!-- # ------------------------------------------------------------------------------ -->
+<!-- # Parameters -->
+<!-- effect_sizes <- c(0, 0.1, 0.2, 0.5, 0.8) -->
+<!-- # outcome_types <- c("linear", "binary") -->
+<!-- outcome_types <- c("linear") -->
+<!-- error_amount <- c(0.01, 0.1, 0.25, 0.5) -->
+
+<!-- # Initialize data -->
+<!-- all_data <- data.frame() -->
+
+<!-- # Start loop -->
+<!-- for(effect_size in effect_sizes){ -->
+<!--   for(outcome_type in outcome_types){ -->
+<!--     for(error in error_amount){ -->
+<!--       for(i in 1:50){ -->
+<!--         cat(".") -->
+<!--         # Get data -->
+<!--         data <- generate_data(effect_size, outcome_type, error) -->
+
+<!--         # Compute model -->
+<!--         if(outcome_type == "linear"){ -->
+<!--           model <- lm(y ~ x, data=data) -->
+<!--         } else{ -->
+<!--           model <- glm(y ~ x, data=data, family="binomial") -->
+<!--           # Convert to d -->
+<!--         } -->
+<!--         all_data <- rbind(all_data, -->
+<!--                           parameters::model_parameters(model)[2, ] %>% -->
+<!--                             mutate(effect_size = effect_size, -->
+<!--                                    outcome_type = outcome_type, -->
+<!--                                    error = error, -->
+<!--                                    std_beta = convert_beta(beta = coef(model)[2], error_y = sqrt(error), error_x = 1))) -->
+<!--       } -->
+<!--     } -->
+<!--   } -->
+<!-- } -->
+
+<!-- all_data %>%  -->
+<!--   ggplot(aes(x=as.factor(effect_size), y=beta, fill=as.factor(error))) + -->
+<!--   geom_boxplot() + -->
+<!--   theme_modern() + -->
+<!--   scale_fill_material_d() + -->
+<!--   xlab("Specified Coef") + -->
+<!--   ylab("Actual Coef") -->
+
+<!-- plot(all_data$beta, all_data$effect_size) -->
+
+<!-- plot(x=data$x, y=data$y) -->
+<!-- summary(data) -->
+
+<!-- model_frequentist <- glm(y ~ x, data=data, family="binomial") -->
+<!-- summary(model_frequentist) -->
+
+<!-- model_frequentist <- lm(y ~ x, data=data) -->
+<!-- summary(model_frequentist) -->
+<!-- ``` -->
+
+
+
+
+
+
+<!-- ```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'} -->
+<!-- library(bayestestR) -->
+<!-- library(rstanarm) -->
+<!-- library(broom) -->
+
+<!-- # options(mc.cores = parallel::detectCores()) -->
+<!-- set.seed(333) -->
+
+<!-- generate_data <- function(sample_size, noise, correlation=1){ -->
+<!--   data <- data.frame(x = scale(rnorm(sample_size, 0, 1))) -->
+<!--   if(correlation==1){ -->
+<!--     data$y <- scale(data$x) -->
+<!--     data$y <- data$y + rnorm(sample_size, mean = 0, sd = noise) -->
+<!--   } else{ -->
+<!--     data$y <- scale(rnorm(sample_size, 0, 1)) -->
+<!--   } -->
+<!--   return(data) -->
+<!-- } -->
+
+<!-- df <- data.frame() # Uncomment this if you want to reset the data -->
+
+<!-- for(noise in c(0.1, seq(2.5, 5, by=2.5))){ -->
+<!--   for(sample_size in c(20, 40, 60)){ -->
+<!--     print(paste0(noise, "-", sample_size)) -->
+<!--     for(effect in c(0, 1)){ -->
+<!--       for(prior in c(0, 1)){ -->
+<!--         for(i in 1:1000){ -->
+<!--           cat(".") -->
+<!--           data <- generate_data(sample_size, noise, effect) -->
+
+<!--           freq_model <- lm(y ~ x, data=data) -->
+<!--           summary(freq_model) -->
+<!--           beta <- broom::tidy(freq_model)[2, ]$estimate -->
+<!--           p_frequentist <- broom::tidy(freq_model)[2, ]$p.value -->
+
+<!--           out <- capture.output(bayes_model <- rstanarm::stan_glm(y ~ x, -->
+<!--                                                                   data=data, -->
+<!--                                                                   chains=2, -->
+<!--                                                                   prior=normal(location=prior))) -->
+<!--           posterior <- as.data.frame(bayes_model)$x -->
+
+<!--           median <- median(posterior) -->
+<!--           mean <- mean(posterior) -->
+<!--           map <- map_estimate(posterior)[1] -->
+
+<!--           p_direction <- p_direction(posterior) -->
+<!--           rope <- rope(posterior, bounds = c(-0.1, 0.1), CI=90) -->
+<!--           rope_full <- rope(posterior, bounds = c(-0.1, 0.1), CI=100) -->
+<!--           p_rope <- p_rope(posterior, bounds = c(-0.1, 0.1)) -->
+<!--           p_map <- p_map(posterior) -->
+
+<!--           df <- rbind(df, -->
+<!--                        data.frame(effect=effect, -->
+<!--                                   noise=noise, -->
+<!--                                   sample_size=sample_size, -->
+<!--                                   prior=prior, -->
+<!--                                   prior_correct=abs(1-abs(effect-prior)), -->
+<!--                                   iteration=i, -->
+<!--                                   beta = beta, -->
+<!--                                   median = median, -->
+<!--                                   mean = mean, -->
+<!--                                   map = map, -->
+<!--                                   p_frequentist = p_frequentist, -->
+<!--                                   p_direction = p_direction, -->
+<!--                                   rope = rope, -->
+<!--                                   rope_full = rope_full, -->
+<!--                                   p_rope=p_rope, -->
+<!--                                   p_map = p_map)) -->
+<!--         } -->
+<!--       } -->
+<!--     } -->
+<!--   } -->
+<!--   write.csv(df, "../data/bayes_indices.csv", row.names = FALSE) -->
+<!-- } -->
+<!-- ``` -->
+
+
+<!-- # References -->

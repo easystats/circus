@@ -53,7 +53,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/bayesian_indices.html">Bayesian indices data</a>
+      <a href="articles/bayesian_indices.html">Systematic Simulation of Bayesian Models</a>
     </li>
     <li>
       <a href="articles/bootstrapped.html">Bootsrapped data</a>
@@ -89,103 +89,380 @@
 <a class="sourceLine" id="cb1-2" title="2">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"easystats/circus"</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(<span class="st">"circus"</span>)</a></code></pre></div>
 </div>
-<div id="models-creation" class="section level2">
+<div id="how-to-use-it" class="section level2">
 <h2 class="hasAnchor">
-<a href="#models-creation" class="anchor"></a>Models Creation</h2>
+<a href="#how-to-use-it" class="anchor"></a>How to use it</h2>
+<p>You can use the package in your <code>testthat</code> block by directly calling the models. However, for it to work on <strong>travis</strong>, it is easier to directly download them from github:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">test_that</span>(<span class="st">"my_function_works"</span>, {</a>
+<a class="sourceLine" id="cb3-2" title="2">    <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(circus)</a>
+<a class="sourceLine" id="cb3-3" title="3">    </a>
+<a class="sourceLine" id="cb3-4" title="4">    <span class="co"># model &lt;- circus::lmerMod_1 # Local solution</span></a>
+<a class="sourceLine" id="cb3-5" title="5">    model &lt;-<span class="st"> </span>circus<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/circus/topics/download_model">download_model</a></span>(<span class="st">"lmerMod_1"</span>)</a>
+<a class="sourceLine" id="cb3-6" title="6">    testthat<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/testthat/topics/equality-expectations">expect_equal</a></span>(<span class="kw">myFunction</span>(model), <span class="fl">0.333</span>)</a>
+<a class="sourceLine" id="cb3-7" title="7">})</a></code></pre></div>
+</div>
+<div id="contribute" class="section level2">
+<h2 class="hasAnchor">
+<a href="#contribute" class="anchor"></a>Contribute</h2>
+<p>Feel free to add any model you find missing! Any scary creature for the depth of your mind has its place here!</p>
+<p>In order to add models, do the following:</p>
+<ol style="list-style-type: decimal">
+<li>Add model creation code in the <code>README.Rmd</code>
+</li>
+<li>Place the model in the <code><a href="https://www.rdocumentation.org/packages/usethis/topics/use_data">usethis::use_data()</a></code> function (last chunk)</li>
+<li>Run all the chunks manually: this will create the models, and then the <code>use_data()</code> function will save them inside the package’s <code>data</code> folder</li>
+<li>Add documentation for your model in the <a href="https://github.com/easystats/circus/blob/master/R/data.R"><code>R/data.R/</code></a> file</li>
+<li>Knit the <code>README.Rmd</code> file, check and build documentation for the package</li>
+<li>Upload to github</li>
+</ol>
+</div>
+<div id="list-of-models" class="section level2">
+<h2 class="hasAnchor">
+<a href="#list-of-models" class="anchor"></a>List of Models</h2>
 <div id="base" class="section level3">
 <h3 class="hasAnchor">
 <a href="#base" class="anchor"></a>Base</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">htest_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor.test">cor.test</a></span>(iris<span class="op">$</span>Sepal.Width, iris<span class="op">$</span>Sepal.Length, <span class="dt">method =</span> <span class="st">"spearman"</span>)</a>
-<a class="sourceLine" id="cb3-2" title="2">htest_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor.test">cor.test</a></span>(iris<span class="op">$</span>Sepal.Width, iris<span class="op">$</span>Sepal.Length, <span class="dt">method =</span> <span class="st">"pearson"</span>)</a>
-<a class="sourceLine" id="cb3-3" title="3">htest_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor.test">cor.test</a></span>(iris<span class="op">$</span>Sepal.Width, iris<span class="op">$</span>Sepal.Length, <span class="dt">method =</span> <span class="st">"kendall"</span>)</a>
-<a class="sourceLine" id="cb3-4" title="4">htest_<span class="dv">4</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/t.test">t.test</a></span>(iris<span class="op">$</span>Sepal.Width, iris<span class="op">$</span>Sepal.Length)</a>
-<a class="sourceLine" id="cb3-5" title="5">htest_<span class="dv">5</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/t.test">t.test</a></span>(iris<span class="op">$</span>Sepal.Width, iris<span class="op">$</span>Sepal.Length, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb3-6" title="6">htest_<span class="dv">6</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/t.test">t.test</a></span>(iris<span class="op">$</span>Sepal.Width, iris<span class="op">$</span>Sepal.Length)</a>
-<a class="sourceLine" id="cb3-7" title="7">htest_<span class="dv">7</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/t.test">t.test</a></span>(mtcars<span class="op">$</span>mpg <span class="op">~</span><span class="st"> </span>mtcars<span class="op">$</span>vs)</a>
-<a class="sourceLine" id="cb3-8" title="8">htest_<span class="dv">8</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/t.test">t.test</a></span>(iris<span class="op">$</span>Sepal.Width, <span class="dt">mu =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb3-9" title="9"></a>
-<a class="sourceLine" id="cb3-10" title="10">anova_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/anova">anova</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(Sepal.Width <span class="op">~</span><span class="st"> </span>Species, <span class="dt">data=</span>iris))</a>
-<a class="sourceLine" id="cb3-11" title="11">aov_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/aov">aov</a></span>(Sepal.Width <span class="op">~</span><span class="st"> </span>Species, <span class="dt">data=</span>iris)</a>
-<a class="sourceLine" id="cb3-12" title="12">aovlist_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/aov">aov</a></span>(wt <span class="op">~</span><span class="st"> </span>cyl <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/aov">Error</a></span>(gear), <span class="dt">data=</span>mtcars)</a>
-<a class="sourceLine" id="cb3-13" title="13"></a>
-<a class="sourceLine" id="cb3-14" title="14">lm_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(mpg <span class="op">~</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>cyl, <span class="dt">data =</span> mtcars)</a>
-<a class="sourceLine" id="cb3-15" title="15">lm_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(mpg <span class="op">~</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/poly">poly</a></span>(cyl, <span class="dv">2</span>), <span class="dt">data =</span> mtcars)</a>
-<a class="sourceLine" id="cb3-16" title="16">lm_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(mpg <span class="op">~</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/poly">poly</a></span>(cyl, <span class="dv">2</span>, <span class="dt">raw=</span><span class="ot">TRUE</span>), <span class="dt">data =</span> mtcars)</a>
-<a class="sourceLine" id="cb3-17" title="17">lm_<span class="dv">4</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(mpg <span class="op">~</span><span class="st"> </span>wt <span class="op">*</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/factor">as.factor</a></span>(gear), <span class="dt">data =</span> mtcars)</a>
-<a class="sourceLine" id="cb3-18" title="18">lm_<span class="dv">5</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(mpg <span class="op">~</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/factor">as.factor</a></span>(gear) <span class="op">/</span><span class="st"> </span>wt, <span class="dt">data =</span> mtcars)</a>
-<a class="sourceLine" id="cb3-19" title="19"></a>
-<a class="sourceLine" id="cb3-20" title="20">glm_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/glm">glm</a></span>(vs <span class="op">~</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>cyl, <span class="dt">data =</span> mtcars, <span class="dt">family=</span><span class="st">"binomial"</span>)</a>
-<a class="sourceLine" id="cb3-21" title="21">glm_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/glm">glm</a></span>(vs <span class="op">~</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>cyl, <span class="dt">data =</span> mtcars, <span class="dt">family=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/family">binomial</a></span>(<span class="dt">link=</span><span class="st">"probit"</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># h-tests</span></a>
+<a class="sourceLine" id="cb4-2" title="2">htest_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor.test">cor.test</a></span>(iris<span class="op">$</span>Sepal.Width, iris<span class="op">$</span>Sepal.Length, <span class="dt">method =</span> <span class="st">"spearman"</span>)</a>
+<a class="sourceLine" id="cb4-3" title="3">htest_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor.test">cor.test</a></span>(iris<span class="op">$</span>Sepal.Width, iris<span class="op">$</span>Sepal.Length, <span class="dt">method =</span> <span class="st">"pearson"</span>)</a>
+<a class="sourceLine" id="cb4-4" title="4">htest_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor.test">cor.test</a></span>(iris<span class="op">$</span>Sepal.Width, iris<span class="op">$</span>Sepal.Length, <span class="dt">method =</span> <span class="st">"kendall"</span>)</a>
+<a class="sourceLine" id="cb4-5" title="5">htest_<span class="dv">4</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/t.test">t.test</a></span>(iris<span class="op">$</span>Sepal.Width, iris<span class="op">$</span>Sepal.Length)</a>
+<a class="sourceLine" id="cb4-6" title="6">htest_<span class="dv">5</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/t.test">t.test</a></span>(iris<span class="op">$</span>Sepal.Width, iris<span class="op">$</span>Sepal.Length, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb4-7" title="7">htest_<span class="dv">6</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/t.test">t.test</a></span>(iris<span class="op">$</span>Sepal.Width, iris<span class="op">$</span>Sepal.Length)</a>
+<a class="sourceLine" id="cb4-8" title="8">htest_<span class="dv">7</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/t.test">t.test</a></span>(mtcars<span class="op">$</span>mpg <span class="op">~</span><span class="st"> </span>mtcars<span class="op">$</span>vs)</a>
+<a class="sourceLine" id="cb4-9" title="9">htest_<span class="dv">8</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/t.test">t.test</a></span>(iris<span class="op">$</span>Sepal.Width, <span class="dt">mu =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb4-10" title="10"></a>
+<a class="sourceLine" id="cb4-11" title="11"><span class="co"># ANOVAs</span></a>
+<a class="sourceLine" id="cb4-12" title="12">anova_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/anova">anova</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(Sepal.Width <span class="op">~</span><span class="st"> </span>Species, <span class="dt">data =</span> iris))</a>
+<a class="sourceLine" id="cb4-13" title="13">aov_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/aov">aov</a></span>(Sepal.Width <span class="op">~</span><span class="st"> </span>Species, <span class="dt">data =</span> iris)</a>
+<a class="sourceLine" id="cb4-14" title="14">aovlist_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/aov">aov</a></span>(wt <span class="op">~</span><span class="st"> </span>cyl <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/aov">Error</a></span>(gear), <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb4-15" title="15"></a>
+<a class="sourceLine" id="cb4-16" title="16">data &lt;-<span class="st"> </span>iris</a>
+<a class="sourceLine" id="cb4-17" title="17">data<span class="op">$</span>Cat1 &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"X"</span>, <span class="st">"X"</span>, <span class="st">"Y"</span>), <span class="dt">length.out =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(data))</a>
+<a class="sourceLine" id="cb4-18" title="18">data<span class="op">$</span>Cat2 &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"A"</span>, <span class="st">"B"</span>), <span class="dt">length.out =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(data))</a>
+<a class="sourceLine" id="cb4-19" title="19"></a>
+<a class="sourceLine" id="cb4-20" title="20">aov_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/aov">aov</a></span>(Sepal.Length <span class="op">~</span><span class="st"> </span>Species <span class="op">*</span><span class="st"> </span>Cat1 <span class="op">*</span><span class="st"> </span>Cat2, <span class="dt">data =</span> data)</a>
+<a class="sourceLine" id="cb4-21" title="21">anova_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/anova">anova</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(Sepal.Length <span class="op">~</span><span class="st"> </span>Species <span class="op">*</span><span class="st"> </span>Cat1 <span class="op">*</span><span class="st"> </span>Cat2, <span class="dt">data =</span> data))</a>
+<a class="sourceLine" id="cb4-22" title="22">aovlist_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/aov">aov</a></span>(Sepal.Length <span class="op">~</span><span class="st"> </span>Species <span class="op">*</span><span class="st"> </span>Cat1 <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/aov">Error</a></span>(Cat2), </a>
+<a class="sourceLine" id="cb4-23" title="23">    <span class="dt">data =</span> data)</a>
+<a class="sourceLine" id="cb4-24" title="24"></a>
+<a class="sourceLine" id="cb4-25" title="25">aov_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/aov">aov</a></span>(Sepal.Length <span class="op">~</span><span class="st"> </span>Species<span class="op">/</span>Cat1 <span class="op">*</span><span class="st"> </span>Cat2, <span class="dt">data =</span> data)</a>
+<a class="sourceLine" id="cb4-26" title="26">anova_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/anova">anova</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(Sepal.Length <span class="op">~</span><span class="st"> </span>Species<span class="op">/</span>Cat1 <span class="op">*</span><span class="st"> </span>Cat2, <span class="dt">data =</span> data))</a>
+<a class="sourceLine" id="cb4-27" title="27">aovlist_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/aov">aov</a></span>(Sepal.Length <span class="op">~</span><span class="st"> </span>Species<span class="op">/</span>Cat1 <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/aov">Error</a></span>(Cat2), <span class="dt">data =</span> data)</a>
+<a class="sourceLine" id="cb4-28" title="28"></a>
+<a class="sourceLine" id="cb4-29" title="29"></a>
+<a class="sourceLine" id="cb4-30" title="30"><span class="co"># GLMs</span></a>
+<a class="sourceLine" id="cb4-31" title="31">lm_<span class="dv">0</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(mpg <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb4-32" title="32">lm_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(mpg <span class="op">~</span><span class="st"> </span>wt, <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb4-33" title="33">lm_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(mpg <span class="op">~</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>cyl, <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb4-34" title="34">lm_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(mpg <span class="op">~</span><span class="st"> </span>wt <span class="op">*</span><span class="st"> </span>cyl, <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb4-35" title="35">lm_<span class="dv">4</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(mpg <span class="op">~</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/poly">poly</a></span>(cyl, <span class="dv">2</span>), <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb4-36" title="36">lm_<span class="dv">5</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(mpg <span class="op">~</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/poly">poly</a></span>(cyl, <span class="dv">2</span>, <span class="dt">raw =</span> <span class="ot">TRUE</span>), <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb4-37" title="37">lm_<span class="dv">6</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(mpg <span class="op">~</span><span class="st"> </span>wt <span class="op">*</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/factor">as.factor</a></span>(gear), <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb4-38" title="38">lm_<span class="dv">7</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(mpg <span class="op">~</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/factor">as.factor</a></span>(gear)<span class="op">/</span>wt, <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb4-39" title="39"></a>
+<a class="sourceLine" id="cb4-40" title="40">glm_<span class="dv">0</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/glm">glm</a></span>(vs <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> mtcars, <span class="dt">family =</span> <span class="st">"binomial"</span>)</a>
+<a class="sourceLine" id="cb4-41" title="41">glm_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/glm">glm</a></span>(vs <span class="op">~</span><span class="st"> </span>wt, <span class="dt">data =</span> mtcars, <span class="dt">family =</span> <span class="st">"binomial"</span>)</a>
+<a class="sourceLine" id="cb4-42" title="42">glm_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/glm">glm</a></span>(vs <span class="op">~</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>cyl, <span class="dt">data =</span> mtcars, <span class="dt">family =</span> <span class="st">"binomial"</span>)</a>
+<a class="sourceLine" id="cb4-43" title="43">glm_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/glm">glm</a></span>(vs <span class="op">~</span><span class="st"> </span>wt <span class="op">*</span><span class="st"> </span>cyl, <span class="dt">data =</span> mtcars, <span class="dt">family =</span> <span class="st">"binomial"</span>)</a>
+<a class="sourceLine" id="cb4-44" title="44">glm_<span class="dv">4</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/glm">glm</a></span>(vs <span class="op">~</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>cyl, <span class="dt">data =</span> mtcars, <span class="dt">family =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/family">binomial</a></span>(<span class="dt">link =</span> <span class="st">"probit"</span>))</a>
+<a class="sourceLine" id="cb4-45" title="45">glm_<span class="dv">5</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/glm">glm</a></span>(vs <span class="op">~</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>cyl, <span class="dt">data =</span> mtcars, <span class="dt">family =</span> <span class="st">"poisson"</span>)</a>
+<a class="sourceLine" id="cb4-46" title="46"></a>
+<a class="sourceLine" id="cb4-47" title="47">anova_<span class="dv">4</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/anova">anova</a></span>(lm_<span class="dv">0</span>, lm_<span class="dv">1</span>, lm_<span class="dv">2</span>)</a></code></pre></div>
 </div>
 <div id="lme4" class="section level3">
 <h3 class="hasAnchor">
 <a href="#lme4" class="anchor"></a>lme4</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(lme4)</a>
-<a class="sourceLine" id="cb4-2" title="2"></a>
-<a class="sourceLine" id="cb4-3" title="3">lmerMod_<span class="dv">1</span> &lt;-<span class="st"> </span>lme4<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/lme4/topics/lmer">lmer</a></span>(wt <span class="op">~</span><span class="st"> </span>cyl <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>gear), <span class="dt">data =</span> mtcars)</a>
-<a class="sourceLine" id="cb4-4" title="4"></a>
-<a class="sourceLine" id="cb4-5" title="5">merMod_<span class="dv">1</span> &lt;-<span class="st"> </span>lme4<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/lme4/topics/glmer">glmer</a></span>(vs <span class="op">~</span><span class="st"> </span>cyl <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>gear), <span class="dt">data =</span> mtcars, <span class="dt">family=</span><span class="st">"binomial"</span>)</a>
-<a class="sourceLine" id="cb4-6" title="6">merMod_<span class="dv">2</span> &lt;-<span class="st"> </span>lme4<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/lme4/topics/glmer">glmer</a></span>(vs <span class="op">~</span><span class="st"> </span>cyl <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>gear), <span class="dt">data =</span> mtcars, <span class="dt">family=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/family">binomial</a></span>(<span class="dt">link=</span><span class="st">"probit"</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(lme4)</a>
+<a class="sourceLine" id="cb5-2" title="2"></a>
+<a class="sourceLine" id="cb5-3" title="3">lmerMod_<span class="dv">0</span> &lt;-<span class="st"> </span>lme4<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/lme4/topics/lmer">lmer</a></span>(wt <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>gear), <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb5-4" title="4">lmerMod_<span class="dv">1</span> &lt;-<span class="st"> </span>lme4<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/lme4/topics/lmer">lmer</a></span>(wt <span class="op">~</span><span class="st"> </span>cyl <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>gear), <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb5-5" title="5">lmerMod_<span class="dv">2</span> &lt;-<span class="st"> </span>lme4<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/lme4/topics/lmer">lmer</a></span>(wt <span class="op">~</span><span class="st"> </span>drat <span class="op">+</span><span class="st"> </span>cyl <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>gear), <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb5-6" title="6">lmerMod_<span class="dv">3</span> &lt;-<span class="st"> </span>lme4<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/lme4/topics/lmer">lmer</a></span>(wt <span class="op">~</span><span class="st"> </span>drat <span class="op">*</span><span class="st"> </span>cyl <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>gear), <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb5-7" title="7">lmerMod_<span class="dv">4</span> &lt;-<span class="st"> </span>lme4<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/lme4/topics/lmer">lmer</a></span>(wt <span class="op">~</span><span class="st"> </span>drat<span class="op">/</span>cyl <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>gear), <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb5-8" title="8">lmerMod_<span class="dv">5</span> &lt;-<span class="st"> </span>lme4<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/lme4/topics/lmer">lmer</a></span>(Petal.Width <span class="op">~</span><span class="st"> </span>Cat1 <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>Cat1 <span class="op">|</span><span class="st"> </span>Species), </a>
+<a class="sourceLine" id="cb5-9" title="9">    <span class="dt">data =</span> data)</a>
+<a class="sourceLine" id="cb5-10" title="10"></a>
+<a class="sourceLine" id="cb5-11" title="11">merMod_<span class="dv">0</span> &lt;-<span class="st"> </span>lme4<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/lme4/topics/glmer">glmer</a></span>(vs <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>gear), <span class="dt">data =</span> mtcars, <span class="dt">family =</span> <span class="st">"binomial"</span>)</a>
+<a class="sourceLine" id="cb5-12" title="12">merMod_<span class="dv">1</span> &lt;-<span class="st"> </span>lme4<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/lme4/topics/glmer">glmer</a></span>(vs <span class="op">~</span><span class="st"> </span>cyl <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>gear), <span class="dt">data =</span> mtcars, </a>
+<a class="sourceLine" id="cb5-13" title="13">    <span class="dt">family =</span> <span class="st">"binomial"</span>)</a>
+<a class="sourceLine" id="cb5-14" title="14">merMod_<span class="dv">2</span> &lt;-<span class="st"> </span>lme4<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/lme4/topics/glmer">glmer</a></span>(vs <span class="op">~</span><span class="st"> </span>drat <span class="op">+</span><span class="st"> </span>cyl <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>gear), <span class="dt">data =</span> mtcars, </a>
+<a class="sourceLine" id="cb5-15" title="15">    <span class="dt">family =</span> <span class="st">"binomial"</span>)</a>
+<a class="sourceLine" id="cb5-16" title="16">merMod_<span class="dv">3</span> &lt;-<span class="st"> </span>lme4<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/lme4/topics/glmer">glmer</a></span>(vs <span class="op">~</span><span class="st"> </span>drat <span class="op">*</span><span class="st"> </span>cyl <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>gear), <span class="dt">data =</span> mtcars, </a>
+<a class="sourceLine" id="cb5-17" title="17">    <span class="dt">family =</span> <span class="st">"binomial"</span>)</a>
+<a class="sourceLine" id="cb5-18" title="18">merMod_<span class="dv">4</span> &lt;-<span class="st"> </span>lme4<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/lme4/topics/glmer">glmer</a></span>(vs <span class="op">~</span><span class="st"> </span>cyl <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>gear), <span class="dt">data =</span> mtcars, </a>
+<a class="sourceLine" id="cb5-19" title="19">    <span class="dt">family =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/family">binomial</a></span>(<span class="dt">link =</span> <span class="st">"probit"</span>))</a>
+<a class="sourceLine" id="cb5-20" title="20"></a>
+<a class="sourceLine" id="cb5-21" title="21">anova_lmerMod_<span class="dv">0</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/anova">anova</a></span>(lmerMod_<span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb5-22" title="22">anova_lmerMod_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/anova">anova</a></span>(lmerMod_<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb5-23" title="23">anova_lmerMod_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/anova">anova</a></span>(lmerMod_<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb5-24" title="24">anova_lmerMod_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/anova">anova</a></span>(lmerMod_<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb5-25" title="25">anova_lmerMod_<span class="dv">4</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/anova">anova</a></span>(lmerMod_<span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb5-26" title="26">anova_lmerMod_<span class="dv">5</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/anova">anova</a></span>(lmerMod_<span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb5-27" title="27"></a>
+<a class="sourceLine" id="cb5-28" title="28">anova_lmerMod_<span class="dv">6</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/anova">anova</a></span>(lmerMod_<span class="dv">0</span>, lmerMod_<span class="dv">1</span>, lmerMod_<span class="dv">2</span>)</a></code></pre></div>
+</div>
+<div id="glmmtmb" class="section level3">
+<h3 class="hasAnchor">
+<a href="#glmmtmb" class="anchor"></a>glmmTMB</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(glmmTMB)</a>
+<a class="sourceLine" id="cb6-2" title="2"></a>
+<a class="sourceLine" id="cb6-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb6-4" title="4">fish &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/read.table">read.csv</a></span>(<span class="st">"https://stats.idre.ucla.edu/stat/data/fish.csv"</span>)</a>
+<a class="sourceLine" id="cb6-5" title="5">fish<span class="op">$</span>nofish &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/factor">as.factor</a></span>(fish<span class="op">$</span>nofish)</a>
+<a class="sourceLine" id="cb6-6" title="6">fish<span class="op">$</span>livebait &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/factor">as.factor</a></span>(fish<span class="op">$</span>livebait)</a>
+<a class="sourceLine" id="cb6-7" title="7">fish<span class="op">$</span>camper &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/factor">as.factor</a></span>(fish<span class="op">$</span>camper)</a>
+<a class="sourceLine" id="cb6-8" title="8">fish<span class="op">$</span>ID &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(fish), <span class="dt">replace =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb6-9" title="9"></a>
+<a class="sourceLine" id="cb6-10" title="10">glmmTMB_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">glmmTMB</span>(count <span class="op">~</span><span class="st"> </span>child <span class="op">+</span><span class="st"> </span>camper <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>persons), </a>
+<a class="sourceLine" id="cb6-11" title="11">    <span class="dt">data =</span> fish, <span class="dt">family =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/family">poisson</a></span>())</a>
+<a class="sourceLine" id="cb6-12" title="12"></a>
+<a class="sourceLine" id="cb6-13" title="13">glmmTMB_zi_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">glmmTMB</span>(count <span class="op">~</span><span class="st"> </span>child <span class="op">+</span><span class="st"> </span>camper <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>persons), </a>
+<a class="sourceLine" id="cb6-14" title="14">    <span class="dt">ziformula =</span> <span class="op">~</span>child <span class="op">+</span><span class="st"> </span>camper <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>persons), <span class="dt">data =</span> fish, </a>
+<a class="sourceLine" id="cb6-15" title="15">    <span class="dt">family =</span> <span class="kw">truncated_poisson</span>())</a>
+<a class="sourceLine" id="cb6-16" title="16"></a>
+<a class="sourceLine" id="cb6-17" title="17">glmmTMB_zi_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">glmmTMB</span>(count <span class="op">~</span><span class="st"> </span>child <span class="op">+</span><span class="st"> </span>camper <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>persons), </a>
+<a class="sourceLine" id="cb6-18" title="18">    <span class="dt">ziformula =</span> <span class="op">~</span>child <span class="op">+</span><span class="st"> </span>livebait <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>persons), <span class="dt">data =</span> fish, </a>
+<a class="sourceLine" id="cb6-19" title="19">    <span class="dt">family =</span> <span class="kw">truncated_poisson</span>())</a>
+<a class="sourceLine" id="cb6-20" title="20"></a>
+<a class="sourceLine" id="cb6-21" title="21">glmmTMB_zi_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw">glmmTMB</span>(count <span class="op">~</span><span class="st"> </span>child <span class="op">+</span><span class="st"> </span>camper <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>persons), </a>
+<a class="sourceLine" id="cb6-22" title="22">    <span class="dt">ziformula =</span> <span class="op">~</span>child <span class="op">+</span><span class="st"> </span>livebait <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>ID), <span class="dt">dispformula =</span> <span class="op">~</span>xb, </a>
+<a class="sourceLine" id="cb6-23" title="23">    <span class="dt">data =</span> fish, <span class="dt">family =</span> <span class="kw">truncated_poisson</span>())</a></code></pre></div>
+</div>
+<div id="glmmadaptive" class="section level3">
+<h3 class="hasAnchor">
+<a href="#glmmadaptive" class="anchor"></a>GLMMadaptive</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(<span class="st">"GLMMadaptive"</span>)</a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(<span class="st">"lme4"</span>)</a>
+<a class="sourceLine" id="cb7-3" title="3"></a>
+<a class="sourceLine" id="cb7-4" title="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(cbpp)</a>
+<a class="sourceLine" id="cb7-5" title="5"></a>
+<a class="sourceLine" id="cb7-6" title="6">fish &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/read.table">read.csv</a></span>(<span class="st">"https://stats.idre.ucla.edu/stat/data/fish.csv"</span>)</a>
+<a class="sourceLine" id="cb7-7" title="7">fish<span class="op">$</span>nofish &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/factor">as.factor</a></span>(fish<span class="op">$</span>nofish)</a>
+<a class="sourceLine" id="cb7-8" title="8">fish<span class="op">$</span>livebait &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/factor">as.factor</a></span>(fish<span class="op">$</span>livebait)</a>
+<a class="sourceLine" id="cb7-9" title="9">fish<span class="op">$</span>camper &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/factor">as.factor</a></span>(fish<span class="op">$</span>camper)</a>
+<a class="sourceLine" id="cb7-10" title="10"></a>
+<a class="sourceLine" id="cb7-11" title="11">GLMMadaptive_zi_<span class="dv">1</span> &lt;-<span class="st"> </span>GLMMadaptive<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/GLMMadaptive/topics/mixed_model">mixed_model</a></span>(count <span class="op">~</span><span class="st"> </span>child <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb7-12" title="12"><span class="st">    </span>camper, <span class="dt">random =</span> <span class="op">~</span><span class="dv">1</span> <span class="op">|</span><span class="st"> </span>persons, <span class="dt">zi_fixed =</span> <span class="op">~</span>child <span class="op">+</span><span class="st"> </span>livebait, </a>
+<a class="sourceLine" id="cb7-13" title="13">    <span class="dt">data =</span> fish, <span class="dt">family =</span> GLMMadaptive<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/GLMMadaptive/topics/extra_fams">zi.poisson</a></span>())</a>
+<a class="sourceLine" id="cb7-14" title="14"></a>
+<a class="sourceLine" id="cb7-15" title="15">GLMMadaptive_zi_<span class="dv">2</span> &lt;-<span class="st"> </span>GLMMadaptive<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/GLMMadaptive/topics/mixed_model">mixed_model</a></span>(count <span class="op">~</span><span class="st"> </span>child <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb7-16" title="16"><span class="st">    </span>camper, <span class="dt">random =</span> <span class="op">~</span><span class="dv">1</span> <span class="op">|</span><span class="st"> </span>persons, <span class="dt">zi_fixed =</span> <span class="op">~</span>child <span class="op">+</span><span class="st"> </span>livebait, </a>
+<a class="sourceLine" id="cb7-17" title="17">    <span class="dt">zi_random =</span> <span class="op">~</span><span class="dv">1</span> <span class="op">|</span><span class="st"> </span>persons, <span class="dt">data =</span> fish, <span class="dt">family =</span> GLMMadaptive<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/GLMMadaptive/topics/extra_fams">zi.poisson</a></span>())</a>
+<a class="sourceLine" id="cb7-18" title="18"></a>
+<a class="sourceLine" id="cb7-19" title="19">GLMMadaptive_<span class="dv">1</span> &lt;-<span class="st"> </span>GLMMadaptive<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/GLMMadaptive/topics/mixed_model">mixed_model</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cbind">cbind</a></span>(incidence, </a>
+<a class="sourceLine" id="cb7-20" title="20">    size <span class="op">-</span><span class="st"> </span>incidence) <span class="op">~</span><span class="st"> </span>period, <span class="dt">random =</span> <span class="op">~</span><span class="dv">1</span> <span class="op">|</span><span class="st"> </span>herd, <span class="dt">data =</span> cbpp, </a>
+<a class="sourceLine" id="cb7-21" title="21">    <span class="dt">family =</span> binomial)</a></code></pre></div>
 </div>
 <div id="rstanarm" class="section level3">
 <h3 class="hasAnchor">
 <a href="#rstanarm" class="anchor"></a>Rstanarm</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(rstanarm)</a>
-<a class="sourceLine" id="cb5-2" title="2"></a>
-<a class="sourceLine" id="cb5-3" title="3">stanreg_lm_<span class="dv">1</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_glm">stan_glm</a></span>(mpg <span class="op">~</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>cyl, <span class="dt">data =</span> mtcars, <span class="dt">chains=</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb5-4" title="4">stanreg_lm_<span class="dv">2</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_glm">stan_glm</a></span>(mpg <span class="op">~</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>cyl, <span class="dt">data =</span> mtcars, <span class="dt">algorithm=</span><span class="st">"meanfield"</span>)</a>
-<a class="sourceLine" id="cb5-5" title="5">stanreg_lm_<span class="dv">3</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_glm">stan_glm</a></span>(mpg <span class="op">~</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>cyl, <span class="dt">data =</span> mtcars, <span class="dt">algorithm=</span><span class="st">"fullrank"</span>)</a>
-<a class="sourceLine" id="cb5-6" title="6"></a>
-<a class="sourceLine" id="cb5-7" title="7">stanreg_glm_<span class="dv">1</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_glm">stan_glm</a></span>(vs <span class="op">~</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>cyl, <span class="dt">data =</span> mtcars, <span class="dt">family=</span><span class="st">"binomial"</span>, <span class="dt">chains=</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb5-8" title="8">stanreg_glm_<span class="dv">2</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_glm">stan_glm</a></span>(vs <span class="op">~</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>cyl, <span class="dt">data =</span> mtcars, <span class="dt">family=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/family">binomial</a></span>(<span class="dt">link=</span><span class="st">"probit"</span>), <span class="dt">chains=</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb5-9" title="9"></a>
-<a class="sourceLine" id="cb5-10" title="10">stanreg_lmerMod_<span class="dv">1</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_glmer">stan_lmer</a></span>(wt <span class="op">~</span><span class="st"> </span>cyl <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>gear), <span class="dt">data =</span> mtcars, <span class="dt">chains=</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb5-11" title="11">stanreg_merMod_<span class="dv">1</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_glmer">stan_glmer</a></span>(vs <span class="op">~</span><span class="st"> </span>cyl <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>gear), <span class="dt">data =</span> mtcars, <span class="dt">family=</span><span class="st">"binomial"</span>, <span class="dt">chains=</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb5-12" title="12">stanreg_merMod_<span class="dv">2</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_glmer">stan_glmer</a></span>(vs <span class="op">~</span><span class="st"> </span>cyl <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>gear), <span class="dt">data =</span> mtcars, <span class="dt">family=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/family">binomial</a></span>(<span class="dt">link=</span><span class="st">"probit"</span>), <span class="dt">chains=</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb5-13" title="13"></a>
-<a class="sourceLine" id="cb5-14" title="14">stanreg_gam_<span class="dv">1</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_gamm4">stan_gamm4</a></span>(mpg <span class="op">~</span><span class="st"> </span><span class="kw">s</span>(wt) <span class="op">+</span><span class="st"> </span>cyl, <span class="dt">data =</span> mtcars, <span class="dt">chains=</span><span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">333</span>)</a>
+<a class="sourceLine" id="cb8-2" title="2"></a>
+<a class="sourceLine" id="cb8-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(rstanarm)</a>
+<a class="sourceLine" id="cb8-4" title="4"></a>
+<a class="sourceLine" id="cb8-5" title="5">stanreg_lm_<span class="dv">0</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_glm">stan_glm</a></span>(mpg <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb8-6" title="6">stanreg_lm_<span class="dv">1</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_glm">stan_glm</a></span>(mpg <span class="op">~</span><span class="st"> </span>wt, <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb8-7" title="7">stanreg_lm_<span class="dv">2</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_glm">stan_glm</a></span>(mpg <span class="op">~</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>cyl, <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb8-8" title="8">stanreg_lm_<span class="dv">3</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_glm">stan_glm</a></span>(mpg <span class="op">~</span><span class="st"> </span>wt <span class="op">*</span><span class="st"> </span>cyl, <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb8-9" title="9">stanreg_lm_<span class="dv">4</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_glm">stan_glm</a></span>(mpg <span class="op">~</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/poly">poly</a></span>(cyl, <span class="dv">2</span>), <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb8-10" title="10">stanreg_lm_<span class="dv">5</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_glm">stan_glm</a></span>(mpg <span class="op">~</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/poly">poly</a></span>(cyl, <span class="dv">2</span>, <span class="dt">raw =</span> <span class="ot">TRUE</span>), </a>
+<a class="sourceLine" id="cb8-11" title="11">    <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb8-12" title="12">stanreg_lm_<span class="dv">6</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_glm">stan_glm</a></span>(mpg <span class="op">~</span><span class="st"> </span>wt <span class="op">*</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/factor">as.factor</a></span>(gear), </a>
+<a class="sourceLine" id="cb8-13" title="13">    <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb8-14" title="14">stanreg_lm_<span class="dv">7</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_glm">stan_glm</a></span>(mpg <span class="op">~</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/factor">as.factor</a></span>(gear)<span class="op">/</span>wt, </a>
+<a class="sourceLine" id="cb8-15" title="15">    <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb8-16" title="16"></a>
+<a class="sourceLine" id="cb8-17" title="17">stanreg_glm_<span class="dv">0</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_glm">stan_glm</a></span>(vs <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> mtcars, <span class="dt">family =</span> <span class="st">"binomial"</span>)</a>
+<a class="sourceLine" id="cb8-18" title="18">stanreg_glm_<span class="dv">1</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_glm">stan_glm</a></span>(vs <span class="op">~</span><span class="st"> </span>wt, <span class="dt">data =</span> mtcars, <span class="dt">family =</span> <span class="st">"binomial"</span>)</a>
+<a class="sourceLine" id="cb8-19" title="19">stanreg_glm_<span class="dv">2</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_glm">stan_glm</a></span>(vs <span class="op">~</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>cyl, <span class="dt">data =</span> mtcars, </a>
+<a class="sourceLine" id="cb8-20" title="20">    <span class="dt">family =</span> <span class="st">"binomial"</span>)</a>
+<a class="sourceLine" id="cb8-21" title="21">stanreg_glm_<span class="dv">3</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_glm">stan_glm</a></span>(vs <span class="op">~</span><span class="st"> </span>wt <span class="op">*</span><span class="st"> </span>cyl, <span class="dt">data =</span> mtcars, </a>
+<a class="sourceLine" id="cb8-22" title="22">    <span class="dt">family =</span> <span class="st">"binomial"</span>)</a>
+<a class="sourceLine" id="cb8-23" title="23">stanreg_glm_<span class="dv">4</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_glm">stan_glm</a></span>(vs <span class="op">~</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>cyl, <span class="dt">data =</span> mtcars, </a>
+<a class="sourceLine" id="cb8-24" title="24">    <span class="dt">family =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/family">binomial</a></span>(<span class="dt">link =</span> <span class="st">"probit"</span>))</a>
+<a class="sourceLine" id="cb8-25" title="25">stanreg_glm_<span class="dv">5</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_glm">stan_glm</a></span>(vs <span class="op">~</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>cyl, <span class="dt">data =</span> mtcars, </a>
+<a class="sourceLine" id="cb8-26" title="26">    <span class="dt">family =</span> <span class="st">"poisson"</span>)</a>
+<a class="sourceLine" id="cb8-27" title="27"></a>
+<a class="sourceLine" id="cb8-28" title="28">stanreg_lmerMod_<span class="dv">0</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_glmer">stan_lmer</a></span>(wt <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>gear), </a>
+<a class="sourceLine" id="cb8-29" title="29">    <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb8-30" title="30">stanreg_lmerMod_<span class="dv">1</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_glmer">stan_lmer</a></span>(wt <span class="op">~</span><span class="st"> </span>cyl <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>gear), </a>
+<a class="sourceLine" id="cb8-31" title="31">    <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb8-32" title="32">stanreg_lmerMod_<span class="dv">2</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_glmer">stan_lmer</a></span>(wt <span class="op">~</span><span class="st"> </span>drat <span class="op">+</span><span class="st"> </span>cyl <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb8-33" title="33"><span class="st">    </span>gear), <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb8-34" title="34">stanreg_lmerMod_<span class="dv">3</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_glmer">stan_lmer</a></span>(wt <span class="op">~</span><span class="st"> </span>drat <span class="op">*</span><span class="st"> </span>cyl <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb8-35" title="35"><span class="st">    </span>gear), <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb8-36" title="36">stanreg_lmerMod_<span class="dv">4</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_glmer">stan_lmer</a></span>(wt <span class="op">~</span><span class="st"> </span>drat<span class="op">/</span>cyl <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb8-37" title="37"><span class="st">    </span>gear), <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb8-38" title="38">stanreg_lmerMod_<span class="dv">5</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_glmer">stan_lmer</a></span>(Petal.Width <span class="op">~</span><span class="st"> </span>Cat1 <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb8-39" title="39"><span class="st">    </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>Cat1 <span class="op">|</span><span class="st"> </span>Species), <span class="dt">data =</span> data)</a>
+<a class="sourceLine" id="cb8-40" title="40"></a>
+<a class="sourceLine" id="cb8-41" title="41">stanreg_merMod_<span class="dv">0</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_glmer">stan_glmer</a></span>(vs <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>gear), </a>
+<a class="sourceLine" id="cb8-42" title="42">    <span class="dt">data =</span> mtcars, <span class="dt">family =</span> <span class="st">"binomial"</span>)</a>
+<a class="sourceLine" id="cb8-43" title="43">stanreg_merMod_<span class="dv">1</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_glmer">stan_glmer</a></span>(vs <span class="op">~</span><span class="st"> </span>cyl <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>gear), </a>
+<a class="sourceLine" id="cb8-44" title="44">    <span class="dt">data =</span> mtcars, <span class="dt">family =</span> <span class="st">"binomial"</span>)</a>
+<a class="sourceLine" id="cb8-45" title="45">stanreg_merMod_<span class="dv">2</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_glmer">stan_glmer</a></span>(vs <span class="op">~</span><span class="st"> </span>drat <span class="op">+</span><span class="st"> </span>cyl <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb8-46" title="46"><span class="st">    </span>gear), <span class="dt">data =</span> mtcars, <span class="dt">family =</span> <span class="st">"binomial"</span>)</a>
+<a class="sourceLine" id="cb8-47" title="47">stanreg_merMod_<span class="dv">3</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_glmer">stan_glmer</a></span>(vs <span class="op">~</span><span class="st"> </span>drat <span class="op">*</span><span class="st"> </span>cyl <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb8-48" title="48"><span class="st">    </span>gear), <span class="dt">data =</span> mtcars, <span class="dt">family =</span> <span class="st">"binomial"</span>)</a>
+<a class="sourceLine" id="cb8-49" title="49">stanreg_merMod_<span class="dv">4</span> &lt;-<span class="st"> </span>rstanarm<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rstanarm/topics/stan_glmer">stan_glmer</a></span>(vs <span class="op">~</span><span class="st"> </span>cyl <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>gear), </a>
+<a class="sourceLine" id="cb8-50" title="50">    <span class="dt">data =</span> mtcars, <span class="dt">family =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/family">binomial</a></span>(<span class="dt">link =</span> <span class="st">"probit"</span>))</a>
+<a class="sourceLine" id="cb8-51" title="51"></a>
+<a class="sourceLine" id="cb8-52" title="52"></a>
+<a class="sourceLine" id="cb8-53" title="53">stanreg_meanfield_lm_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/update">update</a></span>(stanreg_lm_<span class="dv">1</span>, <span class="dt">algorithm =</span> <span class="st">"meanfield"</span>)</a>
+<a class="sourceLine" id="cb8-54" title="54">stanreg_fullrank_lm_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/update">update</a></span>(stanreg_lm_<span class="dv">1</span>, <span class="dt">algorithm =</span> <span class="st">"fullrank"</span>)</a>
+<a class="sourceLine" id="cb8-55" title="55"></a>
+<a class="sourceLine" id="cb8-56" title="56"></a>
+<a class="sourceLine" id="cb8-57" title="57">stanreg_gamm4_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">stan_gamm4</span>(Sepal.Width <span class="op">~</span><span class="st"> </span><span class="kw">s</span>(Petal.Length), </a>
+<a class="sourceLine" id="cb8-58" title="58">    <span class="dt">data =</span> iris)</a>
+<a class="sourceLine" id="cb8-59" title="59">stanreg_gamm4_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">stan_gamm4</span>(Sepal.Width <span class="op">~</span><span class="st"> </span>Species <span class="op">+</span><span class="st"> </span><span class="kw">s</span>(Petal.Length), </a>
+<a class="sourceLine" id="cb8-60" title="60">    <span class="dt">data =</span> iris)</a>
+<a class="sourceLine" id="cb8-61" title="61">stanreg_gamm4_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw">stan_gamm4</span>(Sepal.Width <span class="op">~</span><span class="st"> </span>Species <span class="op">+</span><span class="st"> </span><span class="kw">s</span>(Petal.Length), </a>
+<a class="sourceLine" id="cb8-62" title="62">    <span class="dt">random =</span> <span class="op">~</span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>Cat1), <span class="dt">data =</span> data)</a></code></pre></div>
+</div>
+<div id="brms" class="section level3">
+<h3 class="hasAnchor">
+<a href="#brms" class="anchor"></a>BRMS</h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(lme4)</a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(brms)</a>
+<a class="sourceLine" id="cb9-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
+<a class="sourceLine" id="cb9-4" title="4"></a>
+<a class="sourceLine" id="cb9-5" title="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(sleepstudy)</a>
+<a class="sourceLine" id="cb9-6" title="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(mtcars)</a>
+<a class="sourceLine" id="cb9-7" title="7">zinb &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/read.table">read.csv</a></span>(<span class="st">"http://stats.idre.ucla.edu/stat/data/fish.csv"</span>)</a>
+<a class="sourceLine" id="cb9-8" title="8"></a>
+<a class="sourceLine" id="cb9-9" title="9"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb9-10" title="10">sleepstudy<span class="op">$</span>grp &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">size =</span> <span class="dv">180</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb9-11" title="11">sleepstudy &lt;-<span class="st"> </span>sleepstudy <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(grp) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">subgrp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>, </a>
+<a class="sourceLine" id="cb9-12" title="12">    <span class="dt">size =</span> <span class="kw">n</span>(), <span class="dt">replace =</span> <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb9-13" title="13"></a>
+<a class="sourceLine" id="cb9-14" title="14">brms_mixed_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">brm</span>(mpg <span class="op">~</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>cyl) <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>wt <span class="op">|</span><span class="st"> </span>gear), <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb9-15" title="15">brms_mixed_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">brm</span>(Reaction <span class="op">~</span><span class="st"> </span>Days <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>Days <span class="op">|</span><span class="st"> </span>Subject), <span class="dt">data =</span> sleepstudy)</a>
+<a class="sourceLine" id="cb9-16" title="16">brms_mixed_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw">brm</span>(Reaction <span class="op">~</span><span class="st"> </span>Days <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>grp<span class="op">/</span>subgrp) <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb9-17" title="17"><span class="st">    </span>Subject), <span class="dt">data =</span> sleepstudy)</a>
+<a class="sourceLine" id="cb9-18" title="18"></a>
+<a class="sourceLine" id="cb9-19" title="19">brms_mv_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">brm</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cbind">cbind</a></span>(cyl, gear, carb) <span class="op">~</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>hp, <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb9-20" title="20">f1 &lt;-<span class="st"> </span><span class="kw">bf</span>(mpg <span class="op">~</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>disp <span class="op">+</span><span class="st"> </span>cyl <span class="op">+</span><span class="st"> </span>hp <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>CAR <span class="op">|</span><span class="st"> </span>gear))</a>
+<a class="sourceLine" id="cb9-21" title="21">f2 &lt;-<span class="st"> </span><span class="kw">bf</span>(wt <span class="op">~</span><span class="st"> </span>disp <span class="op">+</span><span class="st"> </span>cyl <span class="op">+</span><span class="st"> </span>hp <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>CAR <span class="op">|</span><span class="st"> </span>gear))</a>
+<a class="sourceLine" id="cb9-22" title="22">brms_mv_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">brm</span>(f1 <span class="op">+</span><span class="st"> </span>f2 <span class="op">+</span><span class="st"> </span><span class="kw">set_rescor</span>(<span class="ot">FALSE</span>), <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb9-23" title="23"></a>
+<a class="sourceLine" id="cb9-24" title="24">brms_zi_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">brm</span>(<span class="kw">bf</span>(count <span class="op">~</span><span class="st"> </span>persons <span class="op">+</span><span class="st"> </span>child <span class="op">+</span><span class="st"> </span>camper, zi <span class="op">~</span><span class="st"> </span>child <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb9-25" title="25"><span class="st">    </span>camper), <span class="dt">data =</span> zinb, <span class="dt">family =</span> <span class="kw">zero_inflated_poisson</span>())</a>
+<a class="sourceLine" id="cb9-26" title="26">brms_zi_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">brm</span>(<span class="kw">bf</span>(count <span class="op">~</span><span class="st"> </span>persons <span class="op">+</span><span class="st"> </span>child <span class="op">+</span><span class="st"> </span>camper <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>persons), </a>
+<a class="sourceLine" id="cb9-27" title="27">    zi <span class="op">~</span><span class="st"> </span>child <span class="op">+</span><span class="st"> </span>camper <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>persons)), <span class="dt">data =</span> zinb, <span class="dt">family =</span> <span class="kw">zero_inflated_poisson</span>())</a></code></pre></div>
 </div>
 </div>
 <div id="save" class="section level2">
 <h2 class="hasAnchor">
 <a href="#save" class="anchor"></a>Save</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">usethis<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/usethis/topics/use_data">use_data</a></span>(htest_<span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb6-2" title="2">                  htest_<span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb6-3" title="3">                  htest_<span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb6-4" title="4">                  htest_<span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb6-5" title="5">                  htest_<span class="dv">5</span>,</a>
-<a class="sourceLine" id="cb6-6" title="6">                  htest_<span class="dv">6</span>,</a>
-<a class="sourceLine" id="cb6-7" title="7">                  htest_<span class="dv">7</span>,</a>
-<a class="sourceLine" id="cb6-8" title="8">                  htest_<span class="dv">8</span>,</a>
-<a class="sourceLine" id="cb6-9" title="9">                  </a>
-<a class="sourceLine" id="cb6-10" title="10">                  anova_<span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb6-11" title="11">                  aov_<span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb6-12" title="12">                  aovlist_<span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb6-13" title="13">                  </a>
-<a class="sourceLine" id="cb6-14" title="14">                  lm_<span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb6-15" title="15">                  lm_<span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb6-16" title="16">                  lm_<span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb6-17" title="17">                  lm_<span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb6-18" title="18">                  lm_<span class="dv">5</span>,</a>
-<a class="sourceLine" id="cb6-19" title="19">                  </a>
-<a class="sourceLine" id="cb6-20" title="20">                  glm_<span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb6-21" title="21">                  glm_<span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb6-22" title="22">                  </a>
-<a class="sourceLine" id="cb6-23" title="23">                  lmerMod_<span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb6-24" title="24">                  merMod_<span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb6-25" title="25">                  merMod_<span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb6-26" title="26">                  </a>
-<a class="sourceLine" id="cb6-27" title="27">                  stanreg_lm_<span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb6-28" title="28">                  stanreg_lm_<span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb6-29" title="29">                  stanreg_lm_<span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb6-30" title="30">                  stanreg_glm_<span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb6-31" title="31">                  stanreg_glm_<span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb6-32" title="32">                  stanreg_lmerMod_<span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb6-33" title="33">                  stanreg_merMod_<span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb6-34" title="34">                  stanreg_merMod_<span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb6-35" title="35">                  stanreg_gam_<span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb6-36" title="36">                  </a>
-<a class="sourceLine" id="cb6-37" title="37">                  <span class="dt">overwrite=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">usethis<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/usethis/topics/use_data">use_data</a></span>(htest_<span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb10-2" title="2">                  htest_<span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb10-3" title="3">                  htest_<span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb10-4" title="4">                  htest_<span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb10-5" title="5">                  htest_<span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb10-6" title="6">                  htest_<span class="dv">6</span>,</a>
+<a class="sourceLine" id="cb10-7" title="7">                  htest_<span class="dv">7</span>,</a>
+<a class="sourceLine" id="cb10-8" title="8">                  htest_<span class="dv">8</span>,</a>
+<a class="sourceLine" id="cb10-9" title="9">                  </a>
+<a class="sourceLine" id="cb10-10" title="10">                  anova_<span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb10-11" title="11">                  aov_<span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb10-12" title="12">                  aovlist_<span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb10-13" title="13">                  anova_<span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb10-14" title="14">                  aov_<span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb10-15" title="15">                  aovlist_<span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb10-16" title="16">                  anova_<span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb10-17" title="17">                  aov_<span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb10-18" title="18">                  aovlist_<span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb10-19" title="19">                  anova_<span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb10-20" title="20">                  </a>
+<a class="sourceLine" id="cb10-21" title="21">                  lm_<span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb10-22" title="22">                  lm_<span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb10-23" title="23">                  lm_<span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb10-24" title="24">                  lm_<span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb10-25" title="25">                  lm_<span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb10-26" title="26">                  lm_<span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb10-27" title="27">                  lm_<span class="dv">6</span>,</a>
+<a class="sourceLine" id="cb10-28" title="28">                  lm_<span class="dv">7</span>,</a>
+<a class="sourceLine" id="cb10-29" title="29">                  glm_<span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb10-30" title="30">                  glm_<span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb10-31" title="31">                  glm_<span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb10-32" title="32">                  glm_<span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb10-33" title="33">                  glm_<span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb10-34" title="34">                  glm_<span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb10-35" title="35">                  </a>
+<a class="sourceLine" id="cb10-36" title="36">                  lmerMod_<span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb10-37" title="37">                  lmerMod_<span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb10-38" title="38">                  lmerMod_<span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb10-39" title="39">                  lmerMod_<span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb10-40" title="40">                  lmerMod_<span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb10-41" title="41">                  lmerMod_<span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb10-42" title="42">                  merMod_<span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb10-43" title="43">                  merMod_<span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb10-44" title="44">                  merMod_<span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb10-45" title="45">                  merMod_<span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb10-46" title="46">                  merMod_<span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb10-47" title="47">                  </a>
+<a class="sourceLine" id="cb10-48" title="48">                  anova_lmerMod_<span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb10-49" title="49">                  anova_lmerMod_<span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb10-50" title="50">                  anova_lmerMod_<span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb10-51" title="51">                  anova_lmerMod_<span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb10-52" title="52">                  anova_lmerMod_<span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb10-53" title="53">                  anova_lmerMod_<span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb10-54" title="54">                  anova_lmerMod_<span class="dv">6</span>,</a>
+<a class="sourceLine" id="cb10-55" title="55">                  </a>
+<a class="sourceLine" id="cb10-56" title="56">                  glmmTMB_<span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb10-57" title="57">                  glmmTMB_zi_<span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb10-58" title="58">                  glmmTMB_zi_<span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb10-59" title="59">                  glmmTMB_zi_<span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb10-60" title="60">                  </a>
+<a class="sourceLine" id="cb10-61" title="61">                  GLMMadaptive_<span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb10-62" title="62">                  GLMMadaptive_zi_<span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb10-63" title="63">                  GLMMadaptive_zi_<span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb10-64" title="64">                  </a>
+<a class="sourceLine" id="cb10-65" title="65">                  stanreg_lm_<span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb10-66" title="66">                  stanreg_lm_<span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb10-67" title="67">                  stanreg_lm_<span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb10-68" title="68">                  stanreg_lm_<span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb10-69" title="69">                  stanreg_lm_<span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb10-70" title="70">                  stanreg_lm_<span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb10-71" title="71">                  stanreg_lm_<span class="dv">6</span>,</a>
+<a class="sourceLine" id="cb10-72" title="72">                  stanreg_lm_<span class="dv">7</span>,</a>
+<a class="sourceLine" id="cb10-73" title="73">                  stanreg_glm_<span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb10-74" title="74">                  stanreg_glm_<span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb10-75" title="75">                  stanreg_glm_<span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb10-76" title="76">                  stanreg_glm_<span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb10-77" title="77">                  stanreg_glm_<span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb10-78" title="78">                  stanreg_glm_<span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb10-79" title="79">                  stanreg_lmerMod_<span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb10-80" title="80">                  stanreg_lmerMod_<span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb10-81" title="81">                  stanreg_lmerMod_<span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb10-82" title="82">                  stanreg_lmerMod_<span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb10-83" title="83">                  stanreg_lmerMod_<span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb10-84" title="84">                  stanreg_lmerMod_<span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb10-85" title="85">                  stanreg_merMod_<span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb10-86" title="86">                  stanreg_merMod_<span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb10-87" title="87">                  stanreg_merMod_<span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb10-88" title="88">                  stanreg_merMod_<span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb10-89" title="89">                  stanreg_merMod_<span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb10-90" title="90">                  stanreg_meanfield_lm_<span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb10-91" title="91">                  stanreg_fullrank_lm_<span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb10-92" title="92">                  </a>
+<a class="sourceLine" id="cb10-93" title="93">                  stanreg_gamm4_<span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb10-94" title="94">                  stanreg_gamm4_<span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb10-95" title="95">                  stanreg_gamm4_<span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb10-96" title="96">                  </a>
+<a class="sourceLine" id="cb10-97" title="97">                  brms_mixed_<span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb10-98" title="98">                  brms_mixed_<span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb10-99" title="99">                  brms_mixed_<span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb10-100" title="100">                  </a>
+<a class="sourceLine" id="cb10-101" title="101">                  brms_mv_<span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb10-102" title="102">                  brms_mv_<span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb10-103" title="103">                  </a>
+<a class="sourceLine" id="cb10-104" title="104">                  brms_zi_<span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb10-105" title="105">                  brms_zi_<span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb10-106" title="106">                  </a>
+<a class="sourceLine" id="cb10-107" title="107">                  </a>
+<a class="sourceLine" id="cb10-108" title="108">                  <span class="dt">overwrite=</span><span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 </div>
   </div>
