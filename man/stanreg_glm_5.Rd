@@ -10,6 +10,8 @@ stanreg_glm_5
 }
 \description{
 Model of class stanreg
+}
+\examples{
 \dontrun{
 set.seed(123)
 mtcars$count <- rpois(nrow(mtcars), 2)

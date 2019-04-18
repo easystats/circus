@@ -10,6 +10,8 @@ stanreg_glm_4
 }
 \description{
 Model of class stanreg
+}
+\examples{
 \dontrun{
 rstanarm::stan_glm(vs ~ wt + cyl, data = mtcars, family = binomial(link = "probit"))
 }

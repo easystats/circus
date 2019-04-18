@@ -10,6 +10,8 @@ stanreg_glm_1
 }
 \description{
 Model of class stanreg
+}
+\examples{
 \dontrun{
 rstanarm::stan_glm(vs ~ wt, data = mtcars, family = "binomial")
 }

@@ -698,6 +698,7 @@
 #' stanreg_glm_1
 #'
 #' Model of class stanreg
+#' @examples
 #' \dontrun{
 #' rstanarm::stan_glm(vs ~ wt, data = mtcars, family = "binomial")
 #' }
@@ -706,6 +707,7 @@
 #' stanreg_glm_2
 #'
 #' Model of class stanreg
+#' @examples
 #' \dontrun{
 #' rstanarm::stan_glm(vs ~ wt + cyl, data = mtcars, family = "binomial")
 #' }
@@ -714,6 +716,7 @@
 #' stanreg_glm_3
 #'
 #' Model of class stanreg
+#' @examples
 #' \dontrun{
 #' rstanarm::stan_glm(vs ~ wt * cyl, data = mtcars, family = "binomial")
 #' }
@@ -722,6 +725,7 @@
 #' stanreg_glm_4
 #'
 #' Model of class stanreg
+#' @examples
 #' \dontrun{
 #' rstanarm::stan_glm(vs ~ wt + cyl, data = mtcars, family = binomial(link = "probit"))
 #' }
@@ -730,6 +734,7 @@
 #' stanreg_glm_5
 #'
 #' Model of class stanreg
+#' @examples
 #' \dontrun{
 #' set.seed(123)
 #' mtcars$count <- rpois(nrow(mtcars), 2)
