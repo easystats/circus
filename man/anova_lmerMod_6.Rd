@@ -11,4 +11,7 @@ anova_lmerMod_6
 \description{
 Model of class anova of merMod
 }
+\examples{
+anova(lmerMod_0, lmerMod_1, lmerMod_2)
+}
 \keyword{datasets}

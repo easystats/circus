@@ -107,7 +107,7 @@ glm_1 <- glm(vs ~ wt, data = mtcars, family = "binomial")
 glm_2 <- glm(vs ~ wt + cyl, data = mtcars, family = "binomial")
 glm_3 <- glm(vs ~ wt * cyl, data = mtcars, family = "binomial")
 glm_4 <- glm(vs ~ wt + cyl, data = mtcars, family = binomial(link = "probit"))
-glm_5 <- glm(formula = count ~ wt + cyl, family = "poisson", 
+glm_5 <- glm(count ~ wt + cyl, family = "poisson", 
     data = mtcars)
 
 anova_4 <- anova(lm_0, lm_1, lm_2)
@@ -219,6 +219,9 @@ stanreg_lm_6 <- rstanarm::stan_glm(mpg ~ wt * as.factor(gear),
 stanreg_lm_7 <- rstanarm::stan_glm(mpg ~ as.factor(gear)/wt, 
     data = mtcars)
 
+set.seed(123)
+mtcars$count <- rpois(nrow(mtcars), 2)
+
 stanreg_glm_0 <- rstanarm::stan_glm(vs ~ 1, data = mtcars, family = "binomial")
 stanreg_glm_1 <- rstanarm::stan_glm(vs ~ wt, data = mtcars, family = "binomial")
 stanreg_glm_2 <- rstanarm::stan_glm(vs ~ wt + cyl, data = mtcars, 
@@ -227,7 +230,7 @@ stanreg_glm_3 <- rstanarm::stan_glm(vs ~ wt * cyl, data = mtcars,
     family = "binomial")
 stanreg_glm_4 <- rstanarm::stan_glm(vs ~ wt + cyl, data = mtcars, 
     family = binomial(link = "probit"))
-stanreg_glm_5 <- rstanarm::stan_glm(vs ~ wt + cyl, data = mtcars, 
+stanreg_glm_5 <- rstanarm::stan_glm(count ~ wt + cyl, data = mtcars, 
     family = "poisson")
 
 stanreg_lmerMod_0 <- rstanarm::stan_lmer(wt ~ 1 + (1 | gear), 

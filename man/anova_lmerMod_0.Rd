@@ -11,4 +11,7 @@ anova_lmerMod_0
 \description{
 Model of class anova of merMod
 }
+\examples{
+anova(lmer(wt ~ 1 + (1 | gear), data = mtcars))
+}
 \keyword{datasets}

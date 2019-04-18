@@ -11,4 +11,9 @@ stanreg_glm_0
 \description{
 Model of class stanreg
 }
+\examples{
+\dontrun{
+rstanarm::stan_glm(vs ~ 1, data = mtcars, family = "binomial")
+}
+}
 \keyword{datasets}

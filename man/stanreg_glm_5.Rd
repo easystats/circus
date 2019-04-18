@@ -10,5 +10,10 @@ stanreg_glm_5
 }
 \description{
 Model of class stanreg
+\dontrun{
+set.seed(123)
+mtcars$count <- rpois(nrow(mtcars), 2)
+rstanarm::stan_glm(count ~ wt + cyl, data = mtcars, family = "poisson")
+}
 }
 \keyword{datasets}

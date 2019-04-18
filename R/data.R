@@ -343,38 +343,52 @@
 #' anova_lmerMod_0
 #'
 #' Model of class anova of merMod
+#' @examples
+#' anova(lmer(wt ~ 1 + (1 | gear), data = mtcars))
 "anova_lmerMod_0"
 
 
 #' anova_lmerMod_1
 #'
 #' Model of class anova of merMod
+#' @examples
+#' anova(lmer(wt ~ cyl + (1 | gear), data = mtcars))
 "anova_lmerMod_1"
 
 #' anova_lmerMod_2
 #'
 #' Model of class anova of merMod
+#' @examples
+#' anova(lmer(wt ~ drat + cyl + (1 | gear), data = mtcars))
 "anova_lmerMod_2"
 
 #' anova_lmerMod_3
 #'
 #' Model of class anova of merMod
+#' @examples
+#' anova(lmer(wt ~ drat * cyl + (1 | gear), data = mtcars))
 "anova_lmerMod_3"
 
 #' anova_lmerMod_4
 #'
 #' Model of class anova of merMod
+#' @examples
+#' anova(lmer(wt ~ drat/cyl + (1 | gear), data = mtcars))
 "anova_lmerMod_4"
 
 #' anova_lmerMod_5
 #'
 #' Model of class anova of merMod
+#' @examples
+#' anova(lmerMod_5)
 "anova_lmerMod_5"
 
 
 #' anova_lmerMod_6
 #'
 #' Model of class anova of merMod
+#' @examples
+#' anova(lmerMod_0, lmerMod_1, lmerMod_2)
 "anova_lmerMod_6"
 
 
@@ -675,31 +689,52 @@
 #' stanreg_glm_0
 #'
 #' Model of class stanreg
+#' @examples
+#' \dontrun{
+#' rstanarm::stan_glm(vs ~ 1, data = mtcars, family = "binomial")
+#' }
 "stanreg_glm_0"
 
 #' stanreg_glm_1
 #'
 #' Model of class stanreg
+#' \dontrun{
+#' rstanarm::stan_glm(vs ~ wt, data = mtcars, family = "binomial")
+#' }
 "stanreg_glm_1"
 
 #' stanreg_glm_2
 #'
 #' Model of class stanreg
+#' \dontrun{
+#' rstanarm::stan_glm(vs ~ wt + cyl, data = mtcars, family = "binomial")
+#' }
 "stanreg_glm_2"
 
 #' stanreg_glm_3
 #'
 #' Model of class stanreg
+#' \dontrun{
+#' rstanarm::stan_glm(vs ~ wt * cyl, data = mtcars, family = "binomial")
+#' }
 "stanreg_glm_3"
 
 #' stanreg_glm_4
 #'
 #' Model of class stanreg
+#' \dontrun{
+#' rstanarm::stan_glm(vs ~ wt + cyl, data = mtcars, family = binomial(link = "probit"))
+#' }
 "stanreg_glm_4"
 
 #' stanreg_glm_5
 #'
 #' Model of class stanreg
+#' \dontrun{
+#' set.seed(123)
+#' mtcars$count <- rpois(nrow(mtcars), 2)
+#' rstanarm::stan_glm(count ~ wt + cyl, data = mtcars, family = "poisson")
+#' }
 "stanreg_glm_5"
 
 
