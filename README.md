@@ -155,7 +155,11 @@ anova_lmerMod_5 <- anova(lmerMod_5)
 anova_lmerMod_6 <- anova(lmerMod_0, lmerMod_1, lmerMod_2)
 ```
 
-<!-- ### glmmTMB -->
+### glmmTMB
+
+
+``` r
+library(glmmTMB)
 
 <!-- ```{r, eval=FALSE, warning=FALSE, message=FALSE, results="hide"} -->
 
@@ -269,21 +273,55 @@ anova_lmerMod_6 <- anova(lmerMod_0, lmerMod_1, lmerMod_2)
 
 <!--   family = GLMMadaptive::zi.poisson() -->
 
-<!-- ) -->
 
-<!-- GLMMadaptive_1 <- GLMMadaptive::mixed_model( -->
+set.seed(123)
+fish <- read.csv("https://stats.idre.ucla.edu/stat/data/fish.csv")
+fish$nofish <- as.factor(fish$nofish)
+fish$livebait <- as.factor(fish$livebait)
+fish$camper <- as.factor(fish$camper)
+fish$ID <- sample(1:4, nrow(fish), replace = TRUE)
 
-<!--   cbind(incidence, size - incidence) ~ period, -->
+glmmTMB_1 <- glmmTMB(count ~ child + camper + (1 | persons), 
+    data = fish, family = poisson())
 
-<!--   random = ~ 1 | herd, -->
+glmmTMB_zi_1 <- glmmTMB(count ~ child + camper + (1 | persons), 
+    ziformula = ~child + camper + (1 | persons), data = fish, 
+    family = truncated_poisson())
 
-<!--   data = cbpp, -->
+glmmTMB_zi_2 <- glmmTMB(count ~ child + camper + (1 | persons), 
+    ziformula = ~child + livebait + (1 | persons), data = fish, 
+    family = truncated_poisson())
 
-<!--   family = binomial -->
+glmmTMB_zi_3 <- glmmTMB(count ~ child + camper + (1 | persons), 
+    ziformula = ~child + livebait + (1 | ID), dispformula = ~xb, 
+    data = fish, family = truncated_poisson())
+```
 
-<!-- ) -->
+### GLMMadaptive
 
-<!-- ``` -->
+``` r
+library("GLMMadaptive")
+library("lme4")
+
+data(cbpp)
+
+fish <- read.csv("https://stats.idre.ucla.edu/stat/data/fish.csv")
+fish$nofish <- as.factor(fish$nofish)
+fish$livebait <- as.factor(fish$livebait)
+fish$camper <- as.factor(fish$camper)
+
+GLMMadaptive_zi_1 <- GLMMadaptive::mixed_model(count ~ child + 
+    camper, random = ~1 | persons, zi_fixed = ~child + livebait, 
+    data = fish, family = GLMMadaptive::zi.poisson())
+
+GLMMadaptive_zi_2 <- GLMMadaptive::mixed_model(count ~ child + 
+    camper, random = ~1 | persons, zi_fixed = ~child + livebait, 
+    zi_random = ~1 | persons, data = fish, family = GLMMadaptive::zi.poisson())
+
+GLMMadaptive_1 <- GLMMadaptive::mixed_model(cbind(incidence, 
+    size - incidence) ~ period, random = ~1 | herd, data = cbpp, 
+    family = binomial)
+```
 
 ### Rstanarm
 
