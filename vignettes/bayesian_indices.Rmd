@@ -193,7 +193,7 @@ all_data <- read.csv("https://raw.github.com/easystats/circus/master/data/bayes_
 
 ## Example data
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.height=16}
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.height=20, fig.width=16}
 effects <- c(0, 1)
 sample_sizes <- c(240)
 outcome_types <- c("binary", "linear")
@@ -224,7 +224,7 @@ linear_noeffect <- example_data %>%
          error = as.factor(error)) %>% 
   ggplot(aes(x=x, y=y, color=error)) +
   geom_point2(width=0.02, alpha=0.2, size=3) +
-  geom_smooth()+
+  geom_smooth(method="lm")+
   theme_modern() +
   scale_color_material_d() +
   facet_wrap(~error, scale="free", nrow=3)
@@ -235,7 +235,7 @@ linear_effect <- example_data %>%
          error = as.factor(error)) %>% 
   ggplot(aes(x=x, y=y, color=error)) +
   geom_point2(width=0.02, alpha=0.2, size=3) +
-  geom_smooth()+
+  geom_smooth(method="lm")+
   theme_modern() +
   scale_color_material_d() +
   facet_wrap(~error, scale="free", nrow=3)
@@ -247,7 +247,7 @@ binary_noeffect <- example_data %>%
          error = as.factor(error)) %>% 
   ggplot(aes(x=x, y=y, color=error)) +
   geom_point2(width=0.02, alpha=0.2, size=3) +
-  geom_smooth()+
+  geom_smooth(method="glm")+
   theme_modern() +
   scale_color_material_d() +
   facet_wrap(~true_effect*error, scale="free", nrow=3)
@@ -259,7 +259,7 @@ binary_effect <- example_data %>%
          error = as.factor(error)) %>% 
   ggplot(aes(x=x, y=y, color=error)) +
   geom_point2(width=0.02, alpha=0.2, size=3) +
-  geom_smooth()+
+  geom_smooth(method="glm")+
   theme_modern() +
   scale_color_material_d() +
   facet_wrap(~true_effect*error, scale="free", nrow=3)
@@ -292,7 +292,7 @@ all_data %>%
          error = as.numeric(error),
          true_effect = as.factor(true_effect)) %>% 
   ggplot(aes(x=error, y=beta, color=sample_size)) +
-  geom_point2(alpha=0.2, size=3) +
+  geom_point2(alpha=0.01, size=3) +
   geom_smooth(se=FALSE)+
   theme_modern() +
   scale_color_material_d("rainbow") +
@@ -305,7 +305,7 @@ all_data %>%
          true_effect = as.factor(true_effect),
          beta = as.numeric(beta)) %>% 
   ggplot(aes(x=beta, fill=sample_size)) +
-  geom_density(alpha=0.3) +
+  geom_density(alpha=0.1) +
   theme_modern() +
   scale_fill_material_d() +
   xlab("Actual Coef") +
