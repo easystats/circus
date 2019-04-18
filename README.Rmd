@@ -57,14 +57,14 @@ library("circus")
 
 ## How to use it
 
-You can use the package in your `testthat` block by directly calling the models. However, for it to work on **travis**, it is easier to directly download them from github:
+You can use the package in your `testthat` block by directly calling the models. However, for it to work on **travis**, it is easier to directly download them from github with the `download_model` in the [`insight`](https://github.com/easystats/insight) package:
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE}
 test_that("my_function_works", {
-  library(circus)
+  library(insight)
 
   # model <- circus::lmerMod_1  # Local solution
-  model <- circus::download_model("lmerMod_1")
+  model <- insight::download_model("lmerMod_1")
   testthat::expect_equal(myFunction(model), 0.333)
 })
 ```
