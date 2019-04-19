@@ -84,7 +84,7 @@ compute_model <- function(data, outcome_type="linear", type=c("frequentist", "ba
       model_freq <- glm(y ~ x, data=data, family="binomial")
     }
     params <- parameters::model_parameters(model_freq)[2, ] %>%
-        select(beta, SE, CI_low, CI_high, p)
+        select(beta, SE, CI_low_95_freq = CI_low, CI_high_95_freq = CI_high, p_value = p)
   } else{
     params <- data.frame()
   }
@@ -109,11 +109,27 @@ compute_model <- function(data, outcome_type="linear", type=c("frequentist", "ba
     params$p_MAP <- p_map(posterior)
     
     range <- rope_range(model_bayes)
-    params$ROPE_90 <- rope(posterior, range = range, CI=90)$ROPE_Percentage
-    params$ROPE_95 <- rope(posterior, range = range, CI=95)$ROPE_Percentage
-    params$ROPE_full <- rope(posterior, range = range, CI=100)$ROPE_Percentage
+    params$ROPE_range <- range[[2]]
+    params$ROPE_90 <- rope(posterior, range = range, ci=0.90)$ROPE_Percentage
+    params$ROPE_95 <- rope(posterior, range = range, ci=0.95)$ROPE_Percentage
+    params$ROPE_full <- rope(posterior, range = range, ci=1)$ROPE_Percentage
     params$p_ROPE <- p_rope(posterior, range = range)
     
+    ci_95 <- hdi(posterior, ci=0.95)
+    params$CI_low_95_hdi <- ci_95$CI_low
+    params$CI_high_95_hdi <- ci_95$CI_high
+    
+    ci_90 <- hdi(posterior, ci=0.90)
+    params$CI_low_90_hdi <- ci_90$CI_low
+    params$CI_high_90_hdi <- ci_90$CI_high
+    
+    ci_95 <- ci(posterior, ci=0.95)
+    params$CI_low_95_quantile <- ci_95$CI_low
+    params$CI_high_95_quantile <- ci_95$CI_high
+    
+    ci_90 <- ci(posterior, ci=0.90)
+    params$CI_low_90_quantile <- ci_90$CI_low
+    params$CI_high_90_quantile <- ci_90$CI_high
   }
   
   params
@@ -135,15 +151,15 @@ generate_and_process <- function(true_effect, outcome_type, sample_size, error){
 ## Run Algorithm
 
 
-```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
-# options(mc.cores = parallel::detectCores())
+```{r eval=TRUE, message=FALSE, warning=FALSE, results='hide'}
+options(mc.cores = parallel::detectCores())
 set.seed(333)
 
 # Parameters -------------------------------------------------------------------
 effects <- c(0, 1)
 sample_sizes <- seq(20, 100, length.out = 9)
 outcome_types <- c("binary", "linear")
-errors <- seq(0.33, 6.66, length.out = 1000)
+errors <- seq(0.33, 6.66, length.out = 10)
 
 # Run --------------------------------------------------------------------------
 # Initialize data
