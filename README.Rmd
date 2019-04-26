@@ -519,6 +519,10 @@ usethis::use_data(htest_1,
                   
                   betareg_1,
                   betareg_2,
+                  censReg_1,
+                  ivreg_1,
+                  clm_1,
+                  clm2_1,
                   
                   overwrite=TRUE)
 ```
