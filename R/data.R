@@ -1091,7 +1091,6 @@
 #'
 #' Model of class betareg
 #' @examples
-#' data("GasolineYield")
 #' betareg(yield ~ batch + temp, data = GasolineYield)
 "betareg_1"
 
@@ -1099,6 +1098,17 @@
 #'
 #' Model of class betareg
 #' @examples
-#' data("FoodExpenditure")
 #' betareg(I(food/income) ~ income + persons, data = FoodExpenditure)
 "betareg_2"
+
+
+
+#' censReg_1
+#'
+#' Model of class censReg
+#' @examples
+#' censReg(
+#'   affairs ~ age + yearsmarried + religiousness + occupation + rating,
+#'   data = Affairs
+#' )
+"censReg_1"

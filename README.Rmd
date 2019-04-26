@@ -376,6 +376,12 @@ data("FoodExpenditure")
 
 betareg_1 <- betareg(yield ~ batch + temp, data = GasolineYield)
 betareg_2 <- betareg(I(food/income) ~ income + persons, data = FoodExpenditure)
+
+library(AER)
+library(censReg)
+data("Affairs", package = "AER")
+
+censReg_1 <- censReg(affairs ~ age + yearsmarried + religiousness + occupation + rating, data = Affairs)
 ```
 
 ## Save
