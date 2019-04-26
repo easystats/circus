@@ -11,4 +11,9 @@ stanreg_meanfield_lm_1
 \description{
 Model of class stanreg
 }
+\examples{
+\dontrun{
+update(stanreg_lm_1, algorithm = "meanfield")
+}
+}
 \keyword{datasets}

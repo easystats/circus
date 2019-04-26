@@ -11,4 +11,9 @@ stanreg_fullrank_lm_1
 \description{
 Model of class stanreg
 }
+\examples{
+\dontrun{
+update(stanreg_lm_1, algorithm = "fullrank")
+}
+}
 \keyword{datasets}

@@ -11,4 +11,9 @@ stanreg_merMod_1
 \description{
 Model of class stanreg
 }
+\examples{
+\dontrun{
+stan_glmer(vs ~ cyl + (1 | gear), data = mtcars, family = "binomial")
+}
+}
 \keyword{datasets}

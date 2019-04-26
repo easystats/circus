@@ -11,4 +11,7 @@ anova_1
 \description{
 Model of class anova
 }
+\examples{
+anova(lm(Sepal.Width ~ Species, data = iris))
+}
 \keyword{datasets}

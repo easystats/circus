@@ -11,4 +11,11 @@ aov_2
 \description{
 Model of class aov
 }
+\examples{
+data <- iris
+data$Cat1 <- rep(c("X", "X", "Y"), length.out = nrow(data))
+data$Cat2 <- rep(c("A", "B"), length.out = nrow(data))
+
+aov(Sepal.Length ~ Species * Cat1 * Cat2, data = data)
+}
 \keyword{datasets}

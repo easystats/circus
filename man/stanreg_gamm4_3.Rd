@@ -11,4 +11,16 @@ stanreg_gamm4_3
 \description{
 Model of class stanreg
 }
+\examples{
+\dontrun{
+data <- iris
+data$Cat1 <- rep(c("X", "X", "Y"), length.out = nrow(data))
+
+stan_gamm4(
+  Sepal.Width ~ Species + s(Petal.Length),
+  random = ~(1 | Cat1),
+  data = data
+)
+}
+}
 \keyword{datasets}

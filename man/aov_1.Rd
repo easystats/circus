@@ -11,4 +11,7 @@ aov_1
 \description{
 Model of class aov
 }
+\examples{
+aov(Sepal.Width ~ Species, data = iris)
+}
 \keyword{datasets}

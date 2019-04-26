@@ -60,36 +60,60 @@
 #' anova_1
 #'
 #' Model of class anova
+#' @examples
+#' anova(lm(Sepal.Width ~ Species, data = iris))
 "anova_1"
 
 
 #' aov_1
 #'
 #' Model of class aov
+#' @examples
+#' aov(Sepal.Width ~ Species, data = iris)
 "aov_1"
 
 
 #' aovlist_1
 #'
 #' Model of class aovlist
+#' @examples
+#' aov(wt ~ cyl + Error(gear), data = mtcars)
 "aovlist_1"
 
 
 #' anova_2
 #'
 #' Model of class anova
+#' @examples
+#' data <- iris
+#' data$Cat1 <- rep(c("X", "X", "Y"), length.out = nrow(data))
+#' data$Cat2 <- rep(c("A", "B"), length.out = nrow(data))
+#'
+#' anova(lm(Sepal.Length ~ Species * Cat1 * Cat2, data = data))
 "anova_2"
 
 
 #' aov_2
 #'
 #' Model of class aov
+#' @examples
+#' data <- iris
+#' data$Cat1 <- rep(c("X", "X", "Y"), length.out = nrow(data))
+#' data$Cat2 <- rep(c("A", "B"), length.out = nrow(data))
+#'
+#' aov(Sepal.Length ~ Species * Cat1 * Cat2, data = data)
 "aov_2"
 
 
 #' aovlist_2
 #'
 #' Model of class aovlist
+#' @examples
+#' data <- iris
+#' data$Cat1 <- rep(c("X", "X", "Y"), length.out = nrow(data))
+#' data$Cat2 <- rep(c("A", "B"), length.out = nrow(data))
+#'
+#' aov(Sepal.Length ~ Species * Cat1 + Error(Cat2), data = data)
 "aovlist_2"
 
 
@@ -810,27 +834,51 @@
 #' stanreg_merMod_0
 #'
 #' Model of class stanreg
+#' @examples
+#' \dontrun{
+#' stan_glmer(vs ~ 1 + (1 | gear), data = mtcars, family = "binomial")
+#' }
 "stanreg_merMod_0"
 
 
 #' stanreg_merMod_1
 #'
 #' Model of class stanreg
+#' @examples
+#' \dontrun{
+#' stan_glmer(vs ~ cyl + (1 | gear), data = mtcars, family = "binomial")
+#' }
 "stanreg_merMod_1"
 
 #' stanreg_merMod_2
 #'
 #' Model of class stanreg
+#' @examples
+#' \dontrun{
+#' stan_glmer(vs ~ drat + cyl + (1 | gear), data = mtcars, family = "binomial")
+#' }
 "stanreg_merMod_2"
 
 #' stanreg_merMod_3
 #'
 #' Model of class stanreg
+#' @examples
+#' \dontrun{
+#' stan_glmer(vs ~ drat * cyl + (1 | gear), data = mtcars, family = "binomial")
+#' }
 "stanreg_merMod_3"
 
 #' stanreg_merMod_4
 #'
 #' Model of class stanreg
+#' @examples
+#' \dontrun{
+#' stan_glmer(
+#'   vs ~ cyl + (1 | gear),
+#'   data = mtcars,
+#'   family = binomial(link = "probit")
+#' )
+#' }
 "stanreg_merMod_4"
 
 
@@ -838,27 +886,54 @@
 #' stanreg_meanfield_lm_1
 #'
 #' Model of class stanreg
+#' @examples
+#' \dontrun{
+#' update(stanreg_lm_1, algorithm = "meanfield")
+#' }
 "stanreg_meanfield_lm_1"
 
 #' stanreg_fullrank_lm_1
 #'
 #' Model of class stanreg
+#' @examples
+#' \dontrun{
+#' update(stanreg_lm_1, algorithm = "fullrank")
+#' }
 "stanreg_fullrank_lm_1"
 
 
 #' stanreg_gamm4_1
 #'
 #' Model of class stanreg
+#' @examples
+#' \dontrun{
+#' stan_gamm4(Sepal.Width ~ s(Petal.Length), data = iris)
+#' }
 "stanreg_gamm4_1"
 
 #' stanreg_gamm4_2
 #'
 #' Model of class stanreg
+#' @examples
+#' \dontrun{
+#' stan_gamm4(Sepal.Width ~ Species + s(Petal.Length), data = iris)
+#' }
 "stanreg_gamm4_2"
 
 #' stanreg_gamm4_3
 #'
 #' Model of class stanreg
+#' @examples
+#' \dontrun{
+#' data <- iris
+#' data$Cat1 <- rep(c("X", "X", "Y"), length.out = nrow(data))
+#'
+#' stan_gamm4(
+#'   Sepal.Width ~ Species + s(Petal.Length),
+#'   random = ~(1 | Cat1),
+#'   data = data
+#' )
+#' }
 "stanreg_gamm4_3"
 
 

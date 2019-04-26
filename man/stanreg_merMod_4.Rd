@@ -11,4 +11,13 @@ stanreg_merMod_4
 \description{
 Model of class stanreg
 }
+\examples{
+\dontrun{
+stan_glmer(
+  vs ~ cyl + (1 | gear),
+  data = mtcars,
+  family = binomial(link = "probit")
+)
+}
+}
 \keyword{datasets}

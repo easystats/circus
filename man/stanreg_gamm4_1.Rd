@@ -11,4 +11,9 @@ stanreg_gamm4_1
 \description{
 Model of class stanreg
 }
+\examples{
+\dontrun{
+stan_gamm4(Sepal.Width ~ s(Petal.Length), data = iris)
+}
+}
 \keyword{datasets}

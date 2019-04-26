@@ -11,4 +11,11 @@ anova_2
 \description{
 Model of class anova
 }
+\examples{
+data <- iris
+data$Cat1 <- rep(c("X", "X", "Y"), length.out = nrow(data))
+data$Cat2 <- rep(c("A", "B"), length.out = nrow(data))
+
+anova(lm(Sepal.Length ~ Species * Cat1 * Cat2, data = data))
+}
 \keyword{datasets}

@@ -11,4 +11,7 @@ aovlist_1
 \description{
 Model of class aovlist
 }
+\examples{
+aov(wt ~ cyl + Error(gear), data = mtcars)
+}
 \keyword{datasets}
