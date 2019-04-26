@@ -1112,3 +1112,21 @@
 #'   data = Affairs
 #' )
 "censReg_1"
+
+
+#' ivreg_1
+#'
+#' Model of class ivreg
+#' @examples
+#' data(CigarettesSW)
+#' CigarettesSW$rprice <- with(CigarettesSW, price / cpi)
+#' CigarettesSW$rincome <- with(CigarettesSW, income / population / cpi)
+#' CigarettesSW$tdiff <- with(CigarettesSW, (taxs - tax) / cpi)
+#'
+#' ivreg_1 <- ivreg(
+#'   log(packs) ~ log(rprice) + log(rincome) | log(rincome) + tdiff + I(tax / cpi),
+#'   data = CigarettesSW,
+#'   subset = year == "1995"
+#' )
+"ivreg_1"
+
