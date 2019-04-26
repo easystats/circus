@@ -127,13 +127,34 @@
     <p>An object of class <code>anova</code> (inherits from <code>data.frame</code>) with 8 rows and 5 columns.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='no'>iris</span>
+<span class='no'>data</span>$<span class='no'>Cat1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"X"</span>, <span class='st'>"X"</span>, <span class='st'>"Y"</span>), <span class='kw'>length.out</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>data</span>))
+<span class='no'>data</span>$<span class='no'>Cat2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"A"</span>, <span class='st'>"B"</span>), <span class='kw'>length.out</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>data</span>))
+
+<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/anova'>anova</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/lm'>lm</a></span>(<span class='no'>Sepal.Length</span> ~ <span class='no'>Species</span> * <span class='no'>Cat1</span> * <span class='no'>Cat2</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>data</span>))</div><div class='output co'>#&gt; Analysis of Variance Table
+#&gt; 
+#&gt; Response: Sepal.Length
+#&gt;                    Df Sum Sq Mean Sq  F value Pr(&gt;F)    
+#&gt; Species             2 63.212 31.6061 115.2760 &lt;2e-16 ***
+#&gt; Cat1                1  0.003  0.0026   0.0096 0.9221    
+#&gt; Cat2                1  0.002  0.0017   0.0061 0.9380    
+#&gt; Species:Cat1        2  0.278  0.1388   0.5061 0.6039    
+#&gt; Species:Cat2        2  0.514  0.2569   0.9369 0.3943    
+#&gt; Cat1:Cat2           1  0.251  0.2508   0.9147 0.3405    
+#&gt; Species:Cat1:Cat2   2  0.073  0.0367   0.1338 0.8749    
+#&gt; Residuals         138 37.836  0.2742                    
+#&gt; ---
+#&gt; Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       
       <li><a href="#format">Format</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

@@ -127,13 +127,33 @@
     <p>An object of class <code>aov</code> (inherits from <code>lm</code>) of length 13.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='no'>iris</span>
+<span class='no'>data</span>$<span class='no'>Cat1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"X"</span>, <span class='st'>"X"</span>, <span class='st'>"Y"</span>), <span class='kw'>length.out</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>data</span>))
+<span class='no'>data</span>$<span class='no'>Cat2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"A"</span>, <span class='st'>"B"</span>), <span class='kw'>length.out</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>data</span>))
+
+<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/aov'>aov</a></span>(<span class='no'>Sepal.Length</span> ~ <span class='no'>Species</span> * <span class='no'>Cat1</span> * <span class='no'>Cat2</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>data</span>)</div><div class='output co'>#&gt; Call:
+#&gt;    aov(formula = Sepal.Length ~ Species * Cat1 * Cat2, data = data)
+#&gt; 
+#&gt; Terms:
+#&gt;                  Species     Cat1     Cat2 Species:Cat1 Species:Cat2 Cat1:Cat2
+#&gt; Sum of Squares  63.21213  0.00263  0.00167      0.27754      0.51374   0.25079
+#&gt; Deg. of Freedom        2        1        1            2            2         1
+#&gt;                 Species:Cat1:Cat2 Residuals
+#&gt; Sum of Squares            0.07335  37.83648
+#&gt; Deg. of Freedom                 2       138
+#&gt; 
+#&gt; Residual standard error: 0.5236195
+#&gt; Estimated effects may be unbalanced</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       
       <li><a href="#format">Format</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

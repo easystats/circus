@@ -127,13 +127,24 @@
     <p>An object of class <code>anova</code> (inherits from <code>data.frame</code>) with 2 rows and 5 columns.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/anova'>anova</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/lm'>lm</a></span>(<span class='no'>Sepal.Width</span> ~ <span class='no'>Species</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>))</div><div class='output co'>#&gt; Analysis of Variance Table
+#&gt; 
+#&gt; Response: Sepal.Width
+#&gt;            Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+#&gt; Species     2 11.345  5.6725   49.16 &lt; 2.2e-16 ***
+#&gt; Residuals 147 16.962  0.1154                      
+#&gt; ---
+#&gt; Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       
       <li><a href="#format">Format</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>
