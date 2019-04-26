@@ -185,6 +185,33 @@ glmmTMB_1 <- glmmTMB(
   family = poisson()
 )
 
+glmmTMB_2 <- glmmTMB(count ~ mined + (1 | site),
+  ziformula =  ~ mined,
+  family = poisson,
+  data = Salamanders
+)
+
+glmmTMB_3 <- glmmTMB(
+  count ~ spp + mined + (1 | site),
+  ziformula =  ~ spp + mined,
+  family = nbinom2,
+  data = Salamanders
+)
+
+glmmTMB_4 <- glmmTMB(
+  count ~ spp + mined + (1 | site),
+  ziformula =  ~ spp + mined,
+  family = truncated_poisson,
+  data = Salamanders
+)
+
+data(cbpp, package = "lme4")
+glmmTMB_5 <- glmmTMB(
+  cbind(incidence, size - incidence) ~ period + (1 | herd),
+  data = cbpp,
+  family = binomial
+)
+  
 glmmTMB_zi_1 <- glmmTMB(
   count ~ child + camper + (1 | persons),
   ziformula = ~ child + camper + (1 | persons),
@@ -311,13 +338,24 @@ zinb <- read.csv("http://stats.idre.ucla.edu/stat/data/fish.csv")
 
 set.seed(123)
 sleepstudy$grp <- sample(1:5, size = 180, replace = TRUE)
+sleepstudy$cat <- as.factor(sample(1:5, size = 180, replace = TRUE))
+sleepstudy$Reaction_d <-
+  ifelse(sleepstudy$Reaction < median(sleepstudy$Reaction), 0, 1)
 sleepstudy <- sleepstudy %>%
   group_by(grp) %>%
   mutate(subgrp = sample(1:15, size = n(), replace = TRUE))
 
+brms_1 <- brm(mpg ~ wt + cyl, data = mtcars)
+
 brms_mixed_1 <- brm(mpg ~ wt + (1 | cyl) + (1 + wt | gear), data = mtcars)
 brms_mixed_2 <- brm(Reaction ~ Days + (1 + Days | Subject), data = sleepstudy)
 brms_mixed_3 <- brm(Reaction ~ Days + (1 | grp / subgrp) + (1 | Subject), data = sleepstudy)
+brms_mixed_3 <- brm(Petal.Length ~ Petal.Width + (1 | Species), data = iris)
+brms_mixed_5 <- brm(
+  Reaction_d ~ Days + cat + (1 | Subject),
+  data = sleepstudy,
+  family = bernoulli()
+)
 
 brms_mv_1 <- brm(cbind(cyl, gear, carb) ~ wt + hp, data = mtcars)
 f1 <- bf(mpg ~ wt + disp + cyl + hp + (1 |CAR| gear))
@@ -386,6 +424,11 @@ usethis::use_data(htest_1,
                   anova_lmerMod_6,
                   
                   glmmTMB_1,
+                  glmmTMB_2,
+                  glmmTMB_3,
+                  glmmTMB_4,
+                  glmmTMB_5,
+                  
                   glmmTMB_zi_1,
                   glmmTMB_zi_2,
                   glmmTMB_zi_3,
@@ -426,9 +469,13 @@ usethis::use_data(htest_1,
                   stanreg_gamm4_2,
                   stanreg_gamm4_3,
                   
+                  brms_1,
+                  
                   brms_mixed_1,
                   brms_mixed_2,
                   brms_mixed_3,
+                  brms_mixed_4,
+                  brms_mixed_5,
                   
                   brms_mv_1,
                   brms_mv_2,
