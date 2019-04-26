@@ -366,6 +366,18 @@ brms_zi_1 <- brm(bf(count ~ persons + child + camper, zi ~ child + camper), data
 brms_zi_2 <- brm(bf(count ~ persons + child + camper + (1 | persons), zi ~ child + camper + (1 | persons)), data = zinb, family = zero_inflated_poisson())
 ```
 
+
+### Other packages
+
+```{r}
+library(betareg)
+data("GasolineYield")
+data("FoodExpenditure")
+
+betareg_1 <- betareg(yield ~ batch + temp, data = GasolineYield)
+betareg_2 <- betareg(I(food/income) ~ income + persons, data = FoodExpenditure)
+```
+
 ## Save
 ```{r, eval=FALSE, warning=FALSE, message=FALSE, results="hide"}
 usethis::use_data(htest_1,
@@ -483,6 +495,8 @@ usethis::use_data(htest_1,
                   brms_zi_1,
                   brms_zi_2,
                   
+                  betareg_1,
+                  betareg_2,
                   
                   overwrite=TRUE)
 ```

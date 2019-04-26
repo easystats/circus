@@ -1084,3 +1084,21 @@
 #' )
 #' }
 "brms_zi_2"
+
+
+
+#' betareg_1
+#'
+#' Model of class betareg
+#' @examples
+#' data("GasolineYield")
+#' betareg(yield ~ batch + temp, data = GasolineYield)
+"betareg_1"
+
+#' betareg_2
+#'
+#' Model of class betareg
+#' @examples
+#' data("FoodExpenditure")
+#' betareg(I(food/income) ~ income + persons, data = FoodExpenditure)
+"betareg_2"
