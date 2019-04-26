@@ -1130,3 +1130,18 @@
 #' )
 "ivreg_1"
 
+
+#' clm_1
+#'
+#' Model of class clm
+#' @examples
+#' clm_1 <- clm(rating ~ temp * contact, data = wine)
+"clm_1"
+
+#' clm2_1
+#'
+#' Model of class clm2
+#' @examples
+#' clm2_1 <- clm2(rating ~ temp * contact, data = wine)
+"clm2_1"
+
