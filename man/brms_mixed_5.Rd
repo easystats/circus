@@ -9,7 +9,7 @@
 brms_mixed_5
 }
 \description{
-Model of class brms
+Model of class brmsfit
 }
 \examples{
 \dontrun{

@@ -947,7 +947,7 @@
 
 #' brms_1
 #'
-#' Model of class brms
+#' Model of class brmsfit
 #' @examples
 #' \dontrun{
 #' set.seed(333)
@@ -960,7 +960,7 @@
 
 #' brms_mixed_1
 #'
-#' Model of class brms
+#' Model of class brmsfit
 #' @examples
 #' \dontrun{
 #' set.seed(123)
@@ -970,7 +970,7 @@
 
 #' brms_mixed_2
 #'
-#' Model of class brms
+#' Model of class brmsfit
 #' @examples
 #' \dontrun{
 #' set.seed(123)
@@ -980,7 +980,7 @@
 
 #' brms_mixed_3
 #'
-#' Model of class brms
+#' Model of class brmsfit
 #' @examples
 #' \dontrun{
 #' set.seed(123)
@@ -995,7 +995,7 @@
 
 #' brms_mixed_4
 #'
-#' Model of class brms
+#' Model of class brmsfit
 #' @examples
 #' \dontrun{
 #' set.seed(333)
@@ -1005,7 +1005,7 @@
 
 #' brms_mixed_5
 #'
-#' Model of class brms
+#' Model of class brmsfit
 #' @examples
 #' \dontrun{
 #' library(lme4)
@@ -1028,7 +1028,7 @@
 
 #' brms_mv_1
 #'
-#' Model of class brms
+#' Model of class brmsfit
 #' @examples
 #' \dontrun{
 #' set.seed(123)
@@ -1038,7 +1038,7 @@
 
 #' brms_mv_2
 #'
-#' Model of class brms
+#' Model of class brmsfit
 #' @examples
 #' \dontrun{
 #' set.seed(123)
@@ -1048,12 +1048,27 @@
 #' }
 "brms_mv_2"
 
+#' brms_mv_3
+#'
+#' Model of class brmsfit
+#' @examples
+#' \dontrun{
+#' data(epilepsy)
+#' set.seed(123)
+#' epilepsy$visit <- as.numeric(epilepsy$visit)
+#' epilepsy$Base2 <- sample(epilepsy$Base, nrow(epilepsy), replace = TRUE)
+#' f1 <- bf(Base ~ zAge + count + (1 |ID| patient))
+#' f2 <- bf(Base2 ~ zAge + Trt + (1 |ID| patient))
+#' brms_mv_3 <- brm(f1 + f2 + set_rescor(FALSE), data = epilepsy)
+#' }
+"brms_mv_3"
+
 
 
 
 #' brms_zi_1
 #'
-#' Model of class brms
+#' Model of class brmsfit
 #' @examples
 #' \dontrun{
 #' zinb <- read.csv("http://stats.idre.ucla.edu/stat/data/fish.csv")
@@ -1070,7 +1085,7 @@
 
 #' brms_zi_2
 #'
-#' Model of class brms
+#' Model of class brmsfit
 #' @examples
 #' \dontrun{
 #' zinb <- read.csv("http://stats.idre.ucla.edu/stat/data/fish.csv")
