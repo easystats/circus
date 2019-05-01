@@ -25,7 +25,7 @@ The simulation aimed at modulating the following characteristics:
 - **Model type**: linear or logistic.
 - **"True" effect** (original regression coefficient from which data is drawn): Can be 1 or 0 (no effect).
 - **Sample size**: From 20 to 100 by steps of 10.
-- **Error**: Gaussian noise applied to the predictor with SD from 0.33 to 6.66 (with 1000 different values).
+- **Error**: Gaussian noise applied to the predictor with SD uniformly spread between 0.33 and 6.66 (with 1000 different values).
 
 We generated a dataset for each combination of these characteristics, resulting in a total of `2 * 2 * 9 * 1000 = 36000` Bayesian and frequentist models.
 <!-- For every combinations of these characteristics, we generated 1000 datasets, resulting in a total of `2 * 2* 3 * 4 * 3 * 1000` or 360000 Bayesian and frequentist models. -->
@@ -38,6 +38,7 @@ We generated a dataset for each combination of these characteristics, resulting 
 ## Convenience Functions
 ```{r eval=TRUE, message=FALSE, warning=FALSE, results='hide'}
 library(tidyverse)
+library(logspline)
 library(bayestestR)
 library(parameters)
 library(see)
@@ -115,6 +116,18 @@ compute_model <- function(data, outcome_type="linear", type=c("frequentist", "ba
     params$ROPE_full <- rope(posterior, range = range, ci=1)$ROPE_Percentage
     params$p_ROPE <- p_rope(posterior, range = range)
     
+    # Bayesfactor
+    params$bayesfactor_0707 <- bayesfactor(posterior, 
+                                      prior = rcauchy_perfect(length(posterior), location=0, scale=0.707), 
+                                      hypothesis = 0, 
+                                      method = "savage-dickey")
+    
+    params$bayesfactor_1 <- bayesfactor(posterior, 
+                                      prior = rcauchy_perfect(length(posterior), location=0, scale=1), 
+                                      hypothesis = 0, 
+                                      method = "savage-dickey")
+    
+    # CI
     ci_95 <- hdi(posterior, ci=0.95)
     params$CI_low_95_hdi <- ci_95$CI_low
     params$CI_high_95_hdi <- ci_95$CI_high
@@ -130,6 +143,7 @@ compute_model <- function(data, outcome_type="linear", type=c("frequentist", "ba
     ci_90 <- ci(posterior, ci=0.90)
     params$CI_low_90_quantile <- ci_90$CI_low
     params$CI_high_90_quantile <- ci_90$CI_high
+    
   }
   
   params
@@ -171,7 +185,7 @@ for(outcome_type in outcome_types){
   for(true_effect in effects){
     for(error in errors){
       for(sample_size in sample_sizes){
-        for(iteration in 1:1){
+        for(iteration in 1:2){
           cat(".")
           
           fail <- TRUE
@@ -197,12 +211,12 @@ for(outcome_type in outcome_types){
       }
     }
   }
-  write.csv(all_data, "bayes_indices.csv", row.names = FALSE)
+  write.csv(all_data, "bayesSim_study1.csv", row.names = FALSE)
 }
 ```
 
 ```{r message=FALSE, warning=FALSE, include=FALSE, results='hide'}
-all_data <- read.csv("https://raw.github.com/easystats/circus/master/data/bayes_indices.csv")
+# all_data <- read.csv("https://raw.github.com/easystats/circus/master/data/bayesSim_study1.csv")
 ```
 
 # Visualise data
