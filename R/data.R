@@ -1279,3 +1279,28 @@
 #' clm2_1 <- clm2(rating ~ temp * contact, data = wine)
 "clm2_1"
 
+
+#' brm_4bf_1
+#'
+#' Example of class brmsfit with \code{save_all_pars = TRUE}.
+"brm_4bf_1"
+
+#' brm_4bf_2
+#'
+#' Example of class brmsfit with \code{save_all_pars = TRUE}.
+"brm_4bf_2"
+
+#' brm_4bf_3
+#'
+#' Example of class brmsfit with \code{save_all_pars = TRUE}.
+"brm_4bf_3"
+
+#' brm_4bf_4
+#'
+#' Example of class brmsfit with \code{save_all_pars = TRUE}.
+"brm_4bf_4"
+
+#' brm_4bf_5
+#'
+#' Example of class brmsfit with \code{save_all_pars = TRUE}.
+"brm_4bf_5"
