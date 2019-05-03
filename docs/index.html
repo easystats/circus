@@ -117,6 +117,7 @@
 <li>Check and build documentation for the package (to generate the <code>.rd</code>-files)</li>
 <li>Upload following files to github: <code>/data/&lt;yourmodel.rda&gt;</code>, <code>README.Rmd</code>, <code>README.md</code>, <code>data.R</code> and <code>data.rd</code>.</li>
 </ol>
+<p><strong>Note</strong> When you build or install the package, it is recommended to do so with following build-options: <code>R CMD INSTALL --no-multiarch --with-keep.source --no-libs --no-data</code>. Furthermore, when building the documentation, make sure to <strong>not</strong> build the vignettes.</p>
 </div>
 <div id="list-of-models" class="section level2">
 <h2 class="hasAnchor">
