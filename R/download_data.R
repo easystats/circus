@@ -20,8 +20,7 @@ download_data_github <- function(url){
   y = get(x)
   # Remove the old object since you've stored it in y
   rm(x)
-  return(y)
-
+  y
 }
 
 
@@ -35,6 +34,5 @@ download_model <- function(name){
                 name,
                 ".rda")
 
-  return(download_data_github(url))
-
+  download_data_github(url)
 }
