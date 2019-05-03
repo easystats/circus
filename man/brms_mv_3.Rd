@@ -19,7 +19,7 @@ epilepsy$visit <- as.numeric(epilepsy$visit)
 epilepsy$Base2 <- sample(epilepsy$Base, nrow(epilepsy), replace = TRUE)
 f1 <- bf(Base ~ zAge + count + (1 |ID| patient))
 f2 <- bf(Base2 ~ zAge + Trt + (1 |ID| patient))
-brms_mv_3 <- brm(f1 + f2 + set_rescor(FALSE), data = epilepsy)
+brms::brm(f1 + f2 + set_rescor(FALSE), data = epilepsy)
 }
 }
 \keyword{datasets}
