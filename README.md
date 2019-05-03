@@ -383,12 +383,12 @@ brms_zi_3 <- brm(bf(count ~ child + camper + (1 | persons), zi ~
     child + camper + (1 | persons)), data = zinb, family = zero_inflated_poisson(), 
     chains = 1, iter = 500)
 
-brm_4bf_1 <- brm(Sepal.Length ~ 1, data = iris, save_all_pars = TRUE)
-brm_4bf_2 <- brm(Sepal.Length ~ Species, data = iris, save_all_pars = TRUE)
-brm_4bf_3 <- brm(Sepal.Length ~ Petal.Length, data = iris, save_all_pars = TRUE)
-brm_4bf_4 <- brm(Sepal.Length ~ Species + Petal.Length, data = iris, 
+brms_4bf_1 <- brm(Sepal.Length ~ 1, data = iris, save_all_pars = TRUE)
+brms_4bf_2 <- brm(Sepal.Length ~ Species, data = iris, save_all_pars = TRUE)
+brms_4bf_3 <- brm(Sepal.Length ~ Petal.Length, data = iris, save_all_pars = TRUE)
+brms_4bf_4 <- brm(Sepal.Length ~ Species + Petal.Length, data = iris, 
     save_all_pars = TRUE)
-brm_4bf_5 <- brm(Sepal.Length ~ Species * Petal.Length, data = iris, 
+brms_4bf_5 <- brm(Sepal.Length ~ Species * Petal.Length, data = iris, 
     save_all_pars = TRUE)
 ```
 
@@ -550,11 +550,11 @@ usethis::use_data(htest_1,
                   brms_zi_2,
                   brms_zi_3,
                   
-                  brm_4bf_1,
-                  brm_4bf_2,
-                  brm_4bf_3,
-                  brm_4bf_4,
-                  brm_4bf_5,
+                  brms_4bf_1,
+                  brms_4bf_2,
+                  brms_4bf_3,
+                  brms_4bf_4,
+                  brms_4bf_5,
                   
                   brms_ordinal_1,
                   

@@ -1280,27 +1280,37 @@
 "clm2_1"
 
 
-#' brm_4bf_1
+#' brms_4bf_1
 #'
 #' Example of class brmsfit with \code{save_all_pars = TRUE}.
-"brm_4bf_1"
+#' @examples
+#' brms_4bf_1 <- brm(Sepal.Length ~ 1, data = iris, save_all_pars = TRUE)
+"brms_4bf_1"
 
-#' brm_4bf_2
+#' brms_4bf_2
 #'
 #' Example of class brmsfit with \code{save_all_pars = TRUE}.
-"brm_4bf_2"
+#' @examples
+#' brms_4bf_2 <- brm(Sepal.Length ~ Species, data = iris, save_all_pars = TRUE)
+"brms_4bf_2"
 
-#' brm_4bf_3
+#' brms_4bf_3
 #'
 #' Example of class brmsfit with \code{save_all_pars = TRUE}.
-"brm_4bf_3"
+#' @examples
+#' brms_4bf_3 <- brm(Sepal.Length ~ Petal.Length, data = iris, save_all_pars = TRUE)
+"brms_4bf_3"
 
-#' brm_4bf_4
+#' brms_4bf_4
 #'
 #' Example of class brmsfit with \code{save_all_pars = TRUE}.
-"brm_4bf_4"
+#' @examples
+#' brms_4bf_4 <- brm(Sepal.Length ~ Species + Petal.Length, data = iris, save_all_pars = TRUE)
+"brms_4bf_4"
 
-#' brm_4bf_5
+#' brms_4bf_5
 #'
 #' Example of class brmsfit with \code{save_all_pars = TRUE}.
-"brm_4bf_5"
+#' @examples
+#' brms_4bf_5 <- brm(Sepal.Length ~ Species * Petal.Length, data = iris, save_all_pars = TRUE)
+"brms_4bf_5"
