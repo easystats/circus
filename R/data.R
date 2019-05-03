@@ -766,6 +766,16 @@
 #' }
 "stanreg_glm_5"
 
+#' stanreg_glm_6
+#'
+#' Model of class stanreg
+#' @examples
+#' \dontrun{
+#' set.seed(123)
+#' rstanarm::stan_glm(Sepal.Width ~ Species * Petal.Length, data = iris)
+#' }
+"stanreg_glm_6"
+
 
 
 
@@ -880,6 +890,20 @@
 #' )
 #' }
 "stanreg_merMod_4"
+
+#' stanreg_merMod_5
+#'
+#' Model of class stanreg
+#' @examples
+#' \dontrun{
+#' stan_glmer(
+#'   cbind(incidence, size - incidence) ~ size + period + (1 | herd),
+#'   data = lme4::cbpp, family = binomial, QR = TRUE,
+#'   chains = 2, cores = 1, seed = 12345, iter = 500, refresh = 0
+#' )
+#' }
+"stanreg_merMod_5"
+
 
 
 

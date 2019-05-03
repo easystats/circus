@@ -301,6 +301,7 @@ stanreg_glm_2 <- rstanarm::stan_glm(vs ~ wt + cyl, data = mtcars, family="binomi
 stanreg_glm_3 <- rstanarm::stan_glm(vs ~ wt * cyl, data = mtcars, family="binomial")
 stanreg_glm_4 <- rstanarm::stan_glm(vs ~ wt + cyl, data = mtcars, family=binomial(link="probit"))
 stanreg_glm_5 <- rstanarm::stan_glm(count ~ wt + cyl, data = mtcars, family="poisson")
+stanreg_glm_6 <- rstanarm::stan_glm(Sepal.Width ~ Species * Petal.Length, data = iris)
 
 stanreg_lmerMod_0 <- rstanarm::stan_lmer(wt ~ 1 + (1|gear), data = mtcars)
 stanreg_lmerMod_1 <- rstanarm::stan_lmer(wt ~ cyl + (1|gear), data = mtcars)
@@ -314,6 +315,11 @@ stanreg_merMod_1 <- rstanarm::stan_glmer(vs ~ cyl + (1|gear), data = mtcars, fam
 stanreg_merMod_2 <- rstanarm::stan_glmer(vs ~ drat + cyl + (1|gear), data = mtcars, family="binomial")
 stanreg_merMod_3 <- rstanarm::stan_glmer(vs ~ drat * cyl + (1|gear), data = mtcars, family="binomial")
 stanreg_merMod_4 <- rstanarm::stan_glmer(vs ~ cyl + (1|gear), data = mtcars, family=binomial(link="probit"))
+stanreg_merMod_5 <- stan_glmer(
+  cbind(incidence, size - incidence) ~ size + period + (1 | herd),
+  data = lme4::cbpp, family = binomial, QR = TRUE,
+  chains = 2, cores = 1, seed = 12345, iter = 500, refresh = 0
+)
 
 
 stanreg_meanfield_lm_1 <- update(stanreg_lm_1, algorithm="meanfield")
@@ -423,7 +429,7 @@ brms_zi_3 <- brm(
 
 ### Other packages
 
-```{r}
+```{r, eval=FALSE, warning=FALSE, message=FALSE, results="hide"}
 library(betareg)
 data("GasolineYield")
 data("FoodExpenditure")
@@ -539,6 +545,7 @@ usethis::use_data(htest_1,
                   stanreg_glm_3,
                   stanreg_glm_4,
                   stanreg_glm_5,
+                  stanreg_glm_6,
                   stanreg_lmerMod_0,
                   stanreg_lmerMod_1,
                   stanreg_lmerMod_2,
@@ -550,6 +557,7 @@ usethis::use_data(htest_1,
                   stanreg_merMod_2,
                   stanreg_merMod_3,
                   stanreg_merMod_4,
+                  stanreg_merMod_5,
                   stanreg_meanfield_lm_1,
                   stanreg_fullrank_lm_1,
                   
@@ -558,19 +566,26 @@ usethis::use_data(htest_1,
                   stanreg_gamm4_3,
                   
                   brms_1,
+                  brms_2,
                   
                   brms_mixed_1,
                   brms_mixed_2,
                   brms_mixed_3,
                   brms_mixed_4,
                   brms_mixed_5,
+                  brms_mixed_6,
                   
                   brms_mv_1,
                   brms_mv_2,
                   brms_mv_3,
+                  brms_mv_4,
+                  brms_mv_5,
                   
                   brms_zi_1,
                   brms_zi_2,
+                  brms_zi_3,
+                  
+                  brms_ordinal_1,
                   
                   betareg_1,
                   betareg_2,
