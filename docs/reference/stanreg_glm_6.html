@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>anova_1 — anova_1 • circus</title>
+<title>stanreg_glm_6 — stanreg_glm_6 • circus</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="anova_1 — anova_1" />
+<meta property="og:title" content="stanreg_glm_6 — stanreg_glm_6" />
 
-<meta property="og:description" content="Model of class anova" />
+<meta property="og:description" content="Model of class stanreg" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -109,33 +109,29 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>anova_1</h1>
+    <h1>stanreg_glm_6</h1>
     
-    <div class="hidden name"><code>anova_1.Rd</code></div>
+    <div class="hidden name"><code>stanreg_glm_6.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Model of class anova</p>
+    <p>Model of class stanreg</p>
     
     </div>
 
-    <pre class="usage"><span class='no'>anova_1</span></pre>
+    <pre class="usage"><span class='no'>stanreg_glm_6</span></pre>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>An object of class <code>anova</code> (inherits from <code>data.frame</code>) with 2 rows and 5 columns.</p>
+    <p>An object of class <code>stanreg</code> (inherits from <code>glm</code>, <code>lm</code>) of length 27.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/anova'>anova</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/lm'>lm</a></span>(<span class='no'>Sepal.Width</span> ~ <span class='no'>Species</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>))</div><div class='output co'>#&gt; Analysis of Variance Table
-#&gt; 
-#&gt; Response: Sepal.Width
-#&gt;            Df Sum Sq Mean Sq F value    Pr(&gt;F)    
-#&gt; Species     2 11.345  5.6725   49.16 &lt; 2.2e-16 ***
-#&gt; Residuals 147 16.962  0.1154                      
-#&gt; ---
-#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</div></pre>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>123</span>)
+<span class='kw pkg'>rstanarm</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/rstanarm/topics/stan_glm'>stan_glm</a></span>(<span class='no'>Sepal.Width</span> ~ <span class='no'>Species</span> * <span class='no'>Petal.Length</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
