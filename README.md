@@ -58,6 +58,11 @@ In order to add models, do the following:
 7.  Upload following files to github: `/data/<yourmodel.rda>`,
     `README.Rmd`, `README.md`, `data.R` and `data.rd`.
 
+**Note** When you build or install the package, it is recommended to do
+so with following build-options: `R CMD INSTALL --no-multiarch
+--with-keep.source --no-libs --no-data`. Furthermore, when building the
+documentation, make sure to **not** build the vignettes.
+
 ## List of Models
 
 ### Base
