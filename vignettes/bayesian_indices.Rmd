@@ -444,12 +444,12 @@ for(outcome_type in outcome_types){
       }
     }
   }
-  write.csv(all_data, "bayesSim_study2.csv", row.names = FALSE)
+  write.csv(all_data, "bayesSim_study3.csv", row.names = FALSE)
 }
 ```
 
 ```{r message=FALSE, warning=FALSE, include=FALSE, results='hide'}
-# all_data <- read.csv("https://raw.github.com/easystats/circus/master/data/bayesSim_study2.csv")
+# all_data <- read.csv("https://raw.github.com/easystats/circus/master/data/bayesSim_study3.csv")
 ```
 
 
