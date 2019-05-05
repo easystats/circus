@@ -211,13 +211,13 @@ for(outcome_type in outcome_types){
           
           fail <- TRUE
           while(fail==TRUE){
-            tryCatch({
+            params <- tryCatch({
               params <- generate_and_process(true_effect=true_effect, outcome_type=outcome_type, sample_size=sample_size, error=error)
               fail <- FALSE
             },error=function(e){
             },warning=function(w){
               cat("*")
-            },finally={params})
+            })
           }
    
           # Save data
@@ -405,8 +405,8 @@ effects <- c(0, 1)
 # iterations <- seq(100, 4000, by=100)
 # warmups <- seq(1/10, 9/10, by=1/10)
 chains <- seq(1, 2)
-iterations <- seq(100, 500, by=100)
-warmups <- seq(4/10, 6/10, by=1/10)
+iterations <- seq(100, 1000, by=100)
+warmups <- seq(3/10, 7/10, by=1/10)
 # Run --------------------------------------------------------------------------
 # Initialize data
 all_data <- data.frame()
@@ -423,13 +423,14 @@ for(outcome_type in outcome_types){
             
             fail <- TRUE
             while(fail==TRUE){
-              tryCatch({
+              params <- tryCatch({
                 params <- generate_and_process(true_effect=true_effect, outcome_type=outcome_type, sample_size=50, error=1, type="bayesian", iter=n_iterations, chains=n_chains, warmup=warmup)
                 fail <- FALSE
+                params
               },error=function(e){
               },warning=function(w){
                 cat("*")
-              },finally={params})
+              })
             }
      
             # Save data
