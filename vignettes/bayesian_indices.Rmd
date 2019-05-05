@@ -100,8 +100,8 @@ compute_model <- function(data, outcome_type="linear", type=c("frequentist", "ba
     params$MAP <- map
     
     params$MAP_density <- attributes(map)$MAP_density
-    params$p_direction <- p_direction(posterior)
-    params$p_direction_AUC <- p_direction(posterior, raw=FALSE)
+    params$p_direction_simple <- p_direction(posterior, method="simple")
+    params$p_direction_AUC <- p_direction(posterior, method="AUC")
     params$p_MAP <- p_map(posterior)
     
     range <- rope_range(model_bayes)
@@ -115,13 +115,18 @@ compute_model <- function(data, outcome_type="linear", type=c("frequentist", "ba
         NA
     })
     # Bayesfactor
-    params$bayesfactor_0707 <- as.numeric(bayesfactor_savagedickey(posterior, 
-                                      prior = rcauchy_perfect(length(posterior), location=0, scale=0.707), 
+    params$bayesfactor_cauchy07 <- as.numeric(bayesfactor_savagedickey(posterior, 
+                                      prior = distribution_cauchy(length(posterior), location=0, scale=0.707), 
                                       hypothesis = 0))
     
-    params$bayesfactor_1 <- as.numeric(bayesfactor_savagedickey(posterior, 
-                                      prior = rcauchy_perfect(length(posterior), location=0, scale=1), 
+    params$bayesfactor_cauchy1 <- as.numeric(bayesfactor_savagedickey(posterior, 
+                                      prior = distribution_cauchy(length(posterior), location=0, scale=1), 
                                       hypothesis = 0))
+    
+    priors <- insight::get_priors(model_bayes)[2, ]
+    params$bayesfactor_normal <- as.numeric(bayesfactor_savagedickey(posterior, 
+                                  prior = distribution_normal(length(posterior), 0, priors$adjusted_scale), 
+                                  hypothesis = 0))
     
     # CI
     ci_95 <- hdi(posterior, ci=0.95)
@@ -181,7 +186,7 @@ We generated a dataset for each combination of these characteristics, resulting 
 ## Generation
 
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, results='hide'}
+```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
 options(mc.cores = parallel::detectCores())
 set.seed(333)
 
@@ -389,7 +394,7 @@ We generated 3 datasets for each combination of these characteristics, resulting
 ## Generation
 
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, results='hide'}
+```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
 # options(mc.cores = parallel::detectCores())
 set.seed(333)
 
