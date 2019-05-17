@@ -306,6 +306,7 @@ library(dplyr)
 data(sleepstudy)
 data(mtcars)
 data(epilepsy)
+data(jobs, package = "mediation")
 
 set.seed(123)
 epilepsy$visit <- as.numeric(epilepsy$visit)
@@ -374,6 +375,9 @@ bf2 <- bf(count2 ~ child + livebait + (1 | persons), zi ~ child +
     (1 | persons))
 brms_mv_5 <- brm(bf1 + bf2, data = zinb, family = zero_inflated_poisson(), 
     chains = 1, iter = 500)
+f1 <- bf(job_seek ~ treat + econ_hard + sex + age)
+f2 <- bf(depress2 ~ treat + job_seek + econ_hard + sex + age)
+brms_mv_5 <- brm(f1 + f2 + set_rescor(FALSE), data = jobs)
 
 brms_zi_1 <- brm(bf(count ~ persons + child + camper, zi ~ child + 
     camper), data = zinb, family = zero_inflated_poisson())
@@ -545,6 +549,7 @@ usethis::use_data(htest_1,
                   brms_mv_3,
                   brms_mv_4,
                   brms_mv_5,
+                  brms_mv_6,
                   
                   brms_zi_1,
                   brms_zi_2,

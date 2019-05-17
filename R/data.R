@@ -1165,6 +1165,20 @@
 "brms_mv_5"
 
 
+#' brms_mv_6
+#'
+#' Model of class brmsfit
+#' @examples
+#' \dontrun{
+#' data(jobs, package = "mediation")
+#' f1 <- bf(job_seek ~ treat + econ_hard + sex + age)
+#' f2 <- bf(depress2 ~ treat + job_seek + econ_hard + sex + age)
+#' brm(f1 + f2 + set_rescor(FALSE), data = jobs)
+#' }
+"brms_mv_6"
+
+
+
 
 #' brms_zi_1
 #'
