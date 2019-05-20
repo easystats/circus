@@ -131,13 +131,13 @@
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='co'># data prepararion: see "glmmTMB_1"</span>
 
-<span class='kw pkg'>GLMMadaptive</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/GLMMadaptive/topics/mixed_model'>mixed_model</a></span>(
+<span class='kw pkg'>GLMMadaptive</span><span class='kw ns'>::</span><span class='fu'>mixed_model</span>(
   <span class='no'>count</span> ~ <span class='no'>child</span> + <span class='no'>camper</span>,
   <span class='kw'>random</span> <span class='kw'>=</span> ~ <span class='fl'>1</span> <span class='kw'>|</span> <span class='no'>persons</span>,
   <span class='kw'>zi_fixed</span> <span class='kw'>=</span> ~ <span class='no'>child</span> + <span class='no'>livebait</span>,
   <span class='kw'>zi_random</span> <span class='kw'>=</span> ~ <span class='fl'>1</span> <span class='kw'>|</span> <span class='no'>persons</span>,
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>fish</span>,
-  <span class='kw'>family</span> <span class='kw'>=</span> <span class='kw pkg'>GLMMadaptive</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/GLMMadaptive/topics/extra_fams'>zi.poisson</a></span>()
+  <span class='kw'>family</span> <span class='kw'>=</span> <span class='kw pkg'>GLMMadaptive</span><span class='kw ns'>::</span><span class='fu'>zi.poisson</span>()
 )
 <span class='co'># }</span></pre>
   </div>

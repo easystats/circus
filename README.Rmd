@@ -50,8 +50,6 @@ Run the following:
 ```{r eval=FALSE, message=FALSE, warning=FALSE}
 install.packages("devtools")
 devtools::install_github("easystats/circus")
-```
-```{r message=FALSE, warning=FALSE}
 library("circus")
 ```
 

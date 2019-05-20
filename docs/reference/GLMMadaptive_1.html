@@ -131,7 +131,7 @@
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>cbpp</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"lme4"</span>)
 
-<span class='kw pkg'>GLMMadaptive</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/GLMMadaptive/topics/mixed_model'>mixed_model</a></span>(
+<span class='kw pkg'>GLMMadaptive</span><span class='kw ns'>::</span><span class='fu'>mixed_model</span>(
   <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cbind'>cbind</a></span>(<span class='no'>incidence</span>, <span class='no'>size</span> - <span class='no'>incidence</span>) ~ <span class='no'>period</span>,
   <span class='kw'>random</span> <span class='kw'>=</span> ~ <span class='fl'>1</span> <span class='kw'>|</span> <span class='no'>herd</span>,
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>cbpp</span>,

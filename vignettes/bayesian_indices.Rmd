@@ -24,7 +24,7 @@ This code was used by the articles presented in [bayestestR](https://easystats.g
 
 # Functions
 
-
+## Packages
 ```{r eval=TRUE, message=FALSE, warning=FALSE, results='hide'}
 library(tidyverse)
 library(logspline)
@@ -32,13 +32,11 @@ library(bayestestR)
 library(parameters)
 library(see)
 library(rstanarm)
+```
 
 
-
-
-
-# Convenience functions --------------------------------------------------------
-# Generate data
+## Data generation
+```{r eval=TRUE, message=FALSE, warning=FALSE, results='hide'}
 generate_data <- function(true_effect=0, outcome_type="linear", sample_size=50, error=0){
   # Generate data
   data <- data.frame(x = sort(rnorm(sample_size, 0, 1)))
@@ -61,10 +59,10 @@ generate_data <- function(true_effect=0, outcome_type="linear", sample_size=50, 
   return(data)
 
 }
+```
 
-
-
-# Compute model
+## Model fitting
+```{r eval=TRUE, message=FALSE, warning=FALSE, results='hide'}
 compute_models <- function(data, outcome_type="linear", chains=4, iter=2000, warmup = 1/2){
 
     if(outcome_type == "linear"){
@@ -85,12 +83,12 @@ compute_models <- function(data, outcome_type="linear", chains=4, iter=2000, war
       )
     )
 }
+```
 
 
+## Features extraction
 
-
-
-# Get features
+```{r eval=TRUE, message=FALSE, warning=FALSE, results='hide'}
 compute_indices <- function(models){
 
   params <- parameters::model_parameters(models$frequentist)[2, ] %>%
@@ -166,10 +164,11 @@ compute_indices <- function(models){
   
   params
 }
+```
 
+## Wrapper
 
-
-# Combine
+```{r eval=TRUE, message=FALSE, warning=FALSE, results='hide'}
 generate_and_process <- function(true_effect=0, outcome_type="linear", sample_size=50, error=0, chains=4, iter=2000, warmup = 1/2, modulate_priors = FALSE){
   
   data <- generate_data(true_effect=true_effect, outcome_type=outcome_type, sample_size=sample_size, error=error)
