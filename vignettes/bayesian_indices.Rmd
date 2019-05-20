@@ -65,26 +65,25 @@ generate_data <- function(true_effect=0, outcome_type="linear", sample_size=50, 
 
 
 # Compute model
-compute_model <- function(data, outcome_type="linear", type="frequentist", chains=4, iter=2000, warmup = 1/2){
+compute_models <- function(data, outcome_type="linear", chains=4, iter=2000, warmup = 1/2){
 
-  if("frequentist" %in% c(type)){
     if(outcome_type == "linear"){
-      model <- lm(y ~ x, data=data)
+      model_frequentist <- lm(y ~ x, data = data)
+      temp <- capture.output(
+        model_bayesian <- stan_glm(y ~ x, data = data, prior = normal(0, 1), chains = chains, iter = iter, warmup = round(warmup * iter)))
+      
     } else{
-      model <- glm(y ~ x, data=data, family="binomial")
+      model_frequentist <- glm(y ~ x, data = data, family = "binomial")
+      temp <- capture.output(
+        model_bayesian <- stan_glm(y ~ x, data = data, family = "binomial", prior = normal(0, 1), chains = chains, iter = iter, warmup = round(warmup * iter)))
     }
-  } 
 
-  if("bayesian" %in% c(type)){
-    if(outcome_type == "linear"){
-      temp <- capture.output(
-        model <- stan_glm(y ~ x, data=data, prior=normal(0, 1), chains=chains, iter=iter, warmup = round(warmup * iter)))
-    } else{
-      temp <- capture.output(
-        model <- stan_glm(y ~ x, data=data, family="binomial", prior=normal(0, 1), chains=chains, iter=iter, warmup = round(warmup * iter)))
-    }
-  }
-  return(model)
+  return(
+    list(
+      frequentist = model_frequentist, 
+      bayesian = model_bayesian
+      )
+    )
 }
 
 
@@ -92,79 +91,73 @@ compute_model <- function(data, outcome_type="linear", type="frequentist", chain
 
 
 # Get features
-compute_indices <- function(data, outcome_type="linear", type=c("frequentist", "bayesian"), chains=4, iter=2000, warmup = 1/2){
+compute_indices <- function(models){
 
-  if("frequentist" %in% c(type)){
-    model_freq <- compute_model(data, outcome_type=outcome_type, type="frequentist", chains=chains, iter=iter, warmup = warmup)
-    params <- parameters::model_parameters(model_freq)[2, ] %>%
-        select(beta, SE, CI_low_95_freq = CI_low, CI_high_95_freq = CI_high, p_value = p)
-  } else{
-    params <- data.frame(beta = NA)
-  }
+  params <- parameters::model_parameters(models$frequentist)[2, ] %>%
+      dplyr::select(beta, SE, CI_low_95_freq = CI_low, CI_high_95_freq = CI_high, p_value = p)
+  
 
-  if("bayesian" %in% c(type)){
-    model_bayes <- compute_model(data, outcome_type=outcome_type, type="bayesian", chains=chains, iter=iter, warmup = warmup)
-    posterior <- as.data.frame(model_bayes)$x
-    
-    params$chains <- chains
-    params$iterations <- iter
-    params$warmup <- round(warmup * iter)
-    params$samples <- nrow(posterior)
-    
-    params$Median <- median(posterior)
-    params$Mean <- mean(posterior)
-    map <- map_estimate(posterior)
-    params$MAP <- map
-    
-    params$MAP_density <- attributes(map)$MAP_density
-    params$p_direction <- p_direction(posterior, method="direct")
-    params$p_direction_AUC <- p_direction(posterior, method="logspline")
-    params$p_MAP <- p_map(posterior)
-    
-    range <- rope_range(model_bayes)
-    params$ROPE_range <- range[[2]]
-    params$ROPE_90 <- rope(posterior, range = range, ci=0.90)$ROPE_Percentage
-    params$ROPE_95 <- rope(posterior, range = range, ci=0.95)$ROPE_Percentage
-    params$ROPE_full <- rope(posterior, range = range, ci=1)$ROPE_Percentage
-    params$p_ROPE <- tryCatch({
-    p_rope(posterior, range = range)
-    }, error = function(error_condition) {
-        NA
-    })
-    # Bayesfactor
-    params$BF_cauchy07 <- as.numeric(bayesfactor_savagedickey(posterior,
-                                      prior = distribution_cauchy(length(posterior),
-                                                                  location=0,
-                                                                  scale=0.707),
-                                      hypothesis = 0,
-                                      verbose=FALSE))
+  posterior <- as.data.frame(models$bayesian)$x
+  
+  algorithm <- insight::find_algorithm(models$bayesian)
+  params$chains <- algorithm$chains
+  params$iterations <- algorithm$iterations
+  params$warmup <- algorithm$warmup / params$iterations
+  params$samples <- nrow(posterior)
+  
+  params$Median <- median(posterior)
+  params$Mean <- mean(posterior)
+  map <- map_estimate(posterior)
+  params$MAP <- map
+  
+  params$MAP_density <- attributes(map)$MAP_density
+  params$p_direction <- p_direction(posterior, method="direct")
+  params$p_direction_AUC <- p_direction(posterior, method="logspline")
+  params$p_MAP <- p_map(posterior)
+  
+  range <- rope_range(models$bayesian)
+  params$ROPE_range <- range[[2]]
+  params$ROPE_90 <- rope(posterior, range = range, ci=0.90)$ROPE_Percentage
+  params$ROPE_95 <- rope(posterior, range = range, ci=0.95)$ROPE_Percentage
+  params$ROPE_full <- rope(posterior, range = range, ci=1)$ROPE_Percentage
+  params$p_ROPE <- tryCatch({
+  p_rope(posterior, range = range)
+  }, error = function(error_condition) {
+      NA
+  })
+  # Bayesfactor
+  params$BF_cauchy07 <- as.numeric(bayesfactor_savagedickey(posterior,
+                                    prior = distribution_cauchy(length(posterior),
+                                                                location=0,
+                                                                scale=0.707),
+                                    hypothesis = 0,
+                                    verbose=FALSE))
 
-    prior_used <- bayestestR::describe_prior(model_bayes)[2, ]
-    params$BF <- as.numeric(bayesfactor_savagedickey(posterior,
-                                      prior = distribution_normal(length(posterior),
-                                                                  mean=prior_used$Prior_Location,
-                                                                  sd=prior_used$Prior_Scale),
-                                      hypothesis = 0,
-                                      verbose=FALSE))
+  prior_used <- bayestestR::describe_prior(models$bayesian)[2, ]
+  params$BF <- as.numeric(bayesfactor_savagedickey(posterior,
+                                    prior = distribution_normal(length(posterior),
+                                                                mean=prior_used$Prior_Location,
+                                                                sd=prior_used$Prior_Scale),
+                                    hypothesis = 0,
+                                    verbose=FALSE))
+  
+  # CI
+  ci_95 <- hdi(posterior, ci=0.95)
+  params$CI_low_95_hdi <- ci_95$CI_low
+  params$CI_high_95_hdi <- ci_95$CI_high
+  
+  ci_90 <- hdi(posterior, ci=0.90)
+  params$CI_low_90_hdi <- ci_90$CI_low
+  params$CI_high_90_hdi <- ci_90$CI_high
+  
+  ci_95 <- ci(posterior, ci=0.95)
+  params$CI_low_95_quantile <- ci_95$CI_low
+  params$CI_high_95_quantile <- ci_95$CI_high
+  
+  ci_90 <- ci(posterior, ci=0.90)
+  params$CI_low_90_quantile <- ci_90$CI_low
+  params$CI_high_90_quantile <- ci_90$CI_high
     
-    # CI
-    ci_95 <- hdi(posterior, ci=0.95)
-    params$CI_low_95_hdi <- ci_95$CI_low
-    params$CI_high_95_hdi <- ci_95$CI_high
-    
-    ci_90 <- hdi(posterior, ci=0.90)
-    params$CI_low_90_hdi <- ci_90$CI_low
-    params$CI_high_90_hdi <- ci_90$CI_high
-    
-    ci_95 <- ci(posterior, ci=0.95)
-    params$CI_low_95_quantile <- ci_95$CI_low
-    params$CI_high_95_quantile <- ci_95$CI_high
-    
-    ci_90 <- ci(posterior, ci=0.90)
-    params$CI_low_90_quantile <- ci_90$CI_low
-    params$CI_high_90_quantile <- ci_90$CI_high
-    
-  }
   
   params
 }
@@ -172,10 +165,11 @@ compute_indices <- function(data, outcome_type="linear", type=c("frequentist", "
 
 
 # Combine
-generate_and_process <- function(true_effect, outcome_type, sample_size, error, type=c("frequentist", "bayesian"), chains=4, iter=2000, warmup = 1/2){
+generate_and_process <- function(true_effect, outcome_type, sample_size, error, chains=4, iter=2000, warmup = 1/2){
   
   data <- generate_data(true_effect=true_effect, outcome_type=outcome_type, sample_size=sample_size, error=error)
-  params <- compute_indices(data, outcome_type = outcome_type, type = type, chains=chains, iter=iter, warmup = warmup)
+  models <- compute_models(data, outcome_type=outcome_type, chains=chains, iter=iter, warmup = warmup)
+  params <- compute_indices(models)
   
   rownames(params) <- NULL
   params
@@ -208,17 +202,14 @@ We generated a dataset for each combination of these characteristics, resulting 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
 options(mc.cores = parallel::detectCores())
 set.seed(333)
-
 # Parameters -------------------------------------------------------------------
 outcome_types <- c("binary", "linear")
 effects <- c(0, 1)
 sample_sizes <- seq(20, 100, length.out = 3)
 errors <- seq(0.33, 6.66, length.out = 2)
-
 # Run --------------------------------------------------------------------------
 # Initialize data
 all_data <- data.frame()
-
 # Start loop
 for(outcome_type in outcome_types){
   print(outcome_type)
@@ -238,7 +229,6 @@ for(outcome_type in outcome_types){
               cat("*")
             })
           }
-
           # Save data
           params <- mutate(params,
                              true_effect=true_effect,
@@ -251,7 +241,7 @@ for(outcome_type in outcome_types){
       }
     }
   }
-  write.csv(all_data, "bayesSim_study1.csv", row.names = FALSE)
+  # write.csv(all_data, "bayesSim_study1.csv", row.names = FALSE)
 }
 ```
 
@@ -407,14 +397,12 @@ We generated 3 datasets for each combination of these characteristics, resulting
 ```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
 # options(mc.cores = parallel::detectCores())
 set.seed(333)
-
 # Parameters -------------------------------------------------------------------
 outcome_types <- c("binary", "linear")
 effects <- c(0, 1)
 # chains <- c(4)
 # draws <- seq(50, 5000, by=50)
 # warmups <- seq(1/10, 9/10, by=1/10)
-
 # Short version
 chains <- c(4)
 draws <- seq(100, 1000, by=100)
@@ -422,7 +410,6 @@ warmups <- seq(3/10, 7/10, by=1/10)
 # Run --------------------------------------------------------------------------
 # Initialize data
 all_data <- data.frame()
-
 # Start loop
 for(outcome_type in outcome_types){
   print(outcome_type)
@@ -472,5 +459,11 @@ The simulation aimed at modulating the following characteristics:
 - **Model type**: linear or logistic.
 - **prior direction**: either "congruent" (1), "uninformative" (0) or "opposite" (-1).
 - **prior precision**: prior SD from 0.5 to 1.5.
+
+# Session
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, results='hide'}
+sessionInfo()
+```
 
 # References
