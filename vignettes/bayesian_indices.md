@@ -1,31 +1,27 @@
----
-title: "Systematic Simulation of Bayesian Models"
-output: 
-  github_document:
-    toc: true
-    fig_width: 10.08
-    fig_height: 6
-  rmarkdown::html_vignette:
-    toc: true
-    fig_width: 10.08
-    fig_height: 6
-tags: [r, bayesian, posterior, test]
-vignette: >
-  \usepackage[utf8]{inputenc}
-editor_options: 
-  chunk_output_type: console
----
+Systematic Simulation of Bayesian Models
+================
 
+  - [Functions](#functions)
+  - [Study 1 - Sample Size and Error](#study-1---sample-size-and-error)
+      - [Method](#method)
+      - [Generation](#generation)
+      - [Visualise data](#visualise-data)
+          - [Example data](#example-data)
+          - [Observed Coefficients](#observed-coefficients)
+  - [Study 2 - Priors Specification](#study-2---priors-specification)
+  - [Study 3 - Sampling
+    Characteristics](#study-3---sampling-characteristics)
+      - [Method](#method-1)
+      - [Generation](#generation-1)
+  - [References](#references)
 
-
-This code was used by the articles presented in [bayestestR](https://easystats.github.io/bayestestR/) to simulate statistical models.
-
-
+This code was used by the articles presented in
+[bayestestR](https://easystats.github.io/bayestestR/) to simulate
+statistical models.
 
 # Functions
 
-
-```{r eval=TRUE, message=FALSE, warning=FALSE, results='hide'}
+``` r
 library(tidyverse)
 library(logspline)
 library(bayestestR)
@@ -65,37 +61,14 @@ generate_data <- function(true_effect=0, outcome_type="linear", sample_size=50, 
 
 
 # Compute model
-compute_model <- function(data, outcome_type="linear", type="frequentist", chains=4, iter=2000, warmup = 1/2){
+compute_model <- function(data, outcome_type="linear", type=c("frequentist", "bayesian"), chains=4, iter=2000, warmup = 1/2){
 
   if("frequentist" %in% c(type)){
     if(outcome_type == "linear"){
-      model <- lm(y ~ x, data=data)
+      model_freq <- lm(y ~ x, data=data)
     } else{
-      model <- glm(y ~ x, data=data, family="binomial")
+      model_freq <- glm(y ~ x, data=data, family="binomial")
     }
-  } 
-
-  if("bayesian" %in% c(type)){
-    if(outcome_type == "linear"){
-      temp <- capture.output(
-        model <- stan_glm(y ~ x, data=data, prior=normal(0, 1), chains=chains, iter=iter, warmup = round(warmup * iter)))
-    } else{
-      temp <- capture.output(
-        model <- stan_glm(y ~ x, data=data, family="binomial", prior=normal(0, 1), chains=chains, iter=iter, warmup = round(warmup * iter)))
-    }
-  }
-  return(model)
-}
-
-
-
-
-
-# Get features
-compute_indices <- function(data, outcome_type="linear", type=c("frequentist", "bayesian"), chains=4, iter=2000, warmup = 1/2){
-
-  if("frequentist" %in% c(type)){
-    model_freq <- compute_model(data, outcome_type=outcome_type, type="frequentist", chains=chains, iter=iter, warmup = warmup)
     params <- parameters::model_parameters(model_freq)[2, ] %>%
         select(beta, SE, CI_low_95_freq = CI_low, CI_high_95_freq = CI_high, p_value = p)
   } else{
@@ -103,7 +76,13 @@ compute_indices <- function(data, outcome_type="linear", type=c("frequentist", "
   }
 
   if("bayesian" %in% c(type)){
-    model_bayes <- compute_model(data, outcome_type=outcome_type, type="bayesian", chains=chains, iter=iter, warmup = warmup)
+    if(outcome_type == "linear"){
+      temp <- capture.output(
+        model_bayes <- stan_glm(y ~ x, data=data, prior=normal(0, 1), chains=chains, iter=iter, warmup = round(warmup * iter)))
+    } else{
+      temp <- capture.output(
+        model_bayes <- stan_glm(y ~ x, data=data, family="binomial", prior=normal(0, 1), chains=chains, iter=iter, warmup = round(warmup * iter)))
+    }
     posterior <- as.data.frame(model_bayes)$x
     
     params$chains <- chains
@@ -175,37 +154,33 @@ compute_indices <- function(data, outcome_type="linear", type=c("frequentist", "
 generate_and_process <- function(true_effect, outcome_type, sample_size, error, type=c("frequentist", "bayesian"), chains=4, iter=2000, warmup = 1/2){
   
   data <- generate_data(true_effect=true_effect, outcome_type=outcome_type, sample_size=sample_size, error=error)
-  params <- compute_indices(data, outcome_type = outcome_type, type = type, chains=chains, iter=iter, warmup = warmup)
+  params <- compute_model(data, outcome_type = outcome_type, type = type, chains=chains, iter=iter, warmup = warmup)
   
   rownames(params) <- NULL
   params
 }
 ```
 
-
-
-
 # Study 1 - Sample Size and Error
-
 
 ## Method
 
-
-
 The simulation aimed at modulating the following characteristics:
 
-- **Model type**: linear or logistic.
-- **"True" effect** (original regression coefficient from which data is drawn): Can be 1 or 0 (no effect).
-- **Sample size**: From 20 to 100 by steps of 10.
-- **Error**: Gaussian noise applied to the predictor with SD uniformly spread between 0.33 and 6.66 (with 1000 different values).
+  - **Model type**: linear or logistic.
+  - **“True” effect** (original regression coefficient from which data
+    is drawn): Can be 1 or 0 (no effect).
+  - **Sample size**: From 20 to 100 by steps of 10.
+  - **Error**: Gaussian noise applied to the predictor with SD uniformly
+    spread between 0.33 and 6.66 (with 1000 different values).
 
-We generated a dataset for each combination of these characteristics, resulting in a total of `2 * 2 * 9 * 1000 = 36000` Bayesian and frequentist models.
-
+We generated a dataset for each combination of these characteristics,
+resulting in a total of `2 * 2 * 9 * 1000 = 36000` Bayesian and
+frequentist models.
 
 ## Generation
 
-
-```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
+``` r
 options(mc.cores = parallel::detectCores())
 set.seed(333)
 
@@ -251,19 +226,15 @@ for(outcome_type in outcome_types){
       }
     }
   }
-  write.csv(all_data, "bayesSim_study1.csv", row.names = FALSE)
+  # write.csv(all_data, "bayesSim_study1.csv", row.names = FALSE)
 }
-```
-
-```{r message=FALSE, warning=FALSE, include=FALSE, results='hide'}
-all_data <- read.csv("https://raw.github.com/easystats/circus/master/data/bayesSim_study1.csv")
 ```
 
 ## Visualise data
 
 ### Example data
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.height=20, fig.width=16}
+``` r
 effects <- c(0, 1)
 sample_sizes <- c(240)
 outcome_types <- c("binary", "linear")
@@ -341,9 +312,11 @@ plots(linear_effect, linear_noeffect,
              "Binary - Effect", "Binary - No effect"))
 ```
 
+![](bayesian_indices_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+
 ### Observed Coefficients
 
-```{r eval=TRUE, message=FALSE, warning=FALSE}
+``` r
 all_data %>%
   mutate(sample_size = as.factor(sample_size),
          beta = as.numeric(beta),
@@ -355,7 +328,11 @@ all_data %>%
   xlab("Specified Coef") +
   ylab("Actual Coef") +
   facet_wrap(~outcome_type, scale="free_y")
+```
 
+![](bayesian_indices_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+``` r
 all_data %>% 
   mutate(sample_size = as.factor(sample_size),
          beta = as.numeric(beta),
@@ -369,7 +346,11 @@ all_data %>%
   xlab("Error") +
   ylab("Actual") +
   facet_wrap(~outcome_type*true_effect, scale="free")
+```
 
+![](bayesian_indices_files/figure-gfm/unnamed-chunk-5-2.png)<!-- -->
+
+``` r
 all_data %>% 
   mutate(sample_size = as.factor(sample_size),
          true_effect = as.factor(true_effect),
@@ -382,29 +363,38 @@ all_data %>%
   facet_wrap(~true_effect*outcome_type, scale="free")
 ```
 
+![](bayesian_indices_files/figure-gfm/unnamed-chunk-5-3.png)<!-- -->
 
-
-
-# Study 2 - Sampling Characteristics
-
-
-## Method
-
+# Study 2 - Priors Specification
 
 The simulation aimed at modulating the following characteristics:
 
-- **Model type**: linear or logistic.
-- **"True" effect** (original regression coefficient from which data is drawn): Can be 1 or 0 (no effect).
-- **draws**: from 10 to 5000 by step of 5 (1000 iterations).
-- **warmup**: Ratio of warmup iterations. from 1/10 to 9/10 by step of 0.1 (9 iterations).
+  - **Model type**: linear or logistic.
+    <!-- - **"True" effect** (original regression coefficient from which data is drawn): Can be 1 or 0 (no effect). -->
+  - **prior direction**: either “congruent” (1), “uninformative” (0) or
+    “opposite” (-1).
+  - **prior precision**: prior SD from 0.5 to 1.5.
 
-We generated 3 datasets for each combination of these characteristics, resulting in a total of `2 * 2 * 1000 * 9 = 34560` Bayesian and frequentist models.
+# Study 3 - Sampling Characteristics
 
+## Method
+
+The simulation aimed at modulating the following characteristics:
+
+  - **Model type**: linear or logistic.
+  - **“True” effect** (original regression coefficient from which data
+    is drawn): Can be 1 or 0 (no effect).
+  - **iterations**: from 10 to 5000 by step of 5 (1000 iterations).
+  - **warmup**: Ratio of warmup iterations. from 1/10 to 9/10 by step of
+    0.1 (9 iterations).
+
+We generated 3 datasets for each combination of these characteristics,
+resulting in a total of `2 * 2 * 1000 * 9 = 34560` Bayesian and
+frequentist models.
 
 ## Generation
 
-
-```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
+``` r
 # options(mc.cores = parallel::detectCores())
 set.seed(333)
 
@@ -412,12 +402,10 @@ set.seed(333)
 outcome_types <- c("binary", "linear")
 effects <- c(0, 1)
 # chains <- c(4)
-# draws <- seq(50, 5000, by=50)
+# iterations <- seq(50, 5000, by=50)
 # warmups <- seq(1/10, 9/10, by=1/10)
-
-# Short version
 chains <- c(4)
-draws <- seq(100, 1000, by=100)
+iterations <- seq(100, 1000, by=100)
 warmups <- seq(3/10, 7/10, by=1/10)
 # Run --------------------------------------------------------------------------
 # Initialize data
@@ -428,15 +416,15 @@ for(outcome_type in outcome_types){
   print(outcome_type)
   for(true_effect in effects){
     for(n_chains in chains){
-      for(n_draws in draws){
+      for(n_iterations in iterations){
         for(warmup in warmups){
           for(iteration in 1:1){
             cat(".")
             
             fail <- TRUE
             while(fail==TRUE){
-              tryCatch({
-                params <- generate_and_process(true_effect=true_effect, outcome_type=outcome_type, sample_size=50, error=1, type="bayesian", iter=n_draws, chains=n_chains, warmup=warmup)
+              params <- tryCatch({
+                params <- generate_and_process(true_effect=true_effect, outcome_type=outcome_type, sample_size=50, error=1, type="bayesian", iter=n_iterations, chains=n_chains, warmup=warmup)
                 fail <- FALSE
                 params
               },error=function(e){
@@ -456,21 +444,8 @@ for(outcome_type in outcome_types){
       }
     }
   }
-  write.csv(all_data, "bayesSim_study2.csv", row.names = FALSE)
+  write.csv(all_data, "bayesSim_study3.csv", row.names = FALSE)
 }
 ```
-
-```{r message=FALSE, warning=FALSE, include=FALSE, results='hide'}
-# all_data <- read.csv("https://raw.github.com/easystats/circus/master/data/bayesSim_study2.csv")
-```
-
-# Study 3 - Priors Specification
-
-
-The simulation aimed at modulating the following characteristics:
-
-- **Model type**: linear or logistic.
-- **prior direction**: either "congruent" (1), "uninformative" (0) or "opposite" (-1).
-- **prior precision**: prior SD from 0.5 to 1.5.
 
 # References
