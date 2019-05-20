@@ -105,6 +105,11 @@ compute_indices <- function(models){
   params$warmup <- algorithm$warmup / params$iterations
   params$samples <- nrow(posterior)
   
+  prior <- bayestestR::describe_prior(models$bayesian)[2, ]
+  params$Prior_Distribution <- prior$Prior_Distribution
+  params$Prior_Location <- prior$Prior_Location
+  params$Prior_Scale <- prior$Prior_Scale
+  
   params$Median <- median(posterior)
   params$Mean <- mean(posterior)
   map <- map_estimate(posterior)
@@ -133,11 +138,11 @@ compute_indices <- function(models){
                                     hypothesis = 0,
                                     verbose=FALSE))
 
-  prior_used <- bayestestR::describe_prior(models$bayesian)[2, ]
+  
   params$BF <- as.numeric(bayesfactor_savagedickey(posterior,
                                     prior = distribution_normal(length(posterior),
-                                                                mean=prior_used$Prior_Location,
-                                                                sd=prior_used$Prior_Scale),
+                                                                mean=params$Prior_Location,
+                                                                sd=params$Prior_Scale),
                                     hypothesis = 0,
                                     verbose=FALSE))
   
@@ -165,11 +170,30 @@ compute_indices <- function(models){
 
 
 # Combine
-generate_and_process <- function(true_effect, outcome_type, sample_size, error, chains=4, iter=2000, warmup = 1/2){
+generate_and_process <- function(true_effect=0, outcome_type="linear", sample_size=50, error=0, chains=4, iter=2000, warmup = 1/2, modulate_priors = FALSE){
   
   data <- generate_data(true_effect=true_effect, outcome_type=outcome_type, sample_size=sample_size, error=error)
   models <- compute_models(data, outcome_type=outcome_type, chains=chains, iter=iter, warmup = warmup)
   params <- compute_indices(models)
+  params$Prior <- "Uninformative"
+  
+  if(modulate_priors){
+    # Congruent
+    models$bayesian <- update(models$bayesian, prior = normal(location = 1, 
+                                                              scale = params$Prior_Scale,
+                                                              autoscale = FALSE))
+    params_congruent <- compute_indices(models)
+    params_congruent$Prior <- "Congruent"
+    
+    # Incongruent
+    models$bayesian <- update(models$bayesian, prior = normal(location = -1, 
+                                                              scale = params$Prior_Scale,
+                                                              autoscale = FALSE))
+    params_incongruent <- compute_indices(models)
+    params_incongruent$Prior <- "Incongruent"
+    
+    params <- rbind(params, params_congruent, params_incongruent)
+  }
   
   rownames(params) <- NULL
   params
@@ -434,9 +458,9 @@ for(outcome_type in outcome_types){
      
             # Save data
             params <- mutate(params,
-                               true_effect=true_effect,
-                               outcome_type = outcome_type,
-                               iteration=iteration)
+                              true_effect=true_effect,
+                              outcome_type = outcome_type,
+                              iteration=iteration)
             all_data <- rbind(all_data, params)
           }
         }
