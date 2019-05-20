@@ -420,7 +420,7 @@
 <a class="sourceLine" id="cb8-7" title="7"><span class="st">  </span><span class="kw">theme_modern</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb8-8" title="8"><span class="st">  </span><span class="kw">scale_fill_material_d</span>(<span class="st">"rainbow"</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb8-9" title="9"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">"Specified Coef"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb8-10" title="10"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">"Actual Coef"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-10" title="10"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">"Actual Coefficient</span><span class="ch">\n</span><span class="st">"</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb8-11" title="11"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>outcome_type, <span class="dt">scale=</span><span class="st">"free_y"</span>)</a></code></pre></div>
 <p><img src="bayesian_indices_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">all_data <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -434,7 +434,7 @@
 <a class="sourceLine" id="cb9-9" title="9"><span class="st">  </span><span class="kw">theme_modern</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb9-10" title="10"><span class="st">  </span><span class="kw">scale_color_material_d</span>(<span class="st">"rainbow"</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb9-11" title="11"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">"Error"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb9-12" title="12"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">"Actual"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb9-12" title="12"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">"Actual Coefficient</span><span class="ch">\n</span><span class="st">"</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb9-13" title="13"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>outcome_type<span class="op">*</span>true_effect, <span class="dt">scale=</span><span class="st">"free"</span>)</a></code></pre></div>
 <p><img src="bayesian_indices_files/figure-html/unnamed-chunk-9-2.png" width="700"></p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">all_data <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -445,7 +445,7 @@
 <a class="sourceLine" id="cb10-6" title="6"><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">alpha=</span><span class="fl">0.1</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb10-7" title="7"><span class="st">  </span><span class="kw">theme_modern</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb10-8" title="8"><span class="st">  </span><span class="kw">scale_fill_material_d</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb10-9" title="9"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">"Actual Coef"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb10-9" title="9"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">"Actual Coefficient</span><span class="ch">\n</span><span class="st">"</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb10-10" title="10"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>true_effect<span class="op">*</span>outcome_type, <span class="dt">scale=</span><span class="st">"free"</span>)</a></code></pre></div>
 <p><img src="bayesian_indices_files/figure-html/unnamed-chunk-9-3.png" width="700"></p>
 </div>

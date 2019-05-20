@@ -366,7 +366,7 @@ all_data %>%
   theme_modern() +
   scale_fill_material_d("rainbow") +
   xlab("Specified Coef") +
-  ylab("Actual Coef") +
+  ylab("Actual Coefficient\n") +
   facet_wrap(~outcome_type, scale="free_y")
 
 all_data %>% 
@@ -380,7 +380,7 @@ all_data %>%
   theme_modern() +
   scale_color_material_d("rainbow") +
   xlab("Error") +
-  ylab("Actual") +
+  ylab("Actual Coefficient\n") +
   facet_wrap(~outcome_type*true_effect, scale="free")
 
 all_data %>% 
@@ -391,7 +391,7 @@ all_data %>%
   geom_density(alpha=0.1) +
   theme_modern() +
   scale_fill_material_d() +
-  xlab("Actual Coef") +
+  xlab("Actual Coefficient\n") +
   facet_wrap(~true_effect*outcome_type, scale="free")
 ```
 
