@@ -365,7 +365,7 @@ all_data %>%
   geom_boxplot() +
   theme_modern() +
   scale_fill_material_d("rainbow") +
-  xlab("Specified Coef") +
+  xlab("\nSpecified Coefficient") +
   ylab("Actual Coefficient\n") +
   facet_wrap(~outcome_type, scale="free_y")
 
