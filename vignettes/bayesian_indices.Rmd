@@ -129,13 +129,9 @@ compute_indices <- function(models){
       NA
   })
   # Bayesfactor
-  params$BF_cauchy07 <- as.numeric(bayesfactor_savagedickey(posterior,
-                                    prior = distribution_cauchy(length(posterior),
-                                                                location=0,
-                                                                scale=0.707),
-                                    hypothesis = 0,
-                                    verbose=FALSE))
-
+  # This doens't really work
+  # params$BF <- as.numeric(bayesfactor_savagedickey(models$bayesian,
+  #                                   verbose=FALSE)$BF)
   
   params$BF <- as.numeric(bayesfactor_savagedickey(posterior,
                                     prior = distribution_normal(length(posterior),
