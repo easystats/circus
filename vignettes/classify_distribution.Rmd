@@ -171,7 +171,7 @@ generate_distribution <- function(family="normal", size=1000, noise=0, location=
 ```{r message=FALSE, warning=FALSE, eval=FALSE}
 df <- data.frame()
 for(distribution in c("normal", "beta", "binomial", "chi", "exponential", "F", "gamma", "lognormal", "poisson", "t", "uniform", "weibull")){
-  for(i in 1:80){
+  for(i in 1:100){
     
     size <- round(runif(1, 10, 10000))
     location <- runif(1, 0.01, 10)
@@ -306,6 +306,9 @@ registerDoParallel(cluster)
 
 ```{r message=FALSE, warning=FALSE, eval=TRUE, results="hide"}
 # Training
+model_tree <- caret::train(Distribution ~ ., data = train, 
+                 method = "C5.0", 
+                 trControl = fitControl)
 model_rf <- caret::train(Distribution ~ ., data = train, 
                  method = "rf", 
                  trControl = fitControl)
@@ -330,17 +333,22 @@ stopCluster(cluster) # explicitly shut down the cluster
 ```{r message=FALSE, warning=FALSE, eval=TRUE}
 # collect resamples
 results <- resamples(list(
+  "DecisionTree" = model_tree,
   "RandomForest" = model_rf,
   "NaiveBayes"= model_nb,
   "GBM"= model_gbm,
   "Nnet" = model_nnet
   ))
+
 # summarize the distributions
 summary(results)
+
 # dot plots of results
 dotplot(results)
+
 # Sizes
-data.frame("RandomForest" = as.numeric(object.size(model_rf))/1000,
+data.frame("DecisionTree" = as.numeric(object.size(model_tree))/1000,
+           "RandomForest" = as.numeric(object.size(model_rf))/1000,
            "NaiveBayes" = as.numeric(object.size(model_nb))/1000,
            "GBM" = as.numeric(object.size(model_gbm))/1000,
            "Nnet" = as.numeric(object.size(model_nnet))/1000)
@@ -351,12 +359,15 @@ data.frame("RandomForest" = as.numeric(object.size(model_rf))/1000,
 
 ```{r message=FALSE, warning=FALSE, eval=TRUE}
 model <- model_rf
+
 # Performance
 test$pred <- predict(model, test)
 confusion <- confusionMatrix(data = test$pred, reference = as.factor(test$Distribution), mode = "prec_recall")
 knitr::kable(data.frame("Performance" = confusion$overall))
+
 # Prediction Table
-knitr::kable(confusion$table)
+knitr::kable(confusion$table / rowSums(confusion$table), digits=2)
+
 # Prediction Figure
 perf <-  as.data.frame(confusion$byClass)[c("Sensitivity", "Specificity")]
 perf$Distribution <- gsub("Class: ", "", row.names(perf))
@@ -367,6 +378,7 @@ ggplot(perf, aes(x=Distribution, y=Metric, fill=Type)) +
   geom_hline(aes(yintercept=0.5), linetype="dotted") +
   theme_classic() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
 # Features
 features <- caret::varImp(model, scale = TRUE)
 plot(features)
