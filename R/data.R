@@ -1290,6 +1290,7 @@
 #' }
 "brms_ordinal_1"
 
+
 #' brms_ordinal_2
 #'
 #' Model of class brmsfit
@@ -1303,6 +1304,29 @@
 #' )
 #' }
 "brms_ordinal_2"
+
+
+
+#' brms_smooth_1
+#'
+#' Model of class brmsfit
+#' @examples
+#' \dontrun{
+#' dat <- mgcv::gamSim(1, n = 200, scale = 2)
+#' brm(y ~ s(x0) + s(x1) + s(x2) + s(x3), data = dat, iter = 1000)
+#' }
+"brms_smooth_1"
+
+
+#' brms_smooth_2
+#'
+#' Model of class brmsfit
+#' @examples
+#' \dontrun{
+#' dat <- mgcv::gamSim(1, n = 200, scale = 2)
+#' brm(y ~ t2(x0, x1) + s(x2, by = x3), data = dat, iter = 1000)
+#' }
+"brms_smooth_2"
 
 
 
