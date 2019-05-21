@@ -264,6 +264,15 @@
 
 
 
+#' glm_nb_1
+#'
+#' Model of class glm
+#' @examples
+#' library(MASS)
+#' data(efc, package = "sjmisc")
+#' glm.nb(tot_sc_e ~ neg_c_7 + e42dep + c172code, data = efc)
+"glm_nb_1"
+
 
 
 
@@ -368,9 +377,24 @@
 #'
 #' Model of class glmerMod
 #' @examples
+#' \dontrun{
 #' # for data, see '?glmer.nb'
 #' lme4::glmer.nb(y ~ f1 * f2 + (1 | g), data = dd)
+#' }
 "merMod_5"
+
+
+
+#' merMod_nb_1
+#'
+#' Model of class glmerMod
+#' @examples
+#' library(lme4)
+#' library(glmmTMB)
+#' data(Owls)
+#' glmer.nb(SiblingNegotiation ~ SexParent + ArrivalTime + (1 | Nest), data = Owls)
+"merMod_nb_1"
+
 
 
 
@@ -1116,6 +1140,16 @@
 #' }
 "brms_mixed_6"
 
+#' brms_mixed_7
+#'
+#' Model of class brmsfit
+#' @examples
+#' \dontrun{
+#' brm(mpg ~ wt + (1 | cyl) + (1 + wt | gear), data = mtcars)
+#' }
+"brms_mixed_7"
+
+
 
 
 #' brms_mv_1
@@ -1256,6 +1290,20 @@
 #' }
 "brms_ordinal_1"
 
+#' brms_ordinal_2
+#'
+#' Model of class brmsfit
+#' @examples
+#' \dontrun{
+#' data(inhaler)
+#' brm(
+#'   rating ~ treat + period + carry + (1 | subject),
+#'   family = cumulative(),
+#'   data = inhaler
+#' )
+#' }
+"brms_ordinal_2"
+
 
 
 
@@ -1366,3 +1414,23 @@
 #' }
 #'
 "brms_4bf_5"
+
+
+
+#' stanmvreg_1
+#'
+#' Model of class stanreg
+#' @examples
+#' \dontrun{
+#' library(rstanarm)
+#' stan_mvmer(
+#'   formula = list(
+#'     logBili ~ year + (1 | id),
+#'     albumin ~ sex + year + (year | id)
+#'   ),
+#'   data = pbcLong,
+#'   # this next line is only to keep the example small in size!
+#'   chains = 1, cores = 1, seed = 12345, iter = 1000
+#' )
+#' }
+"stanmvreg_1"
