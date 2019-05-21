@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>brms_4bf_2 — brms_4bf_2 • circus</title>
+<title>stanmvreg_1 — stanmvreg_1 • circus</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="brms_4bf_2 — brms_4bf_2" />
+<meta property="og:title" content="stanmvreg_1 — stanmvreg_1" />
 
-<meta property="og:description" content="Example of class brmsfit with save_all_pars = TRUE." />
+<meta property="og:description" content="Model of class stanreg" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -112,27 +112,36 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>brms_4bf_2</h1>
+    <h1>stanmvreg_1</h1>
     
-    <div class="hidden name"><code>brms_4bf_2.Rd</code></div>
+    <div class="hidden name"><code>stanmvreg_1.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Example of class brmsfit with <code>save_all_pars = TRUE</code>.</p>
+    <p>Model of class stanreg</p>
     
     </div>
 
-    <pre class="usage"><span class='no'>brms_4bf_2</span></pre>
+    <pre class="usage"><span class='no'>stanmvreg_1</span></pre>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>An object of class <code>brmsfit</code> of length 21.</p>
+    <p>An object of class <code>stanmvreg</code> (inherits from <code>stanreg</code>, <code>lmerMod</code>) of length 20.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>brm</span>(<span class='no'>Sepal.Length</span> ~ <span class='no'>Species</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>, <span class='kw'>save_all_pars</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>rstanarm</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/rstanarm/topics/stan_mvmer'>stan_mvmer</a></span>(
+  <span class='kw'>formula</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
+    <span class='no'>logBili</span> ~ <span class='no'>year</span> + (<span class='fl'>1</span> <span class='kw'>|</span> <span class='no'>id</span>),
+    <span class='no'>albumin</span> ~ <span class='no'>sex</span> + <span class='no'>year</span> + (<span class='no'>year</span> <span class='kw'>|</span> <span class='no'>id</span>)
+  ),
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>pbcLong</span>,
+  <span class='co'># this next line is only to keep the example small in size!</span>
+  <span class='kw'>chains</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>cores</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>12345</span>, <span class='kw'>iter</span> <span class='kw'>=</span> <span class='fl'>1000</span>
+)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

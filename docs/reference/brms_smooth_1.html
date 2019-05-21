@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>brms_4bf_2 — brms_4bf_2 • circus</title>
+<title>brms_smooth_1 — brms_smooth_1 • circus</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="brms_4bf_2 — brms_4bf_2" />
+<meta property="og:title" content="brms_smooth_1 — brms_smooth_1" />
 
-<meta property="og:description" content="Example of class brmsfit with save_all_pars = TRUE." />
+<meta property="og:description" content="Model of class brmsfit" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -112,18 +112,18 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>brms_4bf_2</h1>
+    <h1>brms_smooth_1</h1>
     
-    <div class="hidden name"><code>brms_4bf_2.Rd</code></div>
+    <div class="hidden name"><code>brms_smooth_1.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Example of class brmsfit with <code>save_all_pars = TRUE</code>.</p>
+    <p>Model of class brmsfit</p>
     
     </div>
 
-    <pre class="usage"><span class='no'>brms_4bf_2</span></pre>
+    <pre class="usage"><span class='no'>brms_smooth_1</span></pre>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
@@ -132,7 +132,8 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>brm</span>(<span class='no'>Sepal.Length</span> ~ <span class='no'>Species</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>, <span class='kw'>save_all_pars</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mgcv</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/mgcv/topics/gamSim'>gamSim</a></span>(<span class='fl'>1</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>200</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>2</span>)
+<span class='fu'>brm</span>(<span class='no'>y</span> ~ <span class='fu'>s</span>(<span class='no'>x0</span>) + <span class='fu'>s</span>(<span class='no'>x1</span>) + <span class='fu'>s</span>(<span class='no'>x2</span>) + <span class='fu'>s</span>(<span class='no'>x3</span>), <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>dat</span>, <span class='kw'>iter</span> <span class='kw'>=</span> <span class='fl'>1000</span>)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

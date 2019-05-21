@@ -91,6 +91,9 @@
     <li>
       <a href="../articles/bootstrapped.html">Bootsrapped data</a>
     </li>
+    <li>
+      <a href="../articles/classify_distribution.html">Classify Distributions using Machine Learning</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -128,8 +131,10 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># for data, see '?glmer.nb'</span>
-<span class='kw pkg'>lme4</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/lme4/topics/glmer.nb'>glmer.nb</a></span>(<span class='no'>y</span> ~ <span class='no'>f1</span> * <span class='no'>f2</span> + (<span class='fl'>1</span> <span class='kw'>|</span> <span class='no'>g</span>), <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>dd</span>)</div><div class='output co'>#&gt; <span class='error'>Error in glmer(y ~ f1 * f2 + (1 | g), data = dd, family = stats::poisson,     verbose = FALSE): could not find function "glmer"</span></div></pre>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='co'># for data, see '?glmer.nb'</span>
+<span class='kw pkg'>lme4</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/lme4/topics/glmer.nb'>glmer.nb</a></span>(<span class='no'>y</span> ~ <span class='no'>f1</span> * <span class='no'>f2</span> + (<span class='fl'>1</span> <span class='kw'>|</span> <span class='no'>g</span>), <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>dd</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
