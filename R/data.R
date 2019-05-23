@@ -613,6 +613,24 @@
 
 
 
+#' glmmTMB_zi_5
+#'
+#' Model of class glmmTMB
+#' @examples
+#' \dontrun{
+#' # data prepararion: see "glmmTMB_1"
+#'
+#' glmmTMB(
+#'   count ~ child + camper + (1 | persons)
+#'   ziformula = ~ child + livebait + (1 | ID),
+#'   data = fish,
+#'   family = truncated_poisson()
+#' )
+#' }
+"glmmTMB_zi_5"
+
+
+
 
 
 
