@@ -9,7 +9,7 @@ output:
     toc: true
     fig_width: 10.08
     fig_height: 6
-tags: [r, bayesian, posterior, test]
+tags: [r, classify distribution]
 vignette: >
   \usepackage[utf8]{inputenc}
 editor_options: 
@@ -28,10 +28,10 @@ The goal of this article is to create a machine learning model able to classify 
 ```{r message=FALSE, warning=FALSE, eval=TRUE}
 # Plotting
 library(ggplot2)
-library(plotly)
 
 # Modelling
 library(caret)
+library(strip)
 # library(parsnip)
 # library(rsample)
 
@@ -127,11 +127,10 @@ for(location in round(seq(0.01, 10, length.out = 5), digits=2)){
     distributions <- rbind(distributions, x)
   }
 }
-p <- ggplot(distributions, aes(x=x, y=y, colour=distribution)) +
+ggplot(distributions, aes(x=x, y=y, colour=distribution)) +
   geom_line(size=1) +
   facet_grid(location ~ scale) +
   theme_classic()
-ggplotly(p)
 ```
 
 ### Convenience function
@@ -171,9 +170,9 @@ generate_distribution <- function(family="normal", size=1000, noise=0, location=
 ```{r message=FALSE, warning=FALSE, eval=FALSE}
 df <- data.frame()
 for(distribution in c("normal", "beta", "binomial", "chi", "exponential", "F", "gamma", "lognormal", "poisson", "t", "uniform", "weibull")){
-  for(i in 1:100){
+  for(i in 1:2000){
     
-    size <- round(runif(1, 10, 10000))
+    size <- round(runif(1, 10, 1000))
     location <- runif(1, 0.01, 10)
     scale <- runif(1, 0.02, 10)
     
@@ -272,7 +271,7 @@ for(distribution in c("normal", "beta", "binomial", "chi", "exponential", "F", "
 
 
 
-```{r message=FALSE, warning=FALSE, eval=TRUE}
+```{r message=FALSE, warning=FALSE, eval=FALSE}
 # Data clearning
 df <- na.omit(df)
 infinite <- is.infinite(rowSums(df[sapply(df, is.numeric)]))
@@ -281,7 +280,7 @@ df <- df[!infinite, ]
 # Data partitioning
 
 
-trainIndex <- caret::createDataPartition(df$Distribution, p=0.8, list = FALSE)
+trainIndex <- caret::createDataPartition(as.factor(df$Distribution), p=0.1, list = FALSE)
 train <- df[ trainIndex,]
 test  <- df[-trainIndex,]
 
@@ -304,10 +303,10 @@ registerDoParallel(cluster)
 
 ### Training
 
-```{r message=FALSE, warning=FALSE, eval=TRUE, results="hide"}
+```{r message=FALSE, warning=FALSE, eval=FALSE, results="hide"}
 # Training
 model_tree <- caret::train(Distribution ~ ., data = train, 
-                 method = "C5.0", 
+                 method = "rpart", 
                  trControl = fitControl)
 model_rf <- caret::train(Distribution ~ ., data = train, 
                  method = "rf", 
@@ -315,13 +314,7 @@ model_rf <- caret::train(Distribution ~ ., data = train,
 model_nb <- caret::train(Distribution ~ ., data = train,
                  method = "naive_bayes",
                  trControl = fitControl)
-model_gbm <- caret::train(Distribution ~ ., data = train, 
-                 method = "gbm", 
-                 trControl = fitControl)
-model_nnet <- caret::train(Distribution ~ ., data = train, 
-                 method = "nnet", 
-                 trControl = fitControl,
-                 linout=0)
+
 stopCluster(cluster) # explicitly shut down the cluster
 ```
 
@@ -330,14 +323,12 @@ stopCluster(cluster) # explicitly shut down the cluster
 
 
 ### Model Comparison
-```{r message=FALSE, warning=FALSE, eval=TRUE}
+```{r message=FALSE, warning=FALSE, eval=FALSE}
 # collect resamples
 results <- resamples(list(
   "DecisionTree" = model_tree,
   "RandomForest" = model_rf,
-  "NaiveBayes"= model_nb,
-  "GBM"= model_gbm,
-  "Nnet" = model_nnet
+  "NaiveBayes"= model_nb
   ))
 
 # summarize the distributions
@@ -349,15 +340,13 @@ dotplot(results)
 # Sizes
 data.frame("DecisionTree" = as.numeric(object.size(model_tree))/1000,
            "RandomForest" = as.numeric(object.size(model_rf))/1000,
-           "NaiveBayes" = as.numeric(object.size(model_nb))/1000,
-           "GBM" = as.numeric(object.size(model_gbm))/1000,
-           "Nnet" = as.numeric(object.size(model_nnet))/1000)
+           "NaiveBayes" = as.numeric(object.size(model_nb))/1000)
 ```
 
 
-### Best Model Inspecction
+### Best Model Inspection
 
-```{r message=FALSE, warning=FALSE, eval=TRUE}
+```{r message=FALSE, warning=FALSE, eval=FALSE}
 model <- model_rf
 
 # Performance
@@ -366,7 +355,7 @@ confusion <- confusionMatrix(data = test$pred, reference = as.factor(test$Distri
 knitr::kable(data.frame("Performance" = confusion$overall))
 
 # Prediction Table
-knitr::kable(confusion$table / rowSums(confusion$table), digits=2)
+knitr::kable(confusion$table / colSums(confusion$table), digits=2)
 
 # Prediction Figure
 perf <-  as.data.frame(confusion$byClass)[c("Sensitivity", "Specificity")]
@@ -382,6 +371,9 @@ ggplot(perf, aes(x=Distribution, y=Metric, fill=Type)) +
 # Features
 features <- caret::varImp(model, scale = TRUE)
 plot(features)
+
+# N trees
+plot(model$finalModel, log="x", main="black default, red samplesize, green tree depth")
 ```
 
 
@@ -391,38 +383,31 @@ plot(features)
 
 ### Data Generation
 
-```{r message=FALSE, warning=FALSE, eval=TRUE}
+```{r message=FALSE, warning=FALSE, eval=FALSE}
 df <- data.frame()
 for(distribution in c("normal", "beta", "binomial", "chi", "exponential", "F", "gamma", "lognormal", "poisson", "t", "uniform", "weibull")){
-  for(i in 1:10){
+  for(i in 1:2000){
     
-    size <- round(runif(1, 10, 10000))
+    size <- round(runif(1, 10, 1000))
     location <- runif(1, 0.01, 10)
     scale <- runif(1, 0.02, 10)
     
     x <- generate_distribution(distribution, size=size, location=location, scale=scale)
     
-    density_Z <- parameters::normalize(density(x, n=100)$y)
-    
     # Extract features
     data <- data.frame(
-      "Mean" = mean(x),
       "SD" = sd(x),
-      "Median" = median(x),
       "MAD" = mad(x, constant=1),
       "Mean_Median_Distance" = mean(x) - median(x),
-      "Mean_Mode_Distance" = mean(x) - bayestestR::map_estimate(x),
+      "Mean_Mode_Distance" = mean(x) - as.numeric(bayestestR::map_estimate(x, bw = "nrd0")),
       "SD_MAD_Distance" = sd(x) - mad(x, constant=1),
-      "Mode" = bayestestR::map_estimate(x),
       "Range" = diff(range(x)) / sd(x),
       "IQR" = stats::IQR(x),
       "Skewness" = skewness(x),
       "Kurtosis" = kurtosis(x),
-      "Smoothness_Cor_1" = parameters::smoothness(density_Z, method="cor", lag=1),
-      "Smoothness_Diff_1" = parameters::smoothness(density_Z, method="diff", lag=1),
-      "Smoothness_Cor_5" = parameters::smoothness(density_Z, method="cor", lag=5),
-      "Smoothness_Diff_5" = parameters::smoothness(density_Z, method="diff", lag=5)
+      "Uniques" = length(unique(x)) / length(x)
     )
+    
     
     data$Distribution <- distribution
     df <- rbind(df, data)
@@ -432,25 +417,17 @@ for(distribution in c("normal", "beta", "binomial", "chi", "exponential", "F", "
 
 ### Preparation
 
-```{r message=FALSE, warning=FALSE, eval=TRUE}
+```{r message=FALSE, warning=FALSE, eval=FALSE}
 # Data clearning
 df <- na.omit(df)
 infinite <- is.infinite(rowSums(df[sapply(df, is.numeric)]))
 df <- df[!infinite, ]
+
 # Data partitioning
-trainIndex <- caret::createDataPartition(df$Distribution, p=0.8, list = FALSE)
+trainIndex <- caret::createDataPartition(as.factor(df$Distribution), p=0.1, list = FALSE)
 train <- df[ trainIndex,]
 test  <- df[-trainIndex,]
-# Parameters
-fitControl <- caret::trainControl(## 5-fold CV
-                           method = "repeatedcv",
-                           number = 5,
-                           ## repeated ten times
-                           repeats = 10,
-                           classProbs = TRUE,
-                           returnData = FALSE,
-                           trim=TRUE,
-                           allowParallel = TRUE)
+
 # Set up parallel
 cluster <- makeCluster(detectCores() - 1) # convention to leave 1 core for OS
 registerDoParallel(cluster)
@@ -459,11 +436,20 @@ registerDoParallel(cluster)
 
 ### Training
 
-```{r message=FALSE, warning=FALSE, eval=TRUE, results="hide"}
+```{r message=FALSE, warning=FALSE, eval=FALSE, results="hide"}
 # Training
-model <- caret::train(Distribution ~ ., data = train, 
-                 method = "rf", 
-                 trControl = fitControl)
+model <- randomForest::randomForest(as.factor(Distribution) ~ ., data = train, 
+                 localImp = FALSE,
+                 importance = FALSE,
+                 keep.forest = TRUE,
+                 keep.inbag = FALSE,
+                 proximity=FALSE, 
+                 maxDepth=5, 
+                 maxBins=32, 
+                 minInstancesPerNode=1, 
+                 minInfoGain=0.0, 
+                 maxMemoryInMB=128,
+                 ntree = 10)
 stopCluster(cluster) # explicitly shut down the cluster
 ```
 
@@ -472,13 +458,15 @@ stopCluster(cluster) # explicitly shut down the cluster
 
 ### Model Inspecction
 
-```{r message=FALSE, warning=FALSE, eval=TRUE}
+```{r message=FALSE, warning=FALSE, eval=FALSE}
 # Performance
 test$pred <- predict(model, test)
 confusion <- confusionMatrix(data = test$pred, reference = as.factor(test$Distribution), mode = "prec_recall")
 knitr::kable(data.frame("Performance" = confusion$overall))
+
 # Prediction Table
-knitr::kable(confusion$table)
+knitr::kable(confusion$table / colSums(confusion$table), digits=2)
+
 # Prediction Figure
 perf <-  as.data.frame(confusion$byClass)[c("Sensitivity", "Specificity")]
 perf$Distribution <- gsub("Class: ", "", row.names(perf))
@@ -490,41 +478,56 @@ ggplot(perf, aes(x=Distribution, y=Metric, fill=Type)) +
   theme_classic() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 # Features
-features <- caret::varImp(model, scale = TRUE)
-plot(features)
+caret::varImp(model, scale = TRUE)
 ```
 
 
 ### Reduce Size and Save
-```{r message=FALSE, warning=FALSE, eval=TRUE}
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+# Initial size
+as.numeric(object.size(model))/1000
+
+
 # Reduce size
-model$finalModel$predicted <- NULL 
-model$finalModel$oob.times <- NULL 
-model$finalModel$y <- NULL
-model$finalModel$votes <- NULL
-model$control$indexOut <- NULL
-model$control$index    <- NULL
-model$trainingData <- NULL
-attr(model$terms,".Environment") <- c()
-attr(model$formula,".Environment") <- c()
+model <- strip(model, keep="predict", use_trim=TRUE)
+
+model$predicted <- NULL
+model$y <- NULL
+model$err.rate <- NULL
+model$test <- NULL
+model$proximity <- NULL
+model$confusion <- NULL
+model$localImportance <- NULL
+model$importanceSD <- NULL
+model$inbag <- NULL
+model$votes <- NULL
+model$oob.times <- NULL
+
+
+
+as.numeric(object.size(model))/1000
+
 # Test 
 is.factor(predict(model, df))
-# Save
-save(model, file="find_distribution.rda")
+is.matrix(predict(model, data, type = "prob"))
 ```
+
 
 
 
 
   
 
-<!-- ```{r echo=FALSE, message=FALSE, warning=FALSE, eval=FALSE} -->
-<!-- # Open this RMD within parameters project -->
-<!-- # This stores this file as sysdata.Rda -->
-<!-- # classify_distribution <- model -->
-<!-- # usethis::use_data(classify_distribution, overwrite = TRUE, internal = TRUE) -->
 
-<!-- ``` -->
+```{r echo=FALSE, message=FALSE, warning=FALSE, eval=FALSE}
+# Save
+# save(model, file="classify_distribution.Rda")
+
+# Open this RMD within parameters project
+# This stores this file as sysdata.Rda
+classify_distribution <- model
+usethis::use_data(classify_distribution, overwrite = TRUE, internal = TRUE)
+```
 
 
 
