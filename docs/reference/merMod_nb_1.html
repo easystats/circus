@@ -131,25 +131,7 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>lme4</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: Matrix</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: ‘lme4’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:brms’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    ngrps</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>glmmTMB</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>Owls</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/lme4/topics/glmer.nb'>glmer.nb</a></span>(<span class='no'>SiblingNegotiation</span> ~ <span class='no'>SexParent</span> + <span class='no'>ArrivalTime</span> + (<span class='fl'>1</span> <span class='kw'>|</span> <span class='no'>Nest</span>), <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>Owls</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Model failed to converge with max|grad| = 0.00121661 (tol = 0.001, component 1)</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Model failed to converge with max|grad| = 0.00152589 (tol = 0.001, component 1)</span></div><div class='output co'>#&gt; <span class='message'>boundary (singular) fit: see ?isSingular</span></div><div class='output co'>#&gt; Generalized linear mixed model fit by maximum likelihood (Laplace
-#&gt;   Approximation) [glmerMod]
-#&gt;  Family: Negative Binomial(0.7811)  ( log )
-#&gt; Formula: SiblingNegotiation ~ SexParent + ArrivalTime + (1 | Nest)
-#&gt;    Data: Owls
-#&gt;       AIC       BIC    logLik  deviance  df.resid 
-#&gt;  3516.954  3538.930 -1753.477  3506.954       594 
-#&gt; Random effects:
-#&gt;  Groups Name        Std.Dev.
-#&gt;  Nest   (Intercept) 0.2641  
-#&gt; Number of obs: 599, groups:  Nest, 27
-#&gt; Fixed Effects:
-#&gt;   (Intercept)  SexParentMale    ArrivalTime  
-#&gt;        4.5893         0.1350        -0.1161  </div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>lme4</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: Matrix</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>glmmTMB</span>)</div><div class='output co'>#&gt; <span class='error'>Error in library(glmmTMB): there is no package called 'glmmTMB'</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>Owls</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: data set 'Owls' not found</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/lme4/topics/glmer.nb'>glmer.nb</a></span>(<span class='no'>SiblingNegotiation</span> ~ <span class='no'>SexParent</span> + <span class='no'>ArrivalTime</span> + (<span class='fl'>1</span> <span class='kw'>|</span> <span class='no'>Nest</span>), <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>Owls</span>)</div><div class='output co'>#&gt; <span class='error'>Error: 'data' not found, and some variables missing from formula environment</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -4,4 +4,5 @@ pkgdown_sha: ~
 articles:
   bayesian_indices: bayesian_indices.html
   bootstrapped: bootstrapped.html
+  classify_distribution: classify_distribution.html
 

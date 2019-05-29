@@ -172,31 +172,36 @@ df <- data.frame()
 for(distribution in c("normal", "beta", "binomial", "chi", "exponential", "F", "gamma", "lognormal", "poisson", "t", "uniform", "weibull")){
   for(i in 1:2000){
     
-    size <- round(runif(1, 10, 1000))
+    size <- round(runif(1, 10, 2000))
     location <- runif(1, 0.01, 10)
     scale <- runif(1, 0.02, 10)
     
     x <- generate_distribution(distribution, size=size, location=location, scale=scale)
     
-    density_Z <- parameters::normalize(density(x, n=20)$y)
+    x[is.infinite(x)] <- 5.565423e+156
+    x_scaled <- parameters::normalize(x, verbose=FALSE)
+    
+    density_Z <- density(x_scaled, n=20)$y
     
     # Extract features
     data <- data.frame(
-      "Mean" = mean(x),
-      "SD" = sd(x),
-      "Median" = median(x),
-      "MAD" = mad(x, constant=1),
-      "Mean_Median_Distance" = mean(x) - median(x),
-      "Mean_Mode_Distance" = mean(x) - as.numeric(bayestestR::map_estimate(x, bw = "nrd0")),
-      "SD_MAD_Distance" = sd(x) - mad(x, constant=1),
-      "Mode" = bayestestR::map_estimate(x, bw = "nrd0"),
-      "Range" = diff(range(x)) / sd(x),
-      "IQR" = stats::IQR(x),
-      "Skewness" = skewness(x),
-      "Kurtosis" = kurtosis(x),
+      "Mean" = mean(x_scaled),
+      "SD" = sd(x_scaled),
+      "Median" = median(x_scaled),
+      "MAD" = mad(x_scaled, constant=1),
+      "Mean_Median_Distance" = mean(x_scaled) - median(x_scaled),
+      "Mean_Mode_Distance" = mean(x_scaled) - as.numeric(bayestestR::map_estimate(x_scaled, bw = "nrd0")),
+      "SD_MAD_Distance" = sd(x_scaled) - mad(x_scaled, constant=1),
+      "Mode" = as.numeric(bayestestR::map_estimate(x_scaled, bw = "nrd0")),
+      # "Range" = range(x),
+      "Range_SD" = diff(range(x)) / sd(x),
+      "Range_MAD" = diff(range(x)) / mad(x, constant=1),
+      "IQR" = stats::IQR(x_scaled),
+      "Skewness" = skewness(x_scaled),
+      "Kurtosis" = kurtosis(x_scaled),
       "Uniques" = length(unique(x)) / length(x),
-      "Smoothness_Cor" = parameters::smoothness(density(x)$y, method="cor"),
-      "Smoothness_Diff" = parameters::smoothness(density(x)$y, method="diff"),
+      "Smoothness_Cor" = parameters::smoothness(density(x_scaled)$y, method="cor"),
+      "Smoothness_Diff" = parameters::smoothness(density(x_scaled)$y, method="diff"),
       "Smoothness_Z_Cor_1" = parameters::smoothness(density_Z, method="cor", lag=1),
       "Smoothness_Z_Diff_1" = parameters::smoothness(density_Z, method="diff", lag=1),
       "Smoothness_Z_Cor_3" = parameters::smoothness(density_Z, method="cor", lag=3),
@@ -208,7 +213,12 @@ for(distribution in c("normal", "beta", "binomial", "chi", "exponential", "F", "
     names(density_df) <- paste0("Density_", 1:ncol(density_df))
     data <- cbind(data, density_df)
     
-    data$Distribution <- distribution
+    if(length(unique(x)) == 1){
+      data$Distribution <- "uniform"
+    } else{
+      data$Distribution <- distribution
+    }
+    
     df <- rbind(df, data)
   }
   # write.csv(df, "classify_distribution.csv", row.names = FALSE)
@@ -394,6 +404,9 @@ for(distribution in c("normal", "beta", "binomial", "chi", "exponential", "F", "
     
     x <- generate_distribution(distribution, size=size, location=location, scale=scale)
     
+    x[is.infinite(x)] <- 5.565423e+156
+    x <- parameters::normalize(x, verbose=FALSE)
+    
     # Extract features
     data <- data.frame(
       "SD" = sd(x),
@@ -409,7 +422,11 @@ for(distribution in c("normal", "beta", "binomial", "chi", "exponential", "F", "
     )
     
     
-    data$Distribution <- distribution
+    if(length(unique(x)) == 1){
+      data$Distribution <- "uniform"
+    } else{
+      data$Distribution <- distribution
+    }
     df <- rbind(df, data)
   }
 }
