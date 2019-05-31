@@ -118,9 +118,9 @@ compute_indices <- function(models){
   
   range <- rope_range(models$bayesian)
   params$ROPE_range <- range[[2]]
-  params$ROPE_90 <- rope(posterior, range = range, ci=0.90)$ROPE_percentage
-  params$ROPE_95 <- rope(posterior, range = range, ci=0.95)$ROPE_percentage
-  params$ROPE_full <- rope(posterior, range = range, ci=1)$ROPE_percentage
+  params$ROPE_90 <- rope(posterior, range = range, ci=0.90)$ROPE_Percentage
+  params$ROPE_95 <- rope(posterior, range = range, ci=0.95)$ROPE_Percentage
+  params$ROPE_full <- rope(posterior, range = range, ci=1)$ROPE_Percentage
   params$p_ROPE <- tryCatch({
   p_rope(posterior, range = range)
   }, error = function(error_condition) {
