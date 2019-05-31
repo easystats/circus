@@ -54,6 +54,13 @@ distributions <- data.frame()
 size <-  1000
 for(location in round(seq(0.01, 10, length.out = 5), digits=2)){
   for(scale in round(seq(0.02, 10, length.out = 5), digits=2)){
+    
+    x <- parameters::normalize(as.data.frame(density(runif(size, location, location*2), n=100)))
+    x$distribution <- "uniform"
+    x$location <- location
+    x$scale <- scale
+    distributions <- rbind(distributions, x)
+    
     x <- parameters::normalize(as.data.frame(density(rnorm(size, location, scale), n=100)))
     x$distribution <- "normal"
     x$location <- location
@@ -114,12 +121,6 @@ for(location in round(seq(0.01, 10, length.out = 5), digits=2)){
     x$scale <- scale
     distributions <- rbind(distributions, x)
     
-    x <- parameters::normalize(as.data.frame(density(runif(size, location, location*2), n=100)))
-    x$distribution <- "uniform"
-    x$location <- location
-    x$scale <- scale
-    distributions <- rbind(distributions, x)
-    
     x <- parameters::normalize(as.data.frame(density(rweibull(size, location, scale), n=100)))
     x$distribution <- "weibull"
     x$location <- location
@@ -133,11 +134,13 @@ ggplot(distributions, aes(x=x, y=y, colour=distribution)) +
   theme_classic()
 ```
 
-### Convenience function
+## Convenience function
 ```{r message=FALSE, warning=FALSE, eval=TRUE}
 generate_distribution <- function(family="normal", size=1000, noise=0, location=0, scale=1){
   if(family == "normal"){
     x <- rnorm(size, location, scale)
+  } else if(family == "uniform"){
+    x <- runif(size, location, location*2)
   } else if(family == "beta"){
     x <- rbeta(size, location, scale)
   } else if(family == "binomial"){
@@ -156,8 +159,6 @@ generate_distribution <- function(family="normal", size=1000, noise=0, location=
     x <- rpois(size, location)
   } else if(family == "t"){
     x <- rt(size, location, scale)
-  } else if(family == "uniform"){
-    x <- runif(size, location, location*2)
   } else if(family == "weibull"){
     x <- rweibull(size, location, scale)
   }
@@ -165,7 +166,10 @@ generate_distribution <- function(family="normal", size=1000, noise=0, location=
 }
 ```
 
-### Data generation
+
+# Results
+
+## Data generation
 
 ```{r message=FALSE, warning=FALSE, eval=FALSE}
 df <- data.frame()
@@ -200,6 +204,12 @@ for(distribution in c("normal", "beta", "binomial", "chi", "exponential", "F", "
       "Skewness" = skewness(x_scaled),
       "Kurtosis" = kurtosis(x_scaled),
       "Uniques" = length(unique(x)) / length(x),
+      "CI_50_high" = ci(x_scaled, ci=0.5)$CI_high,
+      "CI_50_low" = ci(x_scaled, ci=0.5)$CI_low,
+      "CI_70_high" = ci(x_scaled, ci=0.7)$CI_high,
+      "CI_70_low" = ci(x_scaled, ci=0.7)$CI_low,
+      "CI_90_high" = ci(x_scaled, ci=0.9)$CI_high,
+      "CI_90_low" = ci(x_scaled, ci=0.9)$CI_low,
       "Smoothness_Cor" = parameters::smoothness(density(x_scaled)$y, method="cor"),
       "Smoothness_Diff" = parameters::smoothness(density(x_scaled)$y, method="diff"),
       "Smoothness_Z_Cor_1" = parameters::smoothness(density_Z, method="cor", lag=1),
@@ -229,13 +239,10 @@ for(distribution in c("normal", "beta", "binomial", "chi", "exponential", "F", "
 # df <- read.csv("https://raw.github.com/easystats/circus/master/data/classify_distribution.csv")
 ```
 
-# Results
-
-## Model training
 
 
 
-### Preparation
+## Data Preparation
 
 <!-- ```{r eval=FALSE, message=FALSE, warning=FALSE, include=FALSE} -->
 <!-- # parsnip attempt -->
@@ -311,7 +318,7 @@ registerDoParallel(cluster)
 ```
 
 
-### Training
+## Model Training
 
 ```{r message=FALSE, warning=FALSE, eval=FALSE, results="hide"}
 # Training
@@ -329,10 +336,8 @@ stopCluster(cluster) # explicitly shut down the cluster
 ```
 
 
-## Model Selection
 
-
-### Model Comparison
+## Model Comparison
 ```{r message=FALSE, warning=FALSE, eval=FALSE}
 # collect resamples
 results <- resamples(list(
@@ -354,7 +359,7 @@ data.frame("DecisionTree" = as.numeric(object.size(model_tree))/1000,
 ```
 
 
-### Best Model Inspection
+## Best Model Inspection
 
 ```{r message=FALSE, warning=FALSE, eval=FALSE}
 model <- model_rf
@@ -396,29 +401,39 @@ plot(model$finalModel, log="x", main="black default, red samplesize, green tree 
 ```{r message=FALSE, warning=FALSE, eval=FALSE}
 df <- data.frame()
 for(distribution in c("normal", "beta", "binomial", "chi", "exponential", "F", "gamma", "lognormal", "poisson", "t", "uniform", "weibull")){
-  for(i in 1:2000){
+  for(i in 1:3000){
     
-    size <- round(runif(1, 10, 1000))
+    size <- round(runif(1, 100, 1000))
     location <- runif(1, 0.01, 10)
     scale <- runif(1, 0.02, 10)
     
     x <- generate_distribution(distribution, size=size, location=location, scale=scale)
     
     x[is.infinite(x)] <- 5.565423e+156
-    x <- parameters::normalize(x, verbose=FALSE)
-    
+    x_scaled <- parameters::normalize(x, verbose=FALSE)
+
     # Extract features
     data <- data.frame(
-      "SD" = sd(x),
-      "MAD" = mad(x, constant=1),
-      "Mean_Median_Distance" = mean(x) - median(x),
-      "Mean_Mode_Distance" = mean(x) - as.numeric(bayestestR::map_estimate(x, bw = "nrd0")),
-      "SD_MAD_Distance" = sd(x) - mad(x, constant=1),
-      "Range" = diff(range(x)) / sd(x),
-      "IQR" = stats::IQR(x),
-      "Skewness" = skewness(x),
-      "Kurtosis" = kurtosis(x),
-      "Uniques" = length(unique(x)) / length(x)
+      "Mean" = mean(x_scaled),
+      "SD" = sd(x_scaled),
+      "Median" = median(x_scaled),
+      "MAD" = mad(x_scaled, constant=1),
+      "Mean_Median_Distance" = mean(x_scaled) - median(x_scaled),
+      "Mean_Mode_Distance" = mean(x_scaled) - as.numeric(bayestestR::map_estimate(x_scaled, bw = "nrd0")),
+      "SD_MAD_Distance" = sd(x_scaled) - mad(x_scaled, constant=1),
+      "Mode" = as.numeric(bayestestR::map_estimate(x_scaled, bw = "nrd0")),
+      "Range_SD" = diff(range(x)) / sd(x),
+      "Range_MAD" = diff(range(x)) / mad(x, constant=1),
+      "IQR" = stats::IQR(x_scaled),
+      "Skewness" = skewness(x_scaled),
+      "Kurtosis" = kurtosis(x_scaled),
+      "Uniques" = length(unique(x)) / length(x),
+      "CI_50_high" = ci(x_scaled, ci=0.5)$CI_high,
+      "CI_50_low" = ci(x_scaled, ci=0.5)$CI_low,
+      "CI_70_high" = ci(x_scaled, ci=0.7)$CI_high,
+      "CI_70_low" = ci(x_scaled, ci=0.7)$CI_low,
+      "CI_90_high" = ci(x_scaled, ci=0.9)$CI_high,
+      "CI_90_low" = ci(x_scaled, ci=0.9)$CI_low
     )
     
     

@@ -67,13 +67,11 @@ compute_models <- function(data, outcome_type="linear", chains=4, iter=2000, war
 
     if(outcome_type == "linear"){
       model_frequentist <- lm(y ~ x, data = data)
-      temp <- capture.output(
-        model_bayesian <- stan_glm(y ~ x, data = data, prior = normal(0, 1), chains = chains, iter = iter, warmup = round(warmup * iter)))
+      model_bayesian <- stan_glm(y ~ x, data = data, prior = normal(0, 1), chains = chains, iter = iter, warmup = round(warmup * iter), refresh = 500)
       
     } else{
       model_frequentist <- glm(y ~ x, data = data, family = "binomial")
-      temp <- capture.output(
-        model_bayesian <- stan_glm(y ~ x, data = data, family = "binomial", prior = normal(0, 1), chains = chains, iter = iter, warmup = round(warmup * iter)))
+      model_bayesian <- stan_glm(y ~ x, data = data, family = "binomial", prior = normal(0, 1), chains = chains, iter = iter, warmup = round(warmup * iter), refresh = 500)
     }
 
   return(
@@ -120,19 +118,15 @@ compute_indices <- function(models){
   
   range <- rope_range(models$bayesian)
   params$ROPE_range <- range[[2]]
-  params$ROPE_90 <- rope(posterior, range = range, ci=0.90)$ROPE_Percentage
-  params$ROPE_95 <- rope(posterior, range = range, ci=0.95)$ROPE_Percentage
-  params$ROPE_full <- rope(posterior, range = range, ci=1)$ROPE_Percentage
+  params$ROPE_90 <- rope(posterior, range = range, ci=0.90)$ROPE_percentage
+  params$ROPE_95 <- rope(posterior, range = range, ci=0.95)$ROPE_percentage
+  params$ROPE_full <- rope(posterior, range = range, ci=1)$ROPE_percentage
   params$p_ROPE <- tryCatch({
   p_rope(posterior, range = range)
   }, error = function(error_condition) {
       NA
   })
   # Bayesfactor
-  # This doens't really work
-  # params$BF <- as.numeric(bayesfactor_savagedickey(models$bayesian,
-  #                                   verbose=FALSE)$BF)
-  
   params$BF <- as.numeric(bayesfactor_savagedickey(posterior,
                                     prior = distribution_normal(length(posterior),
                                                                 mean=params$Prior_Location,
@@ -140,7 +134,7 @@ compute_indices <- function(models){
                                     hypothesis = 0,
                                     verbose=FALSE))
   
-  # CI
+  # CIs
   ci_95 <- hdi(posterior, ci=0.95)
   params$CI_low_95_hdi <- ci_95$CI_low
   params$CI_high_95_hdi <- ci_95$CI_high
@@ -149,6 +143,10 @@ compute_indices <- function(models){
   params$CI_low_90_hdi <- ci_90$CI_low
   params$CI_high_90_hdi <- ci_90$CI_high
   
+  ci_89 <- hdi(posterior, ci=0.89)
+  params$CI_low_89_hdi <- ci_89$CI_low
+  params$CI_high_89_hdi <- ci_89$CI_high
+  
   ci_95 <- ci(posterior, ci=0.95)
   params$CI_low_95_quantile <- ci_95$CI_low
   params$CI_high_95_quantile <- ci_95$CI_high
@@ -156,6 +154,10 @@ compute_indices <- function(models){
   ci_90 <- ci(posterior, ci=0.90)
   params$CI_low_90_quantile <- ci_90$CI_low
   params$CI_high_90_quantile <- ci_90$CI_high
+  
+  ci_89 <- ci(posterior, ci=0.89)
+  params$CI_low_89_quantile <- ci_89$CI_low
+  params$CI_high_89_quantile <- ci_89$CI_high
     
   
   params
@@ -165,7 +167,7 @@ compute_indices <- function(models){
 ## Wrapper
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, results='hide'}
-generate_and_process <- function(true_effect=0, outcome_type="linear", sample_size=50, error=0, chains=4, iter=2000, warmup = 1/2, modulate_priors = FALSE){
+generate_and_process <- function(true_effect=0, outcome_type="linear", sample_size=50, error=0, chains=4, iter=2000, warmup = 1/2, modulate_priors = FALSE, priors_precision = 1){
   
   data <- generate_data(true_effect=true_effect, outcome_type=outcome_type, sample_size=sample_size, error=error)
   models <- compute_models(data, outcome_type=outcome_type, chains=chains, iter=iter, warmup = warmup)
@@ -174,16 +176,18 @@ generate_and_process <- function(true_effect=0, outcome_type="linear", sample_si
   
   if(modulate_priors){
     # Congruent
-    models$bayesian <- update(models$bayesian, prior = normal(location = 1, 
-                                                              scale = params$Prior_Scale,
-                                                              autoscale = FALSE))
+    models$bayesian <- update(models$bayesian, 
+                              prior = normal(location = params$Prior_Scale, 
+                                             scale = params$Prior_Scale * priors_precision,
+                                             autoscale = FALSE))
     params_congruent <- compute_indices(models)
     params_congruent$Prior <- "Congruent"
     
     # Incongruent
-    models$bayesian <- update(models$bayesian, prior = normal(location = -1, 
-                                                              scale = params$Prior_Scale,
-                                                              autoscale = FALSE))
+    models$bayesian <- update(models$bayesian, 
+                              prior = normal(location = -1 * params$Prior_Scale, 
+                                             scale = params$Prior_Scale * priors_precision,
+                                             autoscale = FALSE))
     params_incongruent <- compute_indices(models)
     params_incongruent$Prior <- "Incongruent"
     
@@ -219,23 +223,24 @@ We generated a dataset for each combination of these characteristics, resulting 
 
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
-options(mc.cores = parallel::detectCores())
+options(mc.cores = parallel::detectCores()-1)
 set.seed(333)
 # Parameters -------------------------------------------------------------------
 outcome_types <- c("binary", "linear")
 effects <- c(0, 1)
-sample_sizes <- seq(20, 100, length.out = 3)
-errors <- seq(0.33, 6.66, length.out = 2)
+sample_sizes <- seq(20, 100, length.out = 9)
+errors <- seq(0.33, 6.66, length.out = 100)
 # Run --------------------------------------------------------------------------
 # Initialize data
 all_data <- data.frame()
+n <- 1
 # Start loop
 for(outcome_type in outcome_types){
   print(outcome_type)
   for(true_effect in effects){
     for(error in errors){
       for(sample_size in sample_sizes){
-        for(iteration in 1:2){
+        for(iteration in 1:1){
           cat(".")
           
           fail <- TRUE
@@ -250,22 +255,24 @@ for(outcome_type in outcome_types){
           }
           # Save data
           params <- mutate(params,
-                             true_effect=true_effect,
-                             sample_size=sample_size,
-                             outcome_type = outcome_type,
-                             error = error,
-                             iteration=iteration)
+                           true_effect=true_effect,
+                           sample_size=sample_size,
+                           outcome_type = outcome_type,
+                           error = error,
+                           iteration=iteration,
+                           n = n)
           all_data <- rbind(all_data, params)
+          n <- n + 1
         }
       }
     }
   }
-  # write.csv(all_data, "bayesSim_study1.csv", row.names = FALSE)
+  write.csv(all_data, "bayesSim_study1.csv", row.names = FALSE)
 }
 ```
 
 ```{r message=FALSE, warning=FALSE, include=FALSE, results='hide'}
-all_data <- read.csv("https://raw.github.com/easystats/circus/master/data/bayesSim_study1.csv")
+# all_data <- read.csv("https://raw.github.com/easystats/circus/master/data/bayesSim_study1.csv")
 ```
 
 ## Visualise data
@@ -404,10 +411,11 @@ The simulation aimed at modulating the following characteristics:
 
 - **Model type**: linear or logistic.
 - **"True" effect** (original regression coefficient from which data is drawn): Can be 1 or 0 (no effect).
-- **draws**: from 10 to 5000 by step of 5 (1000 iterations).
-- **warmup**: Ratio of warmup iterations. from 1/10 to 9/10 by step of 0.1 (9 iterations).
+- **draws**: from 50 to 5000 by step of 5 (1000 iterations).
+- **warmup**: Ratio of warmup iterations. From 1/10 to 9/10 by step of 0.1 (9 iterations).
 
 We generated 3 datasets for each combination of these characteristics, resulting in a total of `2 * 2 * 1000 * 9 = 34560` Bayesian and frequentist models.
+
 
 
 ## Generation
@@ -419,16 +427,16 @@ set.seed(333)
 # Parameters -------------------------------------------------------------------
 outcome_types <- c("binary", "linear")
 effects <- c(0, 1)
-# chains <- c(4)
+chains <- c(4)
 # draws <- seq(50, 5000, by=50)
 # warmups <- seq(1/10, 9/10, by=1/10)
 # Short version
-chains <- c(4)
 draws <- seq(100, 1000, by=100)
 warmups <- seq(3/10, 7/10, by=1/10)
 # Run --------------------------------------------------------------------------
 # Initialize data
 all_data <- data.frame()
+n <- 1
 # Start loop
 for(outcome_type in outcome_types){
   print(outcome_type)
@@ -442,7 +450,7 @@ for(outcome_type in outcome_types){
             fail <- TRUE
             while(fail==TRUE){
               tryCatch({
-                params <- generate_and_process(true_effect=true_effect, outcome_type=outcome_type, sample_size=50, error=1, type="bayesian", iter=n_draws, chains=n_chains, warmup=warmup)
+                params <- generate_and_process(true_effect=true_effect, outcome_type=outcome_type, sample_size=50, error=1, iter=n_draws, chains=n_chains, warmup=warmup)
                 fail <- FALSE
                 params
               },error=function(e){
@@ -453,10 +461,12 @@ for(outcome_type in outcome_types){
      
             # Save data
             params <- mutate(params,
-                              true_effect=true_effect,
-                              outcome_type = outcome_type,
-                              iteration=iteration)
+                             true_effect=true_effect,
+                             outcome_type = outcome_type,
+                             iteration=iteration,
+                             n = n)
             all_data <- rbind(all_data, params)
+            n <- n + 1
           }
         }
       }
@@ -472,12 +482,74 @@ for(outcome_type in outcome_types){
 
 # Study 3 - Priors Specification
 
+## Method
 
 The simulation aimed at modulating the following characteristics:
 
 - **Model type**: linear or logistic.
-- **prior direction**: either "congruent" (1), "uninformative" (0) or "opposite" (-1).
-- **prior precision**: prior SD from 0.5 to 1.5.
+- **"True" effect** (original regression coefficient from which data is drawn): Can be 1 or 0 (no effect).
+- **Prior direction**: either "congruent" (1 SD), "uninformative" (0) or "incongruent" (-1 SD).
+- **Prior precision**: prior SD from 0.5 to 2 (with 10 different values).
+
+
+We generated 3 datasets for each combination of these characteristics, resulting in a total of `2 * 2 * 3 * 1000 = 12000` Bayesian and frequentist models.
+
+
+## Generation
+
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
+# options(mc.cores = parallel::detectCores())
+set.seed(333)
+# Parameters -------------------------------------------------------------------
+outcome_types <- c("binary", "linear")
+effects <- c(0, 1)
+priors_precisions <- seq(0.5, 2, length.out = 10)
+
+# Run --------------------------------------------------------------------------
+# Initialize data
+all_data <- data.frame()
+n <- 1
+# Start loop
+for(outcome_type in outcome_types){
+  print(outcome_type)
+  for(true_effect in effects){
+    for(priors_precision in priors_precisions){
+      for(iteration in 1:1){
+        cat(".")
+        
+        fail <- TRUE
+        while(fail==TRUE){
+          tryCatch({
+            params <- generate_and_process(true_effect=true_effect, outcome_type=outcome_type, sample_size=50, error=1, modulate_priors = TRUE, priors_precision = priors_precision)
+            fail <- FALSE
+            params
+          },error=function(e){
+          },warning=function(w){
+            cat("*")
+          })
+        }
+ 
+        # Save data
+        params <- mutate(params,
+                         true_effect=true_effect,
+                         outcome_type = outcome_type,
+                         iteration=iteration,
+                         n = n)
+        all_data <- rbind(all_data, params)
+        n <- n + 1
+      }
+    }
+  }
+  # write.csv(all_data, "bayesSim_study3.csv", row.names = FALSE)
+}
+```
+
+```{r message=FALSE, warning=FALSE, include=FALSE, results='hide'}
+# all_data <- read.csv("https://raw.github.com/easystats/circus/master/data/bayesSim_study2.csv")
+```
+
+
 
 # Session
 
