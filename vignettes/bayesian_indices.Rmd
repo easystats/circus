@@ -266,8 +266,8 @@ for(outcome_type in outcome_types){
         }
       }
     }
+    write.csv(all_data, "bayesSim_study1.csv", row.names = FALSE)
   }
-  write.csv(all_data, "bayesSim_study1.csv", row.names = FALSE)
 }
 ```
 
