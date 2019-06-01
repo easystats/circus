@@ -118,6 +118,7 @@ compute_indices <- function(models){
   
   range <- rope_range(models$bayesian)
   params$ROPE_range <- range[[2]]
+  params$ROPE_89 <- rope(posterior, range = range, ci=0.89)$ROPE_Percentage
   params$ROPE_90 <- rope(posterior, range = range, ci=0.90)$ROPE_Percentage
   params$ROPE_95 <- rope(posterior, range = range, ci=0.95)$ROPE_Percentage
   params$ROPE_full <- rope(posterior, range = range, ci=1)$ROPE_Percentage
@@ -133,6 +134,7 @@ compute_indices <- function(models){
                                                                 sd=params$Prior_Scale),
                                     hypothesis = 0,
                                     verbose=FALSE))
+  params$BF_log <- log(params$BF)
   
   # CIs
   ci_95 <- hdi(posterior, ci=0.95)
@@ -229,7 +231,7 @@ set.seed(333)
 outcome_types <- c("binary", "linear")
 effects <- c(0, 1)
 sample_sizes <- seq(20, 100, length.out = 9)
-errors <- seq(0.33, 6.66, length.out = 100)
+errors <- seq(0.33, 6.66, length.out = 20)
 # Run --------------------------------------------------------------------------
 # Initialize data
 all_data <- data.frame()
