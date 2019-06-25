@@ -18,77 +18,59 @@ editor_options:
 
 # Generate Bootstrapped data
 
+We generated one large sample (the **parent population**, size `1000000`) of two continuous variables producing a regression coefficient of `0.5`. We then iteratively extracted a subsample of size `30`, computed 3 types of coefficient (regular, bootstrapped with 1000 iterations and bootstrapped with 4000 iterations) that were substracted from the "parent" coefficient. The closer the value is from 0, and the closer it is from the "true" effect.
+
 ## Convenience Functions
 ```{r eval=TRUE, message=FALSE, warning=FALSE, results='hide'}
-generate_parent_population <- function(noise=0.1, n=10000){
+generate_parent_population <- function(noise=1, n=10000){
   y <- rnorm(n, 0, 1)
   x <- y + rnorm(n, 0, noise)
   return(data.frame(x=x, y=y, noise=noise))
 }
 
-extract_sample <- function(data, n=50){
+extract_sample <- function(data, n=30){
   return(data[sample(nrow(data), n), ])
 }
 
-extract_parameters <- function(model){
-  params <- parameters::model_parameters(model)[2, c(2, 3)]
-  
-  boot1 <- parameters::model_parameters(model, bootstrap=TRUE, n=1000)[2, c(2, 3)]
-  names(boot1) <- paste0(names(boot1), "_1000")
-  
-  boot2 <- parameters::model_parameters(model, bootstrap=TRUE, n=4000)[2, c(2, 3)]
-  names(boot2) <- paste0(names(boot2), "_4000")
-  
-  return(cbind(params, boot1, boot2))
+extract_parameters <- function(model, real=1){
+  data.frame(
+    Real = real,
+    Coefficient = real - parameters::model_parameters(model)$Coefficient[2],
+    Bootstrapped_1000 = real - parameters::model_parameters(model, bootstrap=TRUE, n=1000)$Coefficient[2],
+    Bootstrapped_4000 = real - parameters::model_parameters(model, bootstrap=TRUE, n=4000)$Coefficient[2]
+    )
 }
 ```
 
 ## Visualisation
 ```{r eval=TRUE, message=FALSE, warning=FALSE, results='hide', fig.height=8, fig.width=12}
+library(dplyr)
 library(ggplot2)
 
-data <- rbind(
-  generate_parent_population(noise=0.25),
-  generate_parent_population(noise=0.5),
-  generate_parent_population(noise=1),
-  generate_parent_population(noise=1.5),
-  generate_parent_population(noise=2),
-  generate_parent_population(noise=2.5)
-)
-  
-ggplot(data, aes(x=x, y=y)) +
-  geom_point(alpha=0.05, shape=16) +
-  facet_wrap(~noise, nrow=3) +
+parent <- generate_parent_population(noise = 1, n = 100000)
+
+parent %>% 
+  ggplot(aes(x=x, y=y)) +
+  geom_point(size = 2, alpha=0.03, shape=16) +
+  geom_smooth(method = "lm", se = FALSE) +
   theme_classic()
 ```
 
 ## Creating Data
 ```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
-noises <- c(0.25, 0.5, 1, 1.5, 2, 2.5)
-iterations <- 1000
-sample_size <- 50
+parent_model <- lm(y ~ x, data=parent)
+parent_coef <- insight::get_parameters(parent_model)[2, 2]
 
 final_data <- data.frame()
-for(noise in noises){
-  print(noise)
-  data <- generate_parent_population(noise, n=10000)
-  parent_model <- lm(y ~ x, data=data)
-  parent_params <- parameters::model_parameters(parent_model)[2, c(2, 3)]
-  names(parent_params) <- paste0("Parent_", names(parent_params))
-  
-  for(i in 1:iterations){
-    cat(".")
-    sample <- extract_sample(data, n=sample_size)
-    
-    model <- lm(y ~ x, data=sample)
-    params <- cbind(parent_params, extract_parameters(model))
-    params$Noise <- noise
-    
-    final_data <- rbind(final_data, params)
-  }
-  write.csv(final_data, "../data/bootstrapped.csv", row.names = FALSE)
-}
 
+for(i in 1:10000){
+  if((i / 100) %% 1 == 0) print(i)
+  cat(".")
+  sample <- extract_sample(parent, n=30)
+  model <- lm(y ~ x, data=sample)
+  final_data <- rbind(final_data, extract_parameters(model, real = parent_coef))
+}
+write.csv(final_data, "bootstrapped.csv", row.names = FALSE)
 
 ```
 
