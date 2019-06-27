@@ -4,7 +4,7 @@
 \name{GLMMadaptive_1}
 \alias{GLMMadaptive_1}
 \title{GLMMadaptive_1}
-\format{An object of class \code{MixMod} of length 20.}
+\format{An object of class \code{MixMod} of length 21.}
 \usage{
 GLMMadaptive_1
 }
