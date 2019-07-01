@@ -1,0 +1,178 @@
+---
+title: "Sensitivity to Prior Specification"
+output: 
+  github_document:
+    toc: true
+    fig_width: 10.08
+    fig_height: 6
+  rmarkdown::html_vignette:
+    toc: true
+    fig_width: 10.08
+    fig_height: 6
+tags: [r, bootstrapped]
+vignette: >
+  \usepackage[utf8]{inputenc}
+editor_options: 
+  chunk_output_type: console
+---
+
+
+# Parameters and Packages
+
+
+```{r message=FALSE, warning=FALSE, eval=TRUE}
+library(tidyverse)
+library(rstanarm)
+library(bayestestR)
+library(estimate)
+
+set.seed(333)
+```
+
+
+
+# Convenience Functions
+
+
+```{r message=FALSE, warning=FALSE}
+generate_parent_population <- function(noise=1, n=10000){
+  y <- rnorm(n, 0, 1)
+  x <- y + rnorm(n, 0, noise)
+  return(data.frame(x=x, y=y, noise=noise))
+}
+
+
+
+extract_sample <- function(data, n=30){
+  return(data[sample(nrow(data), n), ])
+}
+```
+
+
+# Study 1: Effect of Magnitude
+
+## Parent Population
+```{r message=FALSE, warning=FALSE}
+library(dplyr)
+library(ggplot2)
+library(see)
+
+plots(
+  generate_parent_population(noise = 0.5, n = 10000) %>% 
+  ggplot(aes(x=x, y=y)) +
+  geom_point(size = 2, alpha=0.1, shape=16) +
+  geom_smooth(method = "lm", se = FALSE) +
+  theme_classic() +
+  ggtitle("Noise = 0.5"),  
+  
+  generate_parent_population(noise = 1.5, n = 10000) %>% 
+  ggplot(aes(x=x, y=y)) +
+  geom_point(size = 2, alpha=0.1, shape=16) +
+  geom_smooth(method = "lm", se = FALSE) +
+  theme_classic() +
+  ggtitle("Noise = 1.5"), 
+  
+  generate_parent_population(noise = 4.5, n = 10000) %>% 
+  ggplot(aes(x=x, y=y)) +
+  geom_point(size = 2, alpha=0.1, shape=16) +
+  geom_smooth(method = "lm", se = FALSE) +
+  theme_classic() +
+  ggtitle("Noise = 4.5")
+)
+```
+
+## Simulation
+
+```{r eval=FALSE, message=FALSE, warning=FALSE}
+data <- data.frame()
+
+for(n in c(15, 30, 45, 60, 120, 240)){
+  cat(paste0("\n", round(n / 240 * 100, 1), "%"))
+  for(noise in seq(0.1, 5, length.out = 1000)){
+    cat(".")
+    
+    parent <- generate_parent_population(noise = noise, n = 100000)
+    parent_effect <- insight::get_parameters(lm(y ~ x, data = parent))[2, 2]
+    
+    sample <- extract_sample(parent, n = n)
+    model <- stan_glm(y ~ x, data = sample, refresh = 0)
+    sensitivity <- bayestestR::sensitivity_to_prior(model, index = c("Median", "Mean", "MAP"), magnitude = 10)
+  
+    out <- data.frame(Sensitivity_Median = sensitivity$Median,
+               Sensitivity_Mean = sensitivity$Mean,
+               Sensitivity_MAP = sensitivity$MAP,
+               magnitude = 10,
+               noise=noise,
+               n = n,
+               parent_n = 100000,
+               parent_effect = parent_effect)
+    out <- cbind(out, bayestestR::describe_posterior(model)[2, ])
+
+  
+    data <- rbind(data, 
+                  out)
+  }
+  write.csv(data, "sensitivity_to_priors.csv", row.names = FALSE)
+}
+
+
+```
+
+
+
+## Results
+
+```{r message=FALSE, warning=FALSE}
+# data <- read.csv("https://raw.github.com/easystats/circus/master/data/sensitivity_to_priors.csv")
+
+df <- data %>% 
+  mutate(noise_factor = as.factor(cut(noise, 4, dig.lab = 0)),
+         sample_size = fct_rev(as.factor(n))) %>% 
+  filter(Sensitivity_Median < 2)
+```
+
+### Visualisation
+
+```{r message=FALSE, warning=FALSE}
+df %>% 
+  ggplot(aes(x=Sensitivity_Median, fill = sample_size)) +
+  geom_density(alpha=0.5) + 
+  ggtitle("Relationship with Sample Size")
+```
+
+```{r message=FALSE, warning=FALSE}
+df %>% 
+  ggplot(aes(x=Sensitivity_Median, fill = noise_factor)) +
+  geom_density(alpha=0.5) + 
+  ggtitle("Relationship with Noise")
+```
+
+```{r message=FALSE, warning=FALSE}
+df %>% 
+  ggplot(aes(x = noise, y = Sensitivity_Median, fill = sample_size, color = sample_size)) +
+  geom_point2(size = 3, alpha = 0.3) +
+  geom_smooth(alpha = 0.3) +
+  ggtitle("Relationship with Noise and Sample Size")
+```
+
+```{r message=FALSE, warning=FALSE}
+df %>% 
+  ggplot(aes(x = noise_factor, y = Sensitivity_Median, fill = sample_size)) +
+  geom_boxplot() + 
+  ggtitle("Relationship with Noise and Sample Size")
+```
+
+
+
+
+### Statistics
+
+```{r message=FALSE, warning=FALSE}
+model <- lm(Sensitivity_Median ~ poly(noise, 2, raw=TRUE) * poly(n, 2, raw=TRUE), data=df)
+summary(model)
+```
+
+# Conclusion
+
+Sensitivity to priors seems to be an interesting integrative index of robustness of parameters, being sensitive to both noise and sample size.
+
