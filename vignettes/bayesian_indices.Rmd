@@ -67,11 +67,11 @@ compute_models <- function(data, outcome_type="linear", chains=4, iter=2000, war
 
     if(outcome_type == "linear"){
       model_frequentist <- lm(y ~ x, data = data)
-      model_bayesian <- stan_glm(y ~ x, data = data, prior = normal(0, 1), chains = chains, iter = iter, warmup = round(warmup * iter), refresh = 500)
+      model_bayesian <- stan_glm(y ~ x, data = data, prior = normal(0, 1), chains = chains, iter = iter, warmup = round(warmup * iter), refresh = 0)
       
     } else{
       model_frequentist <- glm(y ~ x, data = data, family = "binomial")
-      model_bayesian <- stan_glm(y ~ x, data = data, family = "binomial", prior = normal(0, 1), chains = chains, iter = iter, warmup = round(warmup * iter), refresh = 500)
+      model_bayesian <- stan_glm(y ~ x, data = data, family = "binomial", prior = normal(0, 1), chains = chains, iter = iter, warmup = round(warmup * iter), refresh = 0)
     }
 
   return(
@@ -90,7 +90,7 @@ compute_models <- function(data, outcome_type="linear", chains=4, iter=2000, war
 compute_indices <- function(models){
 
   params <- parameters::model_parameters(models$frequentist)[2, ] %>%
-      dplyr::select(beta, SE, CI_low_95_freq = CI_low, CI_high_95_freq = CI_high, p_value = p)
+      dplyr::select(Coefficient, SE, CI_low_95_freq = CI_low, CI_high_95_freq = CI_high, p_value = p)
   
 
   posterior <- as.data.frame(models$bayesian)$x
@@ -128,11 +128,11 @@ compute_indices <- function(models){
       NA
   })
   # Bayesfactor
-  params$BF <- as.numeric(bayesfactor_savagedickey(posterior,
+  params$BF <- as.numeric(bayesfactor_parameters(posterior,
                                     prior = distribution_normal(length(posterior),
                                                                 mean=params$Prior_Location,
                                                                 sd=params$Prior_Scale),
-                                    hypothesis = 0,
+                                    null = 0,
                                     verbose=FALSE))
   params$BF_log <- log(params$BF)
   
@@ -216,7 +216,7 @@ The simulation aimed at modulating the following characteristics:
 - **Model type**: linear or logistic.
 - **"True" effect** (original regression coefficient from which data is drawn): Can be 1 or 0 (no effect).
 - **Sample size**: From 20 to 100 by steps of 10.
-- **Error**: Gaussian noise applied to the predictor with SD uniformly spread between 0.33 and 6.66 (with 1000 different values).
+- **Error**: Gaussian noise applied to the predictor with SD uniformly spread between 0.666 and 6.66 (with 1000 different values).
 
 We generated a dataset for each combination of these characteristics, resulting in a total of `2 * 2 * 9 * 1000 = 36000` Bayesian and frequentist models.
 
@@ -225,13 +225,14 @@ We generated a dataset for each combination of these characteristics, resulting 
 
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
-options(mc.cores = parallel::detectCores()-1)
+# options(mc.cores = parallel::detectCores()-1)
+options(mc.cores = 1)
 set.seed(333)
 # Parameters -------------------------------------------------------------------
 outcome_types <- c("binary", "linear")
 effects <- c(0, 1)
-sample_sizes <- seq(20, 100, length.out = 9)
-errors <- seq(0.33, 6.66, length.out = 20)
+sample_sizes <- seq(20, 100, by = 10)
+errors <- seq(0.666, 6.66, length.out = 2)
 # Run --------------------------------------------------------------------------
 # Initialize data
 all_data <- data.frame()
@@ -268,7 +269,7 @@ for(outcome_type in outcome_types){
         }
       }
     }
-    write.csv(all_data, "bayesSim_study1.csv", row.names = FALSE)
+    # write.csv(all_data, "bayesSim_study1.csv", row.names = FALSE)
   }
 }
 ```
@@ -285,7 +286,7 @@ for(outcome_type in outcome_types){
 effects <- c(0, 1)
 sample_sizes <- c(240)
 outcome_types <- c("binary", "linear")
-errors <- seq(0.33, 6.66, length.out = 3)
+errors <- round(seq(0.666, 6.66, length.out = 3), 2)
 
 example_data <- data.frame()
 for(outcome_type in outcome_types){
@@ -424,7 +425,8 @@ We generated 3 datasets for each combination of these characteristics, resulting
 
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
-# options(mc.cores = parallel::detectCores())
+# options(mc.cores = parallel::detectCores()-1)
+options(mc.cores = 1)
 set.seed(333)
 # Parameters -------------------------------------------------------------------
 outcome_types <- c("binary", "linear")

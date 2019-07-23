@@ -25,6 +25,7 @@ library(tidyverse)
 library(rstanarm)
 library(bayestestR)
 library(estimate)
+library(see)
 
 set.seed(333)
 ```
@@ -53,10 +54,6 @@ extract_sample <- function(data, n=30){
 
 ## Parent Population
 ```{r message=FALSE, warning=FALSE}
-library(dplyr)
-library(ggplot2)
-library(see)
-
 plots(
   generate_parent_population(noise = 0.5, n = 10000) %>% 
   ggplot(aes(x=x, y=y)) +
@@ -123,7 +120,7 @@ for(n in c(15, 30, 45, 60, 120, 240)){
 ## Results
 
 ```{r message=FALSE, warning=FALSE}
-# data <- read.csv("https://raw.github.com/easystats/circus/master/data/sensitivity_to_priors.csv")
+data <- read.csv("https://raw.github.com/easystats/circus/master/data/sensitivity_to_priors.csv")
 
 df <- data %>% 
   mutate(noise_factor = as.factor(cut(noise, 4, dig.lab = 0)),
@@ -162,7 +159,29 @@ df %>%
   ggtitle("Relationship with Noise and Sample Size")
 ```
 
+```{r message=FALSE, warning=FALSE}
+see::plots(
+  df %>% 
+    ggplot(aes(x = pd, y = Sensitivity_Median, color=sample_size)) +
+    geom_point2(size = 3, alpha = 0.3) +
+      ggtitle("Relationship with the pd and the sample size"),
+df %>% 
+    ggplot(aes(x = pd, y = Sensitivity_Median, color=noise_factor)) +
+    geom_point2(size = 3, alpha = 0.3) +
+    ggtitle("Relationship with the pd and the noise"))
+```
 
+```{r message=FALSE, warning=FALSE}
+see::plots(
+  df %>% 
+    ggplot(aes(x = ROPE_Percentage, y = Sensitivity_Median, color=sample_size)) +
+    geom_point2(size = 3, alpha = 0.3) +
+    ggtitle("Relationship with the ROPE and the sample size"),
+  df %>% 
+    ggplot(aes(x = ROPE_Percentage, y = Sensitivity_Median, color=noise_factor)) +
+    geom_point2(size = 3, alpha = 0.3) +
+    ggtitle("Relationship with the ROPE and the noise"))
+```
 
 
 ### Statistics
