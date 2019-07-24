@@ -94,6 +94,9 @@
     <li>
       <a href="../articles/classify_distribution.html">Classify Distributions using Machine Learning</a>
     </li>
+    <li>
+      <a href="../articles/sensitivity_to_priors.html">Sensitivity to Prior Specification</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -135,8 +138,8 @@
 <span class='co'># data prepararion: see "glmmTMB_1"</span>
 
 <span class='fu'>glmmTMB</span>(
-  <span class='no'>count</span> ~ <span class='no'>child</span> + <span class='no'>camper</span> + (<span class='fl'>1</span> + <span class='no'>xb</span><span class='kw'>|</span> <span class='no'>persons</span>),
-  <span class='kw'>ziformula</span> <span class='kw'>=</span> ~ <span class='no'>child</span> + <span class='no'>livebait</span> + (<span class='fl'>1</span> + <span class='no'>zg</span> + <span class='no'>nofish</span><span class='kw'>|</span> <span class='no'>ID</span>),
+  <span class='no'>count</span> ~ <span class='no'>child</span> + <span class='no'>camper</span> + (<span class='fl'>1</span> + <span class='no'>xb</span> <span class='kw'>|</span> <span class='no'>persons</span>),
+  <span class='kw'>ziformula</span> <span class='kw'>=</span> ~ <span class='no'>child</span> + <span class='no'>livebait</span> + (<span class='fl'>1</span> + <span class='no'>zg</span> + <span class='no'>nofish</span> <span class='kw'>|</span> <span class='no'>ID</span>),
   <span class='kw'>dispformula</span> <span class='kw'>=</span> ~<span class='no'>xb</span>,
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>fish</span>,
   <span class='kw'>family</span> <span class='kw'>=</span> <span class='fu'>truncated_poisson</span>()

@@ -94,6 +94,9 @@
     <li>
       <a href="../articles/classify_distribution.html">Classify Distributions using Machine Learning</a>
     </li>
+    <li>
+      <a href="../articles/sensitivity_to_priors.html">Sensitivity to Prior Specification</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -127,14 +130,14 @@
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>An object of class <code>MixMod</code> of length 20.</p>
+    <p>An object of class <code>MixMod</code> of length 21.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>cbpp</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"lme4"</span>)
 
-<span class='kw pkg'>GLMMadaptive</span><span class='kw ns'>::</span><span class='fu'>mixed_model</span>(
+<span class='kw pkg'>GLMMadaptive</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/GLMMadaptive/topics/mixed_model'>mixed_model</a></span>(
   <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cbind'>cbind</a></span>(<span class='no'>incidence</span>, <span class='no'>size</span> - <span class='no'>incidence</span>) ~ <span class='no'>period</span>,
   <span class='kw'>random</span> <span class='kw'>=</span> ~ <span class='fl'>1</span> <span class='kw'>|</span> <span class='no'>herd</span>,
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>cbpp</span>,

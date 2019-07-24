@@ -94,6 +94,9 @@
     <li>
       <a href="../articles/classify_distribution.html">Classify Distributions using Machine Learning</a>
     </li>
+    <li>
+      <a href="../articles/sensitivity_to_priors.html">Sensitivity to Prior Specification</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -127,20 +130,20 @@
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>An object of class <code>MixMod</code> of length 20.</p>
+    <p>An object of class <code>MixMod</code> of length 21.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='co'># data prepararion: see "glmmTMB_1"</span>
 
-<span class='kw pkg'>GLMMadaptive</span><span class='kw ns'>::</span><span class='fu'>mixed_model</span>(
+<span class='kw pkg'>GLMMadaptive</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/GLMMadaptive/topics/mixed_model'>mixed_model</a></span>(
   <span class='no'>count</span> ~ <span class='no'>child</span> + <span class='no'>camper</span>,
   <span class='kw'>random</span> <span class='kw'>=</span> ~ <span class='fl'>1</span> <span class='kw'>|</span> <span class='no'>persons</span>,
   <span class='kw'>zi_fixed</span> <span class='kw'>=</span> ~ <span class='no'>child</span> + <span class='no'>livebait</span>,
   <span class='kw'>zi_random</span> <span class='kw'>=</span> ~ <span class='fl'>1</span> <span class='kw'>|</span> <span class='no'>persons</span>,
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>fish</span>,
-  <span class='kw'>family</span> <span class='kw'>=</span> <span class='kw pkg'>GLMMadaptive</span><span class='kw ns'>::</span><span class='fu'>zi.poisson</span>()
+  <span class='kw'>family</span> <span class='kw'>=</span> <span class='kw pkg'>GLMMadaptive</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/GLMMadaptive/topics/extra_fams'>zi.poisson</a></span>()
 )
 <span class='co'># }</span></pre>
   </div>
