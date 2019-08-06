@@ -7,30 +7,14 @@
 \format{An object of class \code{brmsfit} of length 21.}
 \usage{
 brms_smooth_2
-
-brms_smooth_2
 }
 \description{
-Model of class brmsfit
-
 Model of class brmsfit
 }
 \examples{
 \dontrun{
 dat <- mgcv::gamSim(1, n = 200, scale = 2)
 brm(y ~ t2(x0, x1) + s(x2, by = x3), data = dat, iter = 1000)
-}
-\dontrun{
-set.seed(123)
-dat <- data.frame(
-  sid = c(1:300),
-  t1id = sample(200:215, 300, replace = TRUE),
-  t2id = sample(200:215, 300, replace = TRUE),
-  y = rnorm(300, mean = 85, sd = 8),
-  x = rnorm(300, mean = 50, sd = 10)
-)
-
-brm(y ~ x + (1 | mm(t1id, t2id)), data = dat)
 }
 }
 \keyword{datasets}
