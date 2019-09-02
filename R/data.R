@@ -1,3 +1,28 @@
+#' vgam_1
+#'
+#' Model of class vgam
+#' @examples
+#' data("hunua")
+#' vgam(agaaus ~ vitluc + s(altitude, df = 2), binomialff, data = hunua)
+"vgam_1"
+
+
+#' vgam_2
+#'
+#' Model of class vgam
+#' @examples
+#' data("hunua")
+#' vgam(
+#'   cbind(agaaus, kniexc) ~ vitluc + s(altitude, df = c(2, 3)),
+#'   binomialff(multiple.responses = TRUE),
+#'   data = hunua
+#' )
+"vgam_2"
+
+
+
+
+
 #' gam_zi_1
 #'
 #' Model of class gam
