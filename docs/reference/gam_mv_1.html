@@ -134,8 +134,7 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>mgcv</span>)
-<span class='no'>V</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>2</span>), <span class='fl'>2</span>, <span class='fl'>2</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>mgcv</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: nlme</span></div><div class='output co'>#&gt; <span class='message'>This is mgcv 1.8-28. For overview type 'help("mgcv-package")'.</span></div><div class='input'><span class='no'>V</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>2</span>), <span class='fl'>2</span>, <span class='fl'>2</span>)
 <span class='no'>f0</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>) <span class='fl'>2</span> * <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Trig'>sin</a></span>(<span class='no'>pi</span> * <span class='no'>x</span>)
 <span class='no'>f1</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>) <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>exp</a></span>(<span class='fl'>2</span> * <span class='no'>x</span>)
 <span class='no'>f2</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>) <span class='fl'>0.2</span> * <span class='no'>x</span> ^ <span class='fl'>11</span> * (<span class='fl'>10</span> * (<span class='fl'>1</span> - <span class='no'>x</span>)) ^ <span class='fl'>6</span> + <span class='fl'>10</span> * (<span class='fl'>10</span> * <span class='no'>x</span>) ^ <span class='fl'>3</span> * (<span class='fl'>1</span> - <span class='no'>x</span>) ^ <span class='fl'>10</span>
@@ -160,9 +159,9 @@
 #&gt; 
 #&gt; Formula:
 #&gt; y0 ~ s(x0) + s(x1)
-#&gt; &lt;environment: 0x0000019a32327540&gt;
+#&gt; &lt;environment: 0x00000144365c3128&gt;
 #&gt; y1 ~ s(x2) + s(x3)
-#&gt; &lt;environment: 0x0000019a32327540&gt;
+#&gt; &lt;environment: 0x00000144365c3128&gt;
 #&gt; 
 #&gt; Estimated degrees of freedom:
 #&gt; 4.31 3.53 8.55 1.00  total = 22.4 

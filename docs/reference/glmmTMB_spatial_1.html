@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>vgam_1 — vgam_1 • circus</title>
+<title>glmmTMB_spatial_1 — glmmTMB_spatial_1 • circus</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="vgam_1 — vgam_1" />
+<meta property="og:title" content="glmmTMB_spatial_1 — glmmTMB_spatial_1" />
 
-<meta property="og:description" content="Model of class vgam" />
+<meta property="og:description" content="Model of class glmmTMB" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -115,26 +115,40 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>vgam_1</h1>
+    <h1>glmmTMB_spatial_1</h1>
     
-    <div class="hidden name"><code>vgam_1.Rd</code></div>
+    <div class="hidden name"><code>glmmTMB_spatial_1.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Model of class vgam</p>
+    <p>Model of class glmmTMB</p>
     
     </div>
 
-    <pre class="usage"><span class='no'>vgam_1</span></pre>
+    <pre class="usage"><span class='no'>glmmTMB_spatial_1</span></pre>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>An object of class <code>vgam</code> of length 1.</p>
+    <p>An object of class <code>glmmTMB</code> of length 7.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='st'>"hunua"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: data set ‘hunua’ not found</span></div><div class='input'><span class='fu'>vgam</span>(<span class='no'>agaaus</span> ~ <span class='no'>vitluc</span> + <span class='fu'>s</span>(<span class='no'>altitude</span>, <span class='kw'>df</span> <span class='kw'>=</span> <span class='fl'>2</span>), <span class='no'>binomialff</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>hunua</span>)</div><div class='output co'>#&gt; <span class='error'>Error in vgam(agaaus ~ vitluc + s(altitude, df = 2), binomialff, data = hunua): could not find function "vgam"</span></div></pre>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>geoR</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>ca20</span>)
+<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>ca20</span>$<span class='no'>coords</span>[, <span class='fl'>1</span>],
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>ca20</span>$<span class='no'>coords</span>[, <span class='fl'>2</span>],
+  <span class='kw'>calcium</span> <span class='kw'>=</span> <span class='no'>ca20</span>$<span class='no'>data</span>,
+  <span class='kw'>elevation</span> <span class='kw'>=</span> <span class='no'>ca20</span>$<span class='no'>covariate</span>[, <span class='fl'>1</span>],
+  <span class='kw'>region</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/factor'>factor</a></span>(<span class='no'>ca20</span>$<span class='no'>covariate</span>[, <span class='fl'>2</span>])
+)
+<span class='no'>dat</span>$<span class='no'>pos</span> <span class='kw'>&lt;-</span> <span class='fu'>numFactor</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/scale'>scale</a></span>(<span class='no'>dat</span>$<span class='no'>x</span>), <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/scale'>scale</a></span>(<span class='no'>dat</span>$<span class='no'>y</span>))
+<span class='no'>dat</span>$<span class='no'>ID</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/factor'>factor</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fl'>1</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>dat</span>)))
+
+<span class='fu'>glmmTMB</span>(<span class='no'>calcium</span> ~ <span class='no'>elevation</span> + <span class='no'>region</span> + <span class='fu'>mat</span>(<span class='no'>pos</span> + <span class='fl'>0</span> <span class='kw'>|</span> <span class='no'>ID</span>), <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>dat</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
