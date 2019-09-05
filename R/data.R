@@ -1,3 +1,28 @@
+#' gamlss_1
+#'
+#' Model of class gamlss
+#' @examples
+#' data(abdom)
+#' gamlss(
+#'   y ~ pb(x), sigma.formula =  ~ pb(x),
+#'   family = BCT, data = abdom, method = mixed(1, 20)
+#' )
+"gamlss_1"
+
+
+
+#' gamlss_2
+#'
+#' Model of class gamlss
+#' @examples
+#' data(aids)
+#' gamlss(y ~ x + qrt, data = aids, family = NBI)
+"gamlss_2"
+
+
+
+
+
 #' vgam_1
 #'
 #' Model of class vgam
