@@ -1473,6 +1473,18 @@
 #' }
 "brms_ordinal_1"
 
+#' brms_ordinal_1_wt
+#'
+#' Model of class brmsfit
+#' @examples
+#' \dontrun{
+#' set.seed(123)
+#' data(mtcars)
+#' mtcars$cyl_ord <- as.ordered(mtcars$cyl)
+#' brms::brm(cyl_ord | weights(wt) ~ mpg, data = mtcars, family = cumulative())
+#' }
+"brms_ordinal_1_wt"
+
 
 #' brms_ordinal_2
 #'
@@ -1488,6 +1500,29 @@
 #' }
 "brms_ordinal_2"
 
+
+#' brms_categorical_1
+#'
+#' Model of class brmsfit
+#' @examples
+#' \dontrun{
+#' set.seed(123)
+#' data(mtcars)
+#' brms::brm(gear ~ mpg, data = mtcars, family = categorical())
+#' }
+"brms_categorical_1"
+
+
+#' brms_categorical_1_wt
+#'
+#' Model of class brmsfit
+#' @examples
+#' \dontrun{
+#' set.seed(123)
+#' data(mtcars)
+#' brms::brm(gear | weights(wt) ~ mpg, data = mtcars, family = categorical())
+#' }
+"brms_categorical_1_wt"
 
 
 #' brms_smooth_1
