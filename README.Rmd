@@ -348,6 +348,7 @@ set.seed(123)
 epilepsy$visit <- as.numeric(epilepsy$visit)
 epilepsy$Base2 <- sample(epilepsy$Base, nrow(epilepsy), replace = TRUE)
 mtcars$cyl_ord <- as.ordered(mtcars$cyl)
+mtcars$gear_fct <- as.ordered(mtcars$gear)
 zinb <- read.csv("http://stats.idre.ucla.edu/stat/data/fish.csv")
 
 dat <- read.table(header = TRUE, text = "
@@ -387,7 +388,8 @@ brms_2 <- brm(
 brms_ordinal_1 <- brm(cyl_ord ~ mpg, data = mtcars, family = cumulative())
 brms_ordinal_1_wt <- brm(cyl_ord | weights(wt) ~ mpg, data = mtcars, family = cumulative())
 
-brms_categorical_1 <- brm(gear ~ mpg, data = mtcars, family = categorical())
+brms_categorical_1_num <- brm(gear ~ mpg, data = mtcars, family = categorical())
+brms_categorical_1_fct <- brm(gear_fct ~ mpg, data = mtcars, family = categorical())
 brms_categorical_1_wt <- brm(gear | weights(wt) ~ mpg, data = mtcars, family = categorical())
 
 brms_mixed_1 <- brm(mpg ~ wt + (1 | cyl) + (1 + wt | gear), data = mtcars)
@@ -610,7 +612,8 @@ usethis::use_data(htest_1,
                   brms_ordinal_1,
                   brms_ordinal_1_wt,
                   
-                  brms_categorical_1,
+                  brms_categorical_1_num,
+                  brms_categorical_1_fct,
                   brms_categorical_1_wt,
                   
                   betareg_1,

@@ -1501,7 +1501,7 @@
 "brms_ordinal_2"
 
 
-#' brms_categorical_1
+#' brms_categorical_1_num
 #'
 #' Model of class brmsfit
 #' @examples
@@ -1510,7 +1510,20 @@
 #' data(mtcars)
 #' brms::brm(gear ~ mpg, data = mtcars, family = categorical())
 #' }
-"brms_categorical_1"
+"brms_categorical_1_num"
+
+
+#' brms_categorical_1_fct
+#'
+#' Model of class brmsfit
+#' @examples
+#' \dontrun{
+#' set.seed(123)
+#' data(mtcars)
+#' mtcars$gear_fct <- factor(mtcars$gear)
+#' brms::brm(gear_fct ~ mpg, data = mtcars, family = categorical())
+#' }
+"brms_categorical_1_fct"
 
 
 #' brms_categorical_1_wt
