@@ -4,7 +4,9 @@
 \name{gam_mv_1}
 \alias{gam_mv_1}
 \title{gam_mv_1}
-\format{An object of class \code{gam} (inherits from \code{glm}, \code{lm}) of length 53.}
+\format{
+An object of class \code{gam} (inherits from \code{glm}, \code{lm}) of length 53.
+}
 \usage{
 gam_mv_1
 }

@@ -4,7 +4,9 @@
 \name{stanmvreg_1}
 \alias{stanmvreg_1}
 \title{stanmvreg_1}
-\format{An object of class \code{stanmvreg} (inherits from \code{stanreg}, \code{lmerMod}) of length 20.}
+\format{
+An object of class \code{stanmvreg} (inherits from \code{stanreg}, \code{lmerMod}) of length 20.
+}
 \usage{
 stanmvreg_1
 }

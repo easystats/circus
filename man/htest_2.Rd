@@ -4,7 +4,9 @@
 \name{htest_2}
 \alias{htest_2}
 \title{htest_2}
-\format{An object of class \code{htest} of length 9.}
+\format{
+An object of class \code{htest} of length 9.
+}
 \usage{
 htest_2
 }

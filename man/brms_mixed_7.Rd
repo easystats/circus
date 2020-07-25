@@ -4,7 +4,9 @@
 \name{brms_mixed_7}
 \alias{brms_mixed_7}
 \title{brms_mixed_7}
-\format{An object of class \code{brmsfit} of length 19.}
+\format{
+An object of class \code{brmsfit} of length 19.
+}
 \usage{
 brms_mixed_7
 }

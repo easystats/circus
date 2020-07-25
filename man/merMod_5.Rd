@@ -4,7 +4,9 @@
 \name{merMod_5}
 \alias{merMod_5}
 \title{merMod_5}
-\format{An object of class \code{glmerMod} of length 1.}
+\format{
+An object of class \code{glmerMod} of length 1.
+}
 \usage{
 merMod_5
 }

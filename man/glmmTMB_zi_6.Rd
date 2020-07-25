@@ -4,7 +4,9 @@
 \name{glmmTMB_zi_6}
 \alias{glmmTMB_zi_6}
 \title{glmmTMB_zi_6}
-\format{An object of class \code{glmmTMB} of length 7.}
+\format{
+An object of class \code{glmmTMB} of length 7.
+}
 \usage{
 glmmTMB_zi_6
 }

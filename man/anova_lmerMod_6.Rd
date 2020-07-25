@@ -4,7 +4,9 @@
 \name{anova_lmerMod_6}
 \alias{anova_lmerMod_6}
 \title{anova_lmerMod_6}
-\format{An object of class \code{anova} (inherits from \code{data.frame}) with 3 rows and 8 columns.}
+\format{
+An object of class \code{anova} (inherits from \code{data.frame}) with 3 rows and 8 columns.
+}
 \usage{
 anova_lmerMod_6
 }

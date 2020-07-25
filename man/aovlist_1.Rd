@@ -4,7 +4,9 @@
 \name{aovlist_1}
 \alias{aovlist_1}
 \title{aovlist_1}
-\format{An object of class \code{aovlist} (inherits from \code{listof}) of length 3.}
+\format{
+An object of class \code{aovlist} (inherits from \code{listof}) of length 3.
+}
 \usage{
 aovlist_1
 }

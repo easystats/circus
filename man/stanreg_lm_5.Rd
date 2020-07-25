@@ -4,7 +4,9 @@
 \name{stanreg_lm_5}
 \alias{stanreg_lm_5}
 \title{stanreg_lm_5}
-\format{An object of class \code{stanreg} (inherits from \code{glm}, \code{lm}) of length 27.}
+\format{
+An object of class \code{stanreg} (inherits from \code{glm}, \code{lm}) of length 27.
+}
 \usage{
 stanreg_lm_5
 }

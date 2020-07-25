@@ -4,7 +4,9 @@
 \name{glmmTMB_1}
 \alias{glmmTMB_1}
 \title{glmmTMB_1}
-\format{An object of class \code{glmmTMB} of length 7.}
+\format{
+An object of class \code{glmmTMB} of length 7.
+}
 \usage{
 glmmTMB_1
 }

@@ -4,7 +4,9 @@
 \name{brms_corr_re1}
 \alias{brms_corr_re1}
 \title{brms_mm_2}
-\format{An object of class \code{brmsfit} of length 21.}
+\format{
+An object of class \code{brmsfit} of length 21.
+}
 \usage{
 brms_corr_re1
 }

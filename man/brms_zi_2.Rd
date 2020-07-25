@@ -4,7 +4,9 @@
 \name{brms_zi_2}
 \alias{brms_zi_2}
 \title{brms_zi_2}
-\format{An object of class \code{brmsfit} of length 20.}
+\format{
+An object of class \code{brmsfit} of length 20.
+}
 \usage{
 brms_zi_2
 }

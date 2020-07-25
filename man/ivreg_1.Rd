@@ -4,7 +4,9 @@
 \name{ivreg_1}
 \alias{ivreg_1}
 \title{ivreg_1}
-\format{An object of class \code{ivreg} of length 18.}
+\format{
+An object of class \code{ivreg} of length 18.
+}
 \usage{
 ivreg_1
 }

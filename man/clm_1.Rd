@@ -4,7 +4,9 @@
 \name{clm_1}
 \alias{clm_1}
 \title{clm_1}
-\format{An object of class \code{clm} of length 34.}
+\format{
+An object of class \code{clm} of length 34.
+}
 \usage{
 clm_1
 }

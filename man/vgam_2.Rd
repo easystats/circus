@@ -4,7 +4,9 @@
 \name{vgam_2}
 \alias{vgam_2}
 \title{vgam_2}
-\format{An object of class \code{vgam} of length 1.}
+\format{
+An object of class \code{vgam} of length 1.
+}
 \usage{
 vgam_2
 }

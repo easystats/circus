@@ -4,7 +4,9 @@
 \name{aov_2}
 \alias{aov_2}
 \title{aov_2}
-\format{An object of class \code{aov} (inherits from \code{lm}) of length 13.}
+\format{
+An object of class \code{aov} (inherits from \code{lm}) of length 13.
+}
 \usage{
 aov_2
 }

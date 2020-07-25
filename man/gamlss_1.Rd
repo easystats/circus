@@ -4,7 +4,9 @@
 \name{gamlss_1}
 \alias{gamlss_1}
 \title{gamlss_1}
-\format{An object of class \code{gamlss} (inherits from \code{gam}, \code{glm}, \code{lm}) of length 88.}
+\format{
+An object of class \code{gamlss} (inherits from \code{gam}, \code{glm}, \code{lm}) of length 88.
+}
 \usage{
 gamlss_1
 }

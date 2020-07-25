@@ -4,7 +4,9 @@
 \name{anova_1}
 \alias{anova_1}
 \title{anova_1}
-\format{An object of class \code{anova} (inherits from \code{data.frame}) with 2 rows and 5 columns.}
+\format{
+An object of class \code{anova} (inherits from \code{data.frame}) with 2 rows and 5 columns.
+}
 \usage{
 anova_1
 }

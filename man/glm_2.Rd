@@ -4,7 +4,9 @@
 \name{glm_2}
 \alias{glm_2}
 \title{glm_2}
-\format{An object of class \code{glm} (inherits from \code{lm}) of length 30.}
+\format{
+An object of class \code{glm} (inherits from \code{lm}) of length 30.
+}
 \usage{
 glm_2
 }

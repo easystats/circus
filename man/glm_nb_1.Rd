@@ -4,7 +4,9 @@
 \name{glm_nb_1}
 \alias{glm_nb_1}
 \title{glm_nb_1}
-\format{An object of class \code{negbin} (inherits from \code{glm}, \code{lm}) of length 31.}
+\format{
+An object of class \code{negbin} (inherits from \code{glm}, \code{lm}) of length 31.
+}
 \usage{
 glm_nb_1
 }

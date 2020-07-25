@@ -4,7 +4,9 @@
 \name{betareg_1}
 \alias{betareg_1}
 \title{betareg_1}
-\format{An object of class \code{betareg} of length 29.}
+\format{
+An object of class \code{betareg} of length 29.
+}
 \usage{
 betareg_1
 }

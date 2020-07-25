@@ -4,7 +4,9 @@
 \name{censReg_1}
 \alias{censReg_1}
 \title{censReg_1}
-\format{An object of class \code{censReg} (inherits from \code{maxLik}, \code{maxim}, \code{list}) of length 20.}
+\format{
+An object of class \code{censReg} (inherits from \code{maxLik}, \code{maxim}, \code{list}) of length 20.
+}
 \usage{
 censReg_1
 }
