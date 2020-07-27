@@ -5,7 +5,7 @@
 \alias{brms_ordinal_1_wt}
 \title{brms_ordinal_1_wt}
 \format{
-An object of class \code{brmsfit} of length 16.
+An object of class \code{brmsfit} of length 19.
 }
 \usage{
 brms_ordinal_1_wt

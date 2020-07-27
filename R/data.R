@@ -1335,13 +1335,36 @@
 
 
 
+#' brms_meta_1
+#'
+#' Model of class brmsfit
+#' @examples
+#' \dontrun{
+#' # Data from
+#' # https://github.com/MathiasHarrer/Doing-Meta-Analysis-in-R/blob/master/_data/Meta_Analysis_Data.RData
+#' set.seed(123)
+#' priors <- c(prior(normal(0,1), class = Intercept),
+#'             prior(cauchy(0,0.5), class = sd))
+#'
+#' brm(TE|se(seTE) ~ 1 + (1|Author),
+#'    data = Meta_Analysis_Data,
+#'    prior = priors,
+#'    iter = 4000)
+#' }
+"brms_meta_1"
+
+
+
+
+
+
 #' brms_mv_1
 #'
 #' Model of class brmsfit
 #' @examples
 #' \dontrun{
 #' set.seed(123)
-#' brms::brms_mv_1 <- brm(cbind(cyl, gear, carb) ~ wt + hp, data = mtcars)
+#' brms::brm(cbind(cyl, gear, carb) ~ wt + hp, data = mtcars)
 #' }
 "brms_mv_1"
 

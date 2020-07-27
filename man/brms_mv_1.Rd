@@ -5,7 +5,7 @@
 \alias{brms_mv_1}
 \title{brms_mv_1}
 \format{
-An object of class \code{brmsfit} of length 20.
+An object of class \code{brmsfit} of length 19.
 }
 \usage{
 brms_mv_1
@@ -16,7 +16,7 @@ Model of class brmsfit
 \examples{
 \dontrun{
 set.seed(123)
-brms::brms_mv_1 <- brm(cbind(cyl, gear, carb) ~ wt + hp, data = mtcars)
+brms::brm(cbind(cyl, gear, carb) ~ wt + hp, data = mtcars)
 }
 }
 \keyword{datasets}
