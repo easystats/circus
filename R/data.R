@@ -1239,6 +1239,26 @@
 "brms_3"
 
 
+#' brms_null_1
+#'
+#' Model of class brmsfit
+#' @examples
+#' \dontrun{
+#' set.seed(333)
+#' brms::brm(mpg ~ 1, data = mtcars)
+#' }
+"brms_null_1"
+
+#' brms_null_2
+#'
+#' Model of class brmsfit
+#' @examples
+#' \dontrun{
+#' set.seed(333)
+#' brms::brm(mpg ~ 1 + (1 | cyl), data = mtcars)
+#' }
+"brms_null_2"
+
 
 #' brms_mixed_1
 #'
