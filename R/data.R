@@ -1779,7 +1779,7 @@
 
 #' stanmvreg_1
 #'
-#' Model of class stanreg
+#' Model of class stanmvreg
 #' @examples
 #' \dontrun{
 #' library(rstanarm)
@@ -1794,3 +1794,23 @@
 #' )
 #' }
 "stanmvreg_1"
+
+
+
+#' stanmvreg_2
+#'
+#' Model of class stanmvreg
+#' @examples
+#' \dontrun{
+#' library(rstanarm)
+#' library(mediation)
+#' data(jobs)
+#' stan_mvmer(
+#'   list(job_seek ~ treat + econ_hard + sex + age + (1 | occp),
+#'        depress2 ~ treat + job_seek + econ_hard + sex + age + (1 | occp)),
+#'   data = jobs,
+#'   cores = 4,
+#'   seed = 1234,
+#'   refresh = 0)
+#' }
+"stanmvreg_2"
