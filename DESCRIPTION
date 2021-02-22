@@ -1,44 +1,57 @@
-Package: circus
 Type: Package
+Package: circus
 Title: The Circus of Monsters
 Version: 0.1.0
-Authors@R: c(person("Dominique", "Makowski", role = c("aut", "cre"), email = "dom.makowski@gmail.com", comment = c(ORCID = "0000-0001-5375-9967")),
-             person("Daniel", "Lüdecke", role = c("aut"), email = "d.luedecke@uke.de", comment = c(ORCID = "0000-0002-8895-3206")))
+Authors@R: 
+    c(person(given = "Dominique",
+             family = "Makowski",
+             role = c("aut", "cre"),
+             email = "dom.makowski@gmail.com",
+             comment = c(ORCID = "0000-0001-5375-9967")),
+      person(given = "Daniel",
+             family = "Lüdecke",
+             role = "aut",
+             email = "d.luedecke@uke.de",
+             comment = c(ORCID = "0000-0002-8895-3206")))
 Maintainer: Dominique Makowski <dom.makowski@gmail.com>
-Description: Contains a variety of fitted models and data to help the systematic testing of other packages.
-Imports:
-	httr
-Suggests:
-	knitr,
-	rmarkdown,
-	testthat,
-	usethis,
-	covr,
-	rstanarm,
-	betareg,
-	brms,
-	coxme,
-	gam,
-	gee,
-	GLMMadaptive,
-	glmmTMB,
-	gmnl,
-	MASS,
-	mlogit,
-	lme4,
-	mgcv,
-	nnet,
-	nlme,
-	ordinal,
-	pscl,
-	splines,
-	survey,
-	survival,
-	truncreg
+Description: Contains a variety of fitted models and data to
+    help the systematic testing of other packages.
 License: GPL-3
-Encoding: UTF-8
-LazyData: true
-RoxygenNote: 7.1.1
-VignetteBuilder: knitr
 Depends: 
     R (>= 2.10)
+Imports:
+    httr
+Suggests:
+    betareg,
+    brms,
+    covr,
+    coxme,
+    gam,
+    gee,
+    GLMMadaptive,
+    glmmTMB,
+    gmnl,
+    knitr,
+    lme4,
+    MASS,
+    mgcv,
+    mlogit,
+    nlme,
+    nnet,
+    ordinal,
+    pscl,
+    rmarkdown,
+    rstanarm,
+    spelling,
+    splines,
+    survey,
+    survival,
+    testthat,
+    truncreg,
+    usethis
+VignetteBuilder: 
+    knitr
+Encoding: UTF-8
+Language: en-US
+LazyData: true
+RoxygenNote: 7.1.1

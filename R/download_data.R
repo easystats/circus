@@ -3,8 +3,7 @@
 #' @importFrom httr GET stop_for_status content
 #' @keywords internal
 #' @export
-download_data_github <- function(url){
-
+download_data_github <- function(url) {
   new_url <- gsub("https://github", "https://raw.github", url)
   new_url <- gsub("/blob", "", new_url)
 
@@ -17,7 +16,7 @@ download_data_github <- function(url){
 
 
   x <- load(temp_file)
-  y = get(x)
+  y <- get(x)
   # Remove the old object since you've stored it in y
   rm(x)
   y
@@ -28,11 +27,12 @@ download_data_github <- function(url){
 #'
 #' @param name Model name.
 #' @export
-download_model <- function(name){
-
-  url <- paste0("https://github.com/easystats/circus/blob/master/data/",
-                name,
-                ".rda")
+download_model <- function(name) {
+  url <- paste0(
+    "https://github.com/easystats/circus/blob/master/data/",
+    name,
+    ".rda"
+  )
 
   download_data_github(url)
 }
