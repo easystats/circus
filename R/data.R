@@ -1352,6 +1352,24 @@
 #' }
 "brms_mixed_7"
 
+#' brms_mixed_8
+#'
+#' Model of class brmsfit
+#' @examples
+#' \dontrun{
+#' bprior1 <- prior(student_t(5, 0, 10), class = b) + prior(cauchy(0, 2), class = sd)
+#' brms::brm(
+#'   count ~ Age + Base * Trt + (1 + Age | patient),
+#'   data = epilepsy,
+#'   family = poisson(),
+#'   prior = bprior1,
+#'   chains = 1,
+#'   iter = 500
+#' )
+#' }
+"brms_mixed_8"
+
+
 
 
 
