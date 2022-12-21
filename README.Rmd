@@ -17,18 +17,22 @@ editor_options:
 ```{r, echo = FALSE, results='hide', message=FALSE, warning=FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  tidy.opts=list(width.cutoff=60),
-  tidy=TRUE,
+  tidy.opts = list(width.cutoff = 60),
+  tidy = TRUE,
   fig.path = "README-"
 )
-options(knitr.kable.NA = '',
-        digits = 4,
-        width=60)
+options(
+  knitr.kable.NA = "",
+  digits = 4,
+  width = 60
+)
 
 library(rstanarm)
 rstan::rstan_options(auto_write = TRUE)
-options(mc.cores = parallel::detectCores(),
-        digits=2)
+options(
+  mc.cores = parallel::detectCores(),
+  digits = 2
+)
 ```
 
 
@@ -98,21 +102,21 @@ htest_7 <- t.test(mtcars$mpg ~ mtcars$vs)
 htest_8 <- t.test(iris$Sepal.Width, mu = 1)
 
 # ANOVAs
-anova_1 <- anova(lm(Sepal.Width ~ Species, data=iris))
-aov_1 <- aov(Sepal.Width ~ Species, data=iris)
-aovlist_1 <- aov(wt ~ cyl + Error(gear), data=mtcars)
+anova_1 <- anova(lm(Sepal.Width ~ Species, data = iris))
+aov_1 <- aov(Sepal.Width ~ Species, data = iris)
+aovlist_1 <- aov(wt ~ cyl + Error(gear), data = mtcars)
 
 data <- iris
 data$Cat1 <- rep(c("X", "X", "Y"), length.out = nrow(data))
 data$Cat2 <- rep(c("A", "B"), length.out = nrow(data))
 
-aov_2 <- aov(Sepal.Length ~ Species * Cat1 * Cat2, data=data)
-anova_2 <- anova(lm(Sepal.Length ~ Species * Cat1 * Cat2, data=data))
-aovlist_2 <- aov(Sepal.Length ~ Species * Cat1+ Error(Cat2), data=data)
+aov_2 <- aov(Sepal.Length ~ Species * Cat1 * Cat2, data = data)
+anova_2 <- anova(lm(Sepal.Length ~ Species * Cat1 * Cat2, data = data))
+aovlist_2 <- aov(Sepal.Length ~ Species * Cat1 + Error(Cat2), data = data)
 
-aov_3 <- aov(Sepal.Length ~ Species / Cat1 * Cat2, data=data)
-anova_3 <- anova(lm(Sepal.Length ~ Species / Cat1 * Cat2, data=data))
-aovlist_3 <- aov(Sepal.Length ~ Species / Cat1 + Error(Cat2), data=data)
+aov_3 <- aov(Sepal.Length ~ Species / Cat1 * Cat2, data = data)
+anova_3 <- anova(lm(Sepal.Length ~ Species / Cat1 * Cat2, data = data))
+aovlist_3 <- aov(Sepal.Length ~ Species / Cat1 + Error(Cat2), data = data)
 
 
 # GLMs
@@ -121,18 +125,18 @@ lm_1 <- lm(mpg ~ wt, data = mtcars)
 lm_2 <- lm(mpg ~ wt + cyl, data = mtcars)
 lm_3 <- lm(mpg ~ wt * cyl, data = mtcars)
 lm_4 <- lm(mpg ~ wt + poly(cyl, 2), data = mtcars)
-lm_5 <- lm(mpg ~ wt + poly(cyl, 2, raw=TRUE), data = mtcars)
+lm_5 <- lm(mpg ~ wt + poly(cyl, 2, raw = TRUE), data = mtcars)
 lm_6 <- lm(mpg ~ wt * as.factor(gear), data = mtcars)
 lm_7 <- lm(mpg ~ as.factor(gear) / wt, data = mtcars)
 
 set.seed(123)
 mtcars$count <- rpois(nrow(mtcars), 2)
 
-glm_0 <- glm(vs ~ 1, data = mtcars, family="binomial")
-glm_1 <- glm(vs ~ wt, data = mtcars, family="binomial")
-glm_2 <- glm(vs ~ wt + cyl, data = mtcars, family="binomial")
-glm_3 <- glm(vs ~ wt * cyl, data = mtcars, family="binomial")
-glm_4 <- glm(vs ~ wt + cyl, data = mtcars, family=binomial(link="probit"))
+glm_0 <- glm(vs ~ 1, data = mtcars, family = "binomial")
+glm_1 <- glm(vs ~ wt, data = mtcars, family = "binomial")
+glm_2 <- glm(vs ~ wt + cyl, data = mtcars, family = "binomial")
+glm_3 <- glm(vs ~ wt * cyl, data = mtcars, family = "binomial")
+glm_4 <- glm(vs ~ wt + cyl, data = mtcars, family = binomial(link = "probit"))
 glm_5 <- glm(count ~ wt + cyl, family = "poisson", data = mtcars)
 
 anova_4 <- anova(lm_0, lm_1, lm_2)
@@ -143,18 +147,18 @@ anova_4 <- anova(lm_0, lm_1, lm_2)
 ```{r, eval=FALSE, warning=FALSE, message=FALSE, results="hide"}
 library(lme4)
 
-lmerMod_0 <- lme4::lmer(wt ~ 1 + (1|gear), data = mtcars)
-lmerMod_1 <- lme4::lmer(wt ~ cyl + (1|gear), data = mtcars)
-lmerMod_2 <- lme4::lmer(wt ~ drat + cyl + (1|gear), data = mtcars)
-lmerMod_3 <- lme4::lmer(wt ~ drat * cyl + (1|gear), data = mtcars)
-lmerMod_4 <- lme4::lmer(wt ~ drat / cyl + (1|gear), data = mtcars)
-lmerMod_5 <- lme4::lmer(Petal.Width ~ Cat1 + (1+Cat1|Species), data=data)
+lmerMod_0 <- lme4::lmer(wt ~ 1 + (1 | gear), data = mtcars)
+lmerMod_1 <- lme4::lmer(wt ~ cyl + (1 | gear), data = mtcars)
+lmerMod_2 <- lme4::lmer(wt ~ drat + cyl + (1 | gear), data = mtcars)
+lmerMod_3 <- lme4::lmer(wt ~ drat * cyl + (1 | gear), data = mtcars)
+lmerMod_4 <- lme4::lmer(wt ~ drat / cyl + (1 | gear), data = mtcars)
+lmerMod_5 <- lme4::lmer(Petal.Width ~ Cat1 + (1 + Cat1 | Species), data = data)
 
-merMod_0 <- lme4::glmer(vs ~ 1 + (1|gear), data = mtcars, family="binomial")
-merMod_1 <- lme4::glmer(vs ~ cyl + (1|gear), data = mtcars, family="binomial")
-merMod_2 <- lme4::glmer(vs ~ drat + cyl + (1|gear), data = mtcars, family="binomial")
-merMod_3 <- lme4::glmer(vs ~ drat * cyl + (1|gear), data = mtcars, family="binomial")
-merMod_4 <- lme4::glmer(vs ~ cyl + (1|gear), data = mtcars, family=binomial(link="probit"))
+merMod_0 <- lme4::glmer(vs ~ 1 + (1 | gear), data = mtcars, family = "binomial")
+merMod_1 <- lme4::glmer(vs ~ cyl + (1 | gear), data = mtcars, family = "binomial")
+merMod_2 <- lme4::glmer(vs ~ drat + cyl + (1 | gear), data = mtcars, family = "binomial")
+merMod_3 <- lme4::glmer(vs ~ drat * cyl + (1 | gear), data = mtcars, family = "binomial")
+merMod_4 <- lme4::glmer(vs ~ cyl + (1 | gear), data = mtcars, family = binomial(link = "probit"))
 
 anova_lmerMod_0 <- anova(lmerMod_0)
 anova_lmerMod_1 <- anova(lmerMod_1)
@@ -187,21 +191,21 @@ glmmTMB_1 <- glmmTMB(
 )
 
 glmmTMB_2 <- glmmTMB(count ~ mined + (1 | site),
-  ziformula =  ~ mined,
+  ziformula = ~mined,
   family = poisson,
   data = Salamanders
 )
 
 glmmTMB_3 <- glmmTMB(
   count ~ spp + mined + (1 | site),
-  ziformula =  ~ spp + mined,
+  ziformula = ~ spp + mined,
   family = nbinom2,
   data = Salamanders
 )
 
 glmmTMB_4 <- glmmTMB(
   count ~ spp + mined + (1 | site),
-  ziformula =  ~ spp + mined,
+  ziformula = ~ spp + mined,
   family = truncated_poisson,
   data = Salamanders
 )
@@ -212,7 +216,7 @@ glmmTMB_5 <- glmmTMB(
   data = cbpp,
   family = binomial
 )
-  
+
 glmmTMB_zi_1 <- glmmTMB(
   count ~ child + camper + (1 | persons),
   ziformula = ~ child + camper + (1 | persons),
@@ -289,33 +293,33 @@ stanreg_lm_1 <- rstanarm::stan_glm(mpg ~ wt, data = mtcars)
 stanreg_lm_2 <- rstanarm::stan_glm(mpg ~ wt + cyl, data = mtcars)
 stanreg_lm_3 <- rstanarm::stan_glm(mpg ~ wt * cyl, data = mtcars)
 stanreg_lm_4 <- rstanarm::stan_glm(mpg ~ wt + poly(cyl, 2), data = mtcars)
-stanreg_lm_5 <- rstanarm::stan_glm(mpg ~ wt + poly(cyl, 2, raw=TRUE), data = mtcars)
+stanreg_lm_5 <- rstanarm::stan_glm(mpg ~ wt + poly(cyl, 2, raw = TRUE), data = mtcars)
 stanreg_lm_6 <- rstanarm::stan_glm(mpg ~ wt * as.factor(gear), data = mtcars)
 stanreg_lm_7 <- rstanarm::stan_glm(mpg ~ as.factor(gear) / wt, data = mtcars)
 
 set.seed(123)
 mtcars$count <- rpois(nrow(mtcars), 2)
 
-stanreg_glm_0 <- rstanarm::stan_glm(vs ~ 1, data = mtcars, family="binomial")
-stanreg_glm_1 <- rstanarm::stan_glm(vs ~ wt, data = mtcars, family="binomial")
-stanreg_glm_2 <- rstanarm::stan_glm(vs ~ wt + cyl, data = mtcars, family="binomial")
-stanreg_glm_3 <- rstanarm::stan_glm(vs ~ wt * cyl, data = mtcars, family="binomial")
-stanreg_glm_4 <- rstanarm::stan_glm(vs ~ wt + cyl, data = mtcars, family=binomial(link="probit"))
-stanreg_glm_5 <- rstanarm::stan_glm(count ~ wt + cyl, data = mtcars, family="poisson")
+stanreg_glm_0 <- rstanarm::stan_glm(vs ~ 1, data = mtcars, family = "binomial")
+stanreg_glm_1 <- rstanarm::stan_glm(vs ~ wt, data = mtcars, family = "binomial")
+stanreg_glm_2 <- rstanarm::stan_glm(vs ~ wt + cyl, data = mtcars, family = "binomial")
+stanreg_glm_3 <- rstanarm::stan_glm(vs ~ wt * cyl, data = mtcars, family = "binomial")
+stanreg_glm_4 <- rstanarm::stan_glm(vs ~ wt + cyl, data = mtcars, family = binomial(link = "probit"))
+stanreg_glm_5 <- rstanarm::stan_glm(count ~ wt + cyl, data = mtcars, family = "poisson")
 stanreg_glm_6 <- rstanarm::stan_glm(Sepal.Width ~ Species * Petal.Length, data = iris)
 
-stanreg_lmerMod_0 <- rstanarm::stan_lmer(wt ~ 1 + (1|gear), data = mtcars)
-stanreg_lmerMod_1 <- rstanarm::stan_lmer(wt ~ cyl + (1|gear), data = mtcars)
-stanreg_lmerMod_2 <- rstanarm::stan_lmer(wt ~ drat + cyl + (1|gear), data = mtcars)
-stanreg_lmerMod_3 <- rstanarm::stan_lmer(wt ~ drat * cyl + (1|gear), data = mtcars)
-stanreg_lmerMod_4 <- rstanarm::stan_lmer(wt ~ drat / cyl + (1|gear), data = mtcars)
-stanreg_lmerMod_5 <- rstanarm::stan_lmer(Petal.Width ~ Cat1 + (1+Cat1|Species), data=data)
+stanreg_lmerMod_0 <- rstanarm::stan_lmer(wt ~ 1 + (1 | gear), data = mtcars)
+stanreg_lmerMod_1 <- rstanarm::stan_lmer(wt ~ cyl + (1 | gear), data = mtcars)
+stanreg_lmerMod_2 <- rstanarm::stan_lmer(wt ~ drat + cyl + (1 | gear), data = mtcars)
+stanreg_lmerMod_3 <- rstanarm::stan_lmer(wt ~ drat * cyl + (1 | gear), data = mtcars)
+stanreg_lmerMod_4 <- rstanarm::stan_lmer(wt ~ drat / cyl + (1 | gear), data = mtcars)
+stanreg_lmerMod_5 <- rstanarm::stan_lmer(Petal.Width ~ Cat1 + (1 + Cat1 | Species), data = data)
 
-stanreg_merMod_0 <- rstanarm::stan_glmer(vs ~ 1 + (1|gear), data = mtcars, family="binomial")
-stanreg_merMod_1 <- rstanarm::stan_glmer(vs ~ cyl + (1|gear), data = mtcars, family="binomial")
-stanreg_merMod_2 <- rstanarm::stan_glmer(vs ~ drat + cyl + (1|gear), data = mtcars, family="binomial")
-stanreg_merMod_3 <- rstanarm::stan_glmer(vs ~ drat * cyl + (1|gear), data = mtcars, family="binomial")
-stanreg_merMod_4 <- rstanarm::stan_glmer(vs ~ cyl + (1|gear), data = mtcars, family=binomial(link="probit"))
+stanreg_merMod_0 <- rstanarm::stan_glmer(vs ~ 1 + (1 | gear), data = mtcars, family = "binomial")
+stanreg_merMod_1 <- rstanarm::stan_glmer(vs ~ cyl + (1 | gear), data = mtcars, family = "binomial")
+stanreg_merMod_2 <- rstanarm::stan_glmer(vs ~ drat + cyl + (1 | gear), data = mtcars, family = "binomial")
+stanreg_merMod_3 <- rstanarm::stan_glmer(vs ~ drat * cyl + (1 | gear), data = mtcars, family = "binomial")
+stanreg_merMod_4 <- rstanarm::stan_glmer(vs ~ cyl + (1 | gear), data = mtcars, family = binomial(link = "probit"))
 stanreg_merMod_5 <- stan_glmer(
   cbind(incidence, size - incidence) ~ size + period + (1 | herd),
   data = lme4::cbpp, family = binomial, QR = TRUE,
@@ -323,13 +327,13 @@ stanreg_merMod_5 <- stan_glmer(
 )
 
 
-stanreg_meanfield_lm_1 <- update(stanreg_lm_1, algorithm="meanfield")
-stanreg_fullrank_lm_1 <- update(stanreg_lm_1, algorithm="fullrank")
+stanreg_meanfield_lm_1 <- update(stanreg_lm_1, algorithm = "meanfield")
+stanreg_fullrank_lm_1 <- update(stanreg_lm_1, algorithm = "fullrank")
 
 
-stanreg_gamm4_1 <- stan_gamm4(Sepal.Width ~ s(Petal.Length), data=iris)
-stanreg_gamm4_2 <- stan_gamm4(Sepal.Width ~ Species + s(Petal.Length), data=iris)
-stanreg_gamm4_3 <- stan_gamm4(Sepal.Width ~ Species + s(Petal.Length), random = ~ (1 | Cat1), data=data)
+stanreg_gamm4_1 <- stan_gamm4(Sepal.Width ~ s(Petal.Length), data = iris)
+stanreg_gamm4_2 <- stan_gamm4(Sepal.Width ~ Species + s(Petal.Length), data = iris)
+stanreg_gamm4_3 <- stan_gamm4(Sepal.Width ~ Species + s(Petal.Length), random = ~ (1 | Cat1), data = data)
 ```
 
 ### BRMS
@@ -379,9 +383,9 @@ bprior1 <- prior(student_t(5, 0, 10), class = b) + prior(cauchy(0, 2), class = s
 
 brms_1 <- brm(mpg ~ wt + cyl, data = mtcars)
 brms_2 <- brm(
-  r | trials(n) ~ treat * c2, 
-  data = dat, 
-  family = binomial(link = logit), 
+  r | trials(n) ~ treat * c2,
+  data = dat,
+  family = binomial(link = logit),
   chains = 1, iter = 500
 )
 
@@ -407,11 +411,11 @@ brms_mixed_6 <- brm(
 )
 
 brms_mv_1 <- brm(cbind(cyl, gear, carb) ~ wt + hp, data = mtcars)
-f1 <- bf(mpg ~ wt + disp + cyl + hp + (1 |CAR| gear))
-f2 <- bf(wt ~ disp + cyl + hp + (1 |CAR| gear))
+f1 <- bf(mpg ~ wt + disp + cyl + hp + (1 | CAR | gear))
+f2 <- bf(wt ~ disp + cyl + hp + (1 | CAR | gear))
 brms_mv_2 <- brm(f1 + f2 + set_rescor(FALSE), data = mtcars)
-f1 <- bf(Base ~ Age + count + (1 |ID| patient))
-f2 <- bf(Base2 ~ Age + Trt + (1 |ID| patient))
+f1 <- bf(Base ~ Age + count + (1 | ID | patient))
+f2 <- bf(Base2 ~ Age + Trt + (1 | ID | patient))
 brms_mv_3 <- brm(f1 + f2 + set_rescor(FALSE), data = epilepsy)
 f1 <- bf(Sepal.Length ~ Petal.Length + Sepal.Width + Species)
 f2 <- bf(Sepal.Width ~ Species)
@@ -452,7 +456,7 @@ data("GasolineYield")
 data("FoodExpenditure")
 
 betareg_1 <- betareg(yield ~ batch + temp, data = GasolineYield)
-betareg_2 <- betareg(I(food/income) ~ income + persons, data = FoodExpenditure)
+betareg_2 <- betareg(I(food / income) ~ income + persons, data = FoodExpenditure)
 
 library(AER)
 library(censReg)
@@ -466,8 +470,8 @@ CigarettesSW$rincome <- with(CigarettesSW, income / population / cpi)
 CigarettesSW$tdiff <- with(CigarettesSW, (taxs - tax) / cpi)
 
 ivreg_1 <- ivreg(
-  log(packs) ~ log(rprice) + log(rincome) | log(rincome) + tdiff + I(tax / cpi), 
-  data = CigarettesSW, 
+  log(packs) ~ log(rprice) + log(rincome) | log(rincome) + tdiff + I(tax / cpi),
+  data = CigarettesSW,
   subset = year == "1995"
 )
 
@@ -480,148 +484,131 @@ clm2_1 <- clm2(rating ~ temp * contact, data = wine)
 ## Save
 ```{r, eval=FALSE, warning=FALSE, message=FALSE, results="hide"}
 usethis::use_data(htest_1,
-                  htest_2,
-                  htest_3,
-                  htest_4,
-                  htest_5,
-                  htest_6,
-                  htest_7,
-                  htest_8,
-                  
-                  anova_1,
-                  aov_1,
-                  aovlist_1,
-                  anova_2,
-                  aov_2,
-                  aovlist_2,
-                  anova_3,
-                  aov_3,
-                  aovlist_3,
-                  anova_4,
-                  
-                  lm_0,
-                  lm_1,
-                  lm_2,
-                  lm_3,
-                  lm_4,
-                  lm_5,
-                  lm_6,
-                  lm_7,
-                  glm_0,
-                  glm_1,
-                  glm_2,
-                  glm_3,
-                  glm_4,
-                  glm_5,
-                  
-                  lmerMod_0,
-                  lmerMod_1,
-                  lmerMod_2,
-                  lmerMod_3,
-                  lmerMod_4,
-                  lmerMod_5,
-                  merMod_0,
-                  merMod_1,
-                  merMod_2,
-                  merMod_3,
-                  merMod_4,
-                  
-                  anova_lmerMod_0,
-                  anova_lmerMod_1,
-                  anova_lmerMod_2,
-                  anova_lmerMod_3,
-                  anova_lmerMod_4,
-                  anova_lmerMod_5,
-                  anova_lmerMod_6,
-                  
-                  glmmTMB_1,
-                  glmmTMB_2,
-                  glmmTMB_3,
-                  glmmTMB_4,
-                  glmmTMB_5,
-                  
-                  glmmTMB_zi_1,
-                  glmmTMB_zi_2,
-                  glmmTMB_zi_3,
-                  
-                  GLMMadaptive_1,
-                  GLMMadaptive_zi_1,
-                  GLMMadaptive_zi_2,
-                  
-                  stanreg_lm_0,
-                  stanreg_lm_1,
-                  stanreg_lm_2,
-                  stanreg_lm_3,
-                  stanreg_lm_4,
-                  stanreg_lm_5,
-                  stanreg_lm_6,
-                  stanreg_lm_7,
-                  stanreg_glm_0,
-                  stanreg_glm_1,
-                  stanreg_glm_2,
-                  stanreg_glm_3,
-                  stanreg_glm_4,
-                  stanreg_glm_5,
-                  stanreg_glm_6,
-                  stanreg_lmerMod_0,
-                  stanreg_lmerMod_1,
-                  stanreg_lmerMod_2,
-                  stanreg_lmerMod_3,
-                  stanreg_lmerMod_4,
-                  stanreg_lmerMod_5,
-                  stanreg_merMod_0,
-                  stanreg_merMod_1,
-                  stanreg_merMod_2,
-                  stanreg_merMod_3,
-                  stanreg_merMod_4,
-                  stanreg_merMod_5,
-                  stanreg_meanfield_lm_1,
-                  stanreg_fullrank_lm_1,
-                  
-                  stanreg_gamm4_1,
-                  stanreg_gamm4_2,
-                  stanreg_gamm4_3,
-                  
-                  brms_1,
-                  brms_2,
-                  
-                  brms_mixed_1,
-                  brms_mixed_2,
-                  brms_mixed_3,
-                  brms_mixed_4,
-                  brms_mixed_5,
-                  brms_mixed_6,
-                  
-                  brms_mv_1,
-                  brms_mv_2,
-                  brms_mv_3,
-                  brms_mv_4,
-                  brms_mv_5,
-                  brms_mv_6,
-                  
-                  brms_zi_1,
-                  brms_zi_2,
-                  brms_zi_3,
-                  
-                  brms_4bf_1,
-                  brms_4bf_2,
-                  brms_4bf_3,
-                  brms_4bf_4,
-                  brms_4bf_5,
-                  
-                  brms_ordinal_1,
-                  brms_ordinal_1_wt,
-                  
-                  brms_categorical_1_num,
-                  brms_categorical_1_fct,
-                  brms_categorical_1_wt,
-                  
-                  betareg_1,
-                  betareg_2,
-                  censReg_1,
-                  ivreg_1,
-                  clm_1,
-                  clm2_1,
-                  
-                  overwrite=TRUE)
+  htest_2,
+  htest_3,
+  htest_4,
+  htest_5,
+  htest_6,
+  htest_7,
+  htest_8,
+  anova_1,
+  aov_1,
+  aovlist_1,
+  anova_2,
+  aov_2,
+  aovlist_2,
+  anova_3,
+  aov_3,
+  aovlist_3,
+  anova_4,
+  lm_0,
+  lm_1,
+  lm_2,
+  lm_3,
+  lm_4,
+  lm_5,
+  lm_6,
+  lm_7,
+  glm_0,
+  glm_1,
+  glm_2,
+  glm_3,
+  glm_4,
+  glm_5,
+  lmerMod_0,
+  lmerMod_1,
+  lmerMod_2,
+  lmerMod_3,
+  lmerMod_4,
+  lmerMod_5,
+  merMod_0,
+  merMod_1,
+  merMod_2,
+  merMod_3,
+  merMod_4,
+  anova_lmerMod_0,
+  anova_lmerMod_1,
+  anova_lmerMod_2,
+  anova_lmerMod_3,
+  anova_lmerMod_4,
+  anova_lmerMod_5,
+  anova_lmerMod_6,
+  glmmTMB_1,
+  glmmTMB_2,
+  glmmTMB_3,
+  glmmTMB_4,
+  glmmTMB_5,
+  glmmTMB_zi_1,
+  glmmTMB_zi_2,
+  glmmTMB_zi_3,
+  GLMMadaptive_1,
+  GLMMadaptive_zi_1,
+  GLMMadaptive_zi_2,
+  stanreg_lm_0,
+  stanreg_lm_1,
+  stanreg_lm_2,
+  stanreg_lm_3,
+  stanreg_lm_4,
+  stanreg_lm_5,
+  stanreg_lm_6,
+  stanreg_lm_7,
+  stanreg_glm_0,
+  stanreg_glm_1,
+  stanreg_glm_2,
+  stanreg_glm_3,
+  stanreg_glm_4,
+  stanreg_glm_5,
+  stanreg_glm_6,
+  stanreg_lmerMod_0,
+  stanreg_lmerMod_1,
+  stanreg_lmerMod_2,
+  stanreg_lmerMod_3,
+  stanreg_lmerMod_4,
+  stanreg_lmerMod_5,
+  stanreg_merMod_0,
+  stanreg_merMod_1,
+  stanreg_merMod_2,
+  stanreg_merMod_3,
+  stanreg_merMod_4,
+  stanreg_merMod_5,
+  stanreg_meanfield_lm_1,
+  stanreg_fullrank_lm_1,
+  stanreg_gamm4_1,
+  stanreg_gamm4_2,
+  stanreg_gamm4_3,
+  brms_1,
+  brms_2,
+  brms_mixed_1,
+  brms_mixed_2,
+  brms_mixed_3,
+  brms_mixed_4,
+  brms_mixed_5,
+  brms_mixed_6,
+  brms_mv_1,
+  brms_mv_2,
+  brms_mv_3,
+  brms_mv_4,
+  brms_mv_5,
+  brms_mv_6,
+  brms_zi_1,
+  brms_zi_2,
+  brms_zi_3,
+  brms_4bf_1,
+  brms_4bf_2,
+  brms_4bf_3,
+  brms_4bf_4,
+  brms_4bf_5,
+  brms_ordinal_1,
+  brms_ordinal_1_wt,
+  brms_categorical_1_num,
+  brms_categorical_1_fct,
+  brms_categorical_1_wt,
+  betareg_1,
+  betareg_2,
+  censReg_1,
+  ivreg_1,
+  clm_1,
+  clm2_1,
+  overwrite = TRUE
+)
 ```

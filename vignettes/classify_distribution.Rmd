@@ -51,115 +51,114 @@ set.seed(333)
 
 ```{r message=FALSE, warning=FALSE, eval=TRUE}
 distributions <- data.frame()
-size <-  1000
-for(location in round(seq(0.01, 10, length.out = 5), digits=2)){
-  for(scale in round(seq(0.02, 10, length.out = 5), digits=2)){
-    
-    x <- parameters::normalize(as.data.frame(density(runif(size, location, location*2), n=100)))
+size <- 1000
+for (location in round(seq(0.01, 10, length.out = 5), digits = 2)) {
+  for (scale in round(seq(0.02, 10, length.out = 5), digits = 2)) {
+    x <- parameters::normalize(as.data.frame(density(runif(size, location, location * 2), n = 100)))
     x$distribution <- "uniform"
     x$location <- location
     x$scale <- scale
     distributions <- rbind(distributions, x)
-    
-    x <- parameters::normalize(as.data.frame(density(rnorm(size, location, scale), n=100)))
+
+    x <- parameters::normalize(as.data.frame(density(rnorm(size, location, scale), n = 100)))
     x$distribution <- "normal"
     x$location <- location
     x$scale <- scale
     distributions <- rbind(distributions, x)
-    
-    x <- parameters::normalize(as.data.frame(density(rbeta(size, location, scale), n=100)))
+
+    x <- parameters::normalize(as.data.frame(density(rbeta(size, location, scale), n = 100)))
     x$distribution <- "beta"
     x$location <- location
     x$scale <- scale
     distributions <- rbind(distributions, x)
-    
-    x <- parameters::normalize(as.data.frame(density(rbinom(size, round(location)+1, scale/10^(nchar(round(scale)))), n=100)))
+
+    x <- parameters::normalize(as.data.frame(density(rbinom(size, round(location) + 1, scale / 10^(nchar(round(scale)))), n = 100)))
     x$distribution <- "binomial"
     x$location <- location
     x$scale <- scale
     distributions <- rbind(distributions, x)
-    
-    x <- parameters::normalize(as.data.frame(density(rchisq(size, location, scale), n=100)))
+
+    x <- parameters::normalize(as.data.frame(density(rchisq(size, location, scale), n = 100)))
     x$distribution <- "chi"
     x$location <- location
     x$scale <- scale
     distributions <- rbind(distributions, x)
-    
-    x <- parameters::normalize(as.data.frame(density(rexp(size, scale), n=100)))
+
+    x <- parameters::normalize(as.data.frame(density(rexp(size, scale), n = 100)))
     x$distribution <- "exponential"
     x$location <- location
     x$scale <- scale
     distributions <- rbind(distributions, x)
-    
-    x <- parameters::normalize(as.data.frame(density(rf(size, location, scale), n=100)))
+
+    x <- parameters::normalize(as.data.frame(density(rf(size, location, scale), n = 100)))
     x$distribution <- "F"
     x$location <- location
     x$scale <- scale
     distributions <- rbind(distributions, x)
-    
-    x <- parameters::normalize(as.data.frame(density(rgamma(size, location, scale), n=100)))
+
+    x <- parameters::normalize(as.data.frame(density(rgamma(size, location, scale), n = 100)))
     x$distribution <- "gamma"
     x$location <- location
     x$scale <- scale
     distributions <- rbind(distributions, x)
-    
-    x <- parameters::normalize(as.data.frame(density(rlnorm(size, location, scale), n=100)))
+
+    x <- parameters::normalize(as.data.frame(density(rlnorm(size, location, scale), n = 100)))
     x$distribution <- "lognormal"
     x$location <- location
     x$scale <- scale
     distributions <- rbind(distributions, x)
-    
-    x <- parameters::normalize(as.data.frame(density(rpois(size, location), n=100)))
+
+    x <- parameters::normalize(as.data.frame(density(rpois(size, location), n = 100)))
     x$distribution <- "poisson"
     x$location <- location
     x$scale <- scale
     distributions <- rbind(distributions, x)
-    
-    x <- parameters::normalize(as.data.frame(density(rt(size, location, scale), n=100)))
+
+    x <- parameters::normalize(as.data.frame(density(rt(size, location, scale), n = 100)))
     x$distribution <- "t"
     x$location <- location
     x$scale <- scale
     distributions <- rbind(distributions, x)
-    
-    x <- parameters::normalize(as.data.frame(density(rweibull(size, location, scale), n=100)))
+
+    x <- parameters::normalize(as.data.frame(density(rweibull(size, location, scale), n = 100)))
     x$distribution <- "weibull"
     x$location <- location
     x$scale <- scale
     distributions <- rbind(distributions, x)
   }
 }
-ggplot(distributions, aes(x=x, y=y, colour=distribution)) +
-  geom_line(size=1) +
+ggplot(distributions, aes(x = x, y = y, colour = distribution)) +
+  geom_line(size = 1) +
   facet_grid(location ~ scale) +
   theme_classic()
 ```
 
 ## Convenience function
 ```{r message=FALSE, warning=FALSE, eval=TRUE}
-generate_distribution <- function(family="normal", size=1000, noise=0, location=0, scale=1){
-  if(family == "normal"){
+generate_distribution <- function(family = "normal", size = 1000, noise = 0, location = 0, scale = 1) {
+  if (family == "normal") {
     x <- rnorm(size, location, scale)
-  } else if(family == "uniform"){
-    x <- runif(size, location, location*2)
-  } else if(family == "beta"){
+  } else if (family == "uniform") {
+    x <- runif(size, location, location * 2)
+  } else if (family == "beta") {
     x <- rbeta(size, location, scale)
-  } else if(family == "binomial"){
-    x <- rbinom(size, round(location)+1, scale/10^(nchar(round(scale))))
-  } else if(family == "chi"){
+  } else if (family == "binomial") {
+    x <- rbinom(size, round(location) + 1, scale / 10^(nchar(round(scale))))
+  } else if (family == "chi") {
     x <- rchisq(size, location, scale)
-  } else if(family == "exponential"){
+  } else if (family == "exponential") {
     x <- rexp(size, scale)
-  } else if(family == "F"){
-    x <- rf(size, location, scale+0.1)
-  } else if(family == "gamma"){
+  } else if (family == "F") {
+    x <- rf(size, location, scale + 0.1)
+  } else if (family == "gamma") {
     x <- rgamma(size, location, scale)
-  } else if(family == "lognormal"){
+  } else if (family == "lognormal") {
     x <- rlnorm(size, location, scale)
-  } else if(family == "poisson"){
+  } else if (family == "poisson") {
     x <- rpois(size, location)
-  } else if(family == "t"){
+  } else if (family == "t") {
     x <- rt(size, location, scale)
-  } else if(family == "weibull"){
+  } else if (family == "weibull") {
     x <- rweibull(size, location, scale)
   }
   return(x)
@@ -173,62 +172,61 @@ generate_distribution <- function(family="normal", size=1000, noise=0, location=
 
 ```{r message=FALSE, warning=FALSE, eval=FALSE}
 df <- data.frame()
-for(distribution in c("normal", "beta", "binomial", "chi", "exponential", "F", "gamma", "lognormal", "poisson", "t", "uniform", "weibull")){
-  for(i in 1:2000){
-    
+for (distribution in c("normal", "beta", "binomial", "chi", "exponential", "F", "gamma", "lognormal", "poisson", "t", "uniform", "weibull")) {
+  for (i in 1:2000) {
     size <- round(runif(1, 10, 2000))
     location <- runif(1, 0.01, 10)
     scale <- runif(1, 0.02, 10)
-    
-    x <- generate_distribution(distribution, size=size, location=location, scale=scale)
-    
+
+    x <- generate_distribution(distribution, size = size, location = location, scale = scale)
+
     x[is.infinite(x)] <- 5.565423e+156
-    x_scaled <- parameters::normalize(x, verbose=FALSE)
-    
-    density_Z <- density(x_scaled, n=20)$y
-    
+    x_scaled <- parameters::normalize(x, verbose = FALSE)
+
+    density_Z <- density(x_scaled, n = 20)$y
+
     # Extract features
     data <- data.frame(
       "Mean" = mean(x_scaled),
       "SD" = sd(x_scaled),
       "Median" = median(x_scaled),
-      "MAD" = mad(x_scaled, constant=1),
+      "MAD" = mad(x_scaled, constant = 1),
       "Mean_Median_Distance" = mean(x_scaled) - median(x_scaled),
       "Mean_Mode_Distance" = mean(x_scaled) - as.numeric(bayestestR::map_estimate(x_scaled, bw = "nrd0")),
-      "SD_MAD_Distance" = sd(x_scaled) - mad(x_scaled, constant=1),
+      "SD_MAD_Distance" = sd(x_scaled) - mad(x_scaled, constant = 1),
       "Mode" = as.numeric(bayestestR::map_estimate(x_scaled, bw = "nrd0")),
       # "Range" = range(x),
       "Range_SD" = diff(range(x)) / sd(x),
-      "Range_MAD" = diff(range(x)) / mad(x, constant=1),
+      "Range_MAD" = diff(range(x)) / mad(x, constant = 1),
       "IQR" = stats::IQR(x_scaled),
       "Skewness" = skewness(x_scaled),
       "Kurtosis" = kurtosis(x_scaled),
       "Uniques" = length(unique(x)) / length(x),
-      "CI_50_high" = ci(x_scaled, ci=0.5)$CI_high,
-      "CI_50_low" = ci(x_scaled, ci=0.5)$CI_low,
-      "CI_70_high" = ci(x_scaled, ci=0.7)$CI_high,
-      "CI_70_low" = ci(x_scaled, ci=0.7)$CI_low,
-      "CI_90_high" = ci(x_scaled, ci=0.9)$CI_high,
-      "CI_90_low" = ci(x_scaled, ci=0.9)$CI_low,
-      "Smoothness_Cor" = parameters::smoothness(density(x_scaled)$y, method="cor"),
-      "Smoothness_Diff" = parameters::smoothness(density(x_scaled)$y, method="diff"),
-      "Smoothness_Z_Cor_1" = parameters::smoothness(density_Z, method="cor", lag=1),
-      "Smoothness_Z_Diff_1" = parameters::smoothness(density_Z, method="diff", lag=1),
-      "Smoothness_Z_Cor_3" = parameters::smoothness(density_Z, method="cor", lag=3),
-      "Smoothness_Z_Diff_3" = parameters::smoothness(density_Z, method="diff", lag=3)
+      "CI_50_high" = ci(x_scaled, ci = 0.5)$CI_high,
+      "CI_50_low" = ci(x_scaled, ci = 0.5)$CI_low,
+      "CI_70_high" = ci(x_scaled, ci = 0.7)$CI_high,
+      "CI_70_low" = ci(x_scaled, ci = 0.7)$CI_low,
+      "CI_90_high" = ci(x_scaled, ci = 0.9)$CI_high,
+      "CI_90_low" = ci(x_scaled, ci = 0.9)$CI_low,
+      "Smoothness_Cor" = parameters::smoothness(density(x_scaled)$y, method = "cor"),
+      "Smoothness_Diff" = parameters::smoothness(density(x_scaled)$y, method = "diff"),
+      "Smoothness_Z_Cor_1" = parameters::smoothness(density_Z, method = "cor", lag = 1),
+      "Smoothness_Z_Diff_1" = parameters::smoothness(density_Z, method = "diff", lag = 1),
+      "Smoothness_Z_Cor_3" = parameters::smoothness(density_Z, method = "cor", lag = 3),
+      "Smoothness_Z_Diff_3" = parameters::smoothness(density_Z, method = "diff", lag = 3)
     )
-    
-    
+
+
     density_df <- as.data.frame(t(density_Z))
     names(density_df) <- paste0("Density_", 1:ncol(density_df))
     data <- cbind(data, density_df)
-    
-    if(length(unique(x)) == 1){
+
+    if (length(unique(x)) == 1) {
       data$Distribution <- "uniform"
-    } else{
+    } else {
       data$Distribution <- distribution
     }
-    
+
     df <- rbind(df, data)
   }
   # write.csv(df, "classify_distribution.csv", row.names = FALSE)
@@ -297,21 +295,22 @@ df <- df[!infinite, ]
 # Data partitioning
 
 
-trainIndex <- caret::createDataPartition(as.factor(df$Distribution), p=0.1, list = FALSE)
-train <- df[ trainIndex,]
-test  <- df[-trainIndex,]
+trainIndex <- caret::createDataPartition(as.factor(df$Distribution), p = 0.1, list = FALSE)
+train <- df[trainIndex, ]
+test <- df[-trainIndex, ]
 
 
 # Parameters
-fitControl <- caret::trainControl(## 5-fold CV
-                           method = "repeatedcv",
-                           number = 5,
-                           ## repeated ten times
-                           repeats = 10,
-                           classProbs = TRUE,
-                           returnData = FALSE,
-                           trim=TRUE,
-                           allowParallel = TRUE)
+fitControl <- caret::trainControl( ## 5-fold CV
+  method = "repeatedcv",
+  number = 5,
+  ## repeated ten times
+  repeats = 10,
+  classProbs = TRUE,
+  returnData = FALSE,
+  trim = TRUE,
+  allowParallel = TRUE
+)
 # Set up parallel
 cluster <- makeCluster(detectCores() - 1) # convention to leave 1 core for OS
 registerDoParallel(cluster)
@@ -322,15 +321,21 @@ registerDoParallel(cluster)
 
 ```{r message=FALSE, warning=FALSE, eval=FALSE, results="hide"}
 # Training
-model_tree <- caret::train(Distribution ~ ., data = train, 
-                 method = "rpart", 
-                 trControl = fitControl)
-model_rf <- caret::train(Distribution ~ ., data = train, 
-                 method = "rf", 
-                 trControl = fitControl)
-model_nb <- caret::train(Distribution ~ ., data = train,
-                 method = "naive_bayes",
-                 trControl = fitControl)
+model_tree <- caret::train(Distribution ~ .,
+  data = train,
+  method = "rpart",
+  trControl = fitControl
+)
+model_rf <- caret::train(Distribution ~ .,
+  data = train,
+  method = "rf",
+  trControl = fitControl
+)
+model_nb <- caret::train(Distribution ~ .,
+  data = train,
+  method = "naive_bayes",
+  trControl = fitControl
+)
 
 stopCluster(cluster) # explicitly shut down the cluster
 ```
@@ -343,8 +348,8 @@ stopCluster(cluster) # explicitly shut down the cluster
 results <- resamples(list(
   "DecisionTree" = model_tree,
   "RandomForest" = model_rf,
-  "NaiveBayes"= model_nb
-  ))
+  "NaiveBayes" = model_nb
+))
 
 # summarize the distributions
 summary(results)
@@ -353,9 +358,11 @@ summary(results)
 dotplot(results)
 
 # Sizes
-data.frame("DecisionTree" = as.numeric(object.size(model_tree))/1000,
-           "RandomForest" = as.numeric(object.size(model_rf))/1000,
-           "NaiveBayes" = as.numeric(object.size(model_nb))/1000)
+data.frame(
+  "DecisionTree" = as.numeric(object.size(model_tree)) / 1000,
+  "RandomForest" = as.numeric(object.size(model_rf)) / 1000,
+  "NaiveBayes" = as.numeric(object.size(model_nb)) / 1000
+)
 ```
 
 
@@ -370,16 +377,16 @@ confusion <- confusionMatrix(data = test$pred, reference = as.factor(test$Distri
 knitr::kable(data.frame("Performance" = confusion$overall))
 
 # Prediction Table
-knitr::kable(confusion$table / colSums(confusion$table), digits=2)
+knitr::kable(confusion$table / colSums(confusion$table), digits = 2)
 
 # Prediction Figure
-perf <-  as.data.frame(confusion$byClass)[c("Sensitivity", "Specificity")]
+perf <- as.data.frame(confusion$byClass)[c("Sensitivity", "Specificity")]
 perf$Distribution <- gsub("Class: ", "", row.names(perf))
 perf <- reshape(perf, varying = list(c("Sensitivity", "Specificity")), timevar = "Type", idvar = "Distribution", direction = "long", v.names = "Metric")
 perf$Type <- ifelse(perf$Type == 1, "Sensitivity", "Specificity")
-ggplot(perf, aes(x=Distribution, y=Metric, fill=Type)) +
+ggplot(perf, aes(x = Distribution, y = Metric, fill = Type)) +
   geom_bar(stat = "identity", position = position_dodge(width = 0.9)) +
-  geom_hline(aes(yintercept=0.5), linetype="dotted") +
+  geom_hline(aes(yintercept = 0.5), linetype = "dotted") +
   theme_classic() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
@@ -388,7 +395,7 @@ features <- caret::varImp(model, scale = TRUE)
 plot(features)
 
 # N trees
-plot(model$finalModel, log="x", main="black default, red samplesize, green tree depth")
+plot(model$finalModel, log = "x", main = "black default, red samplesize, green tree depth")
 ```
 
 
@@ -400,46 +407,45 @@ plot(model$finalModel, log="x", main="black default, red samplesize, green tree 
 
 ```{r message=FALSE, warning=FALSE, eval=FALSE}
 df <- data.frame()
-for(distribution in c("normal", "beta", "binomial", "chi", "exponential", "F", "gamma", "lognormal", "poisson", "t", "uniform", "weibull")){
-  for(i in 1:3000){
-    
+for (distribution in c("normal", "beta", "binomial", "chi", "exponential", "F", "gamma", "lognormal", "poisson", "t", "uniform", "weibull")) {
+  for (i in 1:3000) {
     size <- round(runif(1, 100, 1000))
     location <- runif(1, 0.01, 10)
     scale <- runif(1, 0.02, 10)
-    
-    x <- generate_distribution(distribution, size=size, location=location, scale=scale)
-    
+
+    x <- generate_distribution(distribution, size = size, location = location, scale = scale)
+
     x[is.infinite(x)] <- 5.565423e+156
-    x_scaled <- parameters::normalize(x, verbose=FALSE)
+    x_scaled <- parameters::normalize(x, verbose = FALSE)
 
     # Extract features
     data <- data.frame(
       "Mean" = mean(x_scaled),
       "SD" = sd(x_scaled),
       "Median" = median(x_scaled),
-      "MAD" = mad(x_scaled, constant=1),
+      "MAD" = mad(x_scaled, constant = 1),
       "Mean_Median_Distance" = mean(x_scaled) - median(x_scaled),
       "Mean_Mode_Distance" = mean(x_scaled) - as.numeric(bayestestR::map_estimate(x_scaled, bw = "nrd0")),
-      "SD_MAD_Distance" = sd(x_scaled) - mad(x_scaled, constant=1),
+      "SD_MAD_Distance" = sd(x_scaled) - mad(x_scaled, constant = 1),
       "Mode" = as.numeric(bayestestR::map_estimate(x_scaled, bw = "nrd0")),
       "Range_SD" = diff(range(x)) / sd(x),
-      "Range_MAD" = diff(range(x)) / mad(x, constant=1),
+      "Range_MAD" = diff(range(x)) / mad(x, constant = 1),
       "IQR" = stats::IQR(x_scaled),
       "Skewness" = skewness(x_scaled),
       "Kurtosis" = kurtosis(x_scaled),
       "Uniques" = length(unique(x)) / length(x),
-      "CI_50_high" = ci(x_scaled, ci=0.5)$CI_high,
-      "CI_50_low" = ci(x_scaled, ci=0.5)$CI_low,
-      "CI_70_high" = ci(x_scaled, ci=0.7)$CI_high,
-      "CI_70_low" = ci(x_scaled, ci=0.7)$CI_low,
-      "CI_90_high" = ci(x_scaled, ci=0.9)$CI_high,
-      "CI_90_low" = ci(x_scaled, ci=0.9)$CI_low
+      "CI_50_high" = ci(x_scaled, ci = 0.5)$CI_high,
+      "CI_50_low" = ci(x_scaled, ci = 0.5)$CI_low,
+      "CI_70_high" = ci(x_scaled, ci = 0.7)$CI_high,
+      "CI_70_low" = ci(x_scaled, ci = 0.7)$CI_low,
+      "CI_90_high" = ci(x_scaled, ci = 0.9)$CI_high,
+      "CI_90_low" = ci(x_scaled, ci = 0.9)$CI_low
     )
-    
-    
-    if(length(unique(x)) == 1){
+
+
+    if (length(unique(x)) == 1) {
       data$Distribution <- "uniform"
-    } else{
+    } else {
       data$Distribution <- distribution
     }
     df <- rbind(df, data)
@@ -456,9 +462,9 @@ infinite <- is.infinite(rowSums(df[sapply(df, is.numeric)]))
 df <- df[!infinite, ]
 
 # Data partitioning
-trainIndex <- caret::createDataPartition(as.factor(df$Distribution), p=0.1, list = FALSE)
-train <- df[ trainIndex,]
-test  <- df[-trainIndex,]
+trainIndex <- caret::createDataPartition(as.factor(df$Distribution), p = 0.1, list = FALSE)
+train <- df[trainIndex, ]
+test <- df[-trainIndex, ]
 
 # Set up parallel
 cluster <- makeCluster(detectCores() - 1) # convention to leave 1 core for OS
@@ -470,18 +476,20 @@ registerDoParallel(cluster)
 
 ```{r message=FALSE, warning=FALSE, eval=FALSE, results="hide"}
 # Training
-model <- randomForest::randomForest(as.factor(Distribution) ~ ., data = train, 
-                 localImp = FALSE,
-                 importance = FALSE,
-                 keep.forest = TRUE,
-                 keep.inbag = FALSE,
-                 proximity=FALSE, 
-                 maxDepth=5, 
-                 maxBins=32, 
-                 minInstancesPerNode=1, 
-                 minInfoGain=0.0, 
-                 maxMemoryInMB=128,
-                 ntree = 10)
+model <- randomForest::randomForest(as.factor(Distribution) ~ .,
+  data = train,
+  localImp = FALSE,
+  importance = FALSE,
+  keep.forest = TRUE,
+  keep.inbag = FALSE,
+  proximity = FALSE,
+  maxDepth = 5,
+  maxBins = 32,
+  minInstancesPerNode = 1,
+  minInfoGain = 0.0,
+  maxMemoryInMB = 128,
+  ntree = 10
+)
 stopCluster(cluster) # explicitly shut down the cluster
 ```
 
@@ -497,16 +505,16 @@ confusion <- confusionMatrix(data = test$pred, reference = as.factor(test$Distri
 knitr::kable(data.frame("Performance" = confusion$overall))
 
 # Prediction Table
-knitr::kable(confusion$table / colSums(confusion$table), digits=2)
+knitr::kable(confusion$table / colSums(confusion$table), digits = 2)
 
 # Prediction Figure
-perf <-  as.data.frame(confusion$byClass)[c("Sensitivity", "Specificity")]
+perf <- as.data.frame(confusion$byClass)[c("Sensitivity", "Specificity")]
 perf$Distribution <- gsub("Class: ", "", row.names(perf))
 perf <- reshape(perf, varying = list(c("Sensitivity", "Specificity")), timevar = "Type", idvar = "Distribution", direction = "long", v.names = "Metric")
 perf$Type <- ifelse(perf$Type == 1, "Sensitivity", "Specificity")
-ggplot(perf, aes(x=Distribution, y=Metric, fill=Type)) +
+ggplot(perf, aes(x = Distribution, y = Metric, fill = Type)) +
   geom_bar(stat = "identity", position = position_dodge(width = 0.9)) +
-  geom_hline(aes(yintercept=0.5), linetype="dotted") +
+  geom_hline(aes(yintercept = 0.5), linetype = "dotted") +
   theme_classic() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 # Features
@@ -517,11 +525,11 @@ caret::varImp(model, scale = TRUE)
 ### Reduce Size and Save
 ```{r message=FALSE, warning=FALSE, eval=FALSE}
 # Initial size
-as.numeric(object.size(model))/1000
+as.numeric(object.size(model)) / 1000
 
 
 # Reduce size
-model <- strip(model, keep="predict", use_trim=TRUE)
+model <- strip(model, keep = "predict", use_trim = TRUE)
 
 model$predicted <- NULL
 model$y <- NULL
@@ -537,9 +545,9 @@ model$oob.times <- NULL
 
 
 
-as.numeric(object.size(model))/1000
+as.numeric(object.size(model)) / 1000
 
-# Test 
+# Test
 is.factor(predict(model, df))
 is.matrix(predict(model, data, type = "prob"))
 ```
