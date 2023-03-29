@@ -79,7 +79,7 @@ In order to add models, do the following:
 
 1. Add model creation code in the `README.Rmd`
 2. Add your model-name in the `usethis::use_data()` function (last chunk) in the `README.Rmd`
-3. Add documentation for your model in the [`R/data.R/`](https://github.com/easystats/circus/blob/master/R/data.R) file
+3. Add documentation for your model in the [`R/data.R/`](https://github.com/easystats/circus/blob/main/R/data.R) file
 4. Now fit your model and save it to the data-folder, using `usethis::use_data(<yourmodel>)`.
 5. Knit the `README.Rmd` file to generate the `README.md`. Since code-chunks are not evaluated, this runs pretty quickly.
 6. Check and build documentation for the package (to generate the `.rd`-files)

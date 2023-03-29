@@ -44,7 +44,7 @@ In order to add models, do the following:
 2.  Add your model-name in the `usethis::use_data()` function (last
     chunk) in the `README.Rmd`
 3.  Add documentation for your model in the
-    [`R/data.R/`](https://github.com/easystats/circus/blob/master/R/data.R)
+    [`R/data.R/`](https://github.com/easystats/circus/blob/main/R/data.R)
     file
 4.  Now fit your model and save it to the data-folder, using
     `usethis::use_data(<yourmodel>)`.

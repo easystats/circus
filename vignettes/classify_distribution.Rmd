@@ -234,7 +234,7 @@ for (distribution in c("normal", "beta", "binomial", "chi", "exponential", "F", 
 ```
 
 ```{r message=FALSE, warning=FALSE, include=FALSE, results='hide'}
-# df <- read.csv("https://raw.github.com/easystats/circus/master/data/classify_distribution.csv")
+# df <- read.csv("https://raw.github.com/easystats/circus/main/data/classify_distribution.csv")
 ```
 
 

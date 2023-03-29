@@ -120,7 +120,7 @@ for (n in c(15, 30, 45, 60, 120, 240)) {
 ## Results
 
 ```{r message=FALSE, warning=FALSE}
-data <- read.csv("https://raw.github.com/easystats/circus/master/data/sensitivity_to_priors.csv")
+data <- read.csv("https://raw.github.com/easystats/circus/main/data/sensitivity_to_priors.csv")
 
 df <- data %>%
   mutate(

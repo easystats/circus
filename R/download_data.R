@@ -29,7 +29,7 @@ download_data_github <- function(url) {
 #' @export
 download_model <- function(name) {
   url <- paste0(
-    "https://github.com/easystats/circus/blob/master/data/",
+    "https://github.com/easystats/circus/blob/main/data/",
     name,
     ".rda"
   )

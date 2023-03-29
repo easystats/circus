@@ -286,7 +286,7 @@ for (outcome_type in outcome_types) {
 ```
 
 ```{r message=FALSE, warning=FALSE, include=FALSE, results='hide'}
-# all_data <- read.csv("https://raw.github.com/easystats/circus/master/data/bayesSim_study1.csv")
+# all_data <- read.csv("https://raw.github.com/easystats/circus/main/data/bayesSim_study1.csv")
 ```
 
 ## Visualise data
@@ -524,7 +524,7 @@ for (outcome_type in outcome_types) {
 ```
 
 ```{r message=FALSE, warning=FALSE, include=FALSE, results='hide'}
-# all_data <- read.csv("https://raw.github.com/easystats/circus/master/data/bayesSim_study2.csv")
+# all_data <- read.csv("https://raw.github.com/easystats/circus/main/data/bayesSim_study2.csv")
 ```
 
 # Study 3 - Priors Specification
@@ -599,7 +599,7 @@ for (outcome_type in outcome_types) {
 ```
 
 ```{r message=FALSE, warning=FALSE, include=FALSE, results='hide'}
-# all_data <- read.csv("https://raw.github.com/easystats/circus/master/data/bayesSim_study2.csv")
+# all_data <- read.csv("https://raw.github.com/easystats/circus/main/data/bayesSim_study2.csv")
 ```
 
 
