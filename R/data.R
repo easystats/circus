@@ -1699,6 +1699,58 @@
 "brms_trunc_1"
 
 
+#' brms_aterm_1
+#'
+#' Model of class brmsfit
+#' @examples
+#' \dontrun{
+#' brm(am | trials(1) ~ hp,
+#'   data = mtcars, family = binomial(),
+#'   chains = 2, iter = 200,
+#'   backend = "cmdstanr", cores = 2
+#' )}
+"brms_aterm_1"
+
+
+#' brms_aterm_2
+#'
+#' Model of class brmsfit
+#' @examples
+#' \dontrun{
+#' brm(am | trials(cyl) ~ hp,
+#'   data = mtcars, family = binomial(),
+#'   chains = 2, iter = 200,
+#'   backend = "cmdstanr", cores = 2
+#' )}
+"brms_aterm_2"
+
+
+#' brms_aterm_3
+#'
+#' Model of class brmsfit
+#' @examples
+#' \dontrun{
+#' data(kidney)
+#' brm(time | cens(censored) ~ age * sex + disease + (1|patient),
+#'     data = kidney, family = lognormal(),
+#'     chains = 2, iter = 200,
+#'     backend = "cmdstanr", cores = 2)}
+"brms_aterm_3"
+
+
+#' brms_aterm_4
+#'
+#' Model of class brmsfit
+#' @examples
+#' \dontrun{
+#' data(kidney)
+#' brm(brm(time | cens(censored, y2 = 3) ~ age * sex + disease + (1|patient),
+#'     data = kidney, family = lognormal(),
+#'     chains = 2, iter = 200,
+#'     backend = "cmdstanr", cores = 2)}
+"brms_aterm_4"
+
+
 
 #' betareg_1
 #'
