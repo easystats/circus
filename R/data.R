@@ -1683,6 +1683,20 @@
 
 
 
+#' brms_trunc_1
+#'
+#' Model of class brmsfit
+#' @examples
+#' \dontrun{
+#' data(epilepsy)
+#' brms_trunc_1 <- brm(
+#'   count | trunc(ub = 104) ~ zBase * Trt,
+#'   data = epilepsy,
+#'   family = poisson(),
+#'   backend = "cmdstanr",
+#'   cores = 4
+#' )}
+"brms_trunc_1"
 
 
 
