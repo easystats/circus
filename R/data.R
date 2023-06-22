@@ -1659,7 +1659,21 @@
 "brms_mm_2"
 
 
-
+#' brms_bf_1
+#'
+#' Model of class brmsfit
+#' @examples
+#' \dontrun{
+#' brm(
+#'   mpg ~ wt,
+#'   data = mtcars,
+#'   prior = set_prior("normal(0, 1)", class = "b"),
+#'   refresh = 0,
+#'   iter = 200,
+#'   chains = 2
+#' )
+#' }
+"brms_bf_1"
 
 
 #' brms_mm_2
