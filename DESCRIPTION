@@ -1,7 +1,7 @@
 Type: Package
 Package: circus
 Title: The Circus of Monsters
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: 
     c(person(given = "Dominique",
              family = "Makowski",
@@ -53,4 +53,4 @@ VignetteBuilder:
 Encoding: UTF-8
 Language: en-US
 LazyData: true
-RoxygenNote: 7.2.3.9000
+RoxygenNote: 7.3.1
