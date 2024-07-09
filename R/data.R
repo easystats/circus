@@ -1514,6 +1514,23 @@
 
 
 
+#' brms_beta_1
+#'
+#' Model of class brmsfit
+#' @examples
+#' \dontrun{
+#' data(FoodExpenditure, package = "betareg")
+#' m <- brm(
+#'   I(food / income) ~ income + (1 | persons),
+#'   data = FoodExpenditure,
+#'   family = Beta()
+#' )
+#' }
+"brms_beta_1"
+
+
+
+
 #' brms_zi_1
 #'
 #' Model of class brmsfit
@@ -1853,6 +1870,19 @@
 #'     backend = "cmdstanr", cores = 2)}
 "brms_aterm_4"
 
+
+
+#' ordbetareg_1
+#'
+#' Model of class brmsfit
+#' @examples
+#' \dontrun{
+#' library(ordbetareg)
+#' data(sleepstudy, package = "lme4")
+#' sleepstudy$y <- datawizard::normalize(sleepstudy$Reaction)
+#' m <- ordbetareg(y ~ Days + (Days | Subject), data = sleepstudy)
+#' }
+"ordbetareg_1"
 
 
 #' betareg_1
