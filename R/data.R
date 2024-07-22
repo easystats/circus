@@ -1412,6 +1412,15 @@
 
 
 
+#' brms_mo2
+#'
+#' Model of class brmsfit
+#' @examples
+#' \dontrun{
+#' brm(mpg ~ mo(gear), data = mtcars, refresh = 0)
+#' }
+"brms_mo2"
+
 
 
 
