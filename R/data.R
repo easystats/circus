@@ -1616,6 +1616,21 @@
 
 
 
+#' brms_lf_1
+#'
+#' Model of class brmsfit
+#' @examples
+#' \dontrun{
+#' brms::brm(
+#'   bf(carb ~ gear * vs) + lf(disc ~ 0 + mo(cyl)),
+#'   data = mtcars,
+#'   family = cumulative("probit")
+#' )
+#' }
+"brms_lf_1"
+
+
+
 #' brms_ordinal_1
 #'
 #' Model of class brmsfit
