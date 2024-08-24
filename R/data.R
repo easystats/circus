@@ -1390,6 +1390,17 @@
 
 
 
+#' brms_mixed_9
+#'
+#' Model of class brmsfit
+#' @examples
+#' \dontrun{
+#' brms::brm(mpg ~ hp + (1 | cyl), data = mtcars, seed = 123)
+#' }
+"brms_mixed_9"
+
+
+
 
 
 #' brms_mo1
