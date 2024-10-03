@@ -1140,6 +1140,20 @@
 #' }
 "stanreg_merMod_5"
 
+#' stanreg_merMod_6
+#'
+#' Model of class stanreg
+#' @examples
+#' \dontrun{
+#' stan_glmer(
+#'   Reaction ~ Days + (1 + Days | Subject),
+#'   data = lme4::sleepstudy, chains = 2, cores = 1
+#'   seed = 12345, iter = 500, refresh = 0
+#' )
+#' }
+"stanreg_merMod_6"
+
+
 
 
 
