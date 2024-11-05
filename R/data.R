@@ -1417,6 +1417,20 @@
 
 
 
+
+#' brms_sigma_1
+#'
+#' Model of class brmsfit
+#' @examples
+#' \dontrun{
+#' set.seed(123)
+#' brm(bf(mpg ~ hp + (1 | cyl), sigma ~ cyl), data = mtcars, seed = 123)
+#' }
+"brms_sigma_1"
+
+
+
+
 #' brms_mo1
 #'
 #' Model of class brmsfit
