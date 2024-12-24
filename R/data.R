@@ -1464,6 +1464,36 @@
 
 
 
+#' brms_von_mises_1
+#'
+#' Model of class brmsfit
+#' @examples
+#' \dontrun{
+#' df <- data.frame(
+#'   y = runif(200, -pi, pi),
+#'   x = as.factor(rep(c("a", "b"), 100))
+#' )
+#'
+#' f <- brms::bf(
+#'   y ~ 0 + Intercept + x,
+#'   kappa ~ 0 + Intercept,
+#'   family = brms::von_mises()
+#' )
+#'
+#' brms::brm(
+#'   f,
+#'   data = df,
+#'   refresh = 0,
+#'   algorithm = "pathfinder",
+#'   backend = "cmdstanr"
+#' )
+#' }
+"brms_von_mises_1"
+
+
+
+
+
 #' brms_meta_1
 #'
 #' Model of class brmsfit

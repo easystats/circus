@@ -18,7 +18,7 @@ Description: Contains a variety of fitted models and data to
     help the systematic testing of other packages.
 License: GPL-3
 Depends: 
-    R (>= 2.10)
+    R (>= 3.5)
 Imports:
     httr
 Suggests:
