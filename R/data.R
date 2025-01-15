@@ -1781,6 +1781,24 @@
 "brms_categorical_1_num"
 
 
+#' brms_categorical_2_num
+#'
+#' Model of class brmsfit
+#' @examples
+#' \dontrun{
+#' set.seed(123)
+#' brm(
+#'   Species ~ Sepal.Width,
+#'   data = iris,
+#'   family = categorical(refcat = "setosa"),
+#'   refresh = 0,
+#'   backend = "cmdstanr",
+#'   algorithm = "pathfinder"
+#' )
+#' }
+"brms_categorical_2_num"
+
+
 #' brms_categorical_1_fct
 #'
 #' Model of class brmsfit
