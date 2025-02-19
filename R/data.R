@@ -1272,6 +1272,20 @@
 "brms_3"
 
 
+#' brms_4
+#'
+#' Model of class brmsfit
+#' @examples
+#' \dontrun{
+#' brm(
+#'   Sepal.Length ~ Sepal.Width * Species,
+#'   data = iris,
+#'   family = gaussian(),
+#'   chains = 2, iter = 2000, warmup = 1000, cores = 2
+#' )}
+"brms_4"
+
+
 #' brms_linear_1
 #'
 #' Model of class brmsfit
