@@ -1456,6 +1456,24 @@
 
 
 
+#' brms_mixed_10
+#'
+#' Model of class brmsfit
+#' @examples
+#' \dontrun{
+#' data(iris)
+#' iris$Group <- as.factor(rep(c("G1", "G2", "G3"), each = 50))
+#' set.seed(123)
+#' brms::brm(
+#'   Sepal.Width ~ Petal.Width + (Petal.Width | Group),
+#'   data = iris,
+#'   refresh = 0
+#' )
+#' }
+"brms_mixed_10"
+
+
+
 
 
 #' brms_sigma_1
@@ -1496,6 +1514,29 @@
 #' )
 #' }
 "brms_sigma_2"
+
+
+
+
+#' brms_sigma_3
+#'
+#' Model of class brmsfit
+#' @examples
+#' \dontrun{
+#' set.seed(123)
+#' data(iris)
+#' iris$Group <- as.factor(rep(c("G1", "G2", "G3"), each = 50))
+#' brms_sigma_3 <- brms::brm(
+#'   brms::bf(
+#'     Sepal.Width ~ Petal.Width + (Petal.Width | Group),
+#'     sigma ~ Petal.Width + (Petal.Width | Group)
+#'   ),
+#'   data = iris,
+#'   refresh=0
+#' )
+#' }
+"brms_sigma_3"
+
 
 
 
