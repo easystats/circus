@@ -2277,3 +2277,19 @@
 #'   refresh = 0)
 #' }
 "stanmvreg_2"
+
+
+#' illusiongame
+#'
+#' Data from Makowski et al., (2023) for the Illusion Game
+#' @examples
+#' \dontrun{
+#' df <- read.csv("https://raw.githubusercontent.com/RealityBending/IllusionGameValidation/refs/heads/main/data/study1.csv")
+#' df <- df[c("Participant", "Illusion_Type", "Trial", "RT", "Error", "Illusion_Strength", "Illusion_Difference")]
+#' df$RT <- df$RT / 1000
+#' df <- df[df$Illusion_Strength > 0, ]
+#' df <- df[df$Illusion_Type %in% c("Müller-Lyer", "Delboeuf", "Ebbinghaus", "Vertical-Horizontal", "Ponzo"), ]
+#' write.csv(df, "../data/illusiongame.csv", row.names = FALSE)
+#' }
+"illusiongame"
+
