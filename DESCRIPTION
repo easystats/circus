@@ -1,8 +1,8 @@
 Type: Package
 Package: circus
 Title: The Circus of Monsters
-Version: 0.1.3
-Authors@R: 
+Version: 0.1.4
+Authors@R:
     c(person(given = "Dominique",
              family = "Makowski",
              role = c("aut", "cre"),
@@ -17,7 +17,7 @@ Maintainer: Dominique Makowski <dom.makowski@gmail.com>
 Description: Contains a variety of fitted models and data to
     help the systematic testing of other packages.
 License: GPL-3
-Depends: 
+Depends:
     R (>= 3.5)
 Imports:
     httr
@@ -46,9 +46,10 @@ Suggests:
     splines,
     survey,
     survival,
+    tidyverse,
     truncreg,
     usethis
-VignetteBuilder: 
+VignetteBuilder:
     knitr
 Encoding: UTF-8
 Language: en-US
