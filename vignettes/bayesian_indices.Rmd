@@ -1,6 +1,6 @@
 ---
 title: "Systematic Simulation of Bayesian Models"
-output: 
+output:
   github_document:
     toc: true
     fig_width: 10.08
@@ -12,7 +12,7 @@ output:
 tags: [r, bayesian, posterior, test]
 vignette: >
   \usepackage[utf8]{inputenc}
-editor_options: 
+editor_options:
   chunk_output_type: console
 ---
 
@@ -44,7 +44,7 @@ generate_data <- function(true_effect = 0, outcome_type = "linear", sample_size 
     if (true_effect == 1) {
       data$y <- data$x
     } else {
-      data$y <- parameters::standardize(cos(data$x * 5))
+      data$y <- datawizard::standardize(cos(data$x * 5))
     }
   } else {
     if (true_effect == 1) {
@@ -54,7 +54,7 @@ generate_data <- function(true_effect = 0, outcome_type = "linear", sample_size 
     }
   }
   # Add error
-  data$x <- parameters::standardize(data$x + rnorm(sample_size, 0, error))
+  data$x <- datawizard::standardize(data$x + rnorm(sample_size, 0, error))
 
   return(data)
 }
