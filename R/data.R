@@ -2062,7 +2062,7 @@
 "brms_bf_1"
 
 
-#' brms_mm_2
+#' brms_corr_re1
 #'
 #' Model of class brmsfit
 #' @examples
