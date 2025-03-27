@@ -1,0 +1,5 @@
+url: https://easystats.github.io/circus/
+
+template:
+  bootstrap: 5
+  package: easystatstemplate

@@ -64,3 +64,6 @@ Encoding: UTF-8
 Language: en-US
 LazyData: true
 RoxygenNote: 7.3.2
+Roxygen: list(markdown = TRUE)
+Config/Needs/website: easystats/easystatstemplate
+Config/Needs/check: stan-dev/cmdstanr
