@@ -1793,6 +1793,40 @@
 #' }
 "brms_zi_3"
 
+#' brms_zi_4
+#'
+#' Model of class brmsfit
+#' @examples
+#' \dontrun{
+#' brms::brm(
+#'   bf(
+#'     count ~ child + camper + (1 + xb | persons) + (1 + zg | ID),
+#'     zi ~ child + livebait + (1 + zg + nofish | ID)
+#'   ),
+#'   data = zinb,
+#'   family = zero_inflated_poisson(),
+#'   chains = 1,
+#'   iter = 500
+#' )
+#' }
+"brms_zi_4"
+
+
+
+#' brms_ipw_1
+#'
+#' Model of class brmsfit
+#' @examples
+#' \dontrun{
+#' brms::brm(
+#'   QoL | weights(ipw) ~ treatment * time + treatment * education +
+#'     hospital + age + phq4 + (1 | ID) ,
+#'   data = datawizard::qolcancer
+#' )
+#' }
+"brms_ipw_1"
+
+
 
 
 #' brms_lf_1
@@ -2292,4 +2326,3 @@
 #' write.csv(df, "../data/illusiongame.csv", row.names = FALSE)
 #' }
 "illusiongame"
-
