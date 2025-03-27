@@ -93,7 +93,7 @@ In order to add models, do the following:
 
 ### Illusion Game
 
-```r{,eval=FALSE}
+```{r ,eval=FALSE}
 # Data from Makowski et al., (2023) for the Illusion Game
 df <- read.csv("https://raw.githubusercontent.com/RealityBending/IllusionGameValidation/refs/heads/main/data/study1.csv")
 df <- df[c("Participant", "Illusion_Type", "Trial", "RT", "Error", "Illusion_Strength", "Illusion_Difference")]

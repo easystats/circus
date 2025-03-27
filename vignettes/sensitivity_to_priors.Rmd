@@ -24,7 +24,7 @@ editor_options:
 library(tidyverse)
 library(rstanarm)
 library(bayestestR)
-library(estimate)
+library(modelbased)
 library(see)
 
 set.seed(333)
