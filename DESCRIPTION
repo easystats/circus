@@ -33,6 +33,7 @@ Suggests:
     gmnl,
     knitr,
     lme4,
+    logspline,
     MASS,
     mgcv,
     mlogit,
