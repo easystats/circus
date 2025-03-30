@@ -22,41 +22,9 @@ Depends:
 Imports:
     httr
 Suggests:
-    bayestestR,
-    betareg,
-    brms,
-    caret,
-    covr,
-    coxme,
-    dplyr,
-    gam,
-    gee,
-    ggplot2,
-    GLMMadaptive,
-    glmmTMB,
-    gmnl,
     knitr,
-    lme4,
-    logspline,
-    MASS,
-    mgcv,
-    modelbased,
-    mlogit,
-    nlme,
-    nnet,
-    ordinal,
-    parameters,
-    pscl,
     rmarkdown,
-    rstanarm,
-    see,
     spelling,
-    splines,
-    strip,
-    survey,
-    survival,
-    tidyverse,
-    truncreg,
     usethis
 VignetteBuilder:
     knitr
@@ -66,4 +34,3 @@ LazyData: true
 RoxygenNote: 7.3.2
 Roxygen: list(markdown = TRUE)
 Config/Needs/website: easystats/easystatstemplate
-Config/Needs/check: stan-dev/cmdstanr
