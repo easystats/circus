@@ -70,14 +70,14 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \dontrun{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span><span class="co"># Define formula and priors</span></span></span>
 <span class="r-in"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu">bf</span><span class="op">(</span><span class="va">Real</span> <span class="op">~</span> <span class="fl">0</span> <span class="op">+</span> <span class="va">Intercept</span> <span class="op">+</span> <span class="op">(</span><span class="fl">0</span> <span class="op">+</span> <span class="va">Intercept</span><span class="op">|</span><span class="va">Participant</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>        <span class="va">delta</span> <span class="op">~</span> <span class="fl">0</span> <span class="op">+</span> <span class="va">Intercept</span> <span class="op">+</span> <span class="op">(</span><span class="fl">0</span> <span class="op">+</span> <span class="va">Intercept</span><span class="op">|</span><span class="va">Participant</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>        <span class="va">phi</span> <span class="op">~</span> <span class="fl">0</span> <span class="op">+</span> <span class="va">Intercept</span>,</span></span>
 <span class="r-in"><span>        <span class="va">k</span> <span class="op">~</span> <span class="fl">0</span> <span class="op">+</span> <span class="va">Intercept</span> <span class="op">+</span> <span class="op">(</span><span class="fl">0</span> <span class="op">+</span> <span class="va">Intercept</span><span class="op">|</span><span class="va">Participant</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>        family <span class="op">=</span> <span class="va">chocomini</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in bf(Real ~ 0 + Intercept + (0 + Intercept | Participant), delta ~     0 + Intercept + (0 + Intercept | Participant), phi ~ 0 +     Intercept, k ~ 0 + Intercept + (0 + Intercept | Participant),     family = chocomini):</span> could not find function "bf"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Define priors (brms::default_prior(f_mini, data=df))</span></span></span>
 <span class="r-in"><span><span class="va">priors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
@@ -86,7 +86,6 @@
 <span class="r-in"><span>  <span class="fu">prior</span><span class="op">(</span><span class="st">"normal(3, 0.5)"</span>, class <span class="op">=</span> <span class="st">"b"</span>, coef <span class="op">=</span> <span class="st">"Intercept"</span>, dpar <span class="op">=</span> <span class="st">"phi"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="fu">prior</span><span class="op">(</span><span class="st">"normal(3, 0.5)"</span>, class <span class="op">=</span> <span class="st">"b"</span>, coef <span class="op">=</span> <span class="st">"Intercept"</span>, dpar <span class="op">=</span> <span class="st">"k"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">brms</span><span class="fu">::</span><span class="fu">validate_prior</span><span class="op">(</span>formula <span class="op">=</span> <span class="va">f</span>, data <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in loadNamespace(x):</span> there is no package called ‘brms’</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Fit the model</span></span></span>
 <span class="r-in"><span><span class="va">brms_chocomini_1</span> <span class="op">&lt;-</span> <span class="fu">brm</span><span class="op">(</span></span></span>
@@ -99,8 +98,8 @@
 <span class="r-in"><span>  iter <span class="op">=</span> <span class="fl">500</span>,</span></span>
 <span class="r-in"><span>  backend <span class="op">=</span> <span class="st">"cmdstanr"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in brm(formula = f, data = df, prior = priors, family = chocomini,     stanvars = stanvars_chocomini, chains = 1, iter = 500, backend = "cmdstanr"):</span> could not find function "brm"</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

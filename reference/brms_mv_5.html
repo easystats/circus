@@ -70,14 +70,13 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \dontrun{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span><span class="va">bf1</span> <span class="op">&lt;-</span> <span class="fu">bf</span><span class="op">(</span><span class="va">count</span> <span class="op">~</span> <span class="va">child</span> <span class="op">+</span> <span class="va">camper</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">persons</span><span class="op">)</span>, <span class="va">zi</span> <span class="op">~</span> <span class="va">camper</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">persons</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in bf(count ~ child + camper + (1 | persons), zi ~ camper + (1 |     persons)):</span> could not find function "bf"</span>
 <span class="r-in"><span><span class="va">bf2</span> <span class="op">&lt;-</span> <span class="fu">bf</span><span class="op">(</span><span class="va">count2</span> <span class="op">~</span> <span class="va">child</span> <span class="op">+</span> <span class="va">livebait</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">persons</span><span class="op">)</span>, <span class="va">zi</span> <span class="op">~</span> <span class="va">child</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">persons</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in bf(count2 ~ child + livebait + (1 | persons), zi ~ child + (1 |     persons)):</span> could not find function "bf"</span>
 <span class="r-in"><span><span class="fu">brms</span><span class="fu">::</span><span class="fu">brm</span><span class="op">(</span><span class="va">bf1</span> <span class="op">+</span> <span class="va">bf2</span>, data <span class="op">=</span> <span class="va">zinb</span>, family <span class="op">=</span> <span class="fu">zero_inflated_poisson</span><span class="op">(</span><span class="op">)</span>, chains <span class="op">=</span> <span class="fl">1</span>, iter <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in loadNamespace(x):</span> there is no package called ‘brms’</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
