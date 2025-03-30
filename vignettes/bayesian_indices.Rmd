@@ -384,7 +384,7 @@ binary_effect <- example_data %>%
 
 plots(linear_effect, linear_noeffect,
   binary_effect, binary_noeffect,
-  nrow = 2,
+  n_rows = 2,
   tags = c(
     "Linear - Effect", "Linear - No effect",
     "Binary - Effect", "Binary - No effect"
