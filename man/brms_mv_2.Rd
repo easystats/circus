@@ -14,11 +14,13 @@ brms_mv_2
 Model of class brmsfit
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 set.seed(123)
 f1 <- bf(mpg ~ wt + disp + cyl + hp + (1 |CAR| gear))
 f2 <- bf(wt ~ disp + cyl + hp + (1 |CAR| gear))
 brms::brm(f1 + f2 + set_rescor(FALSE), data = mtcars)
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

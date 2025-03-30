@@ -14,6 +14,7 @@ brms_mo1
 Model of class brmsfit
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 income_options <- c("below_20", "20_to_40", "40_to_100", "greater_100")
 income <- factor(
@@ -25,5 +26,6 @@ ls <- mean_ls[income] + rnorm(100, sd = 7)
 dat <- data.frame(income, ls) # fit a simple monotonic model
 brms_mo1 <- brm(ls ~ mo(income), data = dat)
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

@@ -14,6 +14,7 @@ brms_zi_1
 Model of class brmsfit
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 zinb <- read.csv("http://stats.idre.ucla.edu/stat/data/fish.csv")
 set.seed(123)
@@ -25,5 +26,6 @@ brms::brm(bf(
   family = zero_inflated_poisson()
 )
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

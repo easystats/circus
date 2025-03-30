@@ -14,6 +14,7 @@ brms_beta_1
 Model of class brmsfit
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 data(FoodExpenditure, package = "betareg")
 m <- brm(
@@ -22,5 +23,6 @@ m <- brm(
   family = Beta()
 )
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

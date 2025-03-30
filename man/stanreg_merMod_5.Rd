@@ -14,6 +14,7 @@ stanreg_merMod_5
 Model of class stanreg
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 stan_glmer(
   cbind(incidence, size - incidence) ~ size + period + (1 | herd),
@@ -21,5 +22,6 @@ stan_glmer(
   chains = 2, cores = 1, seed = 12345, iter = 500, refresh = 0
 )
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

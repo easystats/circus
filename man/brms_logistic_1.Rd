@@ -14,11 +14,13 @@ brms_logistic_1
 Model of class brmsfit
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 data(efc, package = "ggeffects")
 efc <- datawizard::to_factor(efc, c("c161sex", "c172code", "e16sex", "e42dep"))
 levels(efc$c172code) <- c("low", "mid", "high")
 brm(barthtot ~ e16sex + c161sex + c172code * c160age + c12hour + e42dep, data = efc)
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

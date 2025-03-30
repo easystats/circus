@@ -14,6 +14,7 @@ brms_mixed_3
 Model of class brmsfit
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 set.seed(123)
 sleepstudy$grp <- sample(1:5, size = 180, replace = TRUE)
@@ -23,5 +24,6 @@ sleepstudy <- sleepstudy \%>\%
 
 brms::brm(Reaction ~ Days + (1 | grp / subgrp) + (1 | Subject), data = sleepstudy)
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

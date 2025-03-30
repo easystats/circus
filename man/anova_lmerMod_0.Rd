@@ -14,6 +14,8 @@ anova_lmerMod_0
 Model of class anova of merMod
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 anova(lmer(wt ~ 1 + (1 | gear), data = mtcars))
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

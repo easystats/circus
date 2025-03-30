@@ -14,6 +14,7 @@ stanmvreg_1
 Model of class stanmvreg
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 library(rstanarm)
 stan_mvmer(
@@ -26,5 +27,6 @@ stan_mvmer(
   chains = 1, cores = 1, seed = 12345, iter = 1000
 )
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

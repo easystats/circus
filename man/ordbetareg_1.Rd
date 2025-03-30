@@ -14,11 +14,13 @@ ordbetareg_1
 Model of class brmsfit
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 library(ordbetareg)
 data(sleepstudy, package = "lme4")
 sleepstudy$y <- datawizard::normalize(sleepstudy$Reaction)
 m <- ordbetareg(y ~ Days + (Days | Subject), data = sleepstudy)
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

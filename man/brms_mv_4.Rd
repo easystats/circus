@@ -14,10 +14,12 @@ brms_mv_4
 Model of class brmsfit
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 f1 <- bf(Sepal.Length ~ Petal.Length + Sepal.Width + Species)
 f2 <- bf(Sepal.Width ~ Species)
 brms::brm(f1 + f2 + set_rescor(FALSE), data = iris, chains = 1, iter = 500)
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

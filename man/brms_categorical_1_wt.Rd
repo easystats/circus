@@ -14,10 +14,12 @@ brms_categorical_1_wt
 Model of class brmsfit
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 set.seed(123)
 data(mtcars)
 brms::brm(gear | weights(wt) ~ mpg, data = mtcars, family = categorical())
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

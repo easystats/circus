@@ -14,11 +14,13 @@ vgam_2
 Model of class vgam
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 data("hunua")
 vgam(
   cbind(agaaus, kniexc) ~ vitluc + s(altitude, df = c(2, 3)),
   binomialff(multiple.responses = TRUE),
   data = hunua
 )
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

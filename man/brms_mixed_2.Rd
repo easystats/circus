@@ -14,9 +14,11 @@ brms_mixed_2
 Model of class brmsfit
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 set.seed(123)
 brms::brm(Reaction ~ Days + (1 + Days | Subject), data = sleepstudy)
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

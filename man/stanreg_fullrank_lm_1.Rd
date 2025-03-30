@@ -14,8 +14,10 @@ stanreg_fullrank_lm_1
 Model of class stanreg
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 update(stanreg_lm_1, algorithm = "fullrank")
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

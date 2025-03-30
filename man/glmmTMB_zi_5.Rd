@@ -14,6 +14,7 @@ glmmTMB_zi_5
 Model of class glmmTMB
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 # data prepararion: see "glmmTMB_1"
 
@@ -24,5 +25,6 @@ glmmTMB(
   family = truncated_poisson()
 )
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

@@ -14,6 +14,8 @@ merMod_3
 Model of class merMod
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 lme4::glmer(vs ~ drat * cyl + (1 | gear), data = mtcars, family = "binomial")
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

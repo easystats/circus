@@ -14,8 +14,10 @@ stanreg_glm_4
 Model of class stanreg
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 rstanarm::stan_glm(vs ~ wt + cyl, data = mtcars, family = binomial(link = "probit"))
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

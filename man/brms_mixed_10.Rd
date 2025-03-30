@@ -14,6 +14,7 @@ brms_mixed_10
 Model of class brmsfit
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 data(iris)
 iris$Group <- as.factor(rep(c("G1", "G2", "G3"), each = 50))
@@ -24,5 +25,6 @@ brms::brm(
   refresh = 0
 )
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

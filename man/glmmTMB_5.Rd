@@ -14,6 +14,7 @@ glmmTMB_5
 Model of class glmmTMB
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 data(cbpp, package = "lme4")
 glmmTMB(
@@ -22,5 +23,6 @@ glmmTMB(
   family = binomial
 )
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

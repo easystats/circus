@@ -14,6 +14,7 @@ brms_zi_3
 Model of class brmsfit
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 brms::brm(
   bf(count ~ child + camper + (1 | persons), zi ~ child + camper + (1 | persons)),
@@ -23,5 +24,6 @@ brms::brm(
   iter = 500
 )
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

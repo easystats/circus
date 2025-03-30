@@ -14,6 +14,7 @@ glmmTMB_2
 Model of class glmmTMB
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 glmmTMB(count ~ mined + (1 | site),
   ziformula =  ~ mined,
@@ -21,5 +22,6 @@ glmmTMB(count ~ mined + (1 | site),
   data = Salamanders
 )
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

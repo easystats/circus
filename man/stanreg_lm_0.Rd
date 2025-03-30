@@ -14,8 +14,10 @@ stanreg_lm_0
 Model of class stanreg
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 rstanarm::stan_glm(mpg ~ 1, data = mtcars)
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

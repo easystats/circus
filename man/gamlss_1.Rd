@@ -14,10 +14,12 @@ gamlss_1
 Model of class gamlss
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 data(abdom)
 gamlss(
   y ~ pb(x), sigma.formula =  ~ pb(x),
   family = BCT, data = abdom, method = mixed(1, 20)
 )
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

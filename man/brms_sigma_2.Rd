@@ -14,6 +14,7 @@ brms_sigma_2
 Model of class brmsfit
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 set.seed(123)
 d <- data.frame(
@@ -34,5 +35,6 @@ brm(
   backend = "cmdstanr"
 )
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

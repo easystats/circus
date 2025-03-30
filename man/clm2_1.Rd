@@ -14,6 +14,8 @@ clm2_1
 Model of class clm2
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 clm2_1 <- clm2(rating ~ temp * contact, data = wine)
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

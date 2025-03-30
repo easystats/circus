@@ -14,11 +14,13 @@ stanreg_lmerMod_5
 Model of class stanreg
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 dat <- iris
 dat$Cat1 <- rep(c("X", "X", "Y"), length.out = nrow(dat))
 dat$Cat2 <- rep(c("A", "B"), length.out = nrow(dat))
 rstanarm::stan_lmer(Petal.Width ~ Cat1 + (1 + Cat1 | Species), data = dat)
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

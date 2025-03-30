@@ -14,6 +14,7 @@ brms_trunc_1
 Model of class brmsfit
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 data(epilepsy)
 brms_trunc_1 <- brm(
@@ -23,5 +24,6 @@ brms_trunc_1 <- brm(
   backend = "cmdstanr",
   cores = 4
 )}
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

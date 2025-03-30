@@ -14,6 +14,7 @@ brms_chocomini_1
 Model of class brmsfit
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 # Define formula and priors
 f <- bf(Real ~ 0 + Intercept + (0 + Intercept|Participant),
@@ -42,5 +43,6 @@ brms_chocomini_1 <- brm(
   backend = "cmdstanr"
 )
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

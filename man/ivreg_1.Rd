@@ -14,6 +14,7 @@ ivreg_1
 Model of class ivreg
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 data(CigarettesSW)
 CigarettesSW$rprice <- with(CigarettesSW, price / cpi)
 CigarettesSW$rincome <- with(CigarettesSW, income / population / cpi)
@@ -24,5 +25,6 @@ ivreg_1 <- ivreg(
   data = CigarettesSW,
   subset = year == "1995"
 )
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

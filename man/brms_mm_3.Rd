@@ -14,6 +14,7 @@ brms_mm_3
 Model of class brmsfit
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 set.seed(123)
 data(mzcars)
@@ -29,5 +30,6 @@ brm(
   backend = "cmdstanr"
 )
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

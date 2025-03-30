@@ -14,6 +14,7 @@ brms_mixed_5
 Model of class brmsfit
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 library(lme4)
 library(brms)
@@ -29,5 +30,6 @@ brms::brm(
   family = bernoulli()
 )
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

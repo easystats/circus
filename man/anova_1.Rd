@@ -14,6 +14,8 @@ anova_1
 Model of class anova
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 anova(lm(Sepal.Width ~ Species, data = iris))
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

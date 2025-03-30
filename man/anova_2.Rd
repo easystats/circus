@@ -14,10 +14,12 @@ anova_2
 Model of class anova
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 data <- iris
 data$Cat1 <- rep(c("X", "X", "Y"), length.out = nrow(data))
 data$Cat2 <- rep(c("A", "B"), length.out = nrow(data))
 
 anova(lm(Sepal.Length ~ Species * Cat1 * Cat2, data = data))
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

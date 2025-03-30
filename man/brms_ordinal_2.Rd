@@ -14,6 +14,7 @@ brms_ordinal_2
 Model of class brmsfit
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 data(inhaler)
 brm(
@@ -22,5 +23,6 @@ brm(
   data = inhaler
 )
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

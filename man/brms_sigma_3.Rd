@@ -14,6 +14,7 @@ brms_sigma_3
 Model of class brmsfit
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 set.seed(123)
 data(iris)
@@ -27,5 +28,6 @@ brms_sigma_3 <- brms::brm(
   refresh=0
 )
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

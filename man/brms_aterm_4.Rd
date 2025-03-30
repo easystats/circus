@@ -14,6 +14,7 @@ brms_aterm_4
 Model of class brmsfit
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 data(kidney)
 brm(brm(time | cens(censored, y2 = 3) ~ age * sex + disease + (1|patient),
@@ -21,5 +22,6 @@ brm(brm(time | cens(censored, y2 = 3) ~ age * sex + disease + (1|patient),
     chains = 2, iter = 200,
     backend = "cmdstanr", cores = 2)
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

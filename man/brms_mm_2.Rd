@@ -14,6 +14,7 @@ brms_mm_2
 Model of class brmsfit
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 set.seed(123)
 dat <- data.frame(
@@ -25,5 +26,6 @@ dat <- data.frame(
 dat$xc <- (dat$x1 + dat$x2) / 2
 brm(y ~ xc + (1 + mmc(x1, x2) | mm(g1, g2)), data = dat)
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

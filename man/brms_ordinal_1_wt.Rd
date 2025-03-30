@@ -14,11 +14,13 @@ brms_ordinal_1_wt
 Model of class brmsfit
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 set.seed(123)
 data(mtcars)
 mtcars$cyl_ord <- as.ordered(mtcars$cyl)
 brms::brm(cyl_ord | weights(wt) ~ mpg, data = mtcars, family = cumulative())
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

@@ -14,6 +14,7 @@ brms_4
 Model of class brmsfit
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 brm(
   Sepal.Length ~ Sepal.Width * Species,
@@ -21,5 +22,6 @@ brm(
   family = gaussian(),
   chains = 2, iter = 2000, warmup = 1000, cores = 2
 )}
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

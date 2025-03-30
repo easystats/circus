@@ -14,6 +14,8 @@ glm_3
 Model of class glm
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 glm(formula = vs ~ wt * cyl, family = "binomial", data = mtcars)
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

@@ -14,6 +14,7 @@ glmmTMB_spatial_1
 Model of class glmmTMB
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 library(geoR)
 data(ca20)
@@ -29,5 +30,6 @@ dat$ID <- factor(rep(1, nrow(dat)))
 
 glmmTMB(calcium ~ elevation + region + mat(pos + 0 | ID), data = dat)
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

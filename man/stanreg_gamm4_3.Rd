@@ -14,6 +14,7 @@ stanreg_gamm4_3
 Model of class stanreg
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 data <- iris
 data$Cat1 <- rep(c("X", "X", "Y"), length.out = nrow(data))
@@ -24,5 +25,6 @@ stan_gamm4(
   data = data
 )
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

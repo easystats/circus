@@ -14,6 +14,7 @@ GLMMadaptive_zi_2
 Model of class GLMMadaptive
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 # data prepararion: see "glmmTMB_1"
 
@@ -26,5 +27,6 @@ GLMMadaptive::mixed_model(
   family = GLMMadaptive::zi.poisson()
 )
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

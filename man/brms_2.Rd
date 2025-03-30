@@ -14,6 +14,7 @@ brms_2
 Model of class brmsfit
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 dat <- read.table(header = TRUE, text = "
   n r r/n group treat c2 c1 w
@@ -35,5 +36,6 @@ brms::brm(
   family = binomial(link = logit),
   chains = 1, iter = 500
 )}
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

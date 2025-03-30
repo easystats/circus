@@ -14,8 +14,10 @@ glm_nb_1
 Model of class glm
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 library(MASS)
 data(efc, package = "sjmisc")
 glm.nb(tot_sc_e ~ neg_c_7 + e42dep + c172code, data = efc)
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

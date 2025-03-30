@@ -1,9 +1,0 @@
-pandoc: 2.7.2
-pkgdown: 1.3.0
-pkgdown_sha: ~
-articles:
-  bayesian_indices: bayesian_indices.html
-  bootstrapped: bootstrapped.html
-  classify_distribution: classify_distribution.html
-  sensitivity_to_priors: sensitivity_to_priors.html
-

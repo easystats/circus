@@ -14,6 +14,7 @@ brms_bernoulli_1
 Model of class brmsfit
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 set.seed(1234)
 dat <- data.frame(
@@ -25,5 +26,6 @@ dat <- data.frame(
 set.seed(1234)
 brm(outcome ~ var_binom * groups + var_cont, data = dat, family = bernoulli())
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

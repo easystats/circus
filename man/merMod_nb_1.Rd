@@ -14,9 +14,11 @@ merMod_nb_1
 Model of class glmerMod
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 library(lme4)
 library(glmmTMB)
 data(Owls)
 glmer.nb(SiblingNegotiation ~ SexParent + ArrivalTime + (1 | Nest), data = Owls)
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

@@ -14,6 +14,7 @@ gam_mv_1
 Model of class gam
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 library(mgcv)
 V <- matrix(c(2, 1, 1, 2), 2, 2)
 f0 <- function(x) 2 * sin(pi * x)
@@ -35,5 +36,6 @@ for (i in 1:n) {
 dat <- data.frame(y0 = y[, 1], y1 = y[, 2], x0 = x0, x1 = x1, x2 = x2, x3 = x3)
 
 gam(list(y0 ~ s(x0) + s(x1), y1 ~ s(x2) + s(x3)), family = mvn(d = 2), data = dat)
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

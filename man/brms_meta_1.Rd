@@ -14,6 +14,7 @@ brms_meta_1
 Model of class brmsfit
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 # Data from
 # https://github.com/MathiasHarrer/Doing-Meta-Analysis-in-R/blob/master/_data/Meta_Analysis_Data.RData
@@ -26,5 +27,6 @@ brm(TE|se(seTE) ~ 1 + (1|Author),
    prior = priors,
    iter = 4000)
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

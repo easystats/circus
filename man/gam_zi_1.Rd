@@ -14,6 +14,7 @@ gam_zi_1
 Model of class gam
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 library(mgcv)
 f0 <- function(x) 2 * sin(pi * x)
 f1 <- function(x) exp(2 * x)
@@ -34,5 +35,6 @@ eta2 <- f2(x2[ind]) / 3
 y[ind] <- rpois(exp(eta2), exp(eta2))
 
 gam(list(y ~ s(x2) + s(x3),  ~ s(x0) + s(x1)), family = ziplss())
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

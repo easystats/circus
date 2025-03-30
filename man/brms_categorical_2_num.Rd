@@ -14,6 +14,7 @@ brms_categorical_2_num
 Model of class brmsfit
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 set.seed(123)
 brm(
@@ -25,5 +26,6 @@ brm(
   algorithm = "pathfinder"
 )
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

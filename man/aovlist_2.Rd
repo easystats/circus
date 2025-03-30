@@ -14,10 +14,12 @@ aovlist_2
 Model of class aovlist
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 data <- iris
 data$Cat1 <- rep(c("X", "X", "Y"), length.out = nrow(data))
 data$Cat2 <- rep(c("A", "B"), length.out = nrow(data))
 
 aov(Sepal.Length ~ Species * Cat1 + Error(Cat2), data = data)
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

@@ -14,6 +14,7 @@ stanreg_bernoulli_1
 Model of class stanreg
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 set.seed(1234)
 dat <- data.frame(
@@ -25,5 +26,6 @@ dat <- data.frame(
 set.seed(1234)
 stan_glm(outcome ~ var_binom * groups + var_cont, data = dat, family = binomial())
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

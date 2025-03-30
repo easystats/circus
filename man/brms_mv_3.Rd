@@ -14,6 +14,7 @@ brms_mv_3
 Model of class brmsfit
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 data(epilepsy)
 set.seed(123)
@@ -23,5 +24,6 @@ f1 <- bf(Base ~ zAge + count + (1 |ID| patient))
 f2 <- bf(Base2 ~ zAge + Trt + (1 |ID| patient))
 brms::brm(f1 + f2 + set_rescor(FALSE), data = epilepsy)
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

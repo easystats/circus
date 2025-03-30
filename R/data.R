@@ -1,7 +1,7 @@
 #' gamlss_1
 #'
 #' Model of class gamlss
-#' @examples
+#' @examplesIf FALSE
 #' data(abdom)
 #' gamlss(
 #'   y ~ pb(x), sigma.formula =  ~ pb(x),
@@ -14,7 +14,7 @@
 #' gamlss_2
 #'
 #' Model of class gamlss
-#' @examples
+#' @examplesIf FALSE
 #' data(aids)
 #' gamlss(y ~ x + qrt, data = aids, family = NBI)
 "gamlss_2"
@@ -26,7 +26,7 @@
 #' vgam_1
 #'
 #' Model of class vgam
-#' @examples
+#' @examplesIf FALSE
 #' data("hunua")
 #' vgam(agaaus ~ vitluc + s(altitude, df = 2), binomialff, data = hunua)
 "vgam_1"
@@ -35,7 +35,7 @@
 #' vgam_2
 #'
 #' Model of class vgam
-#' @examples
+#' @examplesIf FALSE
 #' data("hunua")
 #' vgam(
 #'   cbind(agaaus, kniexc) ~ vitluc + s(altitude, df = c(2, 3)),
@@ -51,7 +51,7 @@
 #' gam_zi_1
 #'
 #' Model of class gam
-#' @examples
+#' @examplesIf FALSE
 #' library(mgcv)
 #' f0 <- function(x) 2 * sin(pi * x)
 #' f1 <- function(x) exp(2 * x)
@@ -79,7 +79,7 @@
 #' gam_mv_1
 #'
 #' Model of class gam
-#' @examples
+#' @examplesIf FALSE
 #' library(mgcv)
 #' V <- matrix(c(2, 1, 1, 2), 2, 2)
 #' f0 <- function(x) 2 * sin(pi * x)
@@ -110,56 +110,56 @@
 #' htest_1
 #'
 #' Model of class htest
-#' @examples
+#' @examplesIf FALSE
 #' cor.test(iris$Sepal.Width, iris$Sepal.Length, method = "spearman")
 "htest_1"
 
 #' htest_2
 #'
 #' Model of class htest
-#' @examples
+#' @examplesIf FALSE
 #' cor.test(iris$Sepal.Width, iris$Sepal.Length, method = "pearson")
 "htest_2"
 
 #' htest_3
 #'
 #' Model of class htest
-#' @examples
+#' @examplesIf FALSE
 #' cor.test(iris$Sepal.Width, iris$Sepal.Length, method = "kendall")
 "htest_3"
 
 #' htest_4
 #'
 #' Model of class htest
-#' @examples
+#' @examplesIf FALSE
 #' t.test(iris$Sepal.Width, iris$Sepal.Length)
 "htest_4"
 
 #' htest_5
 #'
 #' Model of class htest
-#' @examples
+#' @examplesIf FALSE
 #' t.test(iris$Sepal.Width, iris$Sepal.Length, var.equal = TRUE)
 "htest_5"
 
 #' htest_6
 #'
 #' Model of class htest
-#' @examples
+#' @examplesIf FALSE
 #' t.test(iris$Sepal.Width, iris$Sepal.Length)
 "htest_6"
 
 #' htest_7
 #'
 #' Model of class htest
-#' @examples
+#' @examplesIf FALSE
 #' t.test(mtcars$mpg ~ mtcars$vs)
 "htest_7"
 
 #' htest_8
 #'
 #' Model of class htest
-#' @examples
+#' @examplesIf FALSE
 #' t.test(iris$Sepal.Width, mu = 1)
 "htest_8"
 
@@ -169,7 +169,7 @@
 #' anova_1
 #'
 #' Model of class anova
-#' @examples
+#' @examplesIf FALSE
 #' anova(lm(Sepal.Width ~ Species, data = iris))
 "anova_1"
 
@@ -177,7 +177,7 @@
 #' aov_1
 #'
 #' Model of class aov
-#' @examples
+#' @examplesIf FALSE
 #' aov(Sepal.Width ~ Species, data = iris)
 "aov_1"
 
@@ -185,7 +185,7 @@
 #' aovlist_1
 #'
 #' Model of class aovlist
-#' @examples
+#' @examplesIf FALSE
 #' aov(wt ~ cyl + Error(gear), data = mtcars)
 "aovlist_1"
 
@@ -193,7 +193,7 @@
 #' anova_2
 #'
 #' Model of class anova
-#' @examples
+#' @examplesIf FALSE
 #' data <- iris
 #' data$Cat1 <- rep(c("X", "X", "Y"), length.out = nrow(data))
 #' data$Cat2 <- rep(c("A", "B"), length.out = nrow(data))
@@ -205,7 +205,7 @@
 #' aov_2
 #'
 #' Model of class aov
-#' @examples
+#' @examplesIf FALSE
 #' data <- iris
 #' data$Cat1 <- rep(c("X", "X", "Y"), length.out = nrow(data))
 #' data$Cat2 <- rep(c("A", "B"), length.out = nrow(data))
@@ -217,7 +217,7 @@
 #' aovlist_2
 #'
 #' Model of class aovlist
-#' @examples
+#' @examplesIf FALSE
 #' data <- iris
 #' data$Cat1 <- rep(c("X", "X", "Y"), length.out = nrow(data))
 #' data$Cat2 <- rep(c("A", "B"), length.out = nrow(data))
@@ -258,7 +258,7 @@
 #' lm_0
 #'
 #' Model of class lm
-#' @examples
+#' @examplesIf FALSE
 #' lm(formula = mpg ~ 1, data = mtcars)
 "lm_0"
 
@@ -266,7 +266,7 @@
 #' lm_1
 #'
 #' Model of class lm
-#' @examples
+#' @examplesIf FALSE
 #' lm_1 <- lm(mpg ~ wt, data = mtcars)
 "lm_1"
 
@@ -274,7 +274,7 @@
 #' lm_2
 #'
 #' Model of class lm
-#' @examples
+#' @examplesIf FALSE
 #' lm_1 <- lm(mpg ~ wt + cyl, data = mtcars)
 "lm_2"
 
@@ -282,7 +282,7 @@
 #' lm_3
 #'
 #' Model of class lm
-#' @examples
+#' @examplesIf FALSE
 #' lm(formula = mpg ~ wt * cyl, data = mtcars)
 "lm_3"
 
@@ -290,7 +290,7 @@
 #' lm_4
 #'
 #' Model of class lm
-#' @examples
+#' @examplesIf FALSE
 #' lm(formula = mpg ~ wt + poly(cyl, 2), data = mtcars)
 "lm_4"
 
@@ -298,7 +298,7 @@
 #' lm_5
 #'
 #' Model of class lm
-#' @examples
+#' @examplesIf FALSE
 #' lm(formula = mpg ~ wt + poly(cyl, 2, raw = TRUE), data = mtcars)
 "lm_5"
 
@@ -306,7 +306,7 @@
 #' lm_6
 #'
 #' Model of class lm
-#' @examples
+#' @examplesIf FALSE
 #' lm(formula = mpg ~ wt * as.factor(gear), data = mtcars)
 "lm_6"
 
@@ -314,7 +314,7 @@
 #' lm_7
 #'
 #' Model of class lm
-#' @examples
+#' @examplesIf FALSE
 #' lm(formula = mpg ~ as.factor(gear)/wt, data = mtcars)
 "lm_7"
 
@@ -325,7 +325,7 @@
 #' glm_0
 #'
 #' Model of class glm
-#' @examples
+#' @examplesIf FALSE
 #' glm(formula = vs ~ 1, family = "binomial", data = mtcars)
 "glm_0"
 
@@ -333,7 +333,7 @@
 #' glm_1
 #'
 #' Model of class glm
-#' @examples
+#' @examplesIf FALSE
 #' glm(formula = vs ~ wt, family = "binomial", data = mtcars)
 "glm_1"
 
@@ -341,7 +341,7 @@
 #' glm_2
 #'
 #' Model of class glm
-#' @examples
+#' @examplesIf FALSE
 #' glm(formula = vs ~ wt + cyl, family = "binomial", data = mtcars)
 "glm_2"
 
@@ -349,7 +349,7 @@
 #' glm_3
 #'
 #' Model of class glm
-#' @examples
+#' @examplesIf FALSE
 #' glm(formula = vs ~ wt * cyl, family = "binomial", data = mtcars)
 "glm_3"
 
@@ -357,7 +357,7 @@
 #' glm_4
 #'
 #' Model of class glm
-#' @examples
+#' @examplesIf FALSE
 #' glm(  formula = vs ~ wt + cyl,  family = binomial(link = "probit"),  data = mtcars)
 "glm_4"
 
@@ -365,7 +365,7 @@
 #' glm_5
 #'
 #' Model of class glm
-#' @examples
+#' @examplesIf FALSE
 #' set.seed(123)
 #' mtcars$count <- rpois(nrow(mtcars), 2)
 #' glm(formula = count ~ wt + cyl, family = "poisson", data = mtcars)
@@ -376,7 +376,7 @@
 #' glm_nb_1
 #'
 #' Model of class glm
-#' @examples
+#' @examplesIf FALSE
 #' library(MASS)
 #' data(efc, package = "sjmisc")
 #' glm.nb(tot_sc_e ~ neg_c_7 + e42dep + c172code, data = efc)
@@ -392,7 +392,7 @@
 #' lmerMod_0
 #'
 #' Model of class lmerMod
-#' @examples
+#' @examplesIf FALSE
 #' lme4::lmer(wt ~ 1 + (1 | gear), data = mtcars)
 "lmerMod_0"
 
@@ -400,7 +400,7 @@
 #' lmerMod_1
 #'
 #' Model of class lmerMod
-#' @examples
+#' @examplesIf FALSE
 #' lme4::lmer(wt ~ cyl + (1 | gear), data = mtcars)
 "lmerMod_1"
 
@@ -408,7 +408,7 @@
 #' lmerMod_2
 #'
 #' Model of class lmerMod
-#' @examples
+#' @examplesIf FALSE
 #' lme4::lmer(wt ~ drat + cyl + (1 | gear), data = mtcars)
 "lmerMod_2"
 
@@ -416,7 +416,7 @@
 #' lmerMod_3
 #'
 #' Model of class lmerMod
-#' @examples
+#' @examplesIf FALSE
 #' lme4::lmer(wt ~ drat * cyl + (1 | gear), data = mtcars)
 "lmerMod_3"
 
@@ -424,7 +424,7 @@
 #' lmerMod_4
 #'
 #' Model of class lmerMod
-#' @examples
+#' @examplesIf FALSE
 #' lme4::lmer(wt ~ drat/cyl + (1 | gear), data = mtcars)
 "lmerMod_4"
 
@@ -432,7 +432,7 @@
 #' lmerMod_5
 #'
 #' Model of class lmerMod
-#' @examples
+#' @examplesIf FALSE
 #' data <- iris
 #' data$Cat1 <- rep(c("X", "X", "Y"), length.out = nrow(data))
 #' data$Cat2 <- rep(c("A", "B"), length.out = nrow(data))
@@ -445,14 +445,14 @@
 #' merMod_0
 #'
 #' Model of class merMod
-#' @examples
+#' @examplesIf FALSE
 #' lme4::glmer(vs ~ 1 + (1 | gear), data = mtcars, family = "binomial")
 "merMod_0"
 
 #' merMod_1
 #'
 #' Model of class merMod
-#' @examples
+#' @examplesIf FALSE
 #' lme4::glmer(vs ~ cyl + (1 | gear), data = mtcars, family = "binomial")
 "merMod_1"
 
@@ -460,7 +460,7 @@
 #' merMod_2
 #'
 #' Model of class merMod
-#' @examples
+#' @examplesIf FALSE
 #' lme4::glmer(vs ~ drat + cyl + (1 | gear), data = mtcars, family = "binomial")
 "merMod_2"
 
@@ -468,7 +468,7 @@
 #' merMod_3
 #'
 #' Model of class merMod
-#' @examples
+#' @examplesIf FALSE
 #' lme4::glmer(vs ~ drat * cyl + (1 | gear), data = mtcars, family = "binomial")
 "merMod_3"
 
@@ -476,7 +476,7 @@
 #' merMod_4
 #'
 #' Model of class merMod
-#' @examples
+#' @examplesIf FALSE
 #' lme4::glmer(vs ~ cyl + (1 | gear), data = mtcars, family = binomial(link = "probit"))
 "merMod_4"
 
@@ -485,7 +485,7 @@
 #' merMod_5
 #'
 #' Model of class glmerMod
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' # for data, see '?glmer.nb'
 #' lme4::glmer.nb(y ~ f1 * f2 + (1 | g), data = dd)
@@ -497,7 +497,7 @@
 #' merMod_nb_1
 #'
 #' Model of class glmerMod
-#' @examples
+#' @examplesIf FALSE
 #' library(lme4)
 #' library(glmmTMB)
 #' data(Owls)
@@ -512,7 +512,7 @@
 #' anova_lmerMod_0
 #'
 #' Model of class anova of merMod
-#' @examples
+#' @examplesIf FALSE
 #' anova(lmer(wt ~ 1 + (1 | gear), data = mtcars))
 "anova_lmerMod_0"
 
@@ -520,35 +520,35 @@
 #' anova_lmerMod_1
 #'
 #' Model of class anova of merMod
-#' @examples
+#' @examplesIf FALSE
 #' anova(lmer(wt ~ cyl + (1 | gear), data = mtcars))
 "anova_lmerMod_1"
 
 #' anova_lmerMod_2
 #'
 #' Model of class anova of merMod
-#' @examples
+#' @examplesIf FALSE
 #' anova(lmer(wt ~ drat + cyl + (1 | gear), data = mtcars))
 "anova_lmerMod_2"
 
 #' anova_lmerMod_3
 #'
 #' Model of class anova of merMod
-#' @examples
+#' @examplesIf FALSE
 #' anova(lmer(wt ~ drat * cyl + (1 | gear), data = mtcars))
 "anova_lmerMod_3"
 
 #' anova_lmerMod_4
 #'
 #' Model of class anova of merMod
-#' @examples
+#' @examplesIf FALSE
 #' anova(lmer(wt ~ drat/cyl + (1 | gear), data = mtcars))
 "anova_lmerMod_4"
 
 #' anova_lmerMod_5
 #'
 #' Model of class anova of merMod
-#' @examples
+#' @examplesIf FALSE
 #' anova(lmerMod_5)
 "anova_lmerMod_5"
 
@@ -556,7 +556,7 @@
 #' anova_lmerMod_6
 #'
 #' Model of class anova of merMod
-#' @examples
+#' @examplesIf FALSE
 #' anova(lmerMod_0, lmerMod_1, lmerMod_2)
 "anova_lmerMod_6"
 
@@ -573,7 +573,7 @@
 #' glmmTMB_spatial_1
 #'
 #' Model of class glmmTMB
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' library(geoR)
 #' data(ca20)
@@ -596,7 +596,7 @@
 #' glmmTMB_1
 #'
 #' Model of class glmmTMB
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' set.seed(123)
 #' fish <- read.csv("https://stats.idre.ucla.edu/stat/data/fish.csv")
@@ -617,7 +617,7 @@
 #' glmmTMB_2
 #'
 #' Model of class glmmTMB
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' glmmTMB(count ~ mined + (1 | site),
 #'   ziformula =  ~ mined,
@@ -631,7 +631,7 @@
 #' glmmTMB_3
 #'
 #' Model of class glmmTMB
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' glmmTMB(
 #'   count ~ spp + mined + (1 | site),
@@ -646,7 +646,7 @@
 #' glmmTMB_4
 #'
 #' Model of class glmmTMB
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' glmmTMB(
 #'   count ~ spp + mined + (1 | site),
@@ -661,7 +661,7 @@
 #' glmmTMB_5
 #'
 #' Model of class glmmTMB
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' data(cbpp, package = "lme4")
 #' glmmTMB(
@@ -676,7 +676,7 @@
 #' glmmTMB_zi_1
 #'
 #' Model of class glmmTMB
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' # data prepararion: see "glmmTMB_1"
 #'
@@ -693,7 +693,7 @@
 #' glmmTMB_zi_2
 #'
 #' Model of class glmmTMB
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' # data prepararion: see "glmmTMB_1"
 #'
@@ -710,7 +710,7 @@
 #' glmmTMB_zi_3
 #'
 #' Model of class glmmTMB
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' # data prepararion: see "glmmTMB_1"
 #'
@@ -729,7 +729,7 @@
 #' glmmTMB_zi_4
 #'
 #' Model of class glmmTMB
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' # data prepararion: see "glmmTMB_1"
 #'
@@ -747,7 +747,7 @@
 #' glmmTMB_zi_5
 #'
 #' Model of class glmmTMB
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' # data prepararion: see "glmmTMB_1"
 #'
@@ -765,7 +765,7 @@
 #' glmmTMB_zi_6
 #'
 #' Model of class glmmTMB
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' # data prepararion: see "glmmTMB_1"
 #'
@@ -787,7 +787,7 @@
 #' GLMMadaptive_1
 #'
 #' Model of class GLMMadaptive
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' data(cbpp, package = "lme4")
 #'
@@ -804,7 +804,7 @@
 #' GLMMadaptive_zi_1
 #'
 #' Model of class GLMMadaptive
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' # data prepararion: see "glmmTMB_1"
 #'
@@ -822,7 +822,7 @@
 #' GLMMadaptive_zi_2
 #'
 #' Model of class GLMMadaptive
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' # data prepararion: see "glmmTMB_1"
 #'
@@ -854,7 +854,7 @@
 #' stanreg_bernoulli_1
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' set.seed(1234)
 #' dat <- data.frame(
@@ -873,7 +873,7 @@
 #' stanreg_lm_0
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' rstanarm::stan_glm(mpg ~ 1, data = mtcars)
 #' }
@@ -883,7 +883,7 @@
 #' stanreg_lm_1
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' rstanarm::stan_glm(mpg ~ wt, data = mtcars)
 #' }
@@ -893,7 +893,7 @@
 #' stanreg_lm_2
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' rstanarm::stan_glm(mpg ~ wt + cyl, data = mtcars)
 #' }
@@ -902,7 +902,7 @@
 #' stanreg_lm_3
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' rstanarm::stan_glm(mpg ~ wt * cyl, data = mtcars)
 #' }
@@ -911,7 +911,7 @@
 #' stanreg_lm_4
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' rstanarm::stan_glm(mpg ~ wt + poly(cyl, 2), data = mtcars)
 #' }
@@ -920,7 +920,7 @@
 #' stanreg_lm_5
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' rstanarm::stan_glm(mpg ~ wt + poly(cyl, 2, raw = TRUE), data = mtcars)
 #' }
@@ -929,7 +929,7 @@
 #' stanreg_lm_6
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' rstanarm::stan_glm(mpg ~ wt * as.factor(gear), data = mtcars)
 #' }
@@ -938,7 +938,7 @@
 #' stanreg_lm_7
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' rstanarm::stan_glm(mpg ~ as.factor(gear)/wt, data = mtcars)
 #' }
@@ -949,7 +949,7 @@
 #' stanreg_glm_0
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' rstanarm::stan_glm(vs ~ 1, data = mtcars, family = "binomial")
 #' }
@@ -958,7 +958,7 @@
 #' stanreg_glm_1
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' rstanarm::stan_glm(vs ~ wt, data = mtcars, family = "binomial")
 #' }
@@ -967,7 +967,7 @@
 #' stanreg_glm_2
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' rstanarm::stan_glm(vs ~ wt + cyl, data = mtcars, family = "binomial")
 #' }
@@ -976,7 +976,7 @@
 #' stanreg_glm_3
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' rstanarm::stan_glm(vs ~ wt * cyl, data = mtcars, family = "binomial")
 #' }
@@ -985,7 +985,7 @@
 #' stanreg_glm_4
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' rstanarm::stan_glm(vs ~ wt + cyl, data = mtcars, family = binomial(link = "probit"))
 #' }
@@ -994,7 +994,7 @@
 #' stanreg_glm_5
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' set.seed(123)
 #' mtcars$count <- rpois(nrow(mtcars), 2)
@@ -1005,7 +1005,7 @@
 #' stanreg_glm_6
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' set.seed(123)
 #' rstanarm::stan_glm(Sepal.Width ~ Species * Petal.Length, data = iris)
@@ -1020,7 +1020,7 @@
 #' stanreg_lmerMod_0
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' rstanarm::stan_lmer(wt ~ 1 + (1 | gear), data = mtcars)
 #' }
@@ -1029,7 +1029,7 @@
 #' stanreg_lmerMod_1
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' rstanarm::stan_lmer(wt ~ cyl + (1 | gear), data = mtcars)
 #' }
@@ -1038,7 +1038,7 @@
 #' stanreg_lmerMod_2
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' rstanarm::stan_lmer(wt ~ drat + cyl + (1 | gear), data = mtcars)
 #' }
@@ -1047,7 +1047,7 @@
 #' stanreg_lmerMod_3
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' rstanarm::stan_lmer(wt ~ drat * cyl + (1 | gear), data = mtcars)
 #' }
@@ -1056,7 +1056,7 @@
 #' stanreg_lmerMod_4
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' rstanarm::stan_lmer(wt ~ drat / cyl + (1 | gear), data = mtcars)
 #' }
@@ -1065,7 +1065,7 @@
 #' stanreg_lmerMod_5
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' dat <- iris
 #' dat$Cat1 <- rep(c("X", "X", "Y"), length.out = nrow(dat))
@@ -1080,7 +1080,7 @@
 #' stanreg_merMod_0
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' stan_glmer(vs ~ 1 + (1 | gear), data = mtcars, family = "binomial")
 #' }
@@ -1090,7 +1090,7 @@
 #' stanreg_merMod_1
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' stan_glmer(vs ~ cyl + (1 | gear), data = mtcars, family = "binomial")
 #' }
@@ -1099,7 +1099,7 @@
 #' stanreg_merMod_2
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' stan_glmer(vs ~ drat + cyl + (1 | gear), data = mtcars, family = "binomial")
 #' }
@@ -1108,7 +1108,7 @@
 #' stanreg_merMod_3
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' stan_glmer(vs ~ drat * cyl + (1 | gear), data = mtcars, family = "binomial")
 #' }
@@ -1117,7 +1117,7 @@
 #' stanreg_merMod_4
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' stan_glmer(
 #'   vs ~ cyl + (1 | gear),
@@ -1130,7 +1130,7 @@
 #' stanreg_merMod_5
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' stan_glmer(
 #'   cbind(incidence, size - incidence) ~ size + period + (1 | herd),
@@ -1143,7 +1143,7 @@
 #' stanreg_merMod_6
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' stan_glmer(
 #'   Reaction ~ Days + (1 + Days | Subject),
@@ -1160,7 +1160,7 @@
 #' stanreg_meanfield_lm_1
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' update(stanreg_lm_1, algorithm = "meanfield")
 #' }
@@ -1169,7 +1169,7 @@
 #' stanreg_fullrank_lm_1
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' update(stanreg_lm_1, algorithm = "fullrank")
 #' }
@@ -1179,7 +1179,7 @@
 #' stanreg_gamm4_1
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' stan_gamm4(Sepal.Width ~ s(Petal.Length), data = iris)
 #' }
@@ -1188,7 +1188,7 @@
 #' stanreg_gamm4_2
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' stan_gamm4(Sepal.Width ~ Species + s(Petal.Length), data = iris)
 #' }
@@ -1197,7 +1197,7 @@
 #' stanreg_gamm4_3
 #'
 #' Model of class stanreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' data <- iris
 #' data$Cat1 <- rep(c("X", "X", "Y"), length.out = nrow(data))
@@ -1222,7 +1222,7 @@
 #' brms_1
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' set.seed(333)
 #' brms::brm(mpg ~ wt + cyl, data = mtcars)
@@ -1232,7 +1232,7 @@
 #' brms_2
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' dat <- read.table(header = TRUE, text = "
 #'   n r r/n group treat c2 c1 w
@@ -1259,7 +1259,7 @@
 #' brms_3
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' set.seed(123)
 #' x <- sample(c(1:3), 1000, replace = TRUE)
@@ -1275,7 +1275,7 @@
 #' brms_4
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' brm(
 #'   Sepal.Length ~ Sepal.Width * Species,
@@ -1289,7 +1289,7 @@
 #' brms_linear_1
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' data(efc, package = "ggeffects")
 #' efc <- datawizard::to_factor(efc, c("c161sex", "c172code", "e16sex", "e42dep"))
@@ -1302,7 +1302,7 @@
 #' brms_logistic_1
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' data(efc, package = "ggeffects")
 #' efc <- datawizard::to_factor(efc, c("c161sex", "c172code", "e16sex", "e42dep"))
@@ -1315,7 +1315,7 @@
 #' brms_chocomini_1
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' # Define formula and priors
 #' f <- bf(Real ~ 0 + Intercept + (0 + Intercept|Participant),
@@ -1350,7 +1350,7 @@
 #' brms_null_1
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' set.seed(333)
 #' brms::brm(mpg ~ 1, data = mtcars)
@@ -1360,7 +1360,7 @@
 #' brms_null_2
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' set.seed(333)
 #' brms::brm(mpg ~ 1 + (1 | cyl), data = mtcars)
@@ -1371,7 +1371,7 @@
 #' brms_mixed_1
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' set.seed(123)
 #' brms::brm(mpg ~ wt + (1 | cyl) + (1 + wt | gear), data = mtcars)
@@ -1381,7 +1381,7 @@
 #' brms_mixed_2
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' set.seed(123)
 #' brms::brm(Reaction ~ Days + (1 + Days | Subject), data = sleepstudy)
@@ -1391,7 +1391,7 @@
 #' brms_mixed_3
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' set.seed(123)
 #' sleepstudy$grp <- sample(1:5, size = 180, replace = TRUE)
@@ -1406,7 +1406,7 @@
 #' brms_mixed_4
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' set.seed(333)
 #' brms::brm(Petal.Length ~ Petal.Width + (1 | Species), data = iris)
@@ -1416,7 +1416,7 @@
 #' brms_mixed_5
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' library(lme4)
 #' library(brms)
@@ -1437,7 +1437,7 @@
 #' brms_mixed_6
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' bprior1 <- prior(student_t(5, 0, 10), class = b) + prior(cauchy(0, 2), class = sd)
 #' brms::brm(
@@ -1454,7 +1454,7 @@
 #' brms_mixed_7
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' brm(mpg ~ wt + (1 | cyl) + (1 + wt | gear), data = mtcars)
 #' }
@@ -1463,7 +1463,7 @@
 #' brms_mixed_8
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' bprior1 <- prior(student_t(5, 0, 10), class = b) + prior(cauchy(0, 2), class = sd)
 #' brms::brm(
@@ -1482,7 +1482,7 @@
 #' brms_mixed_9
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' brms::brm(mpg ~ hp + (1 | cyl), data = mtcars, seed = 123)
 #' }
@@ -1494,7 +1494,7 @@
 #' brms_mixed_10
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' data(iris)
 #' iris$Group <- as.factor(rep(c("G1", "G2", "G3"), each = 50))
@@ -1514,7 +1514,7 @@
 #' brms_sigma_1
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' set.seed(123)
 #' brm(bf(mpg ~ hp + (1 | cyl), sigma ~ cyl), data = mtcars, seed = 123)
@@ -1527,7 +1527,7 @@
 #' brms_sigma_2
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' set.seed(123)
 #' d <- data.frame(
@@ -1556,7 +1556,7 @@
 #' brms_sigma_3
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' set.seed(123)
 #' data(iris)
@@ -1579,7 +1579,7 @@
 #' brms_mo1
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' income_options <- c("below_20", "20_to_40", "40_to_100", "greater_100")
 #' income <- factor(
@@ -1599,7 +1599,7 @@
 #' brms_mo2
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' brm(mpg ~ mo(gear), data = mtcars, refresh = 0)
 #' }
@@ -1612,7 +1612,7 @@
 #' brms_von_mises_1
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' df <- data.frame(
 #'   y = runif(200, -pi, pi),
@@ -1642,7 +1642,7 @@
 #' brms_meta_1
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' # Data from
 #' # https://github.com/MathiasHarrer/Doing-Meta-Analysis-in-R/blob/master/_data/Meta_Analysis_Data.RData
@@ -1665,7 +1665,7 @@
 #' brms_mv_1
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' set.seed(123)
 #' brms::brm(cbind(cyl, gear, carb) ~ wt + hp, data = mtcars)
@@ -1675,7 +1675,7 @@
 #' brms_mv_2
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' set.seed(123)
 #' f1 <- bf(mpg ~ wt + disp + cyl + hp + (1 |CAR| gear))
@@ -1687,7 +1687,7 @@
 #' brms_mv_3
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' data(epilepsy)
 #' set.seed(123)
@@ -1702,7 +1702,7 @@
 #' brms_mv_4
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' f1 <- bf(Sepal.Length ~ Petal.Length + Sepal.Width + Species)
 #' f2 <- bf(Sepal.Width ~ Species)
@@ -1713,7 +1713,7 @@
 #' brms_mv_5
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' bf1 <- bf(count ~ child + camper + (1 | persons), zi ~ camper + (1 | persons))
 #' bf2 <- bf(count2 ~ child + livebait + (1 | persons), zi ~ child + (1 | persons))
@@ -1725,7 +1725,7 @@
 #' brms_mv_6
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' data(jobs, package = "mediation")
 #' f1 <- bf(job_seek ~ treat + econ_hard + sex + age)
@@ -1738,7 +1738,7 @@
 
 #' brms_miss_1
 #'
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' dat <- read.csv("https://vincentarelbundock.github.io/Rdatasets/csv/carData/TitanicSurvival.csv")
 #' dat$survived <- ifelse(dat$survived == "yes", 1, 0)
@@ -1765,7 +1765,7 @@
 #' brms_beta_1
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' data(FoodExpenditure, package = "betareg")
 #' m <- brm(
@@ -1782,7 +1782,7 @@
 #' brms_zi_1
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' zinb <- read.csv("http://stats.idre.ucla.edu/stat/data/fish.csv")
 #' set.seed(123)
@@ -1799,7 +1799,7 @@
 #' brms_zi_2
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' zinb <- read.csv("http://stats.idre.ucla.edu/stat/data/fish.csv")
 #' set.seed(123)
@@ -1816,7 +1816,7 @@
 #' brms_zi_3
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' brms::brm(
 #'   bf(count ~ child + camper + (1 | persons), zi ~ child + camper + (1 | persons)),
@@ -1831,7 +1831,7 @@
 #' brms_zi_4
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' brms::brm(
 #'   bf(
@@ -1851,7 +1851,7 @@
 #' brms_ipw_1
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' brms::brm(
 #'   QoL | weights(ipw) ~ treatment * time + treatment * education +
@@ -1867,7 +1867,7 @@
 #' brms_lf_1
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' brms::brm(
 #'   bf(carb ~ gear * vs) + lf(disc ~ 0 + mo(cyl)),
@@ -1882,7 +1882,7 @@
 #' brms_ordinal_1
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' set.seed(123)
 #' data(mtcars)
@@ -1894,7 +1894,7 @@
 #' brms_ordinal_1_wt
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' set.seed(123)
 #' data(mtcars)
@@ -1907,7 +1907,7 @@
 #' brms_ordinal_2
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' data(inhaler)
 #' brm(
@@ -1922,7 +1922,7 @@
 #' brms_categorical_1_num
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' set.seed(123)
 #' data(mtcars)
@@ -1934,7 +1934,7 @@
 #' brms_categorical_2_num
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' set.seed(123)
 #' brm(
@@ -1952,7 +1952,7 @@
 #' brms_categorical_1_fct
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' set.seed(123)
 #' data(mtcars)
@@ -1965,7 +1965,7 @@
 #' brms_categorical_1_wt
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' set.seed(123)
 #' data(mtcars)
@@ -1977,7 +1977,7 @@
 #' brms_smooth_1
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' dat <- mgcv::gamSim(1, n = 200, scale = 2)
 #' brm(y ~ s(x0) + s(x1) + s(x2) + s(x3), data = dat, iter = 1000)
@@ -1988,7 +1988,7 @@
 #' brms_smooth_2
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' dat <- mgcv::gamSim(1, n = 200, scale = 2)
 #' brm(y ~ t2(x0, x1) + s(x2, by = x3), data = dat, iter = 1000)
@@ -2000,7 +2000,7 @@
 #' brms_mm_1
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' set.seed(123)
 #' dat <- data.frame(
@@ -2019,7 +2019,7 @@
 #' brms_mm_2
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' set.seed(123)
 #' dat <- data.frame(
@@ -2037,7 +2037,7 @@
 #' brms_mm_3
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' set.seed(123)
 #' data(mzcars)
@@ -2062,7 +2062,7 @@
 #' brms_bernoulli_1
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' set.seed(1234)
 #' dat <- data.frame(
@@ -2083,7 +2083,7 @@
 #' brms_bf_1
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' brm(
 #'   mpg ~ wt,
@@ -2100,7 +2100,7 @@
 #' brms_corr_re1
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' df <- data.frame(x = factor(rep(c('A', 'B'), each = 100)),
 #'                  y = c(rnorm(100, mean = 0, sd = 1),
@@ -2121,7 +2121,7 @@
 #' brms_trunc_1
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' data(epilepsy)
 #' brms_trunc_1 <- brm(
@@ -2137,7 +2137,7 @@
 #' brms_aterm_1
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' brm(am | trials(1) ~ hp,
 #'   data = mtcars, family = binomial(),
@@ -2150,7 +2150,7 @@
 #' brms_aterm_2
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' brm(am | trials(cyl) ~ hp,
 #'   data = mtcars, family = binomial(),
@@ -2163,7 +2163,7 @@
 #' brms_aterm_3
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' data(kidney)
 #' brm(time | cens(censored) ~ age * sex + disease + (1|patient),
@@ -2176,7 +2176,7 @@
 #' brms_aterm_4
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' data(kidney)
 #' brm(brm(time | cens(censored, y2 = 3) ~ age * sex + disease + (1|patient),
@@ -2191,7 +2191,7 @@
 #' ordbetareg_1
 #'
 #' Model of class brmsfit
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' library(ordbetareg)
 #' data(sleepstudy, package = "lme4")
@@ -2204,14 +2204,14 @@
 #' betareg_1
 #'
 #' Model of class betareg
-#' @examples
+#' @examplesIf FALSE
 #' betareg(yield ~ batch + temp, data = GasolineYield)
 "betareg_1"
 
 #' betareg_2
 #'
 #' Model of class betareg
-#' @examples
+#' @examplesIf FALSE
 #' betareg(I(food/income) ~ income + persons, data = FoodExpenditure)
 "betareg_2"
 
@@ -2220,7 +2220,7 @@
 #' censReg_1
 #'
 #' Model of class censReg
-#' @examples
+#' @examplesIf FALSE
 #' censReg(
 #'   affairs ~ age + yearsmarried + religiousness + occupation + rating,
 #'   data = Affairs
@@ -2231,7 +2231,7 @@
 #' ivreg_1
 #'
 #' Model of class ivreg
-#' @examples
+#' @examplesIf FALSE
 #' data(CigarettesSW)
 #' CigarettesSW$rprice <- with(CigarettesSW, price / cpi)
 #' CigarettesSW$rincome <- with(CigarettesSW, income / population / cpi)
@@ -2248,14 +2248,14 @@
 #' clm_1
 #'
 #' Model of class clm
-#' @examples
+#' @examplesIf FALSE
 #' clm_1 <- clm(rating ~ temp * contact, data = wine)
 "clm_1"
 
 #' clm2_1
 #'
 #' Model of class clm2
-#' @examples
+#' @examplesIf FALSE
 #' clm2_1 <- clm2(rating ~ temp * contact, data = wine)
 "clm2_1"
 
@@ -2263,7 +2263,7 @@
 #' brms_4bf_1
 #'
 #' Example of class brmsfit with \code{save_all_pars = TRUE}.
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' brm(Sepal.Length ~ 1, data = iris, save_all_pars = TRUE)
 #' }
@@ -2272,7 +2272,7 @@
 #' brms_4bf_2
 #'
 #' Example of class brmsfit with \code{save_all_pars = TRUE}.
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' brm(Sepal.Length ~ Species, data = iris, save_all_pars = TRUE)
 #' }
@@ -2281,7 +2281,7 @@
 #' brms_4bf_3
 #'
 #' Example of class brmsfit with \code{save_all_pars = TRUE}.
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' brm(Sepal.Length ~ Petal.Length, data = iris, save_all_pars = TRUE)
 #' }
@@ -2291,7 +2291,7 @@
 #' brms_4bf_4
 #'
 #' Example of class brmsfit with \code{save_all_pars = TRUE}.
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' brm(Sepal.Length ~ Species + Petal.Length, data = iris, save_all_pars = TRUE)
 #' }
@@ -2301,7 +2301,7 @@
 #' brms_4bf_5
 #'
 #' Example of class brmsfit with \code{save_all_pars = TRUE}.
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' brm(Sepal.Length ~ Species * Petal.Length, data = iris, save_all_pars = TRUE)
 #' }
@@ -2313,7 +2313,7 @@
 #' stanmvreg_1
 #'
 #' Model of class stanmvreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' library(rstanarm)
 #' stan_mvmer(
@@ -2333,7 +2333,7 @@
 #' stanmvreg_2
 #'
 #' Model of class stanmvreg
-#' @examples
+#' @examplesIf FALSE
 #' \dontrun{
 #' library(rstanarm)
 #' library(mediation)

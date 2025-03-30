@@ -14,6 +14,7 @@ GLMMadaptive_1
 Model of class GLMMadaptive
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 data(cbpp, package = "lme4")
 
@@ -24,5 +25,6 @@ GLMMadaptive::mixed_model(
   family = binomial
 )
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

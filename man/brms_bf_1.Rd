@@ -14,6 +14,7 @@ brms_bf_1
 Model of class brmsfit
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 brm(
   mpg ~ wt,
@@ -24,5 +25,6 @@ brm(
   chains = 2
 )
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

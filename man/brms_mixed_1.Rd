@@ -14,9 +14,11 @@ brms_mixed_1
 Model of class brmsfit
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 set.seed(123)
 brms::brm(mpg ~ wt + (1 | cyl) + (1 + wt | gear), data = mtcars)
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

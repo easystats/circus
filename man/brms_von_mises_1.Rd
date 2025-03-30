@@ -14,6 +14,7 @@ brms_von_mises_1
 Model of class brmsfit
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 df <- data.frame(
   y = runif(200, -pi, pi),
@@ -34,5 +35,6 @@ brms::brm(
   backend = "cmdstanr"
 )
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

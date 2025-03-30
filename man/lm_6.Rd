@@ -14,6 +14,8 @@ lm_6
 Model of class lm
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 lm(formula = mpg ~ wt * as.factor(gear), data = mtcars)
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

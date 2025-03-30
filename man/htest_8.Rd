@@ -14,6 +14,8 @@ htest_8
 Model of class htest
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 t.test(iris$Sepal.Width, mu = 1)
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

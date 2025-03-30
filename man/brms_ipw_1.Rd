@@ -14,6 +14,7 @@ brms_ipw_1
 Model of class brmsfit
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 brms::brm(
   QoL | weights(ipw) ~ treatment * time + treatment * education +
@@ -21,5 +22,6 @@ brms::brm(
   data = datawizard::qolcancer
 )
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

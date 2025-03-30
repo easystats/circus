@@ -14,7 +14,9 @@ gamlss_2
 Model of class gamlss
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 data(aids)
 gamlss(y ~ x + qrt, data = aids, family = NBI)
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

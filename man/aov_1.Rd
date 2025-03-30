@@ -14,6 +14,8 @@ aov_1
 Model of class aov
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 aov(Sepal.Width ~ Species, data = iris)
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

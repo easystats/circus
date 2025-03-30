@@ -14,10 +14,12 @@ stanreg_glm_5
 Model of class stanreg
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 set.seed(123)
 mtcars$count <- rpois(nrow(mtcars), 2)
 rstanarm::stan_glm(count ~ wt + cyl, data = mtcars, family = "poisson")
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

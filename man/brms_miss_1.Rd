@@ -14,6 +14,7 @@ brms_miss_1
 brms_miss_1
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 dat <- read.csv("https://vincentarelbundock.github.io/Rdatasets/csv/carData/TitanicSurvival.csv")
 dat$survived <- ifelse(dat$survived == "yes", 1, 0)
@@ -32,5 +33,6 @@ brm(
   cores = 4
 )
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}

@@ -14,10 +14,12 @@ brms_mv_5
 Model of class brmsfit
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
 bf1 <- bf(count ~ child + camper + (1 | persons), zi ~ camper + (1 | persons))
 bf2 <- bf(count2 ~ child + livebait + (1 | persons), zi ~ child + (1 | persons))
 brms::brm(bf1 + bf2, data = zinb, family = zero_inflated_poisson(), chains = 1, iter = 500)
 }
+\dontshow{\}) # examplesIf}
 }
 \keyword{datasets}
