@@ -1,0 +1,8 @@
+pandoc: 3.6.4
+pkgdown: 2.1.1.9000
+pkgdown_sha: 66477c0dbb4f4925ec872cf64d5eaa316cc70bac
+articles: {}
+last_built: 2025-03-30T14:29Z
+urls:
+  reference: https://easystats.github.io/circus/reference
+  article: https://easystats.github.io/circus/articles
