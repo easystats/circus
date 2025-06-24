@@ -1,7 +1,7 @@
 Type: Package
 Package: circus
 Title: The Circus of Monsters
-Version: 0.1.4
+Version: 0.1.5
 Authors@R:
     c(person(given = "Dominique",
              family = "Makowski",
