@@ -1537,6 +1537,29 @@
 
 
 
+#' brms_slopes_1
+#'
+#' Model of class brmsfit
+#' @examplesIf FALSE
+#' \dontrun{
+#' states <- as.data.frame(state.x77)
+#' states$HSGrad <- states$`HS Grad`
+#' brm(
+#'   Income ~ HSGrad + Murder * Illiteracy,
+#'   data = states,
+#'   chains = 2,
+#'   iter = 100,
+#'   cores = 2,
+#'   backend = 'cmdstanr'
+#' )
+#' }
+"brms_slopes_1"
+
+
+
+
+
+
 #' brms_mixture_1
 #'
 #' Model of class brmsfit
