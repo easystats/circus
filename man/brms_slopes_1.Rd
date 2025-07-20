@@ -5,7 +5,7 @@
 \alias{brms_slopes_1}
 \title{brms_slopes_1}
 \format{
-An object of class \code{estimate_slopes_summary} (inherits from \code{estimate_slopes}, \code{data.frame}) with 4 rows and 9 columns.
+An object of class \code{brmsfit} of length 23.
 }
 \usage{
 brms_slopes_1
