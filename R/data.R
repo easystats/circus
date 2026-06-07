@@ -10,7 +10,6 @@
 "gamlss_1"
 
 
-
 #' gamlss_2
 #'
 #' Model of class gamlss
@@ -18,9 +17,6 @@
 #' data(aids)
 #' gamlss(y ~ x + qrt, data = aids, family = NBI)
 "gamlss_2"
-
-
-
 
 
 #' vgam_1
@@ -43,9 +39,6 @@
 #'   data = hunua
 #' )
 "vgam_2"
-
-
-
 
 
 #' gam_zi_1
@@ -75,7 +68,6 @@
 "gam_zi_1"
 
 
-
 #' gam_mv_1
 #'
 #' Model of class gam
@@ -102,9 +94,6 @@
 #'
 #' gam(list(y0 ~ s(x0) + s(x1), y1 ~ s(x2) + s(x3)), family = mvn(d = 2), data = dat)
 "gam_mv_1"
-
-
-
 
 
 #' htest_1
@@ -162,8 +151,6 @@
 #' @examplesIf FALSE
 #' t.test(iris$Sepal.Width, mu = 1)
 "htest_8"
-
-
 
 
 #' anova_1
@@ -250,11 +237,6 @@
 "anova_4"
 
 
-
-
-
-
-
 #' lm_0
 #'
 #' Model of class lm
@@ -319,9 +301,6 @@
 "lm_7"
 
 
-
-
-
 #' glm_0
 #'
 #' Model of class glm
@@ -372,7 +351,6 @@
 "glm_5"
 
 
-
 #' glm_nb_1
 #'
 #' Model of class glm
@@ -381,12 +359,6 @@
 #' data(efc, package = "sjmisc")
 #' glm.nb(tot_sc_e ~ neg_c_7 + e42dep + c172code, data = efc)
 "glm_nb_1"
-
-
-
-
-
-
 
 
 #' lmerMod_0
@@ -440,8 +412,6 @@
 "lmerMod_5"
 
 
-
-
 #' merMod_0
 #'
 #' Model of class merMod
@@ -481,7 +451,6 @@
 "merMod_4"
 
 
-
 #' merMod_5
 #'
 #' Model of class glmerMod
@@ -493,7 +462,6 @@
 "merMod_5"
 
 
-
 #' merMod_nb_1
 #'
 #' Model of class glmerMod
@@ -503,10 +471,6 @@
 #' data(Owls)
 #' glmer.nb(SiblingNegotiation ~ SexParent + ArrivalTime + (1 | Nest), data = Owls)
 "merMod_nb_1"
-
-
-
-
 
 
 #' anova_lmerMod_0
@@ -561,15 +525,6 @@
 "anova_lmerMod_6"
 
 
-
-
-
-
-
-
-
-
-
 #' glmmTMB_spatial_1
 #'
 #' Model of class glmmTMB
@@ -590,7 +545,6 @@
 #' glmmTMB(calcium ~ elevation + region + mat(pos + 0 | ID), data = dat)
 #' }
 "glmmTMB_spatial_1"
-
 
 
 #' glmmTMB_1
@@ -725,7 +679,6 @@
 "glmmTMB_zi_3"
 
 
-
 #' glmmTMB_zi_4
 #'
 #' Model of class glmmTMB
@@ -741,7 +694,6 @@
 #' )
 #' }
 "glmmTMB_zi_4"
-
 
 
 #' glmmTMB_zi_5
@@ -761,7 +713,6 @@
 "glmmTMB_zi_5"
 
 
-
 #' glmmTMB_zi_6
 #'
 #' Model of class glmmTMB
@@ -778,10 +729,6 @@
 #' )
 #' }
 "glmmTMB_zi_6"
-
-
-
-
 
 
 #' GLMMadaptive_1
@@ -838,19 +785,6 @@
 "GLMMadaptive_zi_2"
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 #' stanreg_bernoulli_1
 #'
 #' Model of class stanreg
@@ -867,7 +801,6 @@
 #' stan_glm(outcome ~ var_binom * groups + var_cont, data = dat, family = binomial())
 #' }
 "stanreg_bernoulli_1"
-
 
 
 #' stanreg_lm_0
@@ -945,7 +878,6 @@
 "stanreg_lm_7"
 
 
-
 #' stanreg_glm_0
 #'
 #' Model of class stanreg
@@ -1013,10 +945,6 @@
 "stanreg_glm_6"
 
 
-
-
-
-
 #' stanreg_lmerMod_0
 #'
 #' Model of class stanreg
@@ -1073,8 +1001,6 @@
 #' rstanarm::stan_lmer(Petal.Width ~ Cat1 + (1 + Cat1 | Species), data = dat)
 #' }
 "stanreg_lmerMod_5"
-
-
 
 
 #' stanreg_merMod_0
@@ -1154,9 +1080,6 @@
 "stanreg_merMod_6"
 
 
-
-
-
 #' stanreg_meanfield_lm_1
 #'
 #' Model of class stanreg
@@ -1209,14 +1132,6 @@
 #' )
 #' }
 "stanreg_gamm4_3"
-
-
-
-
-
-
-
-
 
 
 #' brms_1
@@ -1312,7 +1227,6 @@
 "brms_logistic_1"
 
 
-
 #' brms_zoib_1
 #'
 #' Model of class brmsfit
@@ -1334,8 +1248,6 @@
 #'     chains = 4, iter = 500, backend = "cmdstanr", refresh = 0)
 #' }
 "brms_zoib_1"
-
-
 
 
 #' brms_chocomini_1
@@ -1504,7 +1416,6 @@
 "brms_mixed_8"
 
 
-
 #' brms_mixed_9
 #'
 #' Model of class brmsfit
@@ -1513,8 +1424,6 @@
 #' brms::brm(mpg ~ hp + (1 | cyl), data = mtcars, seed = 123)
 #' }
 "brms_mixed_9"
-
-
 
 
 #' brms_mixed_10
@@ -1532,9 +1441,6 @@
 #' )
 #' }
 "brms_mixed_10"
-
-
-
 
 
 #' brms_slopes_1
@@ -1556,10 +1462,6 @@
 "brms_slopes_1"
 
 
-
-
-
-
 #' brms_mixture_1
 #'
 #' Model of class brmsfit
@@ -1576,9 +1478,6 @@
 #' )
 #' }
 "brms_mixture_1"
-
-
-
 
 
 #' brms_mixture_2
@@ -1599,10 +1498,6 @@
 "brms_mixture_2"
 
 
-
-
-
-
 #' brms_sigma_1
 #'
 #' Model of class brmsfit
@@ -1612,8 +1507,6 @@
 #' brm(bf(mpg ~ hp + (1 | cyl), sigma ~ cyl), data = mtcars, seed = 123)
 #' }
 "brms_sigma_1"
-
-
 
 
 #' brms_sigma_2
@@ -1643,8 +1536,6 @@
 "brms_sigma_2"
 
 
-
-
 #' brms_sigma_3
 #'
 #' Model of class brmsfit
@@ -1665,9 +1556,6 @@
 "brms_sigma_3"
 
 
-
-
-
 #' brms_mo1
 #'
 #' Model of class brmsfit
@@ -1686,8 +1574,6 @@
 "brms_mo1"
 
 
-
-
 #' brms_mo2
 #'
 #' Model of class brmsfit
@@ -1696,9 +1582,6 @@
 #' brm(mpg ~ mo(gear), data = mtcars, refresh = 0)
 #' }
 "brms_mo2"
-
-
-
 
 
 #' brms_von_mises_1
@@ -1728,9 +1611,6 @@
 "brms_von_mises_1"
 
 
-
-
-
 #' brms_meta_1
 #'
 #' Model of class brmsfit
@@ -1748,10 +1628,6 @@
 #'    iter = 4000)
 #' }
 "brms_meta_1"
-
-
-
-
 
 
 #' brms_mv_1
@@ -1827,7 +1703,6 @@
 "brms_mv_6"
 
 
-
 #' brms_mv_7
 #'
 #' Model of class brmsfit
@@ -1860,10 +1735,6 @@
 "brms_mv_7"
 
 
-
-
-
-
 #' brms_miss_1
 #'
 #' @examplesIf FALSE
@@ -1888,8 +1759,6 @@
 "brms_miss_1"
 
 
-
-
 #' brms_beta_1
 #'
 #' Model of class brmsfit
@@ -1903,8 +1772,6 @@
 #' )
 #' }
 "brms_beta_1"
-
-
 
 
 #' brms_zi_1
@@ -1975,7 +1842,6 @@
 "brms_zi_4"
 
 
-
 #' brms_ipw_1
 #'
 #' Model of class brmsfit
@@ -1990,8 +1856,6 @@
 "brms_ipw_1"
 
 
-
-
 #' brms_lf_1
 #'
 #' Model of class brmsfit
@@ -2004,7 +1868,6 @@
 #' )
 #' }
 "brms_lf_1"
-
 
 
 #' brms_ordinal_1
@@ -2124,7 +1987,6 @@
 "brms_smooth_2"
 
 
-
 #' brms_mm_1
 #'
 #' Model of class brmsfit
@@ -2202,10 +2064,6 @@
 "brms_mm_4"
 
 
-
-
-
-
 #' brms_bernoulli_1
 #'
 #' Model of class brmsfit
@@ -2222,9 +2080,6 @@
 #' brm(outcome ~ var_binom * groups + var_cont, data = dat, family = bernoulli())
 #' }
 "brms_bernoulli_1"
-
-
-
 
 
 #' brms_bf_1
@@ -2262,7 +2117,6 @@
 #' )
 #' }
 "brms_corr_re1"
-
 
 
 #' brms_trunc_1
@@ -2334,7 +2188,6 @@
 "brms_aterm_4"
 
 
-
 #' ordbetareg_1
 #'
 #' Model of class brmsfit
@@ -2361,7 +2214,6 @@
 #' @examplesIf FALSE
 #' betareg(I(food/income) ~ income + persons, data = FoodExpenditure)
 "betareg_2"
-
 
 
 #' censReg_1
@@ -2456,7 +2308,6 @@
 "brms_4bf_5"
 
 
-
 #' stanmvreg_1
 #'
 #' Model of class stanmvreg
@@ -2476,7 +2327,6 @@
 "stanmvreg_1"
 
 
-
 #' stanmvreg_2
 #'
 #' Model of class stanmvreg
@@ -2494,3 +2344,101 @@
 #'   refresh = 0)
 #' }
 "stanmvreg_2"
+
+
+#' stan_prior_checks_1
+#'
+#' Model of class stanreg
+#' @examplesIf FALSE
+#' \dontrun{
+#' library(rstanarm)
+#' prob_fall <- qlogis(0.05)
+#' prob_fall_scale <- 0.5
+#' prior_intercept <- student_t(
+#'   df = 5,
+#'   location = prob_fall,
+#'   scale = prob_fall_scale
+#' )
+#' # believer prior
+#' prob_dem_mid <- log(2)
+#' prob_dem_hi <- log(3.5)
+#'
+#' m_believer_ppc <- stan_glm(
+#'   fall_incidence ~ stay + age + mmse + sex,
+#'   data = d,
+#'   family = binomial("logit"),
+#'   prior = student_t(
+#'     df = 5,
+#'     location = c(0, 0, prob_dem_mid, prob_dem_hi, 0, 0, 0, 0, 0, 0, 0),
+#'     scale = c(1, 1, 0.5, 0.5, 1, 1, 1, 1, 1, 1, 1)
+#'   ),
+#'   prior_intercept = prior_intercept,
+#'   refresh = 0,
+#'   cores = 4,
+#'   seed = 1207,
+#'   # only sample from the prior predictive distribution
+#'   prior_PD = TRUE,
+#'   open_progress = FALSE
+#' )
+#' }
+"stan_prior_checks_1"
+
+
+#' stan_prior_checks_2
+#'
+#' Model of class stanreg
+#' @examplesIf FALSE
+#' \dontrun{
+#' library(rstanarm)
+#' # weakly informative prior
+#' stan_glm(
+#'   fall_incidence ~ stay + age + mmse + sex,
+#'   data = d,
+#'   family = binomial("logit"),
+#'   refresh = 0,
+#'   cores = 4,
+#'   seed = 1207,
+#'   # only sample from the prior predictive distribution
+#'   prior_PD = TRUE,
+#'   open_progress = FALSE
+#' )
+#' }
+"stan_prior_checks_2"
+
+
+#' stan_prior_checks_3
+#'
+#' Model of class stanreg
+#' @examplesIf FALSE
+#' \dontrun{
+#' library(rstanarm)
+#' prob_fall <- qlogis(0.05)
+#' prob_fall_scale <- 0.5
+#' prior_intercept <- student_t(
+#'   df = 5,
+#'   location = prob_fall,
+#'   scale = prob_fall_scale
+#' )
+#' # skeptical prior
+#' prob_dem_mid <- -log(2)
+#' prob_dem_hi <- -log(3.5)
+#'
+#' stan_glm(
+#'   fall_incidence ~ stay + age + mmse + sex,
+#'   data = d,
+#'   family = binomial("logit"),
+#'   prior = student_t(
+#'     df = 5,
+#'     location = c(0, 0, prob_dem_mid, prob_dem_hi, 0, 0, 0, 0, 0, 0, 0),
+#'     scale = c(1, 1, 0.5, 0.5, 1, 1, 1, 1, 1, 1, 1)
+#'   ),
+#'   prior_intercept = prior_intercept,
+#'   refresh = 0,
+#'   cores = 4,
+#'   seed = 1207,
+#'   # only sample from the prior predictive distribution
+#'   prior_PD = TRUE,
+#'   open_progress = FALSE
+#' )
+#' }
+"stan_prior_checks_3"

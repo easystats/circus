@@ -14,7 +14,7 @@ brms_2
 Model of class brmsfit
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 \dontrun{
 dat <- read.table(header = TRUE, text = "
   n r r/n group treat c2 c1 w

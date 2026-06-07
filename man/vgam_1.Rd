@@ -14,7 +14,7 @@ vgam_1
 Model of class vgam
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 data("hunua")
 vgam(agaaus ~ vitluc + s(altitude, df = 2), binomialff, data = hunua)
 \dontshow{\}) # examplesIf}

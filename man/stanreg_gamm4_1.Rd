@@ -14,7 +14,7 @@ stanreg_gamm4_1
 Model of class stanreg
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 \dontrun{
 stan_gamm4(Sepal.Width ~ s(Petal.Length), data = iris)
 }

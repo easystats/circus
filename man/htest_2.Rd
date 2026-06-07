@@ -14,7 +14,7 @@ htest_2
 Model of class htest
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 cor.test(iris$Sepal.Width, iris$Sepal.Length, method = "pearson")
 \dontshow{\}) # examplesIf}
 }

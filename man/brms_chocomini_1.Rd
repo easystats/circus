@@ -14,7 +14,7 @@ brms_chocomini_1
 Model of class brmsfit
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 \dontrun{
 # Define formula and priors
 f <- bf(Real ~ 0 + Intercept + (0 + Intercept|Participant),

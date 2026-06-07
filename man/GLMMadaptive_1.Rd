@@ -14,7 +14,7 @@ GLMMadaptive_1
 Model of class GLMMadaptive
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 \dontrun{
 data(cbpp, package = "lme4")
 

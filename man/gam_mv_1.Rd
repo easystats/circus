@@ -14,7 +14,7 @@ gam_mv_1
 Model of class gam
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 library(mgcv)
 V <- matrix(c(2, 1, 1, 2), 2, 2)
 f0 <- function(x) 2 * sin(pi * x)

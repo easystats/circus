@@ -14,7 +14,7 @@ aov_1
 Model of class aov
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 aov(Sepal.Width ~ Species, data = iris)
 \dontshow{\}) # examplesIf}
 }

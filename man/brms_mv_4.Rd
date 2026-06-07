@@ -14,7 +14,7 @@ brms_mv_4
 Model of class brmsfit
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 \dontrun{
 f1 <- bf(Sepal.Length ~ Petal.Length + Sepal.Width + Species)
 f2 <- bf(Sepal.Width ~ Species)

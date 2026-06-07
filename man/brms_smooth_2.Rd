@@ -14,7 +14,7 @@ brms_smooth_2
 Model of class brmsfit
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 \dontrun{
 dat <- mgcv::gamSim(1, n = 200, scale = 2)
 brm(y ~ t2(x0, x1) + s(x2, by = x3), data = dat, iter = 1000)

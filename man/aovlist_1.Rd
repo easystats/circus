@@ -14,7 +14,7 @@ aovlist_1
 Model of class aovlist
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 aov(wt ~ cyl + Error(gear), data = mtcars)
 \dontshow{\}) # examplesIf}
 }

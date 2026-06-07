@@ -14,7 +14,7 @@ brms_mv_6
 Model of class brmsfit
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 \dontrun{
 data(jobs, package = "mediation")
 f1 <- bf(job_seek ~ treat + econ_hard + sex + age)

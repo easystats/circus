@@ -14,7 +14,7 @@ brms_mo1
 Model of class brmsfit
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 \dontrun{
 income_options <- c("below_20", "20_to_40", "40_to_100", "greater_100")
 income <- factor(

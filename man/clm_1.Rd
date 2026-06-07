@@ -14,7 +14,7 @@ clm_1
 Model of class clm
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 clm_1 <- clm(rating ~ temp * contact, data = wine)
 \dontshow{\}) # examplesIf}
 }

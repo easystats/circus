@@ -14,7 +14,7 @@ anova_lmerMod_6
 Model of class anova of merMod
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 anova(lmerMod_0, lmerMod_1, lmerMod_2)
 \dontshow{\}) # examplesIf}
 }

@@ -14,7 +14,7 @@ stanreg_lmerMod_5
 Model of class stanreg
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 \dontrun{
 dat <- iris
 dat$Cat1 <- rep(c("X", "X", "Y"), length.out = nrow(dat))

@@ -14,7 +14,7 @@ stanreg_lmerMod_2
 Model of class stanreg
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 \dontrun{
 rstanarm::stan_lmer(wt ~ drat + cyl + (1 | gear), data = mtcars)
 }

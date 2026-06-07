@@ -14,7 +14,7 @@ brms_4bf_2
 Example of class brmsfit with \code{save_all_pars = TRUE}.
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 \dontrun{
 brm(Sepal.Length ~ Species, data = iris, save_all_pars = TRUE)
 }

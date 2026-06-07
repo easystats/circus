@@ -14,7 +14,7 @@ brms_mv_5
 Model of class brmsfit
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 \dontrun{
 bf1 <- bf(count ~ child + camper + (1 | persons), zi ~ camper + (1 | persons))
 bf2 <- bf(count2 ~ child + livebait + (1 | persons), zi ~ child + (1 | persons))

@@ -14,7 +14,7 @@ stanreg_merMod_4
 Model of class stanreg
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 \dontrun{
 stan_glmer(
   vs ~ cyl + (1 | gear),

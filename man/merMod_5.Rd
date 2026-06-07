@@ -14,7 +14,7 @@ merMod_5
 Model of class glmerMod
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 \dontrun{
 # for data, see '?glmer.nb'
 lme4::glmer.nb(y ~ f1 * f2 + (1 | g), data = dd)

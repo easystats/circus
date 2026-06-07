@@ -14,7 +14,7 @@ betareg_2
 Model of class betareg
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 betareg(I(food/income) ~ income + persons, data = FoodExpenditure)
 \dontshow{\}) # examplesIf}
 }

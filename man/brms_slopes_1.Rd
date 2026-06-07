@@ -14,7 +14,7 @@ brms_slopes_1
 Model of class brmsfit
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 \dontrun{
 states <- as.data.frame(state.x77)
 states$HSGrad <- states$`HS Grad`

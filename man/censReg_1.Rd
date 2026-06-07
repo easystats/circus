@@ -14,7 +14,7 @@ censReg_1
 Model of class censReg
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 censReg(
   affairs ~ age + yearsmarried + religiousness + occupation + rating,
   data = Affairs

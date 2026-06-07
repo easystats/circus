@@ -14,7 +14,7 @@ ivreg_1
 Model of class ivreg
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 data(CigarettesSW)
 CigarettesSW$rprice <- with(CigarettesSW, price / cpi)
 CigarettesSW$rincome <- with(CigarettesSW, income / population / cpi)

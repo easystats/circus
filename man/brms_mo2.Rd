@@ -14,7 +14,7 @@ brms_mo2
 Model of class brmsfit
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 \dontrun{
 brm(mpg ~ mo(gear), data = mtcars, refresh = 0)
 }

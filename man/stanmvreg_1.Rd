@@ -14,7 +14,7 @@ stanmvreg_1
 Model of class stanmvreg
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 \dontrun{
 library(rstanarm)
 stan_mvmer(

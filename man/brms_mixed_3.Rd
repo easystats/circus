@@ -14,7 +14,7 @@ brms_mixed_3
 Model of class brmsfit
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 \dontrun{
 set.seed(123)
 sleepstudy$grp <- sample(1:5, size = 180, replace = TRUE)

@@ -14,7 +14,7 @@ stanreg_glm_6
 Model of class stanreg
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 \dontrun{
 set.seed(123)
 rstanarm::stan_glm(Sepal.Width ~ Species * Petal.Length, data = iris)

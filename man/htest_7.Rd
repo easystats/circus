@@ -14,7 +14,7 @@ htest_7
 Model of class htest
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 t.test(mtcars$mpg ~ mtcars$vs)
 \dontshow{\}) # examplesIf}
 }

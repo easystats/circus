@@ -14,7 +14,7 @@ brms_corr_re1
 Model of class brmsfit
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 \dontrun{
 df <- data.frame(x = factor(rep(c('A', 'B'), each = 100)),
                  y = c(rnorm(100, mean = 0, sd = 1),

@@ -14,7 +14,7 @@ merMod_nb_1
 Model of class glmerMod
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 library(lme4)
 library(glmmTMB)
 data(Owls)

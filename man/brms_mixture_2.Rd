@@ -14,7 +14,7 @@ brms_mixture_2
 Model of class brmsfit
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 \dontrun{
 brm(
   formula = QoL ~ time + hospital + education + age + (1 + time | ID),

@@ -14,7 +14,7 @@ brms_lf_1
 Model of class brmsfit
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 \dontrun{
 brms::brm(
   bf(carb ~ gear * vs) + lf(disc ~ 0 + mo(cyl)),

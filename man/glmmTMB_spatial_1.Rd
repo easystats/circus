@@ -14,7 +14,7 @@ glmmTMB_spatial_1
 Model of class glmmTMB
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 \dontrun{
 library(geoR)
 data(ca20)

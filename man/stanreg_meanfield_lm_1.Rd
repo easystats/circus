@@ -14,7 +14,7 @@ stanreg_meanfield_lm_1
 Model of class stanreg
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 \dontrun{
 update(stanreg_lm_1, algorithm = "meanfield")
 }

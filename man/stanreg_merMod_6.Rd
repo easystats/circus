@@ -14,7 +14,7 @@ stanreg_merMod_6
 Model of class stanreg
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 \dontrun{
 stan_glmer(
   Reaction ~ Days + (1 + Days | Subject),

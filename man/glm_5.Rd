@@ -14,7 +14,7 @@ glm_5
 Model of class glm
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 set.seed(123)
 mtcars$count <- rpois(nrow(mtcars), 2)
 glm(formula = count ~ wt + cyl, family = "poisson", data = mtcars)

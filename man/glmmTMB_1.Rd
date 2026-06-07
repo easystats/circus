@@ -14,7 +14,7 @@ glmmTMB_1
 Model of class glmmTMB
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 \dontrun{
 set.seed(123)
 fish <- read.csv("https://stats.idre.ucla.edu/stat/data/fish.csv")
