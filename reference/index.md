@@ -1,0 +1,380 @@
+# Package index
+
+## All functions
+
+- [`GLMMadaptive_1`](https://easystats.github.io/circus/reference/GLMMadaptive_1.md)
+  : GLMMadaptive_1
+- [`GLMMadaptive_zi_1`](https://easystats.github.io/circus/reference/GLMMadaptive_zi_1.md)
+  : GLMMadaptive_zi_1
+- [`GLMMadaptive_zi_2`](https://easystats.github.io/circus/reference/GLMMadaptive_zi_2.md)
+  : GLMMadaptive_zi_2
+- [`anova_1`](https://easystats.github.io/circus/reference/anova_1.md) :
+  anova_1
+- [`anova_2`](https://easystats.github.io/circus/reference/anova_2.md) :
+  anova_2
+- [`anova_3`](https://easystats.github.io/circus/reference/anova_3.md) :
+  anova_3
+- [`anova_4`](https://easystats.github.io/circus/reference/anova_4.md) :
+  anova_4
+- [`anova_lmerMod_0`](https://easystats.github.io/circus/reference/anova_lmerMod_0.md)
+  : anova_lmerMod_0
+- [`anova_lmerMod_1`](https://easystats.github.io/circus/reference/anova_lmerMod_1.md)
+  : anova_lmerMod_1
+- [`anova_lmerMod_2`](https://easystats.github.io/circus/reference/anova_lmerMod_2.md)
+  : anova_lmerMod_2
+- [`anova_lmerMod_3`](https://easystats.github.io/circus/reference/anova_lmerMod_3.md)
+  : anova_lmerMod_3
+- [`anova_lmerMod_4`](https://easystats.github.io/circus/reference/anova_lmerMod_4.md)
+  : anova_lmerMod_4
+- [`anova_lmerMod_5`](https://easystats.github.io/circus/reference/anova_lmerMod_5.md)
+  : anova_lmerMod_5
+- [`anova_lmerMod_6`](https://easystats.github.io/circus/reference/anova_lmerMod_6.md)
+  : anova_lmerMod_6
+- [`aov_1`](https://easystats.github.io/circus/reference/aov_1.md) :
+  aov_1
+- [`aov_2`](https://easystats.github.io/circus/reference/aov_2.md) :
+  aov_2
+- [`aov_3`](https://easystats.github.io/circus/reference/aov_3.md) :
+  aov_3
+- [`aovlist_1`](https://easystats.github.io/circus/reference/aovlist_1.md)
+  : aovlist_1
+- [`aovlist_2`](https://easystats.github.io/circus/reference/aovlist_2.md)
+  : aovlist_2
+- [`aovlist_3`](https://easystats.github.io/circus/reference/aovlist_3.md)
+  : aovlist_3
+- [`betareg_1`](https://easystats.github.io/circus/reference/betareg_1.md)
+  : betareg_1
+- [`betareg_2`](https://easystats.github.io/circus/reference/betareg_2.md)
+  : betareg_2
+- [`brms_1`](https://easystats.github.io/circus/reference/brms_1.md) :
+  brms_1
+- [`brms_2`](https://easystats.github.io/circus/reference/brms_2.md) :
+  brms_2
+- [`brms_3`](https://easystats.github.io/circus/reference/brms_3.md) :
+  brms_3
+- [`brms_4`](https://easystats.github.io/circus/reference/brms_4.md) :
+  brms_4
+- [`brms_4bf_1`](https://easystats.github.io/circus/reference/brms_4bf_1.md)
+  : brms_4bf_1
+- [`brms_4bf_2`](https://easystats.github.io/circus/reference/brms_4bf_2.md)
+  : brms_4bf_2
+- [`brms_4bf_3`](https://easystats.github.io/circus/reference/brms_4bf_3.md)
+  : brms_4bf_3
+- [`brms_4bf_4`](https://easystats.github.io/circus/reference/brms_4bf_4.md)
+  : brms_4bf_4
+- [`brms_4bf_5`](https://easystats.github.io/circus/reference/brms_4bf_5.md)
+  : brms_4bf_5
+- [`brms_aterm_1`](https://easystats.github.io/circus/reference/brms_aterm_1.md)
+  : brms_aterm_1
+- [`brms_aterm_2`](https://easystats.github.io/circus/reference/brms_aterm_2.md)
+  : brms_aterm_2
+- [`brms_aterm_3`](https://easystats.github.io/circus/reference/brms_aterm_3.md)
+  : brms_aterm_3
+- [`brms_aterm_4`](https://easystats.github.io/circus/reference/brms_aterm_4.md)
+  : brms_aterm_4
+- [`brms_bernoulli_1`](https://easystats.github.io/circus/reference/brms_bernoulli_1.md)
+  : brms_bernoulli_1
+- [`brms_beta_1`](https://easystats.github.io/circus/reference/brms_beta_1.md)
+  : brms_beta_1
+- [`brms_bf_1`](https://easystats.github.io/circus/reference/brms_bf_1.md)
+  : brms_bf_1
+- [`brms_categorical_1_fct`](https://easystats.github.io/circus/reference/brms_categorical_1_fct.md)
+  : brms_categorical_1_fct
+- [`brms_categorical_1_num`](https://easystats.github.io/circus/reference/brms_categorical_1_num.md)
+  : brms_categorical_1_num
+- [`brms_categorical_1_wt`](https://easystats.github.io/circus/reference/brms_categorical_1_wt.md)
+  : brms_categorical_1_wt
+- [`brms_categorical_2_num`](https://easystats.github.io/circus/reference/brms_categorical_2_num.md)
+  : brms_categorical_2_num
+- [`brms_chocomini_1`](https://easystats.github.io/circus/reference/brms_chocomini_1.md)
+  : brms_chocomini_1
+- [`brms_corr_re1`](https://easystats.github.io/circus/reference/brms_corr_re1.md)
+  : brms_corr_re1
+- [`brms_ipw_1`](https://easystats.github.io/circus/reference/brms_ipw_1.md)
+  : brms_ipw_1
+- [`brms_lf_1`](https://easystats.github.io/circus/reference/brms_lf_1.md)
+  : brms_lf_1
+- [`brms_linear_1`](https://easystats.github.io/circus/reference/brms_linear_1.md)
+  : brms_linear_1
+- [`brms_logistic_1`](https://easystats.github.io/circus/reference/brms_logistic_1.md)
+  : brms_logistic_1
+- [`brms_meta_1`](https://easystats.github.io/circus/reference/brms_meta_1.md)
+  : brms_meta_1
+- [`brms_miss_1`](https://easystats.github.io/circus/reference/brms_miss_1.md)
+  : brms_miss_1
+- [`brms_mixed_1`](https://easystats.github.io/circus/reference/brms_mixed_1.md)
+  : brms_mixed_1
+- [`brms_mixed_10`](https://easystats.github.io/circus/reference/brms_mixed_10.md)
+  : brms_mixed_10
+- [`brms_mixed_2`](https://easystats.github.io/circus/reference/brms_mixed_2.md)
+  : brms_mixed_2
+- [`brms_mixed_3`](https://easystats.github.io/circus/reference/brms_mixed_3.md)
+  : brms_mixed_3
+- [`brms_mixed_4`](https://easystats.github.io/circus/reference/brms_mixed_4.md)
+  : brms_mixed_4
+- [`brms_mixed_5`](https://easystats.github.io/circus/reference/brms_mixed_5.md)
+  : brms_mixed_5
+- [`brms_mixed_6`](https://easystats.github.io/circus/reference/brms_mixed_6.md)
+  : brms_mixed_6
+- [`brms_mixed_7`](https://easystats.github.io/circus/reference/brms_mixed_7.md)
+  : brms_mixed_7
+- [`brms_mixed_8`](https://easystats.github.io/circus/reference/brms_mixed_8.md)
+  : brms_mixed_8
+- [`brms_mixed_9`](https://easystats.github.io/circus/reference/brms_mixed_9.md)
+  : brms_mixed_9
+- [`brms_mixture_1`](https://easystats.github.io/circus/reference/brms_mixture_1.md)
+  : brms_mixture_1
+- [`brms_mixture_2`](https://easystats.github.io/circus/reference/brms_mixture_2.md)
+  : brms_mixture_2
+- [`brms_mm_1`](https://easystats.github.io/circus/reference/brms_mm_1.md)
+  : brms_mm_1
+- [`brms_mm_2`](https://easystats.github.io/circus/reference/brms_mm_2.md)
+  : brms_mm_2
+- [`brms_mm_3`](https://easystats.github.io/circus/reference/brms_mm_3.md)
+  : brms_mm_3
+- [`brms_mm_4`](https://easystats.github.io/circus/reference/brms_mm_4.md)
+  : brms_mm_4
+- [`brms_mo1`](https://easystats.github.io/circus/reference/brms_mo1.md)
+  : brms_mo1
+- [`brms_mo2`](https://easystats.github.io/circus/reference/brms_mo2.md)
+  : brms_mo2
+- [`brms_mv_1`](https://easystats.github.io/circus/reference/brms_mv_1.md)
+  : brms_mv_1
+- [`brms_mv_2`](https://easystats.github.io/circus/reference/brms_mv_2.md)
+  : brms_mv_2
+- [`brms_mv_3`](https://easystats.github.io/circus/reference/brms_mv_3.md)
+  : brms_mv_3
+- [`brms_mv_4`](https://easystats.github.io/circus/reference/brms_mv_4.md)
+  : brms_mv_4
+- [`brms_mv_5`](https://easystats.github.io/circus/reference/brms_mv_5.md)
+  : brms_mv_5
+- [`brms_mv_6`](https://easystats.github.io/circus/reference/brms_mv_6.md)
+  : brms_mv_6
+- [`brms_mv_7`](https://easystats.github.io/circus/reference/brms_mv_7.md)
+  : brms_mv_7
+- [`brms_null_1`](https://easystats.github.io/circus/reference/brms_null_1.md)
+  : brms_null_1
+- [`brms_null_2`](https://easystats.github.io/circus/reference/brms_null_2.md)
+  : brms_null_2
+- [`brms_ordinal_1`](https://easystats.github.io/circus/reference/brms_ordinal_1.md)
+  : brms_ordinal_1
+- [`brms_ordinal_1_wt`](https://easystats.github.io/circus/reference/brms_ordinal_1_wt.md)
+  : brms_ordinal_1_wt
+- [`brms_ordinal_2`](https://easystats.github.io/circus/reference/brms_ordinal_2.md)
+  : brms_ordinal_2
+- [`brms_sigma_1`](https://easystats.github.io/circus/reference/brms_sigma_1.md)
+  : brms_sigma_1
+- [`brms_sigma_2`](https://easystats.github.io/circus/reference/brms_sigma_2.md)
+  : brms_sigma_2
+- [`brms_sigma_3`](https://easystats.github.io/circus/reference/brms_sigma_3.md)
+  : brms_sigma_3
+- [`brms_slopes_1`](https://easystats.github.io/circus/reference/brms_slopes_1.md)
+  : brms_slopes_1
+- [`brms_smooth_1`](https://easystats.github.io/circus/reference/brms_smooth_1.md)
+  : brms_smooth_1
+- [`brms_smooth_2`](https://easystats.github.io/circus/reference/brms_smooth_2.md)
+  : brms_smooth_2
+- [`brms_trunc_1`](https://easystats.github.io/circus/reference/brms_trunc_1.md)
+  : brms_trunc_1
+- [`brms_von_mises_1`](https://easystats.github.io/circus/reference/brms_von_mises_1.md)
+  : brms_von_mises_1
+- [`brms_zi_1`](https://easystats.github.io/circus/reference/brms_zi_1.md)
+  : brms_zi_1
+- [`brms_zi_2`](https://easystats.github.io/circus/reference/brms_zi_2.md)
+  : brms_zi_2
+- [`brms_zi_3`](https://easystats.github.io/circus/reference/brms_zi_3.md)
+  : brms_zi_3
+- [`brms_zi_4`](https://easystats.github.io/circus/reference/brms_zi_4.md)
+  : brms_zi_4
+- [`brms_zoib_1`](https://easystats.github.io/circus/reference/brms_zoib_1.md)
+  : brms_zoib_1
+- [`censReg_1`](https://easystats.github.io/circus/reference/censReg_1.md)
+  : censReg_1
+- [`clm2_1`](https://easystats.github.io/circus/reference/clm2_1.md) :
+  clm2_1
+- [`clm_1`](https://easystats.github.io/circus/reference/clm_1.md) :
+  clm_1
+- [`download_model()`](https://easystats.github.io/circus/reference/download_model.md)
+  : Download circus models
+- [`gam_mv_1`](https://easystats.github.io/circus/reference/gam_mv_1.md)
+  : gam_mv_1
+- [`gam_zi_1`](https://easystats.github.io/circus/reference/gam_zi_1.md)
+  : gam_zi_1
+- [`gamlss_1`](https://easystats.github.io/circus/reference/gamlss_1.md)
+  : gamlss_1
+- [`gamlss_2`](https://easystats.github.io/circus/reference/gamlss_2.md)
+  : gamlss_2
+- [`glm_0`](https://easystats.github.io/circus/reference/glm_0.md) :
+  glm_0
+- [`glm_1`](https://easystats.github.io/circus/reference/glm_1.md) :
+  glm_1
+- [`glm_2`](https://easystats.github.io/circus/reference/glm_2.md) :
+  glm_2
+- [`glm_3`](https://easystats.github.io/circus/reference/glm_3.md) :
+  glm_3
+- [`glm_4`](https://easystats.github.io/circus/reference/glm_4.md) :
+  glm_4
+- [`glm_5`](https://easystats.github.io/circus/reference/glm_5.md) :
+  glm_5
+- [`glm_nb_1`](https://easystats.github.io/circus/reference/glm_nb_1.md)
+  : glm_nb_1
+- [`glmmTMB_1`](https://easystats.github.io/circus/reference/glmmTMB_1.md)
+  : glmmTMB_1
+- [`glmmTMB_2`](https://easystats.github.io/circus/reference/glmmTMB_2.md)
+  : glmmTMB_2
+- [`glmmTMB_3`](https://easystats.github.io/circus/reference/glmmTMB_3.md)
+  : glmmTMB_3
+- [`glmmTMB_4`](https://easystats.github.io/circus/reference/glmmTMB_4.md)
+  : glmmTMB_4
+- [`glmmTMB_5`](https://easystats.github.io/circus/reference/glmmTMB_5.md)
+  : glmmTMB_5
+- [`glmmTMB_spatial_1`](https://easystats.github.io/circus/reference/glmmTMB_spatial_1.md)
+  : glmmTMB_spatial_1
+- [`glmmTMB_zi_1`](https://easystats.github.io/circus/reference/glmmTMB_zi_1.md)
+  : glmmTMB_zi_1
+- [`glmmTMB_zi_2`](https://easystats.github.io/circus/reference/glmmTMB_zi_2.md)
+  : glmmTMB_zi_2
+- [`glmmTMB_zi_3`](https://easystats.github.io/circus/reference/glmmTMB_zi_3.md)
+  : glmmTMB_zi_3
+- [`glmmTMB_zi_4`](https://easystats.github.io/circus/reference/glmmTMB_zi_4.md)
+  : glmmTMB_zi_4
+- [`glmmTMB_zi_5`](https://easystats.github.io/circus/reference/glmmTMB_zi_5.md)
+  : glmmTMB_zi_5
+- [`glmmTMB_zi_6`](https://easystats.github.io/circus/reference/glmmTMB_zi_6.md)
+  : glmmTMB_zi_6
+- [`htest_1`](https://easystats.github.io/circus/reference/htest_1.md) :
+  htest_1
+- [`htest_2`](https://easystats.github.io/circus/reference/htest_2.md) :
+  htest_2
+- [`htest_3`](https://easystats.github.io/circus/reference/htest_3.md) :
+  htest_3
+- [`htest_4`](https://easystats.github.io/circus/reference/htest_4.md) :
+  htest_4
+- [`htest_5`](https://easystats.github.io/circus/reference/htest_5.md) :
+  htest_5
+- [`htest_6`](https://easystats.github.io/circus/reference/htest_6.md) :
+  htest_6
+- [`htest_7`](https://easystats.github.io/circus/reference/htest_7.md) :
+  htest_7
+- [`htest_8`](https://easystats.github.io/circus/reference/htest_8.md) :
+  htest_8
+- [`ivreg_1`](https://easystats.github.io/circus/reference/ivreg_1.md) :
+  ivreg_1
+- [`lm_0`](https://easystats.github.io/circus/reference/lm_0.md) : lm_0
+- [`lm_1`](https://easystats.github.io/circus/reference/lm_1.md) : lm_1
+- [`lm_2`](https://easystats.github.io/circus/reference/lm_2.md) : lm_2
+- [`lm_3`](https://easystats.github.io/circus/reference/lm_3.md) : lm_3
+- [`lm_4`](https://easystats.github.io/circus/reference/lm_4.md) : lm_4
+- [`lm_5`](https://easystats.github.io/circus/reference/lm_5.md) : lm_5
+- [`lm_6`](https://easystats.github.io/circus/reference/lm_6.md) : lm_6
+- [`lm_7`](https://easystats.github.io/circus/reference/lm_7.md) : lm_7
+- [`lmerMod_0`](https://easystats.github.io/circus/reference/lmerMod_0.md)
+  : lmerMod_0
+- [`lmerMod_1`](https://easystats.github.io/circus/reference/lmerMod_1.md)
+  : lmerMod_1
+- [`lmerMod_2`](https://easystats.github.io/circus/reference/lmerMod_2.md)
+  : lmerMod_2
+- [`lmerMod_3`](https://easystats.github.io/circus/reference/lmerMod_3.md)
+  : lmerMod_3
+- [`lmerMod_4`](https://easystats.github.io/circus/reference/lmerMod_4.md)
+  : lmerMod_4
+- [`lmerMod_5`](https://easystats.github.io/circus/reference/lmerMod_5.md)
+  : lmerMod_5
+- [`merMod_0`](https://easystats.github.io/circus/reference/merMod_0.md)
+  : merMod_0
+- [`merMod_1`](https://easystats.github.io/circus/reference/merMod_1.md)
+  : merMod_1
+- [`merMod_2`](https://easystats.github.io/circus/reference/merMod_2.md)
+  : merMod_2
+- [`merMod_3`](https://easystats.github.io/circus/reference/merMod_3.md)
+  : merMod_3
+- [`merMod_4`](https://easystats.github.io/circus/reference/merMod_4.md)
+  : merMod_4
+- [`merMod_5`](https://easystats.github.io/circus/reference/merMod_5.md)
+  : merMod_5
+- [`merMod_nb_1`](https://easystats.github.io/circus/reference/merMod_nb_1.md)
+  : merMod_nb_1
+- [`ordbetareg_1`](https://easystats.github.io/circus/reference/ordbetareg_1.md)
+  : ordbetareg_1
+- [`stan_prior_checks_1`](https://easystats.github.io/circus/reference/stan_prior_checks_1.md)
+  : stan_prior_checks_1
+- [`stan_prior_checks_2`](https://easystats.github.io/circus/reference/stan_prior_checks_2.md)
+  : stan_prior_checks_2
+- [`stan_prior_checks_3`](https://easystats.github.io/circus/reference/stan_prior_checks_3.md)
+  : stan_prior_checks_3
+- [`stanmvreg_1`](https://easystats.github.io/circus/reference/stanmvreg_1.md)
+  : stanmvreg_1
+- [`stanmvreg_2`](https://easystats.github.io/circus/reference/stanmvreg_2.md)
+  : stanmvreg_2
+- [`stanreg_bernoulli_1`](https://easystats.github.io/circus/reference/stanreg_bernoulli_1.md)
+  : stanreg_bernoulli_1
+- [`stanreg_fullrank_lm_1`](https://easystats.github.io/circus/reference/stanreg_fullrank_lm_1.md)
+  : stanreg_fullrank_lm_1
+- [`stanreg_gamm4_1`](https://easystats.github.io/circus/reference/stanreg_gamm4_1.md)
+  : stanreg_gamm4_1
+- [`stanreg_gamm4_2`](https://easystats.github.io/circus/reference/stanreg_gamm4_2.md)
+  : stanreg_gamm4_2
+- [`stanreg_gamm4_3`](https://easystats.github.io/circus/reference/stanreg_gamm4_3.md)
+  : stanreg_gamm4_3
+- [`stanreg_glm_0`](https://easystats.github.io/circus/reference/stanreg_glm_0.md)
+  : stanreg_glm_0
+- [`stanreg_glm_1`](https://easystats.github.io/circus/reference/stanreg_glm_1.md)
+  : stanreg_glm_1
+- [`stanreg_glm_2`](https://easystats.github.io/circus/reference/stanreg_glm_2.md)
+  : stanreg_glm_2
+- [`stanreg_glm_3`](https://easystats.github.io/circus/reference/stanreg_glm_3.md)
+  : stanreg_glm_3
+- [`stanreg_glm_4`](https://easystats.github.io/circus/reference/stanreg_glm_4.md)
+  : stanreg_glm_4
+- [`stanreg_glm_5`](https://easystats.github.io/circus/reference/stanreg_glm_5.md)
+  : stanreg_glm_5
+- [`stanreg_glm_6`](https://easystats.github.io/circus/reference/stanreg_glm_6.md)
+  : stanreg_glm_6
+- [`stanreg_lm_0`](https://easystats.github.io/circus/reference/stanreg_lm_0.md)
+  : stanreg_lm_0
+- [`stanreg_lm_1`](https://easystats.github.io/circus/reference/stanreg_lm_1.md)
+  : stanreg_lm_1
+- [`stanreg_lm_2`](https://easystats.github.io/circus/reference/stanreg_lm_2.md)
+  : stanreg_lm_2
+- [`stanreg_lm_3`](https://easystats.github.io/circus/reference/stanreg_lm_3.md)
+  : stanreg_lm_3
+- [`stanreg_lm_4`](https://easystats.github.io/circus/reference/stanreg_lm_4.md)
+  : stanreg_lm_4
+- [`stanreg_lm_5`](https://easystats.github.io/circus/reference/stanreg_lm_5.md)
+  : stanreg_lm_5
+- [`stanreg_lm_6`](https://easystats.github.io/circus/reference/stanreg_lm_6.md)
+  : stanreg_lm_6
+- [`stanreg_lm_7`](https://easystats.github.io/circus/reference/stanreg_lm_7.md)
+  : stanreg_lm_7
+- [`stanreg_lmerMod_0`](https://easystats.github.io/circus/reference/stanreg_lmerMod_0.md)
+  : stanreg_lmerMod_0
+- [`stanreg_lmerMod_1`](https://easystats.github.io/circus/reference/stanreg_lmerMod_1.md)
+  : stanreg_lmerMod_1
+- [`stanreg_lmerMod_2`](https://easystats.github.io/circus/reference/stanreg_lmerMod_2.md)
+  : stanreg_lmerMod_2
+- [`stanreg_lmerMod_3`](https://easystats.github.io/circus/reference/stanreg_lmerMod_3.md)
+  : stanreg_lmerMod_3
+- [`stanreg_lmerMod_4`](https://easystats.github.io/circus/reference/stanreg_lmerMod_4.md)
+  : stanreg_lmerMod_4
+- [`stanreg_lmerMod_5`](https://easystats.github.io/circus/reference/stanreg_lmerMod_5.md)
+  : stanreg_lmerMod_5
+- [`stanreg_meanfield_lm_1`](https://easystats.github.io/circus/reference/stanreg_meanfield_lm_1.md)
+  : stanreg_meanfield_lm_1
+- [`stanreg_merMod_0`](https://easystats.github.io/circus/reference/stanreg_merMod_0.md)
+  : stanreg_merMod_0
+- [`stanreg_merMod_1`](https://easystats.github.io/circus/reference/stanreg_merMod_1.md)
+  : stanreg_merMod_1
+- [`stanreg_merMod_2`](https://easystats.github.io/circus/reference/stanreg_merMod_2.md)
+  : stanreg_merMod_2
+- [`stanreg_merMod_3`](https://easystats.github.io/circus/reference/stanreg_merMod_3.md)
+  : stanreg_merMod_3
+- [`stanreg_merMod_4`](https://easystats.github.io/circus/reference/stanreg_merMod_4.md)
+  : stanreg_merMod_4
+- [`stanreg_merMod_5`](https://easystats.github.io/circus/reference/stanreg_merMod_5.md)
+  : stanreg_merMod_5
+- [`stanreg_merMod_6`](https://easystats.github.io/circus/reference/stanreg_merMod_6.md)
+  : stanreg_merMod_6
+- [`vgam_1`](https://easystats.github.io/circus/reference/vgam_1.md) :
+  vgam_1
+- [`vgam_2`](https://easystats.github.io/circus/reference/vgam_2.md) :
+  vgam_2
