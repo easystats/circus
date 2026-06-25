@@ -1556,6 +1556,22 @@
 "brms_sigma_3"
 
 
+#' brms_intercept_1
+#'
+#' Model of class brmsfit
+#' @examplesIf FALSE
+#' \dontrun{
+#' set.seed(123)
+#' df <- data.frame(response = rnorm(100), day = rep(paste0('D', 1:5), each = 20))
+#' brm(
+#'   response ~ 1 + (1 | day),
+#'   data = df,
+#'   seed = 123
+#' )
+#' }
+"brms_intercept_1"
+
+
 #' brms_mo1
 #'
 #' Model of class brmsfit
