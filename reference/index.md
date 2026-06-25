@@ -90,6 +90,8 @@
   : brms_chocomini_1
 - [`brms_corr_re1`](https://easystats.github.io/circus/reference/brms_corr_re1.md)
   : brms_corr_re1
+- [`brms_intercept_1`](https://easystats.github.io/circus/reference/brms_intercept_1.md)
+  : brms_intercept_1
 - [`brms_ipw_1`](https://easystats.github.io/circus/reference/brms_ipw_1.md)
   : brms_ipw_1
 - [`brms_lf_1`](https://easystats.github.io/circus/reference/brms_lf_1.md)
