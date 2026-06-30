@@ -18,9 +18,9 @@ library("circus")
 
 ## How to use it
 
-You can use the package in your `testthat` block by directly calling the
-models. However, for it to work on **travis**, it is easier to directly
-download them from github with the `download_model` in the
+You could use the package in your `testthat` block by directly calling
+the models. However, the usual workflow is to directly download them
+from github with the `download_model()` function in the
 [`insight`](https://github.com/easystats/insight) package:
 
 ``` r
