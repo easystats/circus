@@ -179,6 +179,8 @@ usethis::use_data(lm_1, overwrite = TRUE)
   : brms_categorical_2_num
 - [`brms_chocomini_1`](https://easystats.github.io/circus/reference/brms_chocomini_1.md)
   : brms_chocomini_1
+- [`brms_chocomini_2`](https://easystats.github.io/circus/reference/brms_chocomini_2.md)
+  : brms_chocomini_2
 - [`brms_corr_re1`](https://easystats.github.io/circus/reference/brms_corr_re1.md)
   : brms_corr_re1
 - [`brms_intercept_1`](https://easystats.github.io/circus/reference/brms_intercept_1.md)
