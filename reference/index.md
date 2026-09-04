@@ -198,6 +198,8 @@
   clm2_1
 - [`clm_1`](https://easystats.github.io/circus/reference/clm_1.md) :
   clm_1
+- [`cogmod_ddm_1`](https://easystats.github.io/circus/reference/cogmod_ddm_1.md)
+  : cogmod_ddm_1
 - [`download_model()`](https://easystats.github.io/circus/reference/download_model.md)
   : Download circus models
 - [`gam_mv_1`](https://easystats.github.io/circus/reference/gam_mv_1.md)

@@ -13,9 +13,9 @@
 Makowski D, Lüdecke D (2026). *circus: The Circus of Monsters*. R
 package version 0.1.6.
 
-    @Manual{,
-      title = {circus: The Circus of Monsters},
-      author = {Dominique Makowski and Daniel Lüdecke},
-      year = {2026},
-      note = {R package version 0.1.6},
-    }
+@Manual{,\
+  title = {circus: The Circus of Monsters},\
+  author = {Dominique Makowski and Daniel Lüdecke},\
+  year = {2026},\
+  note = {R package version 0.1.6},\
+}
