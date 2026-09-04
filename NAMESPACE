@@ -2,6 +2,8 @@
 
 export(download_data_github)
 export(download_model)
-importFrom(httr,GET)
-importFrom(httr,content)
-importFrom(httr,stop_for_status)
+importFrom(httr,
+  GET,
+  content,
+  stop_for_status
+)
