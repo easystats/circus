@@ -1244,6 +1244,17 @@
 "brms_4"
 
 
+#' brms_5
+#'
+#' Model of class brmsfit
+#' @examplesIf FALSE
+#' \dontrun{
+#' set.seed(333)
+#' brm(mpg ~ factor(cyl), data = mtcars)
+#' }
+"brms_5"
+
+
 #' brms_linear_1
 #'
 #' Model of class brmsfit
