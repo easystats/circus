@@ -64,6 +64,8 @@
   : brms_4bf_4
 - [`brms_4bf_5`](https://easystats.github.io/circus/reference/brms_4bf_5.md)
   : brms_4bf_5
+- [`brms_5`](https://easystats.github.io/circus/reference/brms_5.md) :
+  brms_5
 - [`brms_aterm_1`](https://easystats.github.io/circus/reference/brms_aterm_1.md)
   : brms_aterm_1
 - [`brms_aterm_2`](https://easystats.github.io/circus/reference/brms_aterm_2.md)
