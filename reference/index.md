@@ -184,6 +184,8 @@
   : brms_trunc_1
 - [`brms_von_mises_1`](https://easystats.github.io/circus/reference/brms_von_mises_1.md)
   : brms_von_mises_1
+- [`brms_wiener_1`](https://easystats.github.io/circus/reference/brms_wiener_1.md)
+  : brms_wiener_1
 - [`brms_zi_1`](https://easystats.github.io/circus/reference/brms_zi_1.md)
   : brms_zi_1
 - [`brms_zi_2`](https://easystats.github.io/circus/reference/brms_zi_2.md)
